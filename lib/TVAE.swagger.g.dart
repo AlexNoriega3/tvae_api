@@ -6,25 +6,23 @@ part of 'TVAE.swagger.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+ApiUserDto _$ApiUserDtoFromJson(Map<String, dynamic> json) => ApiUserDto(
+      email: json['email'] as String,
+      password: json['password'] as String,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+    );
+
+Map<String, dynamic> _$ApiUserDtoToJson(ApiUserDto instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+    };
+
 AppUsuarioDto _$AppUsuarioDtoFromJson(Map<String, dynamic> json) =>
     AppUsuarioDto(
-      id: json['id'] as String?,
-      userName: json['userName'] as String?,
-      normalizedUserName: json['normalizedUserName'] as String?,
-      email: json['email'] as String?,
-      normalizedEmail: json['normalizedEmail'] as String?,
-      emailConfirmed: json['emailConfirmed'] as bool?,
-      passwordHash: json['passwordHash'] as String?,
-      securityStamp: json['securityStamp'] as String?,
-      concurrencyStamp: json['concurrencyStamp'] as String?,
-      phoneNumber: json['phoneNumber'] as String?,
-      phoneNumberConfirmed: json['phoneNumberConfirmed'] as bool?,
-      twoFactorEnabled: json['twoFactorEnabled'] as bool?,
-      lockoutEnd: json['lockoutEnd'] == null
-          ? null
-          : DateTime.parse(json['lockoutEnd'] as String),
-      lockoutEnabled: json['lockoutEnabled'] as bool?,
-      accessFailedCount: json['accessFailedCount'] as int?,
       name: json['name'] as String?,
       url: json['url'] as String?,
       countryCode: json['countryCode'] as String?,
@@ -40,21 +38,6 @@ AppUsuarioDto _$AppUsuarioDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AppUsuarioDtoToJson(AppUsuarioDto instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'userName': instance.userName,
-      'normalizedUserName': instance.normalizedUserName,
-      'email': instance.email,
-      'normalizedEmail': instance.normalizedEmail,
-      'emailConfirmed': instance.emailConfirmed,
-      'passwordHash': instance.passwordHash,
-      'securityStamp': instance.securityStamp,
-      'concurrencyStamp': instance.concurrencyStamp,
-      'phoneNumber': instance.phoneNumber,
-      'phoneNumberConfirmed': instance.phoneNumberConfirmed,
-      'twoFactorEnabled': instance.twoFactorEnabled,
-      'lockoutEnd': instance.lockoutEnd?.toIso8601String(),
-      'lockoutEnabled': instance.lockoutEnabled,
-      'accessFailedCount': instance.accessFailedCount,
       'name': instance.name,
       'url': instance.url,
       'countryCode': instance.countryCode,
@@ -64,6 +47,20 @@ Map<String, dynamic> _$AppUsuarioDtoToJson(AppUsuarioDto instance) =>
       'address': instance.address,
       'birthDate': instance.birthDate?.toIso8601String(),
       'active': instance.active,
+    };
+
+AuthResponseDto _$AuthResponseDtoFromJson(Map<String, dynamic> json) =>
+    AuthResponseDto(
+      userId: json['userId'] as String?,
+      token: json['token'] as String?,
+      refreshToken: json['refreshToken'] as String?,
+    );
+
+Map<String, dynamic> _$AuthResponseDtoToJson(AuthResponseDto instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+      'token': instance.token,
+      'refreshToken': instance.refreshToken,
     };
 
 ContactDto _$ContactDtoFromJson(Map<String, dynamic> json) => ContactDto(
@@ -322,6 +319,16 @@ Map<String, dynamic> _$LocalTypeDtoToJson(LocalTypeDto instance) =>
       'locals': instance.locals?.map((e) => e.toJson()).toList(),
     };
 
+LoginDto _$LoginDtoFromJson(Map<String, dynamic> json) => LoginDto(
+      email: json['email'] as String,
+      password: json['password'] as String,
+    );
+
+Map<String, dynamic> _$LoginDtoToJson(LoginDto instance) => <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+    };
+
 ModuleDto _$ModuleDtoFromJson(Map<String, dynamic> json) => ModuleDto(
       createBy: json['createBy'] as String?,
       createDate: json['createDate'] == null
@@ -360,6 +367,24 @@ Map<String, dynamic> _$ModuleDtoToJson(ModuleDto instance) => <String, dynamic>{
       'departments': instance.departments?.map((e) => e.toJson()).toList(),
       'screens': instance.screens?.map((e) => e.toJson()).toList(),
       'local': instance.local?.toJson(),
+    };
+
+ProblemDetails _$ProblemDetailsFromJson(Map<String, dynamic> json) =>
+    ProblemDetails(
+      type: json['type'] as String?,
+      title: json['title'] as String?,
+      status: json['status'] as int?,
+      detail: json['detail'] as String?,
+      instance: json['instance'] as String?,
+    );
+
+Map<String, dynamic> _$ProblemDetailsToJson(ProblemDetails instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'title': instance.title,
+      'status': instance.status,
+      'detail': instance.detail,
+      'instance': instance.instance,
     };
 
 ProjectDto _$ProjectDtoFromJson(Map<String, dynamic> json) => ProjectDto(
@@ -528,4 +553,24 @@ Map<String, dynamic> _$VisitDtoToJson(VisitDto instance) => <String, dynamic>{
       'endHour': instance.endHour?.toJson(),
       'user': instance.user?.toJson(),
       'local': instance.local?.toJson(),
+    };
+
+VisitDtoPagedResult _$VisitDtoPagedResultFromJson(Map<String, dynamic> json) =>
+    VisitDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => VisitDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$VisitDtoPagedResultToJson(
+        VisitDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };

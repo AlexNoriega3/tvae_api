@@ -17,6 +17,32 @@ class _$TVAE extends TVAE {
   final definitionType = TVAE;
 
   @override
+  Future<Response<dynamic>> _apiAccountRegistrarPost(
+      {required ApiUserDto? body}) {
+    final $url = '/api/Account/registrar';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> _apiAccountLoginPost({required LoginDto? body}) {
+    final $url = '/api/Account/login';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> _apiAccountRefreshtokenPost(
+      {required AuthResponseDto? body}) {
+    final $url = '/api/Account/refreshtoken';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<List<ContactDto>>> _apiContactGet() {
     final $url = '/api/Contact';
     final $request = Request('GET', $url, client.baseUrl);
@@ -412,6 +438,19 @@ class _$TVAE extends TVAE {
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<VisitDtoPagedResult>> _apiVisitGetAllGet(
+      {int? startIndex, int? pageNumber, int? pageSize}) {
+    final $url = '/api/Visit/GetAll';
+    final $params = <String, dynamic>{
+      'StartIndex': startIndex,
+      'PageNumber': pageNumber,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<VisitDtoPagedResult, VisitDtoPagedResult>($request);
   }
 
   @override

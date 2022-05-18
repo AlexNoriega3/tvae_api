@@ -36,6 +36,38 @@ abstract class TVAE extends ChopperService {
     return _$TVAE(newClient);
   }
 
+  ///Endpoint para el registro de los usuarios
+  Future<chopper.Response> apiAccountRegistrarPost(
+      {required ApiUserDto? body}) {
+    return _apiAccountRegistrarPost(body: body);
+  }
+
+  ///Endpoint para el registro de los usuarios
+  @Post(path: '/api/Account/registrar')
+  Future<chopper.Response> _apiAccountRegistrarPost(
+      {@Body() required ApiUserDto? body});
+
+  ///Endpoint para realizar el login del usuario de los usuarios
+  Future<chopper.Response> apiAccountLoginPost({required LoginDto? body}) {
+    return _apiAccountLoginPost(body: body);
+  }
+
+  ///Endpoint para realizar el login del usuario de los usuarios
+  @Post(path: '/api/Account/login')
+  Future<chopper.Response> _apiAccountLoginPost(
+      {@Body() required LoginDto? body});
+
+  ///Endpoint para realizar el login del usuario de los usuarios
+  Future<chopper.Response> apiAccountRefreshtokenPost(
+      {required AuthResponseDto? body}) {
+    return _apiAccountRefreshtokenPost(body: body);
+  }
+
+  ///Endpoint para realizar el login del usuario de los usuarios
+  @Post(path: '/api/Account/refreshtoken')
+  Future<chopper.Response> _apiAccountRefreshtokenPost(
+      {@Body() required AuthResponseDto? body});
+
   ///Obtiene la lista de contactos
   Future<chopper.Response<List<ContactDto>>> apiContactGet() {
     generatedMapping.putIfAbsent(ContactDto, () => ContactDto.fromJsonFactory);
@@ -676,6 +708,29 @@ abstract class TVAE extends ChopperService {
       {@Body() required VisitDto? body});
 
   ///
+  ///@param StartIndex
+  ///@param PageNumber
+  ///@param PageSize
+  Future<chopper.Response<VisitDtoPagedResult>> apiVisitGetAllGet(
+      {int? startIndex, int? pageNumber, int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        VisitDtoPagedResult, () => VisitDtoPagedResult.fromJsonFactory);
+
+    return _apiVisitGetAllGet(
+        startIndex: startIndex, pageNumber: pageNumber, pageSize: pageSize);
+  }
+
+  ///
+  ///@param StartIndex
+  ///@param PageNumber
+  ///@param PageSize
+  @Get(path: '/api/Visit/GetAll')
+  Future<chopper.Response<VisitDtoPagedResult>> _apiVisitGetAllGet(
+      {@Query('StartIndex') int? startIndex,
+      @Query('PageNumber') int? pageNumber,
+      @Query('PageSize') int? pageSize});
+
+  ///
   ///@param id
   Future<chopper.Response<VisitDto>> apiVisitIdGet({required String? id}) {
     generatedMapping.putIfAbsent(VisitDto, () => VisitDto.fromJsonFactory);
@@ -716,23 +771,72 @@ abstract class TVAE extends ChopperService {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ApiUserDto {
+  ApiUserDto({
+    required this.email,
+    required this.password,
+    required this.firstName,
+    required this.lastName,
+  });
+
+  factory ApiUserDto.fromJson(Map<String, dynamic> json) =>
+      _$ApiUserDtoFromJson(json);
+
+  @JsonKey(name: 'email')
+  final String email;
+  @JsonKey(name: 'password')
+  final String password;
+  @JsonKey(name: 'firstName')
+  final String firstName;
+  @JsonKey(name: 'lastName')
+  final String lastName;
+  static const fromJsonFactory = _$ApiUserDtoFromJson;
+  static const toJsonFactory = _$ApiUserDtoToJson;
+  Map<String, dynamic> toJson() => _$ApiUserDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ApiUserDto &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.password, password) ||
+                const DeepCollectionEquality()
+                    .equals(other.password, password)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(password) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      runtimeType.hashCode;
+}
+
+extension $ApiUserDtoExtension on ApiUserDto {
+  ApiUserDto copyWith(
+      {String? email, String? password, String? firstName, String? lastName}) {
+    return ApiUserDto(
+        email: email ?? this.email,
+        password: password ?? this.password,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class AppUsuarioDto {
   AppUsuarioDto({
-    this.id,
-    this.userName,
-    this.normalizedUserName,
-    this.email,
-    this.normalizedEmail,
-    this.emailConfirmed,
-    this.passwordHash,
-    this.securityStamp,
-    this.concurrencyStamp,
-    this.phoneNumber,
-    this.phoneNumberConfirmed,
-    this.twoFactorEnabled,
-    this.lockoutEnd,
-    this.lockoutEnabled,
-    this.accessFailedCount,
     this.name,
     this.url,
     this.countryCode,
@@ -747,36 +851,6 @@ class AppUsuarioDto {
   factory AppUsuarioDto.fromJson(Map<String, dynamic> json) =>
       _$AppUsuarioDtoFromJson(json);
 
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'userName')
-  final String? userName;
-  @JsonKey(name: 'normalizedUserName')
-  final String? normalizedUserName;
-  @JsonKey(name: 'email')
-  final String? email;
-  @JsonKey(name: 'normalizedEmail')
-  final String? normalizedEmail;
-  @JsonKey(name: 'emailConfirmed')
-  final bool? emailConfirmed;
-  @JsonKey(name: 'passwordHash')
-  final String? passwordHash;
-  @JsonKey(name: 'securityStamp')
-  final String? securityStamp;
-  @JsonKey(name: 'concurrencyStamp')
-  final String? concurrencyStamp;
-  @JsonKey(name: 'phoneNumber')
-  final String? phoneNumber;
-  @JsonKey(name: 'phoneNumberConfirmed')
-  final bool? phoneNumberConfirmed;
-  @JsonKey(name: 'twoFactorEnabled')
-  final bool? twoFactorEnabled;
-  @JsonKey(name: 'lockoutEnd')
-  final DateTime? lockoutEnd;
-  @JsonKey(name: 'lockoutEnabled')
-  final bool? lockoutEnabled;
-  @JsonKey(name: 'accessFailedCount')
-  final int? accessFailedCount;
   @JsonKey(name: 'name')
   final String? name;
   @JsonKey(name: 'url')
@@ -806,49 +880,6 @@ class AppUsuarioDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is AppUsuarioDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.userName, userName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
-            (identical(other.normalizedUserName, normalizedUserName) ||
-                const DeepCollectionEquality()
-                    .equals(other.normalizedUserName, normalizedUserName)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.normalizedEmail, normalizedEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.normalizedEmail, normalizedEmail)) &&
-            (identical(other.emailConfirmed, emailConfirmed) ||
-                const DeepCollectionEquality()
-                    .equals(other.emailConfirmed, emailConfirmed)) &&
-            (identical(other.passwordHash, passwordHash) ||
-                const DeepCollectionEquality()
-                    .equals(other.passwordHash, passwordHash)) &&
-            (identical(other.securityStamp, securityStamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.securityStamp, securityStamp)) &&
-            (identical(other.concurrencyStamp, concurrencyStamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.concurrencyStamp, concurrencyStamp)) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.phoneNumber, phoneNumber)) &&
-            (identical(other.phoneNumberConfirmed, phoneNumberConfirmed) ||
-                const DeepCollectionEquality().equals(
-                    other.phoneNumberConfirmed, phoneNumberConfirmed)) &&
-            (identical(other.twoFactorEnabled, twoFactorEnabled) ||
-                const DeepCollectionEquality()
-                    .equals(other.twoFactorEnabled, twoFactorEnabled)) &&
-            (identical(other.lockoutEnd, lockoutEnd) ||
-                const DeepCollectionEquality()
-                    .equals(other.lockoutEnd, lockoutEnd)) &&
-            (identical(other.lockoutEnabled, lockoutEnabled) ||
-                const DeepCollectionEquality()
-                    .equals(other.lockoutEnabled, lockoutEnabled)) &&
-            (identical(other.accessFailedCount, accessFailedCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.accessFailedCount, accessFailedCount)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.url, url) ||
@@ -875,21 +906,6 @@ class AppUsuarioDto {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(normalizedUserName) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(normalizedEmail) ^
-      const DeepCollectionEquality().hash(emailConfirmed) ^
-      const DeepCollectionEquality().hash(passwordHash) ^
-      const DeepCollectionEquality().hash(securityStamp) ^
-      const DeepCollectionEquality().hash(concurrencyStamp) ^
-      const DeepCollectionEquality().hash(phoneNumber) ^
-      const DeepCollectionEquality().hash(phoneNumberConfirmed) ^
-      const DeepCollectionEquality().hash(twoFactorEnabled) ^
-      const DeepCollectionEquality().hash(lockoutEnd) ^
-      const DeepCollectionEquality().hash(lockoutEnabled) ^
-      const DeepCollectionEquality().hash(accessFailedCount) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(countryCode) ^
@@ -904,22 +920,7 @@ class AppUsuarioDto {
 
 extension $AppUsuarioDtoExtension on AppUsuarioDto {
   AppUsuarioDto copyWith(
-      {String? id,
-      String? userName,
-      String? normalizedUserName,
-      String? email,
-      String? normalizedEmail,
-      bool? emailConfirmed,
-      String? passwordHash,
-      String? securityStamp,
-      String? concurrencyStamp,
-      String? phoneNumber,
-      bool? phoneNumberConfirmed,
-      bool? twoFactorEnabled,
-      DateTime? lockoutEnd,
-      bool? lockoutEnabled,
-      int? accessFailedCount,
-      String? name,
+      {String? name,
       String? url,
       String? countryCode,
       String? phone,
@@ -929,21 +930,6 @@ extension $AppUsuarioDtoExtension on AppUsuarioDto {
       DateTime? birthDate,
       bool? active}) {
     return AppUsuarioDto(
-        id: id ?? this.id,
-        userName: userName ?? this.userName,
-        normalizedUserName: normalizedUserName ?? this.normalizedUserName,
-        email: email ?? this.email,
-        normalizedEmail: normalizedEmail ?? this.normalizedEmail,
-        emailConfirmed: emailConfirmed ?? this.emailConfirmed,
-        passwordHash: passwordHash ?? this.passwordHash,
-        securityStamp: securityStamp ?? this.securityStamp,
-        concurrencyStamp: concurrencyStamp ?? this.concurrencyStamp,
-        phoneNumber: phoneNumber ?? this.phoneNumber,
-        phoneNumberConfirmed: phoneNumberConfirmed ?? this.phoneNumberConfirmed,
-        twoFactorEnabled: twoFactorEnabled ?? this.twoFactorEnabled,
-        lockoutEnd: lockoutEnd ?? this.lockoutEnd,
-        lockoutEnabled: lockoutEnabled ?? this.lockoutEnabled,
-        accessFailedCount: accessFailedCount ?? this.accessFailedCount,
         name: name ?? this.name,
         url: url ?? this.url,
         countryCode: countryCode ?? this.countryCode,
@@ -953,6 +939,61 @@ extension $AppUsuarioDtoExtension on AppUsuarioDto {
         address: address ?? this.address,
         birthDate: birthDate ?? this.birthDate,
         active: active ?? this.active);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class AuthResponseDto {
+  AuthResponseDto({
+    this.userId,
+    this.token,
+    this.refreshToken,
+  });
+
+  factory AuthResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$AuthResponseDtoFromJson(json);
+
+  @JsonKey(name: 'userId')
+  final String? userId;
+  @JsonKey(name: 'token')
+  final String? token;
+  @JsonKey(name: 'refreshToken')
+  final String? refreshToken;
+  static const fromJsonFactory = _$AuthResponseDtoFromJson;
+  static const toJsonFactory = _$AuthResponseDtoToJson;
+  Map<String, dynamic> toJson() => _$AuthResponseDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is AuthResponseDto &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.token, token) ||
+                const DeepCollectionEquality().equals(other.token, token)) &&
+            (identical(other.refreshToken, refreshToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.refreshToken, refreshToken)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(token) ^
+      const DeepCollectionEquality().hash(refreshToken) ^
+      runtimeType.hashCode;
+}
+
+extension $AuthResponseDtoExtension on AuthResponseDto {
+  AuthResponseDto copyWith(
+      {String? userId, String? token, String? refreshToken}) {
+    return AuthResponseDto(
+        userId: userId ?? this.userId,
+        token: token ?? this.token,
+        refreshToken: refreshToken ?? this.refreshToken);
   }
 }
 
@@ -1834,6 +1875,52 @@ extension $LocalTypeDtoExtension on LocalTypeDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class LoginDto {
+  LoginDto({
+    required this.email,
+    required this.password,
+  });
+
+  factory LoginDto.fromJson(Map<String, dynamic> json) =>
+      _$LoginDtoFromJson(json);
+
+  @JsonKey(name: 'email')
+  final String email;
+  @JsonKey(name: 'password')
+  final String password;
+  static const fromJsonFactory = _$LoginDtoFromJson;
+  static const toJsonFactory = _$LoginDtoToJson;
+  Map<String, dynamic> toJson() => _$LoginDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LoginDto &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.password, password) ||
+                const DeepCollectionEquality()
+                    .equals(other.password, password)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(password) ^
+      runtimeType.hashCode;
+}
+
+extension $LoginDtoExtension on LoginDto {
+  LoginDto copyWith({String? email, String? password}) {
+    return LoginDto(
+        email: email ?? this.email, password: password ?? this.password);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class ModuleDto {
   ModuleDto({
     this.createBy,
@@ -1966,6 +2053,79 @@ extension $ModuleDtoExtension on ModuleDto {
         departments: departments ?? this.departments,
         screens: screens ?? this.screens,
         local: local ?? this.local);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ProblemDetails {
+  ProblemDetails({
+    this.type,
+    this.title,
+    this.status,
+    this.detail,
+    this.instance,
+  });
+
+  factory ProblemDetails.fromJson(Map<String, dynamic> json) =>
+      _$ProblemDetailsFromJson(json);
+
+  @JsonKey(name: 'type')
+  final String? type;
+  @JsonKey(name: 'title')
+  final String? title;
+  @JsonKey(name: 'status')
+  final int? status;
+  @JsonKey(name: 'detail')
+  final String? detail;
+  @JsonKey(name: 'instance')
+  final String? instance;
+  static const fromJsonFactory = _$ProblemDetailsFromJson;
+  static const toJsonFactory = _$ProblemDetailsToJson;
+  Map<String, dynamic> toJson() => _$ProblemDetailsToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ProblemDetails &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.detail, detail) ||
+                const DeepCollectionEquality().equals(other.detail, detail)) &&
+            (identical(other.instance, instance) ||
+                const DeepCollectionEquality()
+                    .equals(other.instance, instance)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(detail) ^
+      const DeepCollectionEquality().hash(instance) ^
+      runtimeType.hashCode;
+}
+
+extension $ProblemDetailsExtension on ProblemDetails {
+  ProblemDetails copyWith(
+      {String? type,
+      String? title,
+      int? status,
+      String? detail,
+      String? instance}) {
+    return ProblemDetails(
+        type: type ?? this.type,
+        title: title ?? this.title,
+        status: status ?? this.status,
+        detail: detail ?? this.detail,
+        instance: instance ?? this.instance);
   }
 }
 
@@ -2583,6 +2743,73 @@ extension $VisitDtoExtension on VisitDto {
         endHour: endHour ?? this.endHour,
         user: user ?? this.user,
         local: local ?? this.local);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class VisitDtoPagedResult {
+  VisitDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.items,
+  });
+
+  factory VisitDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$VisitDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'items', defaultValue: <VisitDto>[])
+  final List<VisitDto>? items;
+  static const fromJsonFactory = _$VisitDtoPagedResultFromJson;
+  static const toJsonFactory = _$VisitDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$VisitDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is VisitDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $VisitDtoPagedResultExtension on VisitDtoPagedResult {
+  VisitDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      List<VisitDto>? items}) {
+    return VisitDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        items: items ?? this.items);
   }
 }
 
