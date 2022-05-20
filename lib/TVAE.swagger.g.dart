@@ -6,24 +6,13 @@ part of 'TVAE.swagger.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ApiUserDto _$ApiUserDtoFromJson(Map<String, dynamic> json) => ApiUserDto(
+AppUserDto _$AppUserDtoFromJson(Map<String, dynamic> json) => AppUserDto(
       email: json['email'] as String,
       password: json['password'] as String,
-      firstName: json['firstName'] as String,
-      lastName: json['lastName'] as String,
-    );
-
-Map<String, dynamic> _$ApiUserDtoToJson(ApiUserDto instance) =>
-    <String, dynamic>{
-      'email': instance.email,
-      'password': instance.password,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-    };
-
-AppUsuarioDto _$AppUsuarioDtoFromJson(Map<String, dynamic> json) =>
-    AppUsuarioDto(
+      id: json['id'] as String?,
       name: json['name'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
       url: json['url'] as String?,
       countryCode: json['countryCode'] as String?,
       phone: json['phone'] as String?,
@@ -36,9 +25,14 @@ AppUsuarioDto _$AppUsuarioDtoFromJson(Map<String, dynamic> json) =>
       active: json['active'] as bool?,
     );
 
-Map<String, dynamic> _$AppUsuarioDtoToJson(AppUsuarioDto instance) =>
+Map<String, dynamic> _$AppUserDtoToJson(AppUserDto instance) =>
     <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+      'id': instance.id,
       'name': instance.name,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
       'url': instance.url,
       'countryCode': instance.countryCode,
       'phone': instance.phone,
@@ -63,15 +57,27 @@ Map<String, dynamic> _$AuthResponseDtoToJson(AuthResponseDto instance) =>
       'refreshToken': instance.refreshToken,
     };
 
+ColorDto _$ColorDtoFromJson(Map<String, dynamic> json) => ColorDto(
+      colorId: json['colorId'] as String?,
+      projectId: json['projectId'] as String,
+      accentPrirmario: json['accentPrirmario'] as String?,
+      accentSecondary: json['accentSecondary'] as String?,
+      backgroundColors: json['backgroundColors'] as String?,
+      description: json['description'] as String?,
+    );
+
+Map<String, dynamic> _$ColorDtoToJson(ColorDto instance) => <String, dynamic>{
+      'colorId': instance.colorId,
+      'projectId': instance.projectId,
+      'accentPrirmario': instance.accentPrirmario,
+      'accentSecondary': instance.accentSecondary,
+      'backgroundColors': instance.backgroundColors,
+      'description': instance.description,
+    };
+
 ContactDto _$ContactDtoFromJson(Map<String, dynamic> json) => ContactDto(
-      createBy: json['createBy'] as String?,
-      createDate: json['createDate'] == null
-          ? null
-          : DateTime.parse(json['createDate'] as String),
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
       contactId: json['contactId'] as String?,
-      projectId: json['projectId'] as String?,
+      projectId: json['projectId'] as String,
       code: json['code'] as String?,
       description: json['description'] as String?,
       name: json['name'] as String?,
@@ -83,25 +89,10 @@ ContactDto _$ContactDtoFromJson(Map<String, dynamic> json) => ContactDto(
       state: json['state'] as String?,
       city: json['city'] as String?,
       rfc: json['rfc'] as String?,
-      project: json['project'] == null
-          ? null
-          : ProjectDto.fromJson(json['project'] as Map<String, dynamic>),
-      levels: (json['levels'] as List<dynamic>?)
-              ?.map((e) => LevelDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      locals: (json['locals'] as List<dynamic>?)
-              ?.map((e) => LocalDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$ContactDtoToJson(ContactDto instance) =>
     <String, dynamic>{
-      'createBy': instance.createBy,
-      'createDate': instance.createDate?.toIso8601String(),
-      'active': instance.active,
-      'isActive': instance.isActive,
       'contactId': instance.contactId,
       'projectId': instance.projectId,
       'code': instance.code,
@@ -115,102 +106,45 @@ Map<String, dynamic> _$ContactDtoToJson(ContactDto instance) =>
       'state': instance.state,
       'city': instance.city,
       'rfc': instance.rfc,
-      'project': instance.project?.toJson(),
-      'levels': instance.levels?.map((e) => e.toJson()).toList(),
-      'locals': instance.locals?.map((e) => e.toJson()).toList(),
     };
 
 DepartmentDto _$DepartmentDtoFromJson(Map<String, dynamic> json) =>
     DepartmentDto(
-      createBy: json['createBy'] as String?,
-      createDate: json['createDate'] == null
-          ? null
-          : DateTime.parse(json['createDate'] as String),
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
       departmentId: json['departmentId'] as String?,
-      moduleId: json['moduleId'] as String?,
+      moduleId: json['moduleId'] as String,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      module: json['module'] == null
-          ? null
-          : ModuleDto.fromJson(json['module'] as Map<String, dynamic>),
-      subdepartments: (json['subdepartments'] as List<dynamic>?)
-              ?.map((e) => SubdepartmentDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$DepartmentDtoToJson(DepartmentDto instance) =>
     <String, dynamic>{
-      'createBy': instance.createBy,
-      'createDate': instance.createDate?.toIso8601String(),
-      'active': instance.active,
-      'isActive': instance.isActive,
       'departmentId': instance.departmentId,
       'moduleId': instance.moduleId,
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'module': instance.module?.toJson(),
-      'subdepartments':
-          instance.subdepartments?.map((e) => e.toJson()).toList(),
     };
 
 LevelDto _$LevelDtoFromJson(Map<String, dynamic> json) => LevelDto(
-      createBy: json['createBy'] as String?,
-      createDate: json['createDate'] == null
-          ? null
-          : DateTime.parse(json['createDate'] as String),
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
       levelId: json['levelId'] as String?,
-      projectId: json['projectId'] as String?,
+      projectId: json['projectId'] as String,
       contactId: json['contactId'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      project: json['project'] == null
-          ? null
-          : ProjectDto.fromJson(json['project'] as Map<String, dynamic>),
-      contact: json['contact'] == null
-          ? null
-          : ContactDto.fromJson(json['contact'] as Map<String, dynamic>),
-      locals: (json['locals'] as List<dynamic>?)
-              ?.map((e) => LocalDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      modules: (json['modules'] as List<dynamic>?)
-              ?.map((e) => ModuleDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$LevelDtoToJson(LevelDto instance) => <String, dynamic>{
-      'createBy': instance.createBy,
-      'createDate': instance.createDate?.toIso8601String(),
-      'active': instance.active,
-      'isActive': instance.isActive,
       'levelId': instance.levelId,
       'projectId': instance.projectId,
       'contactId': instance.contactId,
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'project': instance.project?.toJson(),
-      'contact': instance.contact?.toJson(),
-      'locals': instance.locals?.map((e) => e.toJson()).toList(),
-      'modules': instance.modules?.map((e) => e.toJson()).toList(),
     };
 
 LocalDto _$LocalDtoFromJson(Map<String, dynamic> json) => LocalDto(
-      createBy: json['createBy'] as String?,
-      createDate: json['createDate'] == null
-          ? null
-          : DateTime.parse(json['createDate'] as String),
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
       localId: json['localId'] as String?,
       levelId: json['levelId'] as String?,
       statusId: json['statusId'] as String?,
@@ -219,30 +153,9 @@ LocalDto _$LocalDtoFromJson(Map<String, dynamic> json) => LocalDto(
       code: json['code'] as String?,
       description: json['description'] as String?,
       meters2: (json['meters2'] as num?)?.toDouble(),
-      level: json['level'] == null
-          ? null
-          : LevelDto.fromJson(json['level'] as Map<String, dynamic>),
-      contacts: (json['contacts'] as List<dynamic>?)
-              ?.map((e) => ContactDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      modules: (json['modules'] as List<dynamic>?)
-              ?.map((e) => ModuleDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      status: json['status'] == null
-          ? null
-          : LocalStatusDto.fromJson(json['status'] as Map<String, dynamic>),
-      type: json['type'] == null
-          ? null
-          : LocalTypeDto.fromJson(json['type'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$LocalDtoToJson(LocalDto instance) => <String, dynamic>{
-      'createBy': instance.createBy,
-      'createDate': instance.createDate?.toIso8601String(),
-      'active': instance.active,
-      'isActive': instance.isActive,
       'localId': instance.localId,
       'levelId': instance.levelId,
       'statusId': instance.statusId,
@@ -251,72 +164,37 @@ Map<String, dynamic> _$LocalDtoToJson(LocalDto instance) => <String, dynamic>{
       'code': instance.code,
       'description': instance.description,
       'meters2': instance.meters2,
-      'level': instance.level?.toJson(),
-      'contacts': instance.contacts?.map((e) => e.toJson()).toList(),
-      'modules': instance.modules?.map((e) => e.toJson()).toList(),
-      'status': instance.status?.toJson(),
-      'type': instance.type?.toJson(),
     };
 
 LocalStatusDto _$LocalStatusDtoFromJson(Map<String, dynamic> json) =>
     LocalStatusDto(
-      createBy: json['createBy'] as String?,
-      createDate: json['createDate'] == null
-          ? null
-          : DateTime.parse(json['createDate'] as String),
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
       localStatusId: json['localStatusId'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      locals: (json['locals'] as List<dynamic>?)
-              ?.map((e) => LocalDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$LocalStatusDtoToJson(LocalStatusDto instance) =>
     <String, dynamic>{
-      'createBy': instance.createBy,
-      'createDate': instance.createDate?.toIso8601String(),
-      'active': instance.active,
-      'isActive': instance.isActive,
       'localStatusId': instance.localStatusId,
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'locals': instance.locals?.map((e) => e.toJson()).toList(),
     };
 
 LocalTypeDto _$LocalTypeDtoFromJson(Map<String, dynamic> json) => LocalTypeDto(
-      createBy: json['createBy'] as String?,
-      createDate: json['createDate'] == null
-          ? null
-          : DateTime.parse(json['createDate'] as String),
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
       localTypeId: json['localTypeId'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      locals: (json['locals'] as List<dynamic>?)
-              ?.map((e) => LocalDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$LocalTypeDtoToJson(LocalTypeDto instance) =>
     <String, dynamic>{
-      'createBy': instance.createBy,
-      'createDate': instance.createDate?.toIso8601String(),
-      'active': instance.active,
-      'isActive': instance.isActive,
       'localTypeId': instance.localTypeId,
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'locals': instance.locals?.map((e) => e.toJson()).toList(),
     };
 
 LoginDto _$LoginDtoFromJson(Map<String, dynamic> json) => LoginDto(
@@ -330,43 +208,19 @@ Map<String, dynamic> _$LoginDtoToJson(LoginDto instance) => <String, dynamic>{
     };
 
 ModuleDto _$ModuleDtoFromJson(Map<String, dynamic> json) => ModuleDto(
-      createBy: json['createBy'] as String?,
-      createDate: json['createDate'] == null
-          ? null
-          : DateTime.parse(json['createDate'] as String),
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
       moduleId: json['moduleId'] as String?,
-      localId: json['localId'] as String?,
+      localId: json['localId'] as String,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      departments: (json['departments'] as List<dynamic>?)
-              ?.map((e) => DepartmentDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      screens: (json['screens'] as List<dynamic>?)
-              ?.map((e) => ScreenDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      local: json['local'] == null
-          ? null
-          : LocalDto.fromJson(json['local'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ModuleDtoToJson(ModuleDto instance) => <String, dynamic>{
-      'createBy': instance.createBy,
-      'createDate': instance.createDate?.toIso8601String(),
-      'active': instance.active,
-      'isActive': instance.isActive,
       'moduleId': instance.moduleId,
       'localId': instance.localId,
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'departments': instance.departments?.map((e) => e.toJson()).toList(),
-      'screens': instance.screens?.map((e) => e.toJson()).toList(),
-      'local': instance.local?.toJson(),
     };
 
 ProblemDetails _$ProblemDetailsFromJson(Map<String, dynamic> json) =>
@@ -388,12 +242,6 @@ Map<String, dynamic> _$ProblemDetailsToJson(ProblemDetails instance) =>
     };
 
 ProjectDto _$ProjectDtoFromJson(Map<String, dynamic> json) => ProjectDto(
-      createBy: json['createBy'] as String?,
-      createDate: json['createDate'] == null
-          ? null
-          : DateTime.parse(json['createDate'] as String),
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
       projectId: json['projectId'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
@@ -405,22 +253,10 @@ ProjectDto _$ProjectDtoFromJson(Map<String, dynamic> json) => ProjectDto(
       rfc: json['rfc'] as String?,
       logo: json['logo'] as String?,
       logoApp: json['logoApp'] as String?,
-      contacts: (json['contacts'] as List<dynamic>?)
-              ?.map((e) => ContactDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      level: (json['level'] as List<dynamic>?)
-              ?.map((e) => LevelDto.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
     );
 
 Map<String, dynamic> _$ProjectDtoToJson(ProjectDto instance) =>
     <String, dynamic>{
-      'createBy': instance.createBy,
-      'createDate': instance.createDate?.toIso8601String(),
-      'active': instance.active,
-      'isActive': instance.isActive,
       'projectId': instance.projectId,
       'name': instance.name,
       'code': instance.code,
@@ -432,70 +268,40 @@ Map<String, dynamic> _$ProjectDtoToJson(ProjectDto instance) =>
       'rfc': instance.rfc,
       'logo': instance.logo,
       'logoApp': instance.logoApp,
-      'contacts': instance.contacts?.map((e) => e.toJson()).toList(),
-      'level': instance.level?.map((e) => e.toJson()).toList(),
     };
 
 ScreenDto _$ScreenDtoFromJson(Map<String, dynamic> json) => ScreenDto(
-      createBy: json['createBy'] as String?,
-      createDate: json['createDate'] == null
-          ? null
-          : DateTime.parse(json['createDate'] as String),
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
       screenId: json['screenId'] as String?,
       moduleId: json['moduleId'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      module: json['module'] == null
-          ? null
-          : ModuleDto.fromJson(json['module'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ScreenDtoToJson(ScreenDto instance) => <String, dynamic>{
-      'createBy': instance.createBy,
-      'createDate': instance.createDate?.toIso8601String(),
-      'active': instance.active,
-      'isActive': instance.isActive,
       'screenId': instance.screenId,
       'moduleId': instance.moduleId,
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'module': instance.module?.toJson(),
     };
 
 SubdepartmentDto _$SubdepartmentDtoFromJson(Map<String, dynamic> json) =>
     SubdepartmentDto(
-      createBy: json['createBy'] as String?,
-      createDate: json['createDate'] == null
-          ? null
-          : DateTime.parse(json['createDate'] as String),
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
       subdepartmentId: json['subdepartmentId'] as String?,
-      departmentId: json['departmentId'] as String?,
+      departmentId: json['departmentId'] as String,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
-      department: json['department'] == null
-          ? null
-          : DepartmentDto.fromJson(json['department'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SubdepartmentDtoToJson(SubdepartmentDto instance) =>
     <String, dynamic>{
-      'createBy': instance.createBy,
-      'createDate': instance.createDate?.toIso8601String(),
-      'active': instance.active,
-      'isActive': instance.isActive,
       'subdepartmentId': instance.subdepartmentId,
       'departmentId': instance.departmentId,
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
-      'department': instance.department?.toJson(),
     };
 
 TimeOnly _$TimeOnlyFromJson(Map<String, dynamic> json) => TimeOnly(
@@ -515,15 +321,9 @@ Map<String, dynamic> _$TimeOnlyToJson(TimeOnly instance) => <String, dynamic>{
     };
 
 VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(
-      createBy: json['createBy'] as String?,
-      createDate: json['createDate'] == null
-          ? null
-          : DateTime.parse(json['createDate'] as String),
-      active: json['active'] as bool?,
-      isActive: json['isActive'] as int?,
       visitId: json['visitId'] as String?,
-      id: json['id'] as String?,
-      localId: json['localId'] as String?,
+      id: json['id'] as String,
+      localId: json['localId'] as String,
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       startHour: json['startHour'] == null
@@ -532,27 +332,15 @@ VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(
       endHour: json['endHour'] == null
           ? null
           : TimeOnly.fromJson(json['endHour'] as Map<String, dynamic>),
-      user: json['user'] == null
-          ? null
-          : AppUsuarioDto.fromJson(json['user'] as Map<String, dynamic>),
-      local: json['local'] == null
-          ? null
-          : LocalDto.fromJson(json['local'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$VisitDtoToJson(VisitDto instance) => <String, dynamic>{
-      'createBy': instance.createBy,
-      'createDate': instance.createDate?.toIso8601String(),
-      'active': instance.active,
-      'isActive': instance.isActive,
       'visitId': instance.visitId,
       'id': instance.id,
       'localId': instance.localId,
       'date': instance.date?.toIso8601String(),
       'startHour': instance.startHour?.toJson(),
       'endHour': instance.endHour?.toJson(),
-      'user': instance.user?.toJson(),
-      'local': instance.local?.toJson(),
     };
 
 VisitDtoPagedResult _$VisitDtoPagedResultFromJson(Map<String, dynamic> json) =>

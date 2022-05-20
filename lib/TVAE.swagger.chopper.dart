@@ -17,15 +17,6 @@ class _$TVAE extends TVAE {
   final definitionType = TVAE;
 
   @override
-  Future<Response<dynamic>> _apiAccountRegistrarPost(
-      {required ApiUserDto? body}) {
-    final $url = '/api/Account/registrar';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<dynamic, dynamic>($request);
-  }
-
-  @override
   Future<Response<dynamic>> _apiAccountLoginPost({required LoginDto? body}) {
     final $url = '/api/Account/login';
     final $body = body;
@@ -40,6 +31,44 @@ class _$TVAE extends TVAE {
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<List<ColorDto>>> _apiColorGet() {
+    final $url = '/api/Color';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<ColorDto>, ColorDto>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiColorPost({required ColorDto? body}) {
+    final $url = '/api/Color';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<ColorDto>> _apiColorIdGet({required String? id}) {
+    final $url = '/api/Color/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<ColorDto, ColorDto>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiColorIdPut(
+      {required String? id, required ColorDto? body}) {
+    final $url = '/api/Color/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiColorIdDelete({required String? id}) {
+    final $url = '/api/Color/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
   }
 
   @override
@@ -421,6 +450,44 @@ class _$TVAE extends TVAE {
   @override
   Future<Response<bool>> _apiSubdepartmentIdDelete({required String? id}) {
     final $url = '/api/Subdepartment/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<List<AppUserDto>>> _apiUserGet() {
+    final $url = '/api/User';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<AppUserDto>, AppUserDto>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> _apiUserPost({required AppUserDto? body}) {
+    final $url = '/api/User';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<AppUserDto>> _apiUserIdGet({required String? id}) {
+    final $url = '/api/User/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<AppUserDto, AppUserDto>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiUserIdPut(
+      {required String? id, required AppUserDto? body}) {
+    final $url = '/api/User/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiUserIdDelete({required String? id}) {
+    final $url = '/api/User/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
   }
