@@ -43,6 +43,29 @@ Map<String, dynamic> _$AppUserDtoToJson(AppUserDto instance) =>
       'active': instance.active,
     };
 
+AppUserDtoPagedResult _$AppUserDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    AppUserDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => AppUserDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$AppUserDtoPagedResultToJson(
+        AppUserDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 AuthResponseDto _$AuthResponseDtoFromJson(Map<String, dynamic> json) =>
     AuthResponseDto(
       userId: json['userId'] as String?,
@@ -73,6 +96,28 @@ Map<String, dynamic> _$ColorDtoToJson(ColorDto instance) => <String, dynamic>{
       'accentSecondary': instance.accentSecondary,
       'backgroundColors': instance.backgroundColors,
       'description': instance.description,
+    };
+
+ColorDtoPagedResult _$ColorDtoPagedResultFromJson(Map<String, dynamic> json) =>
+    ColorDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => ColorDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ColorDtoPagedResultToJson(
+        ColorDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
 ContactDto _$ContactDtoFromJson(Map<String, dynamic> json) => ContactDto(
@@ -108,6 +153,29 @@ Map<String, dynamic> _$ContactDtoToJson(ContactDto instance) =>
       'rfc': instance.rfc,
     };
 
+ContactDtoPagedResult _$ContactDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    ContactDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => ContactDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ContactDtoPagedResultToJson(
+        ContactDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 DepartmentDto _$DepartmentDtoFromJson(Map<String, dynamic> json) =>
     DepartmentDto(
       departmentId: json['departmentId'] as String?,
@@ -126,6 +194,29 @@ Map<String, dynamic> _$DepartmentDtoToJson(DepartmentDto instance) =>
       'description': instance.description,
     };
 
+DepartmentDtoPagedResult _$DepartmentDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    DepartmentDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => DepartmentDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$DepartmentDtoPagedResultToJson(
+        DepartmentDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 LevelDto _$LevelDtoFromJson(Map<String, dynamic> json) => LevelDto(
       levelId: json['levelId'] as String?,
       projectId: json['projectId'] as String,
@@ -142,6 +233,28 @@ Map<String, dynamic> _$LevelDtoToJson(LevelDto instance) => <String, dynamic>{
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
+    };
+
+LevelDtoPagedResult _$LevelDtoPagedResultFromJson(Map<String, dynamic> json) =>
+    LevelDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => LevelDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$LevelDtoPagedResultToJson(
+        LevelDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
 LocalDto _$LocalDtoFromJson(Map<String, dynamic> json) => LocalDto(
@@ -166,6 +279,28 @@ Map<String, dynamic> _$LocalDtoToJson(LocalDto instance) => <String, dynamic>{
       'meters2': instance.meters2,
     };
 
+LocalDtoPagedResult _$LocalDtoPagedResultFromJson(Map<String, dynamic> json) =>
+    LocalDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => LocalDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$LocalDtoPagedResultToJson(
+        LocalDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 LocalStatusDto _$LocalStatusDtoFromJson(Map<String, dynamic> json) =>
     LocalStatusDto(
       localStatusId: json['localStatusId'] as String?,
@@ -182,6 +317,29 @@ Map<String, dynamic> _$LocalStatusDtoToJson(LocalStatusDto instance) =>
       'description': instance.description,
     };
 
+LocalStatusDtoPagedResult _$LocalStatusDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    LocalStatusDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => LocalStatusDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$LocalStatusDtoPagedResultToJson(
+        LocalStatusDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 LocalTypeDto _$LocalTypeDtoFromJson(Map<String, dynamic> json) => LocalTypeDto(
       localTypeId: json['localTypeId'] as String?,
       name: json['name'] as String?,
@@ -195,6 +353,29 @@ Map<String, dynamic> _$LocalTypeDtoToJson(LocalTypeDto instance) =>
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
+    };
+
+LocalTypeDtoPagedResult _$LocalTypeDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    LocalTypeDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => LocalTypeDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$LocalTypeDtoPagedResultToJson(
+        LocalTypeDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
 LoginDto _$LoginDtoFromJson(Map<String, dynamic> json) => LoginDto(
@@ -221,6 +402,29 @@ Map<String, dynamic> _$ModuleDtoToJson(ModuleDto instance) => <String, dynamic>{
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
+    };
+
+ModuleDtoPagedResult _$ModuleDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    ModuleDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => ModuleDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ModuleDtoPagedResultToJson(
+        ModuleDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
 ProblemDetails _$ProblemDetailsFromJson(Map<String, dynamic> json) =>
@@ -270,6 +474,29 @@ Map<String, dynamic> _$ProjectDtoToJson(ProjectDto instance) =>
       'logoApp': instance.logoApp,
     };
 
+ProjectDtoPagedResult _$ProjectDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    ProjectDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => ProjectDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ProjectDtoPagedResultToJson(
+        ProjectDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 ScreenDto _$ScreenDtoFromJson(Map<String, dynamic> json) => ScreenDto(
       screenId: json['screenId'] as String?,
       moduleId: json['moduleId'] as String?,
@@ -284,6 +511,29 @@ Map<String, dynamic> _$ScreenDtoToJson(ScreenDto instance) => <String, dynamic>{
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
+    };
+
+ScreenDtoPagedResult _$ScreenDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    ScreenDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => ScreenDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ScreenDtoPagedResultToJson(
+        ScreenDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
 SubdepartmentDto _$SubdepartmentDtoFromJson(Map<String, dynamic> json) =>
@@ -302,6 +552,29 @@ Map<String, dynamic> _$SubdepartmentDtoToJson(SubdepartmentDto instance) =>
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
+    };
+
+SubdepartmentDtoPagedResult _$SubdepartmentDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    SubdepartmentDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => SubdepartmentDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$SubdepartmentDtoPagedResultToJson(
+        SubdepartmentDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
 TimeOnly _$TimeOnlyFromJson(Map<String, dynamic> json) => TimeOnly(
@@ -348,6 +621,7 @@ VisitDtoPagedResult _$VisitDtoPagedResultFromJson(Map<String, dynamic> json) =>
       totalCount: json['totalCount'] as int?,
       pageNumber: json['pageNumber'] as int?,
       recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
       items: (json['items'] as List<dynamic>?)
               ?.map((e) => VisitDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -360,5 +634,6 @@ Map<String, dynamic> _$VisitDtoPagedResultToJson(
       'totalCount': instance.totalCount,
       'pageNumber': instance.pageNumber,
       'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };

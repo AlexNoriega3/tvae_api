@@ -79,6 +79,28 @@ abstract class TVAE extends ChopperService {
       {@Body() required ColorDto? body});
 
   ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<ColorDtoPagedResult>> apiColorSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        ColorDtoPagedResult, () => ColorDtoPagedResult.fromJsonFactory);
+
+    return _apiColorSearchGet(page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Color/Search')
+  Future<chopper.Response<ColorDtoPagedResult>> _apiColorSearchGet(
+      {@Query('Page') int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') int? pageSize});
+
+  ///
   ///@param id
   Future<chopper.Response<ColorDto>> apiColorIdGet({required String? id}) {
     generatedMapping.putIfAbsent(ColorDto, () => ColorDto.fromJsonFactory);
@@ -137,6 +159,28 @@ abstract class TVAE extends ChopperService {
   @Post(path: '/api/Contact')
   Future<chopper.Response<String>> _apiContactPost(
       {@Body() required ContactDto? body});
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<ContactDtoPagedResult>> apiContactSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        ContactDtoPagedResult, () => ContactDtoPagedResult.fromJsonFactory);
+
+    return _apiContactSearchGet(page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Contact/Search')
+  Future<chopper.Response<ContactDtoPagedResult>> _apiContactSearchGet(
+      {@Query('Page') int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') int? pageSize});
 
   ///
   ///@param id
@@ -201,6 +245,29 @@ abstract class TVAE extends ChopperService {
       {@Body() required DepartmentDto? body});
 
   ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<DepartmentDtoPagedResult>> apiDepartmentSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(DepartmentDtoPagedResult,
+        () => DepartmentDtoPagedResult.fromJsonFactory);
+
+    return _apiDepartmentSearchGet(
+        page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Department/Search')
+  Future<chopper.Response<DepartmentDtoPagedResult>> _apiDepartmentSearchGet(
+      {@Query('Page') int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') int? pageSize});
+
+  ///
   ///@param id
   Future<chopper.Response<DepartmentDto>> apiDepartmentIdGet(
       {required String? id}) {
@@ -263,6 +330,28 @@ abstract class TVAE extends ChopperService {
       {@Body() required LevelDto? body});
 
   ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<LevelDtoPagedResult>> apiLevelSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        LevelDtoPagedResult, () => LevelDtoPagedResult.fromJsonFactory);
+
+    return _apiLevelSearchGet(page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Level/Search')
+  Future<chopper.Response<LevelDtoPagedResult>> _apiLevelSearchGet(
+      {@Query('Page') int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') int? pageSize});
+
+  ///
   ///@param id
   Future<chopper.Response<LevelDto>> apiLevelIdGet({required String? id}) {
     generatedMapping.putIfAbsent(LevelDto, () => LevelDto.fromJsonFactory);
@@ -321,6 +410,28 @@ abstract class TVAE extends ChopperService {
   @Post(path: '/api/Local')
   Future<chopper.Response<String>> _apiLocalPost(
       {@Body() required LocalDto? body});
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<LocalDtoPagedResult>> apiLocalSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        LocalDtoPagedResult, () => LocalDtoPagedResult.fromJsonFactory);
+
+    return _apiLocalSearchGet(page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Local/Search')
+  Future<chopper.Response<LocalDtoPagedResult>> _apiLocalSearchGet(
+      {@Query('Page') int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') int? pageSize});
 
   ///
   ///@param id
@@ -383,6 +494,29 @@ abstract class TVAE extends ChopperService {
   @Post(path: '/api/LocalStatus')
   Future<chopper.Response<String>> _apiLocalStatusPost(
       {@Body() required LocalStatusDto? body});
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<LocalStatusDtoPagedResult>> apiLocalStatusSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(LocalStatusDtoPagedResult,
+        () => LocalStatusDtoPagedResult.fromJsonFactory);
+
+    return _apiLocalStatusSearchGet(
+        page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/LocalStatus/Search')
+  Future<chopper.Response<LocalStatusDtoPagedResult>> _apiLocalStatusSearchGet(
+      {@Query('Page') int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') int? pageSize});
 
   ///
   ///@param id
@@ -449,6 +583,29 @@ abstract class TVAE extends ChopperService {
       {@Body() required LocalTypeDto? body});
 
   ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<LocalTypeDtoPagedResult>> apiLocalTypeSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        LocalTypeDtoPagedResult, () => LocalTypeDtoPagedResult.fromJsonFactory);
+
+    return _apiLocalTypeSearchGet(
+        page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/LocalType/Search')
+  Future<chopper.Response<LocalTypeDtoPagedResult>> _apiLocalTypeSearchGet(
+      {@Query('Page') int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') int? pageSize});
+
+  ///
   ///@param id
   Future<chopper.Response<LocalTypeDto>> apiLocalTypeIdGet(
       {required String? id}) {
@@ -511,6 +668,28 @@ abstract class TVAE extends ChopperService {
       {@Body() required ModuleDto? body});
 
   ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<ModuleDtoPagedResult>> apiModuleSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        ModuleDtoPagedResult, () => ModuleDtoPagedResult.fromJsonFactory);
+
+    return _apiModuleSearchGet(page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Module/Search')
+  Future<chopper.Response<ModuleDtoPagedResult>> _apiModuleSearchGet(
+      {@Query('Page') int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') int? pageSize});
+
+  ///
   ///@param id
   Future<chopper.Response<ModuleDto>> apiModuleIdGet({required String? id}) {
     generatedMapping.putIfAbsent(ModuleDto, () => ModuleDto.fromJsonFactory);
@@ -548,6 +727,28 @@ abstract class TVAE extends ChopperService {
   @Delete(path: '/api/Module/{id}')
   Future<chopper.Response<bool>> _apiModuleIdDelete(
       {@Path('id') required String? id});
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<ProjectDtoPagedResult>> apiProjectSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        ProjectDtoPagedResult, () => ProjectDtoPagedResult.fromJsonFactory);
+
+    return _apiProjectSearchGet(page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Project/Search')
+  Future<chopper.Response<ProjectDtoPagedResult>> _apiProjectSearchGet(
+      {@Query('Page') int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') int? pageSize});
 
   ///
   Future<chopper.Response<List<ProjectDto>>> apiProjectGet() {
@@ -631,6 +832,28 @@ abstract class TVAE extends ChopperService {
       {@Body() required ScreenDto? body});
 
   ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<ScreenDtoPagedResult>> apiScreenSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        ScreenDtoPagedResult, () => ScreenDtoPagedResult.fromJsonFactory);
+
+    return _apiScreenSearchGet(page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Screen/Search')
+  Future<chopper.Response<ScreenDtoPagedResult>> _apiScreenSearchGet(
+      {@Query('Page') int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') int? pageSize});
+
+  ///
   ///@param id
   Future<chopper.Response<ScreenDto>> apiScreenIdGet({required String? id}) {
     generatedMapping.putIfAbsent(ScreenDto, () => ScreenDto.fromJsonFactory);
@@ -691,6 +914,30 @@ abstract class TVAE extends ChopperService {
   @Post(path: '/api/Subdepartment')
   Future<chopper.Response<String>> _apiSubdepartmentPost(
       {@Body() required SubdepartmentDto? body});
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<SubdepartmentDtoPagedResult>>
+      apiSubdepartmentSearchGet({int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(SubdepartmentDtoPagedResult,
+        () => SubdepartmentDtoPagedResult.fromJsonFactory);
+
+    return _apiSubdepartmentSearchGet(
+        page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Subdepartment/Search')
+  Future<chopper.Response<SubdepartmentDtoPagedResult>>
+      _apiSubdepartmentSearchGet(
+          {@Query('Page') int? page,
+          @Query('Search') String? search,
+          @Query('PageSize') int? pageSize});
 
   ///
   ///@param id
@@ -756,6 +1003,28 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response> _apiUserPost({@Body() required AppUserDto? body});
 
   ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<AppUserDtoPagedResult>> apiUserSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        AppUserDtoPagedResult, () => AppUserDtoPagedResult.fromJsonFactory);
+
+    return _apiUserSearchGet(page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/User/Search')
+  Future<chopper.Response<AppUserDtoPagedResult>> _apiUserSearchGet(
+      {@Query('Page') int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') int? pageSize});
+
+  ///
   ///@param id
   Future<chopper.Response<AppUserDto>> apiUserIdGet({required String? id}) {
     generatedMapping.putIfAbsent(AppUserDto, () => AppUserDto.fromJsonFactory);
@@ -816,26 +1085,29 @@ abstract class TVAE extends ChopperService {
       {@Body() required VisitDto? body});
 
   ///
-  ///@param StartIndex
-  ///@param PageNumber
+  ///@param DateVisit
+  ///@param Page
+  ///@param Search
   ///@param PageSize
-  Future<chopper.Response<VisitDtoPagedResult>> apiVisitGetAllGet(
-      {int? startIndex, int? pageNumber, int? pageSize}) {
+  Future<chopper.Response<VisitDtoPagedResult>> apiVisitSearchGet(
+      {String? dateVisit, int? page, String? search, int? pageSize}) {
     generatedMapping.putIfAbsent(
         VisitDtoPagedResult, () => VisitDtoPagedResult.fromJsonFactory);
 
-    return _apiVisitGetAllGet(
-        startIndex: startIndex, pageNumber: pageNumber, pageSize: pageSize);
+    return _apiVisitSearchGet(
+        dateVisit: dateVisit, page: page, search: search, pageSize: pageSize);
   }
 
   ///
-  ///@param StartIndex
-  ///@param PageNumber
+  ///@param DateVisit
+  ///@param Page
+  ///@param Search
   ///@param PageSize
-  @Get(path: '/api/Visit/GetAll')
-  Future<chopper.Response<VisitDtoPagedResult>> _apiVisitGetAllGet(
-      {@Query('StartIndex') int? startIndex,
-      @Query('PageNumber') int? pageNumber,
+  @Get(path: '/api/Visit/Search')
+  Future<chopper.Response<VisitDtoPagedResult>> _apiVisitSearchGet(
+      {@Query('DateVisit') String? dateVisit,
+      @Query('Page') int? page,
+      @Query('Search') String? search,
       @Query('PageSize') int? pageSize});
 
   ///
@@ -1030,6 +1302,82 @@ extension $AppUserDtoExtension on AppUserDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class AppUserDtoPagedResult {
+  AppUserDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory AppUserDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$AppUserDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <AppUserDto>[])
+  final List<AppUserDto>? items;
+  static const fromJsonFactory = _$AppUserDtoPagedResultFromJson;
+  static const toJsonFactory = _$AppUserDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$AppUserDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is AppUserDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $AppUserDtoPagedResultExtension on AppUserDtoPagedResult {
+  AppUserDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<AppUserDto>? items}) {
+    return AppUserDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class AuthResponseDto {
   AuthResponseDto({
     this.userId,
@@ -1167,6 +1515,82 @@ extension $ColorDtoExtension on ColorDto {
         accentSecondary: accentSecondary ?? this.accentSecondary,
         backgroundColors: backgroundColors ?? this.backgroundColors,
         description: description ?? this.description);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ColorDtoPagedResult {
+  ColorDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory ColorDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$ColorDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <ColorDto>[])
+  final List<ColorDto>? items;
+  static const fromJsonFactory = _$ColorDtoPagedResultFromJson;
+  static const toJsonFactory = _$ColorDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$ColorDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ColorDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $ColorDtoPagedResultExtension on ColorDtoPagedResult {
+  ColorDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<ColorDto>? items}) {
+    return ColorDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
   }
 }
 
@@ -1312,6 +1736,82 @@ extension $ContactDtoExtension on ContactDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ContactDtoPagedResult {
+  ContactDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory ContactDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$ContactDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <ContactDto>[])
+  final List<ContactDto>? items;
+  static const fromJsonFactory = _$ContactDtoPagedResultFromJson;
+  static const toJsonFactory = _$ContactDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$ContactDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ContactDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $ContactDtoPagedResultExtension on ContactDtoPagedResult {
+  ContactDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<ContactDto>? items}) {
+    return ContactDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class DepartmentDto {
   DepartmentDto({
     this.departmentId,
@@ -1383,6 +1883,82 @@ extension $DepartmentDtoExtension on DepartmentDto {
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class DepartmentDtoPagedResult {
+  DepartmentDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory DepartmentDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$DepartmentDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <DepartmentDto>[])
+  final List<DepartmentDto>? items;
+  static const fromJsonFactory = _$DepartmentDtoPagedResultFromJson;
+  static const toJsonFactory = _$DepartmentDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$DepartmentDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DepartmentDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $DepartmentDtoPagedResultExtension on DepartmentDtoPagedResult {
+  DepartmentDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<DepartmentDto>? items}) {
+    return DepartmentDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
   }
 }
 
@@ -1467,6 +2043,82 @@ extension $LevelDtoExtension on LevelDto {
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class LevelDtoPagedResult {
+  LevelDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory LevelDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$LevelDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <LevelDto>[])
+  final List<LevelDto>? items;
+  static const fromJsonFactory = _$LevelDtoPagedResultFromJson;
+  static const toJsonFactory = _$LevelDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$LevelDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LevelDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $LevelDtoPagedResultExtension on LevelDtoPagedResult {
+  LevelDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<LevelDto>? items}) {
+    return LevelDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
   }
 }
 
@@ -1571,6 +2223,82 @@ extension $LocalDtoExtension on LocalDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class LocalDtoPagedResult {
+  LocalDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory LocalDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$LocalDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <LocalDto>[])
+  final List<LocalDto>? items;
+  static const fromJsonFactory = _$LocalDtoPagedResultFromJson;
+  static const toJsonFactory = _$LocalDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$LocalDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LocalDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $LocalDtoPagedResultExtension on LocalDtoPagedResult {
+  LocalDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<LocalDto>? items}) {
+    return LocalDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class LocalStatusDto {
   LocalStatusDto({
     this.localStatusId,
@@ -1637,6 +2365,82 @@ extension $LocalStatusDtoExtension on LocalStatusDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class LocalStatusDtoPagedResult {
+  LocalStatusDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory LocalStatusDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$LocalStatusDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <LocalStatusDto>[])
+  final List<LocalStatusDto>? items;
+  static const fromJsonFactory = _$LocalStatusDtoPagedResultFromJson;
+  static const toJsonFactory = _$LocalStatusDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$LocalStatusDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LocalStatusDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $LocalStatusDtoPagedResultExtension on LocalStatusDtoPagedResult {
+  LocalStatusDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<LocalStatusDto>? items}) {
+    return LocalStatusDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class LocalTypeDto {
   LocalTypeDto({
     this.localTypeId,
@@ -1696,6 +2500,82 @@ extension $LocalTypeDtoExtension on LocalTypeDto {
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class LocalTypeDtoPagedResult {
+  LocalTypeDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory LocalTypeDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$LocalTypeDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <LocalTypeDto>[])
+  final List<LocalTypeDto>? items;
+  static const fromJsonFactory = _$LocalTypeDtoPagedResultFromJson;
+  static const toJsonFactory = _$LocalTypeDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$LocalTypeDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LocalTypeDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $LocalTypeDtoPagedResultExtension on LocalTypeDtoPagedResult {
+  LocalTypeDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<LocalTypeDto>? items}) {
+    return LocalTypeDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
   }
 }
 
@@ -1817,6 +2697,82 @@ extension $ModuleDtoExtension on ModuleDto {
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ModuleDtoPagedResult {
+  ModuleDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory ModuleDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$ModuleDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <ModuleDto>[])
+  final List<ModuleDto>? items;
+  static const fromJsonFactory = _$ModuleDtoPagedResultFromJson;
+  static const toJsonFactory = _$ModuleDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$ModuleDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ModuleDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $ModuleDtoPagedResultExtension on ModuleDtoPagedResult {
+  ModuleDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<ModuleDto>? items}) {
+    return ModuleDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
   }
 }
 
@@ -2017,6 +2973,82 @@ extension $ProjectDtoExtension on ProjectDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ProjectDtoPagedResult {
+  ProjectDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory ProjectDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$ProjectDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <ProjectDto>[])
+  final List<ProjectDto>? items;
+  static const fromJsonFactory = _$ProjectDtoPagedResultFromJson;
+  static const toJsonFactory = _$ProjectDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$ProjectDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ProjectDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $ProjectDtoPagedResultExtension on ProjectDtoPagedResult {
+  ProjectDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<ProjectDto>? items}) {
+    return ProjectDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class ScreenDto {
   ScreenDto({
     this.screenId,
@@ -2092,6 +3124,82 @@ extension $ScreenDtoExtension on ScreenDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ScreenDtoPagedResult {
+  ScreenDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory ScreenDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$ScreenDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <ScreenDto>[])
+  final List<ScreenDto>? items;
+  static const fromJsonFactory = _$ScreenDtoPagedResultFromJson;
+  static const toJsonFactory = _$ScreenDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$ScreenDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ScreenDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $ScreenDtoPagedResultExtension on ScreenDtoPagedResult {
+  ScreenDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<ScreenDto>? items}) {
+    return ScreenDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class SubdepartmentDto {
   SubdepartmentDto({
     this.subdepartmentId,
@@ -2163,6 +3271,82 @@ extension $SubdepartmentDtoExtension on SubdepartmentDto {
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SubdepartmentDtoPagedResult {
+  SubdepartmentDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory SubdepartmentDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$SubdepartmentDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <SubdepartmentDto>[])
+  final List<SubdepartmentDto>? items;
+  static const fromJsonFactory = _$SubdepartmentDtoPagedResultFromJson;
+  static const toJsonFactory = _$SubdepartmentDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$SubdepartmentDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SubdepartmentDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $SubdepartmentDtoPagedResultExtension on SubdepartmentDtoPagedResult {
+  SubdepartmentDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<SubdepartmentDto>? items}) {
+    return SubdepartmentDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
   }
 }
 
@@ -2324,6 +3508,7 @@ class VisitDtoPagedResult {
     this.totalCount,
     this.pageNumber,
     this.recordNumber,
+    this.totalPages,
     this.items,
   });
 
@@ -2336,6 +3521,8 @@ class VisitDtoPagedResult {
   final int? pageNumber;
   @JsonKey(name: 'recordNumber')
   final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
   @JsonKey(name: 'items', defaultValue: <VisitDto>[])
   final List<VisitDto>? items;
   static const fromJsonFactory = _$VisitDtoPagedResultFromJson;
@@ -2358,6 +3545,9 @@ class VisitDtoPagedResult {
             (identical(other.recordNumber, recordNumber) ||
                 const DeepCollectionEquality()
                     .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
             (identical(other.items, items) ||
                 const DeepCollectionEquality().equals(other.items, items)));
   }
@@ -2367,6 +3557,7 @@ class VisitDtoPagedResult {
       const DeepCollectionEquality().hash(totalCount) ^
       const DeepCollectionEquality().hash(pageNumber) ^
       const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
       const DeepCollectionEquality().hash(items) ^
       runtimeType.hashCode;
 }
@@ -2376,11 +3567,13 @@ extension $VisitDtoPagedResultExtension on VisitDtoPagedResult {
       {int? totalCount,
       int? pageNumber,
       int? recordNumber,
+      int? totalPages,
       List<VisitDto>? items}) {
     return VisitDtoPagedResult(
         totalCount: totalCount ?? this.totalCount,
         pageNumber: pageNumber ?? this.pageNumber,
         recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
   }
 }
