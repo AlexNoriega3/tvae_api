@@ -58,6 +58,72 @@ abstract class TVAE extends ChopperService {
       {@Body() required AuthResponseDto? body});
 
   ///
+  Future<chopper.Response> apiAccountLogoutPost() {
+    return _apiAccountLogoutPost();
+  }
+
+  ///
+  @Post(path: '/api/Account/logout', optionalBody: true)
+  Future<chopper.Response> _apiAccountLogoutPost();
+
+  ///
+  ///@param userEmail
+  ///@param currentPassword
+  ///@param newPassword
+  ///@param confirmPassword
+  Future<chopper.Response>
+      apiAccountChangepasswordUserEmailCurrentPasswordNewPasswordConfirmPasswordPost(
+          {required String? userEmail,
+          required String? currentPassword,
+          required String? newPassword,
+          required String? confirmPassword}) {
+    return _apiAccountChangepasswordUserEmailCurrentPasswordNewPasswordConfirmPasswordPost(
+        userEmail: userEmail,
+        currentPassword: currentPassword,
+        newPassword: newPassword,
+        confirmPassword: confirmPassword);
+  }
+
+  ///
+  ///@param userEmail
+  ///@param currentPassword
+  ///@param newPassword
+  ///@param confirmPassword
+  @Post(
+      path:
+          '/api/Account/changepassword/{userEmail},{currentPassword},{newPassword},{confirmPassword}',
+      optionalBody: true)
+  Future<chopper.Response>
+      _apiAccountChangepasswordUserEmailCurrentPasswordNewPasswordConfirmPasswordPost(
+          {@Path('userEmail') required String? userEmail,
+          @Path('currentPassword') required String? currentPassword,
+          @Path('newPassword') required String? newPassword,
+          @Path('confirmPassword') required String? confirmPassword});
+
+  ///
+  ///@param email
+  Future<chopper.Response> apiAccountForgotpasswordPost({String? email}) {
+    return _apiAccountForgotpasswordPost(email: email);
+  }
+
+  ///
+  ///@param email
+  @Post(path: '/api/Account/forgotpassword', optionalBody: true)
+  Future<chopper.Response> _apiAccountForgotpasswordPost(
+      {@Query('email') String? email});
+
+  ///
+  Future<chopper.Response> apiAccountResetpasswordPost(
+      {required ResetPasswordModel? body}) {
+    return _apiAccountResetpasswordPost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Account/resetpassword')
+  Future<chopper.Response> _apiAccountResetpasswordPost(
+      {@Body() required ResetPasswordModel? body});
+
+  ///
   Future<chopper.Response<List<ColorDto>>> apiColorGet() {
     generatedMapping.putIfAbsent(ColorDto, () => ColorDto.fromJsonFactory);
 
@@ -3045,6 +3111,72 @@ extension $ProjectDtoPagedResultExtension on ProjectDtoPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ResetPasswordModel {
+  ResetPasswordModel({
+    required this.password,
+    required this.confirmPassword,
+    required this.email,
+    required this.token,
+  });
+
+  factory ResetPasswordModel.fromJson(Map<String, dynamic> json) =>
+      _$ResetPasswordModelFromJson(json);
+
+  @JsonKey(name: 'password')
+  final String password;
+  @JsonKey(name: 'confirmPassword')
+  final String confirmPassword;
+  @JsonKey(name: 'email')
+  final String email;
+  @JsonKey(name: 'token')
+  final String token;
+  static const fromJsonFactory = _$ResetPasswordModelFromJson;
+  static const toJsonFactory = _$ResetPasswordModelToJson;
+  Map<String, dynamic> toJson() => _$ResetPasswordModelToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ResetPasswordModel &&
+            (identical(other.password, password) ||
+                const DeepCollectionEquality()
+                    .equals(other.password, password)) &&
+            (identical(other.confirmPassword, confirmPassword) ||
+                const DeepCollectionEquality()
+                    .equals(other.confirmPassword, confirmPassword)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.token, token) ||
+                const DeepCollectionEquality().equals(other.token, token)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(password) ^
+      const DeepCollectionEquality().hash(confirmPassword) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(token) ^
+      runtimeType.hashCode;
+}
+
+extension $ResetPasswordModelExtension on ResetPasswordModel {
+  ResetPasswordModel copyWith(
+      {String? password,
+      String? confirmPassword,
+      String? email,
+      String? token}) {
+    return ResetPasswordModel(
+        password: password ?? this.password,
+        confirmPassword: confirmPassword ?? this.confirmPassword,
+        email: email ?? this.email,
+        token: token ?? this.token);
   }
 }
 

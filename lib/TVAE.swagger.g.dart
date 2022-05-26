@@ -497,6 +497,22 @@ Map<String, dynamic> _$ProjectDtoPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+ResetPasswordModel _$ResetPasswordModelFromJson(Map<String, dynamic> json) =>
+    ResetPasswordModel(
+      password: json['password'] as String,
+      confirmPassword: json['confirmPassword'] as String,
+      email: json['email'] as String,
+      token: json['token'] as String,
+    );
+
+Map<String, dynamic> _$ResetPasswordModelToJson(ResetPasswordModel instance) =>
+    <String, dynamic>{
+      'password': instance.password,
+      'confirmPassword': instance.confirmPassword,
+      'email': instance.email,
+      'token': instance.token,
+    };
+
 ScreenDto _$ScreenDtoFromJson(Map<String, dynamic> json) => ScreenDto(
       screenId: json['screenId'] as String?,
       moduleId: json['moduleId'] as String?,

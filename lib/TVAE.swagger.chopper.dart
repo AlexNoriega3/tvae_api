@@ -34,6 +34,43 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<dynamic>> _apiAccountLogoutPost() {
+    final $url = '/api/Account/logout';
+    final $request = Request('POST', $url, client.baseUrl);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>>
+      _apiAccountChangepasswordUserEmailCurrentPasswordNewPasswordConfirmPasswordPost(
+          {required String? userEmail,
+          required String? currentPassword,
+          required String? newPassword,
+          required String? confirmPassword}) {
+    final $url =
+        '/api/Account/changepassword/${userEmail},${currentPassword},${newPassword},${confirmPassword}';
+    final $request = Request('POST', $url, client.baseUrl);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> _apiAccountForgotpasswordPost({String? email}) {
+    final $url = '/api/Account/forgotpassword';
+    final $params = <String, dynamic>{'email': email};
+    final $request = Request('POST', $url, client.baseUrl, parameters: $params);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> _apiAccountResetpasswordPost(
+      {required ResetPasswordModel? body}) {
+    final $url = '/api/Account/resetpassword';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response<List<ColorDto>>> _apiColorGet() {
     final $url = '/api/Color';
     final $request = Request('GET', $url, client.baseUrl);
