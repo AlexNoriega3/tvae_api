@@ -513,6 +513,39 @@ Map<String, dynamic> _$ResetPasswordModelToJson(ResetPasswordModel instance) =>
       'token': instance.token,
     };
 
+RoleDto _$RoleDtoFromJson(Map<String, dynamic> json) => RoleDto(
+      id: json['id'] as String?,
+      name: json['name'] as String?,
+      active: json['active'] as bool?,
+    );
+
+Map<String, dynamic> _$RoleDtoToJson(RoleDto instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'active': instance.active,
+    };
+
+RoleDtoPagedResult _$RoleDtoPagedResultFromJson(Map<String, dynamic> json) =>
+    RoleDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => RoleDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$RoleDtoPagedResultToJson(RoleDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 ScreenDto _$ScreenDtoFromJson(Map<String, dynamic> json) => ScreenDto(
       screenId: json['screenId'] as String?,
       moduleId: json['moduleId'] as String?,
@@ -607,6 +640,48 @@ Map<String, dynamic> _$TimeOnlyToJson(TimeOnly instance) => <String, dynamic>{
       'second': instance.second,
       'millisecond': instance.millisecond,
       'ticks': instance.ticks,
+    };
+
+UserPostDto _$UserPostDtoFromJson(Map<String, dynamic> json) => UserPostDto(
+      email: json['email'] as String,
+      password: json['password'] as String,
+    );
+
+Map<String, dynamic> _$UserPostDtoToJson(UserPostDto instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+    };
+
+UserPutDto _$UserPutDtoFromJson(Map<String, dynamic> json) => UserPutDto(
+      name: json['name'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      url: json['url'] as String?,
+      countryCode: json['countryCode'] as String?,
+      phone: json['phone'] as String?,
+      country: json['country'] as String?,
+      city: json['city'] as String?,
+      address: json['address'] as String?,
+      birthDate: json['birthDate'] == null
+          ? null
+          : DateTime.parse(json['birthDate'] as String),
+      active: json['active'] as bool?,
+    );
+
+Map<String, dynamic> _$UserPutDtoToJson(UserPutDto instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'url': instance.url,
+      'countryCode': instance.countryCode,
+      'phone': instance.phone,
+      'country': instance.country,
+      'city': instance.city,
+      'address': instance.address,
+      'birthDate': instance.birthDate?.toIso8601String(),
+      'active': instance.active,
     };
 
 VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(

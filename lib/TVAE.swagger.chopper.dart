@@ -534,6 +534,57 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<List<RoleDto>>> _apiRoleGet() {
+    final $url = '/api/Role';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<RoleDto>, RoleDto>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiRolePost({required RoleDto? body}) {
+    final $url = '/api/Role';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<RoleDtoPagedResult>> _apiRoleSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    final $url = '/api/Role/Search';
+    final $params = <String, dynamic>{
+      'Page': page,
+      'Search': search,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<RoleDtoPagedResult, RoleDtoPagedResult>($request);
+  }
+
+  @override
+  Future<Response<RoleDto>> _apiRoleIdGet({required String? id}) {
+    final $url = '/api/Role/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<RoleDto, RoleDto>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiRoleIdPut(
+      {required String? id, required RoleDto? body}) {
+    final $url = '/api/Role/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiRoleIdDelete({required String? id}) {
+    final $url = '/api/Role/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<List<ScreenDto>>> _apiScreenGet() {
     final $url = '/api/Screen';
     final $request = Request('GET', $url, client.baseUrl);
@@ -646,11 +697,11 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<dynamic>> _apiUserPost({required AppUserDto? body}) {
+  Future<Response<String>> _apiUserPost({required UserPostDto? body}) {
     final $url = '/api/User';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<dynamic, dynamic>($request);
+    return client.send<String, String>($request);
   }
 
   @override
@@ -675,7 +726,7 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<bool>> _apiUserIdPut(
-      {required String? id, required AppUserDto? body}) {
+      {required String? id, required UserPutDto? body}) {
     final $url = '/api/User/${id}';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);

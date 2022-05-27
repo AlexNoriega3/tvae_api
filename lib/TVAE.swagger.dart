@@ -877,6 +877,88 @@ abstract class TVAE extends ChopperService {
       {@Path('id') required String? id});
 
   ///
+  Future<chopper.Response<List<RoleDto>>> apiRoleGet() {
+    generatedMapping.putIfAbsent(RoleDto, () => RoleDto.fromJsonFactory);
+
+    return _apiRoleGet();
+  }
+
+  ///
+  @Get(path: '/api/Role')
+  Future<chopper.Response<List<RoleDto>>> _apiRoleGet();
+
+  ///
+  Future<chopper.Response<String>> apiRolePost({required RoleDto? body}) {
+    return _apiRolePost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Role')
+  Future<chopper.Response<String>> _apiRolePost(
+      {@Body() required RoleDto? body});
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<RoleDtoPagedResult>> apiRoleSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        RoleDtoPagedResult, () => RoleDtoPagedResult.fromJsonFactory);
+
+    return _apiRoleSearchGet(page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Role/Search')
+  Future<chopper.Response<RoleDtoPagedResult>> _apiRoleSearchGet(
+      {@Query('Page') int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') int? pageSize});
+
+  ///
+  ///@param id
+  Future<chopper.Response<RoleDto>> apiRoleIdGet({required String? id}) {
+    generatedMapping.putIfAbsent(RoleDto, () => RoleDto.fromJsonFactory);
+
+    return _apiRoleIdGet(id: id);
+  }
+
+  ///
+  ///@param id
+  @Get(path: '/api/Role/{id}')
+  Future<chopper.Response<RoleDto>> _apiRoleIdGet(
+      {@Path('id') required String? id});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiRoleIdPut(
+      {required String? id, required RoleDto? body}) {
+    return _apiRoleIdPut(id: id, body: body);
+  }
+
+  ///
+  ///@param id
+  @Put(path: '/api/Role/{id}')
+  Future<chopper.Response<bool>> _apiRoleIdPut(
+      {@Path('id') required String? id, @Body() required RoleDto? body});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiRoleIdDelete({required String? id}) {
+    return _apiRoleIdDelete(id: id);
+  }
+
+  ///
+  ///@param id
+  @Delete(path: '/api/Role/{id}')
+  Future<chopper.Response<bool>> _apiRoleIdDelete(
+      {@Path('id') required String? id});
+
+  ///
   Future<chopper.Response<List<ScreenDto>>> apiScreenGet() {
     generatedMapping.putIfAbsent(ScreenDto, () => ScreenDto.fromJsonFactory);
 
@@ -1060,13 +1142,14 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response<List<AppUserDto>>> _apiUserGet();
 
   ///Endpoint para el registro de los usuarios
-  Future<chopper.Response> apiUserPost({required AppUserDto? body}) {
+  Future<chopper.Response<String>> apiUserPost({required UserPostDto? body}) {
     return _apiUserPost(body: body);
   }
 
   ///Endpoint para el registro de los usuarios
   @Post(path: '/api/User')
-  Future<chopper.Response> _apiUserPost({@Body() required AppUserDto? body});
+  Future<chopper.Response<String>> _apiUserPost(
+      {@Body() required UserPostDto? body});
 
   ///
   ///@param Page
@@ -1107,7 +1190,7 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param id
   Future<chopper.Response<bool>> apiUserIdPut(
-      {required String? id, required AppUserDto? body}) {
+      {required String? id, required UserPutDto? body}) {
     return _apiUserIdPut(id: id, body: body);
   }
 
@@ -1115,7 +1198,7 @@ abstract class TVAE extends ChopperService {
   ///@param id
   @Put(path: '/api/User/{id}')
   Future<chopper.Response<bool>> _apiUserIdPut(
-      {@Path('id') required String? id, @Body() required AppUserDto? body});
+      {@Path('id') required String? id, @Body() required UserPutDto? body});
 
   ///
   ///@param id
@@ -3181,6 +3264,135 @@ extension $ResetPasswordModelExtension on ResetPasswordModel {
 }
 
 @JsonSerializable(explicitToJson: true)
+class RoleDto {
+  RoleDto({
+    this.id,
+    this.name,
+    this.active,
+  });
+
+  factory RoleDto.fromJson(Map<String, dynamic> json) =>
+      _$RoleDtoFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'active')
+  final bool? active;
+  static const fromJsonFactory = _$RoleDtoFromJson;
+  static const toJsonFactory = _$RoleDtoToJson;
+  Map<String, dynamic> toJson() => _$RoleDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RoleDto &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(active) ^
+      runtimeType.hashCode;
+}
+
+extension $RoleDtoExtension on RoleDto {
+  RoleDto copyWith({String? id, String? name, bool? active}) {
+    return RoleDto(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        active: active ?? this.active);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class RoleDtoPagedResult {
+  RoleDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory RoleDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$RoleDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <RoleDto>[])
+  final List<RoleDto>? items;
+  static const fromJsonFactory = _$RoleDtoPagedResultFromJson;
+  static const toJsonFactory = _$RoleDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$RoleDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RoleDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $RoleDtoPagedResultExtension on RoleDtoPagedResult {
+  RoleDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<RoleDto>? items}) {
+    return RoleDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class ScreenDto {
   ScreenDto({
     this.screenId,
@@ -3548,6 +3760,178 @@ extension $TimeOnlyExtension on TimeOnly {
         second: second ?? this.second,
         millisecond: millisecond ?? this.millisecond,
         ticks: ticks ?? this.ticks);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserPostDto {
+  UserPostDto({
+    required this.email,
+    required this.password,
+  });
+
+  factory UserPostDto.fromJson(Map<String, dynamic> json) =>
+      _$UserPostDtoFromJson(json);
+
+  @JsonKey(name: 'email')
+  final String email;
+  @JsonKey(name: 'password')
+  final String password;
+  static const fromJsonFactory = _$UserPostDtoFromJson;
+  static const toJsonFactory = _$UserPostDtoToJson;
+  Map<String, dynamic> toJson() => _$UserPostDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UserPostDto &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.password, password) ||
+                const DeepCollectionEquality()
+                    .equals(other.password, password)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(password) ^
+      runtimeType.hashCode;
+}
+
+extension $UserPostDtoExtension on UserPostDto {
+  UserPostDto copyWith({String? email, String? password}) {
+    return UserPostDto(
+        email: email ?? this.email, password: password ?? this.password);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserPutDto {
+  UserPutDto({
+    this.name,
+    this.firstName,
+    this.lastName,
+    this.url,
+    this.countryCode,
+    this.phone,
+    this.country,
+    this.city,
+    this.address,
+    this.birthDate,
+    this.active,
+  });
+
+  factory UserPutDto.fromJson(Map<String, dynamic> json) =>
+      _$UserPutDtoFromJson(json);
+
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'firstName')
+  final String? firstName;
+  @JsonKey(name: 'lastName')
+  final String? lastName;
+  @JsonKey(name: 'url')
+  final String? url;
+  @JsonKey(name: 'countryCode')
+  final String? countryCode;
+  @JsonKey(name: 'phone')
+  final String? phone;
+  @JsonKey(name: 'country')
+  final String? country;
+  @JsonKey(name: 'city')
+  final String? city;
+  @JsonKey(name: 'address')
+  final String? address;
+  @JsonKey(name: 'birthDate')
+  final DateTime? birthDate;
+  @JsonKey(name: 'active')
+  final bool? active;
+  static const fromJsonFactory = _$UserPutDtoFromJson;
+  static const toJsonFactory = _$UserPutDtoToJson;
+  Map<String, dynamic> toJson() => _$UserPutDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UserPutDto &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.countryCode, countryCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.countryCode, countryCode)) &&
+            (identical(other.phone, phone) ||
+                const DeepCollectionEquality().equals(other.phone, phone)) &&
+            (identical(other.country, country) ||
+                const DeepCollectionEquality()
+                    .equals(other.country, country)) &&
+            (identical(other.city, city) ||
+                const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.birthDate, birthDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.birthDate, birthDate)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(countryCode) ^
+      const DeepCollectionEquality().hash(phone) ^
+      const DeepCollectionEquality().hash(country) ^
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(birthDate) ^
+      const DeepCollectionEquality().hash(active) ^
+      runtimeType.hashCode;
+}
+
+extension $UserPutDtoExtension on UserPutDto {
+  UserPutDto copyWith(
+      {String? name,
+      String? firstName,
+      String? lastName,
+      String? url,
+      String? countryCode,
+      String? phone,
+      String? country,
+      String? city,
+      String? address,
+      DateTime? birthDate,
+      bool? active}) {
+    return UserPutDto(
+        name: name ?? this.name,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        url: url ?? this.url,
+        countryCode: countryCode ?? this.countryCode,
+        phone: phone ?? this.phone,
+        country: country ?? this.country,
+        city: city ?? this.city,
+        address: address ?? this.address,
+        birthDate: birthDate ?? this.birthDate,
+        active: active ?? this.active);
   }
 }
 
