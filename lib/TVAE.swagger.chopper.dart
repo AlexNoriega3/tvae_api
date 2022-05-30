@@ -17,6 +17,60 @@ class _$TVAE extends TVAE {
   final definitionType = TVAE;
 
   @override
+  Future<Response<List<AcademicStudiesDto>>> _apiAcademicStudiesGet() {
+    final $url = '/api/AcademicStudies';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<AcademicStudiesDto>, AcademicStudiesDto>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiAcademicStudiesPost(
+      {required AcademicStudiesDto? body}) {
+    final $url = '/api/AcademicStudies';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<AcademicStudiesDtoPagedResult>> _apiAcademicStudiesSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    final $url = '/api/AcademicStudies/Search';
+    final $params = <String, dynamic>{
+      'Page': page,
+      'Search': search,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<AcademicStudiesDtoPagedResult,
+        AcademicStudiesDtoPagedResult>($request);
+  }
+
+  @override
+  Future<Response<AcademicStudiesDto>> _apiAcademicStudiesIdGet(
+      {required String? id}) {
+    final $url = '/api/AcademicStudies/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<AcademicStudiesDto, AcademicStudiesDto>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiAcademicStudiesIdPut(
+      {required String? id, required AcademicStudiesDto? body}) {
+    final $url = '/api/AcademicStudies/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiAcademicStudiesIdDelete({required String? id}) {
+    final $url = '/api/AcademicStudies/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<dynamic>> _apiAccountLoginPost({required LoginDto? body}) {
     final $url = '/api/Account/login';
     final $body = body;
@@ -483,6 +537,60 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<List<NotificationsDto>>> _apiNotificationsGet() {
+    final $url = '/api/Notifications';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<NotificationsDto>, NotificationsDto>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiNotificationsPost(
+      {required NotificationsDto? body}) {
+    final $url = '/api/Notifications';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<NotificationsDtoPagedResult>> _apiNotificationsSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    final $url = '/api/Notifications/Search';
+    final $params = <String, dynamic>{
+      'Page': page,
+      'Search': search,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<NotificationsDtoPagedResult,
+        NotificationsDtoPagedResult>($request);
+  }
+
+  @override
+  Future<Response<NotificationsDto>> _apiNotificationsIdGet(
+      {required String? id}) {
+    final $url = '/api/Notifications/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<NotificationsDto, NotificationsDto>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiNotificationsIdPut(
+      {required String? id, required NotificationsDto? body}) {
+    final $url = '/api/Notifications/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiNotificationsIdDelete({required String? id}) {
+    final $url = '/api/Notifications/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<ProjectDtoPagedResult>> _apiProjectSearchGet(
       {int? page, String? search, int? pageSize}) {
     final $url = '/api/Project/Search';
@@ -788,6 +896,59 @@ class _$TVAE extends TVAE {
   @override
   Future<Response<bool>> _apiVisitIdDelete({required String? id}) {
     final $url = '/api/Visit/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<List<VisitStatusDto>>> _apiVisitStatusGet() {
+    final $url = '/api/VisitStatus';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<VisitStatusDto>, VisitStatusDto>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiVisitStatusPost(
+      {required VisitStatusDto? body}) {
+    final $url = '/api/VisitStatus';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<VisitStatusDtoPagedResult>> _apiVisitStatusSearchGet(
+      {int? page, String? search, int? pageSize}) {
+    final $url = '/api/VisitStatus/Search';
+    final $params = <String, dynamic>{
+      'Page': page,
+      'Search': search,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client
+        .send<VisitStatusDtoPagedResult, VisitStatusDtoPagedResult>($request);
+  }
+
+  @override
+  Future<Response<VisitStatusDto>> _apiVisitStatusIdGet({required String? id}) {
+    final $url = '/api/VisitStatus/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<VisitStatusDto, VisitStatusDto>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiVisitStatusIdPut(
+      {required String? id, required VisitStatusDto? body}) {
+    final $url = '/api/VisitStatus/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiVisitStatusIdDelete({required String? id}) {
+    final $url = '/api/VisitStatus/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
   }

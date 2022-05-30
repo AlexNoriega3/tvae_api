@@ -6,6 +6,46 @@ part of 'TVAE.swagger.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+AcademicStudiesDto _$AcademicStudiesDtoFromJson(Map<String, dynamic> json) =>
+    AcademicStudiesDto(
+      academicStudiesId: json['academicStudiesId'] as String?,
+      userId: json['userId'] as String,
+      degree: json['degree'] as String?,
+      school: json['school'] as String?,
+    );
+
+Map<String, dynamic> _$AcademicStudiesDtoToJson(AcademicStudiesDto instance) =>
+    <String, dynamic>{
+      'academicStudiesId': instance.academicStudiesId,
+      'userId': instance.userId,
+      'degree': instance.degree,
+      'school': instance.school,
+    };
+
+AcademicStudiesDtoPagedResult _$AcademicStudiesDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    AcademicStudiesDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map(
+                  (e) => AcademicStudiesDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$AcademicStudiesDtoPagedResultToJson(
+        AcademicStudiesDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 AppUserDto _$AppUserDtoFromJson(Map<String, dynamic> json) => AppUserDto(
       email: json['email'] as String,
       password: json['password'] as String,
@@ -71,6 +111,12 @@ AuthResponseDto _$AuthResponseDtoFromJson(Map<String, dynamic> json) =>
       userId: json['userId'] as String?,
       token: json['token'] as String?,
       refreshToken: json['refreshToken'] as String?,
+      name: json['name'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      url: json['url'] as String?,
+      phone: json['phone'] as String?,
+      active: json['active'] as bool?,
     );
 
 Map<String, dynamic> _$AuthResponseDtoToJson(AuthResponseDto instance) =>
@@ -78,6 +124,12 @@ Map<String, dynamic> _$AuthResponseDtoToJson(AuthResponseDto instance) =>
       'userId': instance.userId,
       'token': instance.token,
       'refreshToken': instance.refreshToken,
+      'name': instance.name,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'url': instance.url,
+      'phone': instance.phone,
+      'active': instance.active,
     };
 
 ColorDto _$ColorDtoFromJson(Map<String, dynamic> json) => ColorDto(
@@ -427,6 +479,49 @@ Map<String, dynamic> _$ModuleDtoPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+NotificationsDto _$NotificationsDtoFromJson(Map<String, dynamic> json) =>
+    NotificationsDto(
+      notificationId: json['notificationId'] as String?,
+      toUserId: json['toUserId'] as String,
+      fromUserId: json['fromUserId'] as String,
+      title: json['title'] as String,
+      message: json['message'] as String,
+      isRead: json['isRead'] as bool?,
+    );
+
+Map<String, dynamic> _$NotificationsDtoToJson(NotificationsDto instance) =>
+    <String, dynamic>{
+      'notificationId': instance.notificationId,
+      'toUserId': instance.toUserId,
+      'fromUserId': instance.fromUserId,
+      'title': instance.title,
+      'message': instance.message,
+      'isRead': instance.isRead,
+    };
+
+NotificationsDtoPagedResult _$NotificationsDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    NotificationsDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => NotificationsDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$NotificationsDtoPagedResultToJson(
+        NotificationsDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 ProblemDetails _$ProblemDetailsFromJson(Map<String, dynamic> json) =>
     ProblemDetails(
       type: json['type'] as String?,
@@ -645,12 +740,16 @@ Map<String, dynamic> _$TimeOnlyToJson(TimeOnly instance) => <String, dynamic>{
 UserPostDto _$UserPostDtoFromJson(Map<String, dynamic> json) => UserPostDto(
       email: json['email'] as String,
       password: json['password'] as String,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
     );
 
 Map<String, dynamic> _$UserPostDtoToJson(UserPostDto instance) =>
     <String, dynamic>{
       'email': instance.email,
       'password': instance.password,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
     };
 
 UserPutDto _$UserPutDtoFromJson(Map<String, dynamic> json) => UserPutDto(
@@ -721,6 +820,45 @@ VisitDtoPagedResult _$VisitDtoPagedResultFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$VisitDtoPagedResultToJson(
         VisitDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+VisitStatusDto _$VisitStatusDtoFromJson(Map<String, dynamic> json) =>
+    VisitStatusDto(
+      visitStatusId: json['visitStatusId'] as String?,
+      name: json['name'] as String?,
+      code: json['code'] as String?,
+      description: json['description'] as String?,
+    );
+
+Map<String, dynamic> _$VisitStatusDtoToJson(VisitStatusDto instance) =>
+    <String, dynamic>{
+      'visitStatusId': instance.visitStatusId,
+      'name': instance.name,
+      'code': instance.code,
+      'description': instance.description,
+    };
+
+VisitStatusDtoPagedResult _$VisitStatusDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    VisitStatusDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => VisitStatusDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$VisitStatusDtoPagedResultToJson(
+        VisitStatusDtoPagedResult instance) =>
     <String, dynamic>{
       'totalCount': instance.totalCount,
       'pageNumber': instance.pageNumber,
