@@ -1616,10 +1616,7 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response<bool>> _apiUserIdDelete(
       {@Path('id') required String? id});
 
-  ///Obtiene el listado de usuarios filtrados por
-  ///[nombre] String = la busqueda sera un like
-  ///[role] string = es el rol de los usuarios relacionads, sugerencia [Proveedor]
-  ///[departments] Array de los identificadores (IDs) de los departamenteos
+  ///Obtiene el listado de usuarios filtrados
   ///@param departments
   ///@param role
   ///@param Page
@@ -1627,7 +1624,7 @@ abstract class TVAE extends ChopperService {
   ///@param OrderBy
   ///@param Descending
   ///@param PageSize
-  Future<chopper.Response<AppUserDto>> byRoleAndDepartmentGet(
+  Future<chopper.Response<AppUserDto>> apiUserByRoleAndDepartmentGet(
       {List<String>? departments,
       String? role,
       required int? page,
@@ -1637,7 +1634,7 @@ abstract class TVAE extends ChopperService {
       required int? pageSize}) {
     generatedMapping.putIfAbsent(AppUserDto, () => AppUserDto.fromJsonFactory);
 
-    return _byRoleAndDepartmentGet(
+    return _apiUserByRoleAndDepartmentGet(
         departments: departments,
         role: role,
         page: page,
@@ -1647,10 +1644,7 @@ abstract class TVAE extends ChopperService {
         pageSize: pageSize);
   }
 
-  ///Obtiene el listado de usuarios filtrados por
-  ///[nombre] String = la busqueda sera un like
-  ///[role] string = es el rol de los usuarios relacionads, sugerencia [Proveedor]
-  ///[departments] Array de los identificadores (IDs) de los departamenteos
+  ///Obtiene el listado de usuarios filtrados
   ///@param departments
   ///@param role
   ///@param Page
@@ -1658,8 +1652,8 @@ abstract class TVAE extends ChopperService {
   ///@param OrderBy
   ///@param Descending
   ///@param PageSize
-  @Get(path: '/byRoleAndDepartment')
-  Future<chopper.Response<AppUserDto>> _byRoleAndDepartmentGet(
+  @Get(path: '/api/User/byRoleAndDepartment')
+  Future<chopper.Response<AppUserDto>> _apiUserByRoleAndDepartmentGet(
       {@Query('departments') List<String>? departments,
       @Query('role') String? role,
       @Query('Page') required int? page,
@@ -2033,14 +2027,14 @@ extension $AcademicStudiesDtoPagedResultExtension
 @JsonSerializable(explicitToJson: true)
 class AppUserDto {
   AppUserDto({
-    required this.email,
-    required this.password,
     this.id,
+    this.email,
     this.name,
     this.firstName,
     this.lastName,
     this.url,
     this.countryCode,
+    this.gender,
     this.phone,
     this.country,
     this.city,
@@ -2052,12 +2046,10 @@ class AppUserDto {
   factory AppUserDto.fromJson(Map<String, dynamic> json) =>
       _$AppUserDtoFromJson(json);
 
-  @JsonKey(name: 'email')
-  final String email;
-  @JsonKey(name: 'password')
-  final String password;
   @JsonKey(name: 'id')
   final String? id;
+  @JsonKey(name: 'email')
+  final String? email;
   @JsonKey(name: 'name')
   final String? name;
   @JsonKey(name: 'firstName')
@@ -2068,6 +2060,9 @@ class AppUserDto {
   final String? url;
   @JsonKey(name: 'countryCode')
   final String? countryCode;
+  @JsonKey(
+      name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
+  final enums.GenderEnum? gender;
   @JsonKey(name: 'phone')
   final String? phone;
   @JsonKey(name: 'country')
@@ -2091,13 +2086,10 @@ class AppUserDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is AppUserDto &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.password, password) ||
-                const DeepCollectionEquality()
-                    .equals(other.password, password)) &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.firstName, firstName) ||
@@ -2111,6 +2103,8 @@ class AppUserDto {
             (identical(other.countryCode, countryCode) ||
                 const DeepCollectionEquality()
                     .equals(other.countryCode, countryCode)) &&
+            (identical(other.gender, gender) ||
+                const DeepCollectionEquality().equals(other.gender, gender)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.country, country) ||
@@ -2130,14 +2124,14 @@ class AppUserDto {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(password) ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(countryCode) ^
+      const DeepCollectionEquality().hash(gender) ^
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(country) ^
       const DeepCollectionEquality().hash(city) ^
@@ -2149,14 +2143,14 @@ class AppUserDto {
 
 extension $AppUserDtoExtension on AppUserDto {
   AppUserDto copyWith(
-      {String? email,
-      String? password,
-      String? id,
+      {String? id,
+      String? email,
       String? name,
       String? firstName,
       String? lastName,
       String? url,
       String? countryCode,
+      enums.GenderEnum? gender,
       String? phone,
       String? country,
       String? city,
@@ -2164,14 +2158,14 @@ extension $AppUserDtoExtension on AppUserDto {
       DateTime? birthDate,
       bool? active}) {
     return AppUserDto(
-        email: email ?? this.email,
-        password: password ?? this.password,
         id: id ?? this.id,
+        email: email ?? this.email,
         name: name ?? this.name,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         url: url ?? this.url,
         countryCode: countryCode ?? this.countryCode,
+        gender: gender ?? this.gender,
         phone: phone ?? this.phone,
         country: country ?? this.country,
         city: city ?? this.city,
@@ -2269,6 +2263,7 @@ class AuthResponseDto {
     this.url,
     this.phone,
     this.active,
+    this.roles,
   });
 
   factory AuthResponseDto.fromJson(Map<String, dynamic> json) =>
@@ -2292,6 +2287,8 @@ class AuthResponseDto {
   final String? phone;
   @JsonKey(name: 'active')
   final bool? active;
+  @JsonKey(name: 'roles', defaultValue: <String>[])
+  final List<String>? roles;
   static const fromJsonFactory = _$AuthResponseDtoFromJson;
   static const toJsonFactory = _$AuthResponseDtoToJson;
   Map<String, dynamic> toJson() => _$AuthResponseDtoToJson(this);
@@ -2323,7 +2320,9 @@ class AuthResponseDto {
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)));
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.roles, roles) ||
+                const DeepCollectionEquality().equals(other.roles, roles)));
   }
 
   @override
@@ -2337,6 +2336,7 @@ class AuthResponseDto {
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(roles) ^
       runtimeType.hashCode;
 }
 
@@ -2350,7 +2350,8 @@ extension $AuthResponseDtoExtension on AuthResponseDto {
       String? lastName,
       String? url,
       String? phone,
-      bool? active}) {
+      bool? active,
+      List<String>? roles}) {
     return AuthResponseDto(
         userId: userId ?? this.userId,
         token: token ?? this.token,
@@ -2360,7 +2361,8 @@ extension $AuthResponseDtoExtension on AuthResponseDto {
         lastName: lastName ?? this.lastName,
         url: url ?? this.url,
         phone: phone ?? this.phone,
-        active: active ?? this.active);
+        active: active ?? this.active,
+        roles: roles ?? this.roles);
   }
 }
 
@@ -4717,7 +4719,6 @@ extension $UserPostDtoExtension on UserPostDto {
 class UserPutDto {
   UserPutDto({
     this.name,
-    this.email,
     this.firstName,
     this.lastName,
     this.url,
@@ -4728,7 +4729,6 @@ class UserPutDto {
     this.city,
     this.address,
     this.birthDate,
-    this.active,
   });
 
   factory UserPutDto.fromJson(Map<String, dynamic> json) =>
@@ -4736,8 +4736,6 @@ class UserPutDto {
 
   @JsonKey(name: 'name')
   final String? name;
-  @JsonKey(name: 'email')
-  final String? email;
   @JsonKey(name: 'firstName')
   final String? firstName;
   @JsonKey(name: 'lastName')
@@ -4759,8 +4757,6 @@ class UserPutDto {
   final String? address;
   @JsonKey(name: 'birthDate')
   final DateTime? birthDate;
-  @JsonKey(name: 'active')
-  final bool? active;
   static const fromJsonFactory = _$UserPutDtoFromJson;
   static const toJsonFactory = _$UserPutDtoToJson;
   Map<String, dynamic> toJson() => _$UserPutDtoToJson(this);
@@ -4774,8 +4770,6 @@ class UserPutDto {
         (other is UserPutDto &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.firstName, firstName) ||
                 const DeepCollectionEquality()
                     .equals(other.firstName, firstName)) &&
@@ -4801,15 +4795,12 @@ class UserPutDto {
                     .equals(other.address, address)) &&
             (identical(other.birthDate, birthDate) ||
                 const DeepCollectionEquality()
-                    .equals(other.birthDate, birthDate)) &&
-            (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)));
+                    .equals(other.birthDate, birthDate)));
   }
 
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
       const DeepCollectionEquality().hash(url) ^
@@ -4820,14 +4811,12 @@ class UserPutDto {
       const DeepCollectionEquality().hash(city) ^
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(birthDate) ^
-      const DeepCollectionEquality().hash(active) ^
       runtimeType.hashCode;
 }
 
 extension $UserPutDtoExtension on UserPutDto {
   UserPutDto copyWith(
       {String? name,
-      String? email,
       String? firstName,
       String? lastName,
       String? url,
@@ -4837,11 +4826,9 @@ extension $UserPutDtoExtension on UserPutDto {
       String? country,
       String? city,
       String? address,
-      DateTime? birthDate,
-      bool? active}) {
+      DateTime? birthDate}) {
     return UserPutDto(
         name: name ?? this.name,
-        email: email ?? this.email,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         url: url ?? this.url,
@@ -4851,8 +4838,7 @@ extension $UserPutDtoExtension on UserPutDto {
         country: country ?? this.country,
         city: city ?? this.city,
         address: address ?? this.address,
-        birthDate: birthDate ?? this.birthDate,
-        active: active ?? this.active);
+        birthDate: birthDate ?? this.birthDate);
   }
 }
 
@@ -5193,7 +5179,7 @@ extension $VisitStatusDtoPagedResultExtension on VisitStatusDtoPagedResult {
   }
 }
 
-int? genderEnumToJson(enums.GenderEnum? genderEnum) {
+String? genderEnumToJson(enums.GenderEnum? genderEnum) {
   return enums.$GenderEnumMap[genderEnum];
 }
 
@@ -5201,11 +5187,13 @@ enums.GenderEnum genderEnumFromJson(
   Object? genderEnum, [
   enums.GenderEnum? defaultValue,
 ]) {
-  if (genderEnum is int) {
+  if (genderEnum is String) {
     return enums.$GenderEnumMap.entries
-        .firstWhere((element) => element.value == genderEnum,
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == genderEnum.toLowerCase(),
             orElse: () =>
-                const MapEntry(enums.GenderEnum.swaggerGeneratedUnknown, 0))
+                const MapEntry(enums.GenderEnum.swaggerGeneratedUnknown, ''))
         .key;
   }
 
@@ -5220,7 +5208,7 @@ enums.GenderEnum genderEnumFromJson(
       enums.GenderEnum.swaggerGeneratedUnknown;
 }
 
-List<int> genderEnumListToJson(List<enums.GenderEnum>? genderEnum) {
+List<String> genderEnumListToJson(List<enums.GenderEnum>? genderEnum) {
   if (genderEnum == null) {
     return [];
   }

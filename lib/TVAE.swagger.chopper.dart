@@ -939,7 +939,7 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<AppUserDto>> _byRoleAndDepartmentGet(
+  Future<Response<AppUserDto>> _apiUserByRoleAndDepartmentGet(
       {List<String>? departments,
       String? role,
       required int? page,
@@ -947,7 +947,7 @@ class _$TVAE extends TVAE {
       String? orderBy,
       bool? descending,
       required int? pageSize}) {
-    final $url = '/byRoleAndDepartment';
+    final $url = '/api/User/byRoleAndDepartment';
     final $params = <String, dynamic>{
       'departments': departments,
       'role': role,

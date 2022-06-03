@@ -47,14 +47,14 @@ Map<String, dynamic> _$AcademicStudiesDtoPagedResultToJson(
     };
 
 AppUserDto _$AppUserDtoFromJson(Map<String, dynamic> json) => AppUserDto(
-      email: json['email'] as String,
-      password: json['password'] as String,
       id: json['id'] as String?,
+      email: json['email'] as String?,
       name: json['name'] as String?,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       url: json['url'] as String?,
       countryCode: json['countryCode'] as String?,
+      gender: genderEnumFromJson(json['gender']),
       phone: json['phone'] as String?,
       country: json['country'] as String?,
       city: json['city'] as String?,
@@ -67,14 +67,14 @@ AppUserDto _$AppUserDtoFromJson(Map<String, dynamic> json) => AppUserDto(
 
 Map<String, dynamic> _$AppUserDtoToJson(AppUserDto instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'password': instance.password,
       'id': instance.id,
+      'email': instance.email,
       'name': instance.name,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'url': instance.url,
       'countryCode': instance.countryCode,
+      'gender': genderEnumToJson(instance.gender),
       'phone': instance.phone,
       'country': instance.country,
       'city': instance.city,
@@ -117,6 +117,9 @@ AuthResponseDto _$AuthResponseDtoFromJson(Map<String, dynamic> json) =>
       url: json['url'] as String?,
       phone: json['phone'] as String?,
       active: json['active'] as bool?,
+      roles:
+          (json['roles'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              [],
     );
 
 Map<String, dynamic> _$AuthResponseDtoToJson(AuthResponseDto instance) =>
@@ -130,6 +133,7 @@ Map<String, dynamic> _$AuthResponseDtoToJson(AuthResponseDto instance) =>
       'url': instance.url,
       'phone': instance.phone,
       'active': instance.active,
+      'roles': instance.roles,
     };
 
 ColorDto _$ColorDtoFromJson(Map<String, dynamic> json) => ColorDto(
@@ -740,7 +744,6 @@ Map<String, dynamic> _$UserPostDtoToJson(UserPostDto instance) =>
 
 UserPutDto _$UserPutDtoFromJson(Map<String, dynamic> json) => UserPutDto(
       name: json['name'] as String?,
-      email: json['email'] as String?,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       url: json['url'] as String?,
@@ -753,13 +756,11 @@ UserPutDto _$UserPutDtoFromJson(Map<String, dynamic> json) => UserPutDto(
       birthDate: json['birthDate'] == null
           ? null
           : DateTime.parse(json['birthDate'] as String),
-      active: json['active'] as bool?,
     );
 
 Map<String, dynamic> _$UserPutDtoToJson(UserPutDto instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'email': instance.email,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'url': instance.url,
@@ -770,7 +771,6 @@ Map<String, dynamic> _$UserPutDtoToJson(UserPutDto instance) =>
       'city': instance.city,
       'address': instance.address,
       'birthDate': instance.birthDate?.toIso8601String(),
-      'active': instance.active,
     };
 
 VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(

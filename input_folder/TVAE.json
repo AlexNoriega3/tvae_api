@@ -13605,13 +13605,13 @@
         }
       }
     },
-    "/byRoleAndDepartment": {
+    "/api/User/byRoleAndDepartment": {
       "get": {
         "tags": [
           "User"
         ],
-        "summary": "Obtiene el listado de usuarios filtrados por\r\n[nombre] String = la busqueda sera un like\r\n[role] string = es el rol de los usuarios relacionads, sugerencia [Proveedor]\r\n[departments] Array de los identificadores (IDs) de los departamenteos",
-        "description": "Sample request:\r\n            \r\n   GET api/User/byRoleAndDepartment",
+        "summary": "Obtiene el listado de usuarios filtrados",
+        "description": "Sample request:\r\n            \r\n   GET api/User/byRoleAndDepartment\r\n[nombre] String = la busqueda sera un like\r\n[role] string = es el rol de los usuarios relacionads, sugerencia [Proveedor]\r\n[departments] Array de los identificadores (IDs) de los departamenteos",
         "parameters": [
           {
             "name": "departments",
@@ -15616,22 +15616,13 @@
         "additionalProperties": false
       },
       "AppUserDto": {
-        "required": [
-          "email",
-          "password"
-        ],
         "type": "object",
         "properties": {
-          "email": {
-            "type": "string",
-            "format": "email"
-          },
-          "password": {
-            "maxLength": 15,
-            "minLength": 6,
-            "type": "string"
-          },
           "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
             "type": "string",
             "nullable": true
           },
@@ -15654,6 +15645,9 @@
           "countryCode": {
             "type": "string",
             "nullable": true
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GenderEnum"
           },
           "phone": {
             "type": "string",
@@ -15748,6 +15742,13 @@
           },
           "active": {
             "type": "boolean"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -15961,12 +15962,11 @@
       },
       "GenderEnum": {
         "enum": [
-          1,
-          2,
-          3
+          "Hombre",
+          "Mujer",
+          "Ninguno"
         ],
-        "type": "integer",
-        "format": "int32"
+        "type": "string"
       },
       "LevelDto": {
         "required": [
@@ -16660,10 +16660,6 @@
             "type": "string",
             "nullable": true
           },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
           "firstName": {
             "type": "string",
             "nullable": true
@@ -16702,10 +16698,6 @@
           "birthDate": {
             "type": "string",
             "format": "date-time",
-            "nullable": true
-          },
-          "active": {
-            "type": "boolean",
             "nullable": true
           }
         },
