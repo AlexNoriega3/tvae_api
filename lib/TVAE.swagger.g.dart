@@ -721,27 +721,12 @@ Map<String, dynamic> _$SubdepartmentDtoPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-TimeOnly _$TimeOnlyFromJson(Map<String, dynamic> json) => TimeOnly(
-      hour: json['hour'] as int?,
-      minute: json['minute'] as int?,
-      second: json['second'] as int?,
-      millisecond: json['millisecond'] as int?,
-      ticks: json['ticks'] as num?,
-    );
-
-Map<String, dynamic> _$TimeOnlyToJson(TimeOnly instance) => <String, dynamic>{
-      'hour': instance.hour,
-      'minute': instance.minute,
-      'second': instance.second,
-      'millisecond': instance.millisecond,
-      'ticks': instance.ticks,
-    };
-
 UserPostDto _$UserPostDtoFromJson(Map<String, dynamic> json) => UserPostDto(
       email: json['email'] as String,
       password: json['password'] as String,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
+      roleName: json['roleName'] as String?,
     );
 
 Map<String, dynamic> _$UserPostDtoToJson(UserPostDto instance) =>
@@ -750,14 +735,17 @@ Map<String, dynamic> _$UserPostDtoToJson(UserPostDto instance) =>
       'password': instance.password,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
+      'roleName': instance.roleName,
     };
 
 UserPutDto _$UserPutDtoFromJson(Map<String, dynamic> json) => UserPutDto(
       name: json['name'] as String?,
+      email: json['email'] as String?,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       url: json['url'] as String?,
       countryCode: json['countryCode'] as String?,
+      gender: genderEnumFromJson(json['gender']),
       phone: json['phone'] as String?,
       country: json['country'] as String?,
       city: json['city'] as String?,
@@ -771,10 +759,12 @@ UserPutDto _$UserPutDtoFromJson(Map<String, dynamic> json) => UserPutDto(
 Map<String, dynamic> _$UserPutDtoToJson(UserPutDto instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'email': instance.email,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'url': instance.url,
       'countryCode': instance.countryCode,
+      'gender': genderEnumToJson(instance.gender),
       'phone': instance.phone,
       'country': instance.country,
       'city': instance.city,
@@ -785,25 +775,33 @@ Map<String, dynamic> _$UserPutDtoToJson(UserPutDto instance) =>
 
 VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(
       visitId: json['visitId'] as String?,
-      id: json['id'] as String,
       localId: json['localId'] as String,
+      userId: json['userId'] as String,
+      doctorId: json['doctorId'] as String,
+      reason: json['reason'] as String,
+      comments: json['comments'] as String?,
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       startHour: json['startHour'] == null
           ? null
-          : TimeOnly.fromJson(json['startHour'] as Map<String, dynamic>),
+          : DateTime.parse(json['startHour'] as String),
       endHour: json['endHour'] == null
           ? null
-          : TimeOnly.fromJson(json['endHour'] as Map<String, dynamic>),
+          : DateTime.parse(json['endHour'] as String),
+      visitStatusId: json['visitStatusId'] as String?,
     );
 
 Map<String, dynamic> _$VisitDtoToJson(VisitDto instance) => <String, dynamic>{
       'visitId': instance.visitId,
-      'id': instance.id,
       'localId': instance.localId,
+      'userId': instance.userId,
+      'doctorId': instance.doctorId,
+      'reason': instance.reason,
+      'comments': instance.comments,
       'date': instance.date?.toIso8601String(),
-      'startHour': instance.startHour?.toJson(),
-      'endHour': instance.endHour?.toJson(),
+      'startHour': instance.startHour?.toIso8601String(),
+      'endHour': instance.endHour?.toIso8601String(),
+      'visitStatusId': instance.visitStatusId,
     };
 
 VisitDtoPagedResult _$VisitDtoPagedResultFromJson(Map<String, dynamic> json) =>

@@ -8,6 +8,8 @@ import 'package:chopper/chopper.dart';
 
 import 'client_mapping.dart';
 import 'package:chopper/chopper.dart' as chopper;
+import 'TVAE.enums.swagger.dart' as enums;
+export 'TVAE.enums.swagger.dart';
 
 part 'TVAE.swagger.chopper.dart';
 part 'TVAE.swagger.g.dart';
@@ -62,26 +64,41 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<AcademicStudiesDtoPagedResult>>
-      apiAcademicStudiesSearchGet({int? page, String? search, int? pageSize}) {
+      apiAcademicStudiesSearchGet(
+          {required int? page,
+          String? search,
+          String? orderBy,
+          bool? descending,
+          required int? pageSize}) {
     generatedMapping.putIfAbsent(AcademicStudiesDtoPagedResult,
         () => AcademicStudiesDtoPagedResult.fromJsonFactory);
 
     return _apiAcademicStudiesSearchGet(
-        page: page, search: search, pageSize: pageSize);
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/AcademicStudies/Search')
   Future<chopper.Response<AcademicStudiesDtoPagedResult>>
       _apiAcademicStudiesSearchGet(
-          {@Query('Page') int? page,
+          {@Query('Page') required int? page,
           @Query('Search') String? search,
-          @Query('PageSize') int? pageSize});
+          @Query('OrderBy') String? orderBy,
+          @Query('Descending') bool? descending,
+          @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -237,24 +254,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<ColorDtoPagedResult>> apiColorSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(
         ColorDtoPagedResult, () => ColorDtoPagedResult.fromJsonFactory);
 
-    return _apiColorSearchGet(page: page, search: search, pageSize: pageSize);
+    return _apiColorSearchGet(
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/Color/Search')
   Future<chopper.Response<ColorDtoPagedResult>> _apiColorSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -319,24 +351,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<ContactDtoPagedResult>> apiContactSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(
         ContactDtoPagedResult, () => ContactDtoPagedResult.fromJsonFactory);
 
-    return _apiContactSearchGet(page: page, search: search, pageSize: pageSize);
+    return _apiContactSearchGet(
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/Contact/Search')
   Future<chopper.Response<ContactDtoPagedResult>> _apiContactSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -403,25 +450,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<DepartmentDtoPagedResult>> apiDepartmentSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(DepartmentDtoPagedResult,
         () => DepartmentDtoPagedResult.fromJsonFactory);
 
     return _apiDepartmentSearchGet(
-        page: page, search: search, pageSize: pageSize);
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/Department/Search')
   Future<chopper.Response<DepartmentDtoPagedResult>> _apiDepartmentSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -488,24 +549,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<LevelDtoPagedResult>> apiLevelSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(
         LevelDtoPagedResult, () => LevelDtoPagedResult.fromJsonFactory);
 
-    return _apiLevelSearchGet(page: page, search: search, pageSize: pageSize);
+    return _apiLevelSearchGet(
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/Level/Search')
   Future<chopper.Response<LevelDtoPagedResult>> _apiLevelSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -570,24 +646,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<LocalDtoPagedResult>> apiLocalSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(
         LocalDtoPagedResult, () => LocalDtoPagedResult.fromJsonFactory);
 
-    return _apiLocalSearchGet(page: page, search: search, pageSize: pageSize);
+    return _apiLocalSearchGet(
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/Local/Search')
   Future<chopper.Response<LocalDtoPagedResult>> _apiLocalSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -654,25 +745,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<LocalStatusDtoPagedResult>> apiLocalStatusSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(LocalStatusDtoPagedResult,
         () => LocalStatusDtoPagedResult.fromJsonFactory);
 
     return _apiLocalStatusSearchGet(
-        page: page, search: search, pageSize: pageSize);
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/LocalStatus/Search')
   Future<chopper.Response<LocalStatusDtoPagedResult>> _apiLocalStatusSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -741,25 +846,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<LocalTypeDtoPagedResult>> apiLocalTypeSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(
         LocalTypeDtoPagedResult, () => LocalTypeDtoPagedResult.fromJsonFactory);
 
     return _apiLocalTypeSearchGet(
-        page: page, search: search, pageSize: pageSize);
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/LocalType/Search')
   Future<chopper.Response<LocalTypeDtoPagedResult>> _apiLocalTypeSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -826,24 +945,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<ModuleDtoPagedResult>> apiModuleSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(
         ModuleDtoPagedResult, () => ModuleDtoPagedResult.fromJsonFactory);
 
-    return _apiModuleSearchGet(page: page, search: search, pageSize: pageSize);
+    return _apiModuleSearchGet(
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/Module/Search')
   Future<chopper.Response<ModuleDtoPagedResult>> _apiModuleSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -910,26 +1044,41 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<NotificationsDtoPagedResult>>
-      apiNotificationsSearchGet({int? page, String? search, int? pageSize}) {
+      apiNotificationsSearchGet(
+          {required int? page,
+          String? search,
+          String? orderBy,
+          bool? descending,
+          required int? pageSize}) {
     generatedMapping.putIfAbsent(NotificationsDtoPagedResult,
         () => NotificationsDtoPagedResult.fromJsonFactory);
 
     return _apiNotificationsSearchGet(
-        page: page, search: search, pageSize: pageSize);
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/Notifications/Search')
   Future<chopper.Response<NotificationsDtoPagedResult>>
       _apiNotificationsSearchGet(
-          {@Query('Page') int? page,
+          {@Query('Page') required int? page,
           @Query('Search') String? search,
-          @Query('PageSize') int? pageSize});
+          @Query('OrderBy') String? orderBy,
+          @Query('Descending') bool? descending,
+          @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -977,24 +1126,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<ProjectDtoPagedResult>> apiProjectSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(
         ProjectDtoPagedResult, () => ProjectDtoPagedResult.fromJsonFactory);
 
-    return _apiProjectSearchGet(page: page, search: search, pageSize: pageSize);
+    return _apiProjectSearchGet(
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/Project/Search')
   Future<chopper.Response<ProjectDtoPagedResult>> _apiProjectSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   Future<chopper.Response<List<ProjectDto>>> apiProjectGet() {
@@ -1080,24 +1244,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<RoleDtoPagedResult>> apiRoleSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(
         RoleDtoPagedResult, () => RoleDtoPagedResult.fromJsonFactory);
 
-    return _apiRoleSearchGet(page: page, search: search, pageSize: pageSize);
+    return _apiRoleSearchGet(
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/Role/Search')
   Future<chopper.Response<RoleDtoPagedResult>> _apiRoleSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -1162,24 +1341,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<ScreenDtoPagedResult>> apiScreenSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(
         ScreenDtoPagedResult, () => ScreenDtoPagedResult.fromJsonFactory);
 
-    return _apiScreenSearchGet(page: page, search: search, pageSize: pageSize);
+    return _apiScreenSearchGet(
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/Screen/Search')
   Future<chopper.Response<ScreenDtoPagedResult>> _apiScreenSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -1246,26 +1440,41 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<SubdepartmentDtoPagedResult>>
-      apiSubdepartmentSearchGet({int? page, String? search, int? pageSize}) {
+      apiSubdepartmentSearchGet(
+          {required int? page,
+          String? search,
+          String? orderBy,
+          bool? descending,
+          required int? pageSize}) {
     generatedMapping.putIfAbsent(SubdepartmentDtoPagedResult,
         () => SubdepartmentDtoPagedResult.fromJsonFactory);
 
     return _apiSubdepartmentSearchGet(
-        page: page, search: search, pageSize: pageSize);
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/Subdepartment/Search')
   Future<chopper.Response<SubdepartmentDtoPagedResult>>
       _apiSubdepartmentSearchGet(
-          {@Query('Page') int? page,
+          {@Query('Page') required int? page,
           @Query('Search') String? search,
-          @Query('PageSize') int? pageSize});
+          @Query('OrderBy') String? orderBy,
+          @Query('Descending') bool? descending,
+          @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -1334,24 +1543,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<AppUserDtoPagedResult>> apiUserSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(
         AppUserDtoPagedResult, () => AppUserDtoPagedResult.fromJsonFactory);
 
-    return _apiUserSearchGet(page: page, search: search, pageSize: pageSize);
+    return _apiUserSearchGet(
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/User/Search')
   Future<chopper.Response<AppUserDtoPagedResult>> _apiUserSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -1392,6 +1616,58 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response<bool>> _apiUserIdDelete(
       {@Path('id') required String? id});
 
+  ///Obtiene el listado de usuarios filtrados por
+  ///[nombre] String = la busqueda sera un like
+  ///[role] string = es el rol de los usuarios relacionads, sugerencia [Proveedor]
+  ///[departments] Array de los identificadores (IDs) de los departamenteos
+  ///@param departments
+  ///@param role
+  ///@param Page
+  ///@param Search
+  ///@param OrderBy
+  ///@param Descending
+  ///@param PageSize
+  Future<chopper.Response<AppUserDto>> byRoleAndDepartmentGet(
+      {List<String>? departments,
+      String? role,
+      required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
+    generatedMapping.putIfAbsent(AppUserDto, () => AppUserDto.fromJsonFactory);
+
+    return _byRoleAndDepartmentGet(
+        departments: departments,
+        role: role,
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
+  }
+
+  ///Obtiene el listado de usuarios filtrados por
+  ///[nombre] String = la busqueda sera un like
+  ///[role] string = es el rol de los usuarios relacionads, sugerencia [Proveedor]
+  ///[departments] Array de los identificadores (IDs) de los departamenteos
+  ///@param departments
+  ///@param role
+  ///@param Page
+  ///@param Search
+  ///@param OrderBy
+  ///@param Descending
+  ///@param PageSize
+  @Get(path: '/byRoleAndDepartment')
+  Future<chopper.Response<AppUserDto>> _byRoleAndDepartmentGet(
+      {@Query('departments') List<String>? departments,
+      @Query('role') String? role,
+      @Query('Page') required int? page,
+      @Query('Search') String? search,
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
+
   ///
   Future<chopper.Response<List<VisitDto>>> apiVisitGet() {
     generatedMapping.putIfAbsent(VisitDto, () => VisitDto.fromJsonFactory);
@@ -1414,30 +1690,62 @@ abstract class TVAE extends ChopperService {
       {@Body() required VisitDto? body});
 
   ///
+  ///@param Code
   ///@param DateVisit
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<VisitDtoPagedResult>> apiVisitSearchGet(
-      {String? dateVisit, int? page, String? search, int? pageSize}) {
+      {String? code,
+      String? dateVisit,
+      required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(
         VisitDtoPagedResult, () => VisitDtoPagedResult.fromJsonFactory);
 
     return _apiVisitSearchGet(
-        dateVisit: dateVisit, page: page, search: search, pageSize: pageSize);
+        code: code,
+        dateVisit: dateVisit,
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
+  ///@param Code
   ///@param DateVisit
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/Visit/Search')
   Future<chopper.Response<VisitDtoPagedResult>> _apiVisitSearchGet(
-      {@Query('DateVisit') String? dateVisit,
-      @Query('Page') int? page,
+      {@Query('Code') String? code,
+      @Query('DateVisit') String? dateVisit,
+      @Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
+
+  ///
+  Future<chopper.Response<VisitDto>> apiVisitNextPendingGet() {
+    generatedMapping.putIfAbsent(VisitDto, () => VisitDto.fromJsonFactory);
+
+    return _apiVisitNextPendingGet();
+  }
+
+  ///
+  @Get(path: '/api/Visit/NextPending')
+  Future<chopper.Response<VisitDto>> _apiVisitNextPendingGet();
 
   ///
   ///@param id
@@ -1504,25 +1812,39 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   Future<chopper.Response<VisitStatusDtoPagedResult>> apiVisitStatusSearchGet(
-      {int? page, String? search, int? pageSize}) {
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
     generatedMapping.putIfAbsent(VisitStatusDtoPagedResult,
         () => VisitStatusDtoPagedResult.fromJsonFactory);
 
     return _apiVisitStatusSearchGet(
-        page: page, search: search, pageSize: pageSize);
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
   }
 
   ///
   ///@param Page
   ///@param Search
+  ///@param OrderBy
+  ///@param Descending
   ///@param PageSize
   @Get(path: '/api/VisitStatus/Search')
   Future<chopper.Response<VisitStatusDtoPagedResult>> _apiVisitStatusSearchGet(
-      {@Query('Page') int? page,
+      {@Query('Page') required int? page,
       @Query('Search') String? search,
-      @Query('PageSize') int? pageSize});
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
 
   ///
   ///@param id
@@ -4316,81 +4638,13 @@ extension $SubdepartmentDtoPagedResultExtension on SubdepartmentDtoPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class TimeOnly {
-  TimeOnly({
-    this.hour,
-    this.minute,
-    this.second,
-    this.millisecond,
-    this.ticks,
-  });
-
-  factory TimeOnly.fromJson(Map<String, dynamic> json) =>
-      _$TimeOnlyFromJson(json);
-
-  @JsonKey(name: 'hour')
-  final int? hour;
-  @JsonKey(name: 'minute')
-  final int? minute;
-  @JsonKey(name: 'second')
-  final int? second;
-  @JsonKey(name: 'millisecond')
-  final int? millisecond;
-  @JsonKey(name: 'ticks')
-  final num? ticks;
-  static const fromJsonFactory = _$TimeOnlyFromJson;
-  static const toJsonFactory = _$TimeOnlyToJson;
-  Map<String, dynamic> toJson() => _$TimeOnlyToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is TimeOnly &&
-            (identical(other.hour, hour) ||
-                const DeepCollectionEquality().equals(other.hour, hour)) &&
-            (identical(other.minute, minute) ||
-                const DeepCollectionEquality().equals(other.minute, minute)) &&
-            (identical(other.second, second) ||
-                const DeepCollectionEquality().equals(other.second, second)) &&
-            (identical(other.millisecond, millisecond) ||
-                const DeepCollectionEquality()
-                    .equals(other.millisecond, millisecond)) &&
-            (identical(other.ticks, ticks) ||
-                const DeepCollectionEquality().equals(other.ticks, ticks)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(hour) ^
-      const DeepCollectionEquality().hash(minute) ^
-      const DeepCollectionEquality().hash(second) ^
-      const DeepCollectionEquality().hash(millisecond) ^
-      const DeepCollectionEquality().hash(ticks) ^
-      runtimeType.hashCode;
-}
-
-extension $TimeOnlyExtension on TimeOnly {
-  TimeOnly copyWith(
-      {int? hour, int? minute, int? second, int? millisecond, num? ticks}) {
-    return TimeOnly(
-        hour: hour ?? this.hour,
-        minute: minute ?? this.minute,
-        second: second ?? this.second,
-        millisecond: millisecond ?? this.millisecond,
-        ticks: ticks ?? this.ticks);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class UserPostDto {
   UserPostDto({
     required this.email,
     required this.password,
     this.firstName,
     this.lastName,
+    this.roleName,
   });
 
   factory UserPostDto.fromJson(Map<String, dynamic> json) =>
@@ -4404,6 +4658,8 @@ class UserPostDto {
   final String? firstName;
   @JsonKey(name: 'lastName')
   final String? lastName;
+  @JsonKey(name: 'roleName')
+  final String? roleName;
   static const fromJsonFactory = _$UserPostDtoFromJson;
   static const toJsonFactory = _$UserPostDtoToJson;
   Map<String, dynamic> toJson() => _$UserPostDtoToJson(this);
@@ -4425,7 +4681,10 @@ class UserPostDto {
                     .equals(other.firstName, firstName)) &&
             (identical(other.lastName, lastName) ||
                 const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)));
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.roleName, roleName) ||
+                const DeepCollectionEquality()
+                    .equals(other.roleName, roleName)));
   }
 
   @override
@@ -4434,17 +4693,23 @@ class UserPostDto {
       const DeepCollectionEquality().hash(password) ^
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(roleName) ^
       runtimeType.hashCode;
 }
 
 extension $UserPostDtoExtension on UserPostDto {
   UserPostDto copyWith(
-      {String? email, String? password, String? firstName, String? lastName}) {
+      {String? email,
+      String? password,
+      String? firstName,
+      String? lastName,
+      String? roleName}) {
     return UserPostDto(
         email: email ?? this.email,
         password: password ?? this.password,
         firstName: firstName ?? this.firstName,
-        lastName: lastName ?? this.lastName);
+        lastName: lastName ?? this.lastName,
+        roleName: roleName ?? this.roleName);
   }
 }
 
@@ -4452,10 +4717,12 @@ extension $UserPostDtoExtension on UserPostDto {
 class UserPutDto {
   UserPutDto({
     this.name,
+    this.email,
     this.firstName,
     this.lastName,
     this.url,
     this.countryCode,
+    this.gender,
     this.phone,
     this.country,
     this.city,
@@ -4469,6 +4736,8 @@ class UserPutDto {
 
   @JsonKey(name: 'name')
   final String? name;
+  @JsonKey(name: 'email')
+  final String? email;
   @JsonKey(name: 'firstName')
   final String? firstName;
   @JsonKey(name: 'lastName')
@@ -4477,6 +4746,9 @@ class UserPutDto {
   final String? url;
   @JsonKey(name: 'countryCode')
   final String? countryCode;
+  @JsonKey(
+      name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
+  final enums.GenderEnum? gender;
   @JsonKey(name: 'phone')
   final String? phone;
   @JsonKey(name: 'country')
@@ -4502,6 +4774,8 @@ class UserPutDto {
         (other is UserPutDto &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.firstName, firstName) ||
                 const DeepCollectionEquality()
                     .equals(other.firstName, firstName)) &&
@@ -4513,6 +4787,8 @@ class UserPutDto {
             (identical(other.countryCode, countryCode) ||
                 const DeepCollectionEquality()
                     .equals(other.countryCode, countryCode)) &&
+            (identical(other.gender, gender) ||
+                const DeepCollectionEquality().equals(other.gender, gender)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.country, country) ||
@@ -4533,10 +4809,12 @@ class UserPutDto {
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(countryCode) ^
+      const DeepCollectionEquality().hash(gender) ^
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(country) ^
       const DeepCollectionEquality().hash(city) ^
@@ -4549,10 +4827,12 @@ class UserPutDto {
 extension $UserPutDtoExtension on UserPutDto {
   UserPutDto copyWith(
       {String? name,
+      String? email,
       String? firstName,
       String? lastName,
       String? url,
       String? countryCode,
+      enums.GenderEnum? gender,
       String? phone,
       String? country,
       String? city,
@@ -4561,10 +4841,12 @@ extension $UserPutDtoExtension on UserPutDto {
       bool? active}) {
     return UserPutDto(
         name: name ?? this.name,
+        email: email ?? this.email,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         url: url ?? this.url,
         countryCode: countryCode ?? this.countryCode,
+        gender: gender ?? this.gender,
         phone: phone ?? this.phone,
         country: country ?? this.country,
         city: city ?? this.city,
@@ -4578,11 +4860,15 @@ extension $UserPutDtoExtension on UserPutDto {
 class VisitDto {
   VisitDto({
     this.visitId,
-    required this.id,
     required this.localId,
+    required this.userId,
+    required this.doctorId,
+    required this.reason,
+    this.comments,
     this.date,
     this.startHour,
     this.endHour,
+    this.visitStatusId,
   });
 
   factory VisitDto.fromJson(Map<String, dynamic> json) =>
@@ -4590,16 +4876,24 @@ class VisitDto {
 
   @JsonKey(name: 'visitId')
   final String? visitId;
-  @JsonKey(name: 'id')
-  final String id;
   @JsonKey(name: 'localId')
   final String localId;
+  @JsonKey(name: 'userId')
+  final String userId;
+  @JsonKey(name: 'doctorId')
+  final String doctorId;
+  @JsonKey(name: 'reason')
+  final String reason;
+  @JsonKey(name: 'comments')
+  final String? comments;
   @JsonKey(name: 'date')
   final DateTime? date;
   @JsonKey(name: 'startHour')
-  final TimeOnly? startHour;
+  final DateTime? startHour;
   @JsonKey(name: 'endHour')
-  final TimeOnly? endHour;
+  final DateTime? endHour;
+  @JsonKey(name: 'visitStatusId')
+  final String? visitStatusId;
   static const fromJsonFactory = _$VisitDtoFromJson;
   static const toJsonFactory = _$VisitDtoToJson;
   Map<String, dynamic> toJson() => _$VisitDtoToJson(this);
@@ -4614,46 +4908,70 @@ class VisitDto {
             (identical(other.visitId, visitId) ||
                 const DeepCollectionEquality()
                     .equals(other.visitId, visitId)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.localId, localId) ||
                 const DeepCollectionEquality()
                     .equals(other.localId, localId)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.doctorId, doctorId) ||
+                const DeepCollectionEquality()
+                    .equals(other.doctorId, doctorId)) &&
+            (identical(other.reason, reason) ||
+                const DeepCollectionEquality().equals(other.reason, reason)) &&
+            (identical(other.comments, comments) ||
+                const DeepCollectionEquality()
+                    .equals(other.comments, comments)) &&
             (identical(other.date, date) ||
                 const DeepCollectionEquality().equals(other.date, date)) &&
             (identical(other.startHour, startHour) ||
                 const DeepCollectionEquality()
                     .equals(other.startHour, startHour)) &&
             (identical(other.endHour, endHour) ||
-                const DeepCollectionEquality().equals(other.endHour, endHour)));
+                const DeepCollectionEquality()
+                    .equals(other.endHour, endHour)) &&
+            (identical(other.visitStatusId, visitStatusId) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitStatusId, visitStatusId)));
   }
 
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(visitId) ^
-      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(localId) ^
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(doctorId) ^
+      const DeepCollectionEquality().hash(reason) ^
+      const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(date) ^
       const DeepCollectionEquality().hash(startHour) ^
       const DeepCollectionEquality().hash(endHour) ^
+      const DeepCollectionEquality().hash(visitStatusId) ^
       runtimeType.hashCode;
 }
 
 extension $VisitDtoExtension on VisitDto {
   VisitDto copyWith(
       {String? visitId,
-      String? id,
       String? localId,
+      String? userId,
+      String? doctorId,
+      String? reason,
+      String? comments,
       DateTime? date,
-      TimeOnly? startHour,
-      TimeOnly? endHour}) {
+      DateTime? startHour,
+      DateTime? endHour,
+      String? visitStatusId}) {
     return VisitDto(
         visitId: visitId ?? this.visitId,
-        id: id ?? this.id,
         localId: localId ?? this.localId,
+        userId: userId ?? this.userId,
+        doctorId: doctorId ?? this.doctorId,
+        reason: reason ?? this.reason,
+        comments: comments ?? this.comments,
         date: date ?? this.date,
         startHour: startHour ?? this.startHour,
-        endHour: endHour ?? this.endHour);
+        endHour: endHour ?? this.endHour,
+        visitStatusId: visitStatusId ?? this.visitStatusId);
   }
 }
 
@@ -4873,6 +5191,52 @@ extension $VisitStatusDtoPagedResultExtension on VisitStatusDtoPagedResult {
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
   }
+}
+
+int? genderEnumToJson(enums.GenderEnum? genderEnum) {
+  return enums.$GenderEnumMap[genderEnum];
+}
+
+enums.GenderEnum genderEnumFromJson(
+  Object? genderEnum, [
+  enums.GenderEnum? defaultValue,
+]) {
+  if (genderEnum is int) {
+    return enums.$GenderEnumMap.entries
+        .firstWhere((element) => element.value == genderEnum,
+            orElse: () =>
+                const MapEntry(enums.GenderEnum.swaggerGeneratedUnknown, 0))
+        .key;
+  }
+
+  final pasredResult = defaultValue == null
+      ? null
+      : enums.$GenderEnumMap.entries
+          .firstWhereOrNull((element) => element.value == defaultValue)
+          ?.key;
+
+  return pasredResult ??
+      defaultValue ??
+      enums.GenderEnum.swaggerGeneratedUnknown;
+}
+
+List<int> genderEnumListToJson(List<enums.GenderEnum>? genderEnum) {
+  if (genderEnum == null) {
+    return [];
+  }
+
+  return genderEnum.map((e) => enums.$GenderEnumMap[e]!).toList();
+}
+
+List<enums.GenderEnum> genderEnumListFromJson(
+  List? genderEnum, [
+  List<enums.GenderEnum>? defaultValue,
+]) {
+  if (genderEnum == null) {
+    return defaultValue ?? [];
+  }
+
+  return genderEnum.map((e) => genderEnumFromJson(e.toString())).toList();
 }
 
 typedef $JsonFactory<T> = T Function(Map<String, dynamic> json);

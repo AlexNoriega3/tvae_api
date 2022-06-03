@@ -343,6 +343,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -356,8 +357,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -2063,6 +2079,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -2076,8 +2093,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -2898,6 +2930,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -2911,8 +2944,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -3728,6 +3776,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -3741,8 +3790,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -4558,6 +4622,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -4571,8 +4636,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -5388,6 +5468,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -5401,8 +5482,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -6218,6 +6314,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -6231,8 +6328,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -7048,6 +7160,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -7061,8 +7174,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -7878,6 +8006,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -7891,8 +8020,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -8708,6 +8852,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -8721,8 +8866,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -9220,6 +9380,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -9233,8 +9394,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -10368,6 +10544,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -10381,8 +10558,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -11198,6 +11390,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -11211,8 +11404,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -12028,6 +12236,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -12041,8 +12250,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -12677,7 +12901,7 @@
           "User"
         ],
         "summary": "Endpoint para el registro de los usuarios",
-        "description": "Sample request:\r\n            \r\n   GET api/Account/Registrar",
+        "description": "Sample request:\r\n            \r\n   GET api/User/Registrar \\n\r\n   [FirstName] Opcional\\n\r\n   [LastName] Opcional\\n\r\n   \\n\r\n   [RoleName] Opcional si se deja vacío sera rol tipo \"User\"\\n\r\n   Para los roles existentes consultar el recurso \"/api/Role\"\r\n            \r\nEl user",
         "requestBody": {
           "content": {
             "application/json;odata.metadata=minimal;odata.streaming=true": {
@@ -12863,6 +13087,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -12876,8 +13101,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -13365,6 +13605,160 @@
         }
       }
     },
+    "/byRoleAndDepartment": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Obtiene el listado de usuarios filtrados por\r\n[nombre] String = la busqueda sera un like\r\n[role] string = es el rol de los usuarios relacionads, sugerencia [Proveedor]\r\n[departments] Array de los identificadores (IDs) de los departamenteos",
+        "description": "Sample request:\r\n            \r\n   GET api/User/byRoleAndDepartment",
+        "parameters": [
+          {
+            "name": "departments",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppUserDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Visit": {
       "get": {
         "tags": [
@@ -13690,6 +14084,13 @@
         ],
         "parameters": [
           {
+            "name": "Code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "DateVisit",
             "in": "query",
             "schema": {
@@ -13699,6 +14100,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -13712,8 +14114,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -13802,6 +14219,100 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/VisitDtoPagedResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Visit/NextPending": {
+      "get": {
+        "tags": [
+          "Visit"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDto"
                 }
               }
             }
@@ -14529,6 +15040,7 @@
           {
             "name": "Page",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -14542,8 +15054,23 @@
             }
           },
           {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "PageSize",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -15432,6 +15959,15 @@
         },
         "additionalProperties": false
       },
+      "GenderEnum": {
+        "enum": [
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
       "LevelDto": {
         "required": [
           "projectId"
@@ -16086,35 +16622,6 @@
         },
         "additionalProperties": false
       },
-      "TimeOnly": {
-        "type": "object",
-        "properties": {
-          "hour": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "minute": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "second": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "millisecond": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "ticks": {
-            "type": "integer",
-            "format": "int64",
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
       "UserPostDto": {
         "required": [
           "email",
@@ -16138,6 +16645,10 @@
           "lastName": {
             "type": "string",
             "nullable": true
+          },
+          "roleName": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -16146,6 +16657,10 @@
         "type": "object",
         "properties": {
           "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
             "type": "string",
             "nullable": true
           },
@@ -16164,6 +16679,9 @@
           "countryCode": {
             "type": "string",
             "nullable": true
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GenderEnum"
           },
           "phone": {
             "type": "string",
@@ -16195,8 +16713,10 @@
       },
       "VisitDto": {
         "required": [
-          "id",
-          "localId"
+          "doctorId",
+          "localId",
+          "reason",
+          "userId"
         ],
         "type": "object",
         "properties": {
@@ -16204,21 +16724,37 @@
             "type": "string",
             "nullable": true
           },
-          "id": {
-            "type": "string"
-          },
           "localId": {
             "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "doctorId": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "comments": {
+            "type": "string",
+            "nullable": true
           },
           "date": {
             "type": "string",
             "format": "date-time"
           },
           "startHour": {
-            "$ref": "#/components/schemas/TimeOnly"
+            "type": "string",
+            "format": "date-time"
           },
           "endHour": {
-            "$ref": "#/components/schemas/TimeOnly"
+            "type": "string",
+            "format": "date-time"
+          },
+          "visitStatusId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
