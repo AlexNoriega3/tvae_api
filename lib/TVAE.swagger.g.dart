@@ -756,6 +756,7 @@ UserPutDto _$UserPutDtoFromJson(Map<String, dynamic> json) => UserPutDto(
       birthDate: json['birthDate'] == null
           ? null
           : DateTime.parse(json['birthDate'] as String),
+      costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$UserPutDtoToJson(UserPutDto instance) =>
@@ -771,6 +772,7 @@ Map<String, dynamic> _$UserPutDtoToJson(UserPutDto instance) =>
       'city': instance.city,
       'address': instance.address,
       'birthDate': instance.birthDate?.toIso8601String(),
+      'costPerAppointment': instance.costPerAppointment,
     };
 
 VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(

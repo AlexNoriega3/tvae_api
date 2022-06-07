@@ -1731,15 +1731,19 @@ abstract class TVAE extends ChopperService {
       @Query('PageSize') required int? pageSize});
 
   ///
-  Future<chopper.Response<VisitDto>> apiVisitNextPendingGet() {
+  ///@param userId
+  Future<chopper.Response<VisitDto>> apiVisitNextPendingUserIdGet(
+      {required String? userId}) {
     generatedMapping.putIfAbsent(VisitDto, () => VisitDto.fromJsonFactory);
 
-    return _apiVisitNextPendingGet();
+    return _apiVisitNextPendingUserIdGet(userId: userId);
   }
 
   ///
-  @Get(path: '/api/Visit/NextPending')
-  Future<chopper.Response<VisitDto>> _apiVisitNextPendingGet();
+  ///@param userId
+  @Get(path: '/api/Visit/NextPending/{userId}')
+  Future<chopper.Response<VisitDto>> _apiVisitNextPendingUserIdGet(
+      {@Path('userId') required String? userId});
 
   ///
   ///@param id
@@ -4729,6 +4733,7 @@ class UserPutDto {
     this.city,
     this.address,
     this.birthDate,
+    this.costPerAppointment,
   });
 
   factory UserPutDto.fromJson(Map<String, dynamic> json) =>
@@ -4757,6 +4762,8 @@ class UserPutDto {
   final String? address;
   @JsonKey(name: 'birthDate')
   final DateTime? birthDate;
+  @JsonKey(name: 'costPerAppointment')
+  final double? costPerAppointment;
   static const fromJsonFactory = _$UserPutDtoFromJson;
   static const toJsonFactory = _$UserPutDtoToJson;
   Map<String, dynamic> toJson() => _$UserPutDtoToJson(this);
@@ -4795,7 +4802,10 @@ class UserPutDto {
                     .equals(other.address, address)) &&
             (identical(other.birthDate, birthDate) ||
                 const DeepCollectionEquality()
-                    .equals(other.birthDate, birthDate)));
+                    .equals(other.birthDate, birthDate)) &&
+            (identical(other.costPerAppointment, costPerAppointment) ||
+                const DeepCollectionEquality()
+                    .equals(other.costPerAppointment, costPerAppointment)));
   }
 
   @override
@@ -4811,6 +4821,7 @@ class UserPutDto {
       const DeepCollectionEquality().hash(city) ^
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(birthDate) ^
+      const DeepCollectionEquality().hash(costPerAppointment) ^
       runtimeType.hashCode;
 }
 
@@ -4826,7 +4837,8 @@ extension $UserPutDtoExtension on UserPutDto {
       String? country,
       String? city,
       String? address,
-      DateTime? birthDate}) {
+      DateTime? birthDate,
+      double? costPerAppointment}) {
     return UserPutDto(
         name: name ?? this.name,
         firstName: firstName ?? this.firstName,
@@ -4838,7 +4850,8 @@ extension $UserPutDtoExtension on UserPutDto {
         country: country ?? this.country,
         city: city ?? this.city,
         address: address ?? this.address,
-        birthDate: birthDate ?? this.birthDate);
+        birthDate: birthDate ?? this.birthDate,
+        costPerAppointment: costPerAppointment ?? this.costPerAppointment);
   }
 }
 

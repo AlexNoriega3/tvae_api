@@ -14226,10 +14226,20 @@
         }
       }
     },
-    "/api/Visit/NextPending": {
+    "/api/Visit/NextPending/{userId}": {
       "get": {
         "tags": [
           "Visit"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -16698,6 +16708,11 @@
           "birthDate": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          },
+          "costPerAppointment": {
+            "type": "number",
+            "format": "double",
             "nullable": true
           }
         },

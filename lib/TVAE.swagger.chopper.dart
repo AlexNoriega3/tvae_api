@@ -1000,8 +1000,9 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<VisitDto>> _apiVisitNextPendingGet() {
-    final $url = '/api/Visit/NextPending';
+  Future<Response<VisitDto>> _apiVisitNextPendingUserIdGet(
+      {required String? userId}) {
+    final $url = '/api/Visit/NextPending/${userId}';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<VisitDto, VisitDto>($request);
   }
