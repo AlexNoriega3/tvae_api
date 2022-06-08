@@ -13606,70 +13606,96 @@
       }
     },
     "/api/User/byRoleAndDepartment": {
-      "get": {
+      "post": {
         "tags": [
           "User"
         ],
         "summary": "Obtiene el listado de usuarios filtrados",
-        "description": "Sample request:\r\n            \r\n   GET api/User/byRoleAndDepartment\r\n[nombre] String = la busqueda sera un like\r\n[role] string = es el rol de los usuarios relacionads, sugerencia [Proveedor]\r\n[departments] Array de los identificadores (IDs) de los departamenteos",
-        "parameters": [
-          {
-            "name": "departments",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
+        "description": "Sample request:\r\n            \r\n   POST api/User/byRoleAndDepartment\r\n[nombre] String = la busqueda sera un like\r\n[role] string = es el rol de los usuarios relacionads, sugerencia [Proveedor]\r\n[SubDepartments] Array de los identificadores (IDs) de los Sub departamenteos",
+        "requestBody": {
+          "content": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/userSearchDto"
               }
             }
-          },
-          {
-            "name": "role",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Page",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Search",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OrderBy",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Descending",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Success",
@@ -16841,6 +16867,43 @@
             "items": {
               "$ref": "#/components/schemas/VisitStatusDto"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "userSearchDto": {
+        "required": [
+          "page",
+          "pageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "subDepartments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
             "nullable": true
           }
         },

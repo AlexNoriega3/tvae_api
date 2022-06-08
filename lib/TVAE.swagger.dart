@@ -1617,50 +1617,17 @@ abstract class TVAE extends ChopperService {
       {@Path('id') required String? id});
 
   ///Obtiene el listado de usuarios filtrados
-  ///@param departments
-  ///@param role
-  ///@param Page
-  ///@param Search
-  ///@param OrderBy
-  ///@param Descending
-  ///@param PageSize
-  Future<chopper.Response<AppUserDto>> apiUserByRoleAndDepartmentGet(
-      {List<String>? departments,
-      String? role,
-      required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+  Future<chopper.Response<AppUserDto>> apiUserByRoleAndDepartmentPost(
+      {required UserSearchDto? body}) {
     generatedMapping.putIfAbsent(AppUserDto, () => AppUserDto.fromJsonFactory);
 
-    return _apiUserByRoleAndDepartmentGet(
-        departments: departments,
-        role: role,
-        page: page,
-        search: search,
-        orderBy: orderBy,
-        descending: descending,
-        pageSize: pageSize);
+    return _apiUserByRoleAndDepartmentPost(body: body);
   }
 
   ///Obtiene el listado de usuarios filtrados
-  ///@param departments
-  ///@param role
-  ///@param Page
-  ///@param Search
-  ///@param OrderBy
-  ///@param Descending
-  ///@param PageSize
-  @Get(path: '/api/User/byRoleAndDepartment')
-  Future<chopper.Response<AppUserDto>> _apiUserByRoleAndDepartmentGet(
-      {@Query('departments') List<String>? departments,
-      @Query('role') String? role,
-      @Query('Page') required int? page,
-      @Query('Search') String? search,
-      @Query('OrderBy') String? orderBy,
-      @Query('Descending') bool? descending,
-      @Query('PageSize') required int? pageSize});
+  @Post(path: '/api/User/byRoleAndDepartment')
+  Future<chopper.Response<AppUserDto>> _apiUserByRoleAndDepartmentPost(
+      {@Body() required UserSearchDto? body});
 
   ///
   Future<chopper.Response<List<VisitDto>>> apiVisitGet() {
@@ -5189,6 +5156,89 @@ extension $VisitStatusDtoPagedResultExtension on VisitStatusDtoPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserSearchDto {
+  UserSearchDto({
+    required this.page,
+    this.search,
+    this.orderBy,
+    required this.pageSize,
+    this.subDepartments,
+    this.role,
+  });
+
+  factory UserSearchDto.fromJson(Map<String, dynamic> json) =>
+      _$UserSearchDtoFromJson(json);
+
+  @JsonKey(name: 'page')
+  final int page;
+  @JsonKey(name: 'search')
+  final String? search;
+  @JsonKey(name: 'orderBy')
+  final String? orderBy;
+  @JsonKey(name: 'pageSize')
+  final int pageSize;
+  @JsonKey(name: 'subDepartments', defaultValue: <String>[])
+  final List<String>? subDepartments;
+  @JsonKey(name: 'role')
+  final String? role;
+  static const fromJsonFactory = _$UserSearchDtoFromJson;
+  static const toJsonFactory = _$UserSearchDtoToJson;
+  Map<String, dynamic> toJson() => _$UserSearchDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UserSearchDto &&
+            (identical(other.page, page) ||
+                const DeepCollectionEquality().equals(other.page, page)) &&
+            (identical(other.search, search) ||
+                const DeepCollectionEquality().equals(other.search, search)) &&
+            (identical(other.orderBy, orderBy) ||
+                const DeepCollectionEquality()
+                    .equals(other.orderBy, orderBy)) &&
+            (identical(other.pageSize, pageSize) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageSize, pageSize)) &&
+            (identical(other.subDepartments, subDepartments) ||
+                const DeepCollectionEquality()
+                    .equals(other.subDepartments, subDepartments)) &&
+            (identical(other.role, role) ||
+                const DeepCollectionEquality().equals(other.role, role)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(page) ^
+      const DeepCollectionEquality().hash(search) ^
+      const DeepCollectionEquality().hash(orderBy) ^
+      const DeepCollectionEquality().hash(pageSize) ^
+      const DeepCollectionEquality().hash(subDepartments) ^
+      const DeepCollectionEquality().hash(role) ^
+      runtimeType.hashCode;
+}
+
+extension $UserSearchDtoExtension on UserSearchDto {
+  UserSearchDto copyWith(
+      {int? page,
+      String? search,
+      String? orderBy,
+      int? pageSize,
+      List<String>? subDepartments,
+      String? role}) {
+    return UserSearchDto(
+        page: page ?? this.page,
+        search: search ?? this.search,
+        orderBy: orderBy ?? this.orderBy,
+        pageSize: pageSize ?? this.pageSize,
+        subDepartments: subDepartments ?? this.subDepartments,
+        role: role ?? this.role);
   }
 }
 

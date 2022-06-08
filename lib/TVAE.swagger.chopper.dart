@@ -939,25 +939,11 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<AppUserDto>> _apiUserByRoleAndDepartmentGet(
-      {List<String>? departments,
-      String? role,
-      required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+  Future<Response<AppUserDto>> _apiUserByRoleAndDepartmentPost(
+      {required UserSearchDto? body}) {
     final $url = '/api/User/byRoleAndDepartment';
-    final $params = <String, dynamic>{
-      'departments': departments,
-      'role': role,
-      'Page': page,
-      'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
-      'PageSize': pageSize
-    };
-    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<AppUserDto, AppUserDto>($request);
   }
 

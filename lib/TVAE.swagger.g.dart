@@ -866,3 +866,26 @@ Map<String, dynamic> _$VisitStatusDtoPagedResultToJson(
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
+
+UserSearchDto _$UserSearchDtoFromJson(Map<String, dynamic> json) =>
+    UserSearchDto(
+      page: json['page'] as int,
+      search: json['search'] as String?,
+      orderBy: json['orderBy'] as String?,
+      pageSize: json['pageSize'] as int,
+      subDepartments: (json['subDepartments'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      role: json['role'] as String?,
+    );
+
+Map<String, dynamic> _$UserSearchDtoToJson(UserSearchDto instance) =>
+    <String, dynamic>{
+      'page': instance.page,
+      'search': instance.search,
+      'orderBy': instance.orderBy,
+      'pageSize': instance.pageSize,
+      'subDepartments': instance.subDepartments,
+      'role': instance.role,
+    };
