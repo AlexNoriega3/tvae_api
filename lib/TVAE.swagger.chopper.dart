@@ -986,11 +986,11 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<VisitDto>> _apiVisitNextPendingUserIdGet(
+  Future<Response<VisitNextPendingDto>> _apiVisitNextPendingUserIdGet(
       {required String? userId}) {
     final $url = '/api/Visit/NextPending/${userId}';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<VisitDto, VisitDto>($request);
+    return client.send<VisitNextPendingDto, VisitNextPendingDto>($request);
   }
 
   @override
@@ -1014,6 +1014,28 @@ class _$TVAE extends TVAE {
     final $url = '/api/Visit/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<HistoricDtoPagedResult>> _apiVisitHistoricGet(
+      {required String? userId,
+      required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
+    final $url = '/api/Visit/Historic';
+    final $params = <String, dynamic>{
+      'userId': userId,
+      'Page': page,
+      'Search': search,
+      'OrderBy': orderBy,
+      'Descending': descending,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client
+        .send<HistoricDtoPagedResult, HistoricDtoPagedResult>($request);
   }
 
   @override

@@ -273,6 +273,70 @@ Map<String, dynamic> _$DepartmentDtoPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+HistoricDto _$HistoricDtoFromJson(Map<String, dynamic> json) => HistoricDto(
+      visitId: json['visitId'] as String?,
+      localId: json['localId'] as String?,
+      localName: json['localName'] as String?,
+      userId: json['userId'] as String?,
+      userName: json['userName'] as String?,
+      doctorId: json['doctorId'] as String?,
+      doctorName: json['doctorName'] as String?,
+      reason: json['reason'] as String?,
+      comments: json['comments'] as String?,
+      visitDate: json['visitDate'] == null
+          ? null
+          : DateTime.parse(json['visitDate'] as String),
+      startHour: json['startHour'] == null
+          ? null
+          : TimeSpan.fromJson(json['startHour'] as Map<String, dynamic>),
+      endHour: json['endHour'] == null
+          ? null
+          : TimeSpan.fromJson(json['endHour'] as Map<String, dynamic>),
+      visitStatusId: json['visitStatusId'] as String?,
+      visitStatus: json['visitStatus'] as String?,
+    );
+
+Map<String, dynamic> _$HistoricDtoToJson(HistoricDto instance) =>
+    <String, dynamic>{
+      'visitId': instance.visitId,
+      'localId': instance.localId,
+      'localName': instance.localName,
+      'userId': instance.userId,
+      'userName': instance.userName,
+      'doctorId': instance.doctorId,
+      'doctorName': instance.doctorName,
+      'reason': instance.reason,
+      'comments': instance.comments,
+      'visitDate': instance.visitDate?.toIso8601String(),
+      'startHour': instance.startHour?.toJson(),
+      'endHour': instance.endHour?.toJson(),
+      'visitStatusId': instance.visitStatusId,
+      'visitStatus': instance.visitStatus,
+    };
+
+HistoricDtoPagedResult _$HistoricDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    HistoricDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => HistoricDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$HistoricDtoPagedResultToJson(
+        HistoricDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 LevelDto _$LevelDtoFromJson(Map<String, dynamic> json) => LevelDto(
       levelId: json['levelId'] as String?,
       projectId: json['projectId'] as String,
@@ -725,6 +789,34 @@ Map<String, dynamic> _$SubdepartmentDtoPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+TimeSpan _$TimeSpanFromJson(Map<String, dynamic> json) => TimeSpan(
+      ticks: json['ticks'] as num?,
+      days: json['days'] as int?,
+      hours: json['hours'] as int?,
+      milliseconds: json['milliseconds'] as int?,
+      minutes: json['minutes'] as int?,
+      seconds: json['seconds'] as int?,
+      totalDays: (json['totalDays'] as num?)?.toDouble(),
+      totalHours: (json['totalHours'] as num?)?.toDouble(),
+      totalMilliseconds: (json['totalMilliseconds'] as num?)?.toDouble(),
+      totalMinutes: (json['totalMinutes'] as num?)?.toDouble(),
+      totalSeconds: (json['totalSeconds'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$TimeSpanToJson(TimeSpan instance) => <String, dynamic>{
+      'ticks': instance.ticks,
+      'days': instance.days,
+      'hours': instance.hours,
+      'milliseconds': instance.milliseconds,
+      'minutes': instance.minutes,
+      'seconds': instance.seconds,
+      'totalDays': instance.totalDays,
+      'totalHours': instance.totalHours,
+      'totalMilliseconds': instance.totalMilliseconds,
+      'totalMinutes': instance.totalMinutes,
+      'totalSeconds': instance.totalSeconds,
+    };
+
 UserPostDto _$UserPostDtoFromJson(Map<String, dynamic> json) => UserPostDto(
       email: json['email'] as String,
       password: json['password'] as String,
@@ -782,14 +874,9 @@ VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(
       doctorId: json['doctorId'] as String,
       reason: json['reason'] as String,
       comments: json['comments'] as String?,
-      date:
-          json['date'] == null ? null : DateTime.parse(json['date'] as String),
-      startHour: json['startHour'] == null
-          ? null
-          : DateTime.parse(json['startHour'] as String),
-      endHour: json['endHour'] == null
-          ? null
-          : DateTime.parse(json['endHour'] as String),
+      visitDate: DateTime.parse(json['visitDate'] as String),
+      startHour: json['startHour'] as String,
+      endHour: json['endHour'] as String,
       visitStatusId: json['visitStatusId'] as String?,
     );
 
@@ -800,9 +887,9 @@ Map<String, dynamic> _$VisitDtoToJson(VisitDto instance) => <String, dynamic>{
       'doctorId': instance.doctorId,
       'reason': instance.reason,
       'comments': instance.comments,
-      'date': instance.date?.toIso8601String(),
-      'startHour': instance.startHour?.toIso8601String(),
-      'endHour': instance.endHour?.toIso8601String(),
+      'visitDate': instance.visitDate.toIso8601String(),
+      'startHour': instance.startHour,
+      'endHour': instance.endHour,
       'visitStatusId': instance.visitStatusId,
     };
 
@@ -826,6 +913,39 @@ Map<String, dynamic> _$VisitDtoPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+VisitNextPendingDto _$VisitNextPendingDtoFromJson(Map<String, dynamic> json) =>
+    VisitNextPendingDto(
+      visitId: json['visitId'] as String?,
+      localId: json['localId'] as String?,
+      localName: json['localName'] as String?,
+      doctorId: json['doctorId'] as String?,
+      doctorName: json['doctorName'] as String?,
+      doctorImage: json['doctorImage'] as String?,
+      visitDate: json['visitDate'] == null
+          ? null
+          : DateTime.parse(json['visitDate'] as String),
+      startHour: json['startHour'] == null
+          ? null
+          : TimeSpan.fromJson(json['startHour'] as Map<String, dynamic>),
+      endHour: json['endHour'] == null
+          ? null
+          : TimeSpan.fromJson(json['endHour'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$VisitNextPendingDtoToJson(
+        VisitNextPendingDto instance) =>
+    <String, dynamic>{
+      'visitId': instance.visitId,
+      'localId': instance.localId,
+      'localName': instance.localName,
+      'doctorId': instance.doctorId,
+      'doctorName': instance.doctorName,
+      'doctorImage': instance.doctorImage,
+      'visitDate': instance.visitDate?.toIso8601String(),
+      'startHour': instance.startHour?.toJson(),
+      'endHour': instance.endHour?.toJson(),
     };
 
 VisitStatusDto _$VisitStatusDtoFromJson(Map<String, dynamic> json) =>
@@ -871,8 +991,11 @@ UserSearchDto _$UserSearchDtoFromJson(Map<String, dynamic> json) =>
     UserSearchDto(
       page: json['page'] as int,
       search: json['search'] as String?,
-      orderBy: json['orderBy'] as String?,
       pageSize: json['pageSize'] as int,
+      departments: (json['departments'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
       subDepartments: (json['subDepartments'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -884,8 +1007,8 @@ Map<String, dynamic> _$UserSearchDtoToJson(UserSearchDto instance) =>
     <String, dynamic>{
       'page': instance.page,
       'search': instance.search,
-      'orderBy': instance.orderBy,
       'pageSize': instance.pageSize,
+      'departments': instance.departments,
       'subDepartments': instance.subDepartments,
       'role': instance.role,
     };

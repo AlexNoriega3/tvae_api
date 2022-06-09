@@ -13611,7 +13611,7 @@
           "User"
         ],
         "summary": "Obtiene el listado de usuarios filtrados",
-        "description": "Sample request:\r\n            \r\n   POST api/User/byRoleAndDepartment\r\n[nombre] String = la busqueda sera un like\r\n[role] string = es el rol de los usuarios relacionads, sugerencia [Proveedor]\r\n[SubDepartments] Array de los identificadores (IDs) de los Sub departamenteos",
+        "description": "Sample request:\r\n            \r\n   POST api/User/byRoleAndDepartment\r\n[nombre] String = la busqueda sera un like\r\n[role] string = es el rol de los usuarios relacionads, sugerencia [Proveedor]\r\n[Departments] Array de los identificadores (IDs) de los  departamentos \r\n[SubDepartments] Array de los identificadores (IDs) de los Sub departamentos",
         "requestBody": {
           "content": {
             "application/json;odata.metadata=minimal;odata.streaming=true": {
@@ -14273,82 +14273,82 @@
             "content": {
               "application/json;odata.metadata=minimal;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/json;odata.metadata=minimal;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/json;odata.metadata=minimal": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/json;odata.metadata=full": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/json;odata.metadata=none": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/json;odata.streaming=true": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/json;odata.streaming=false": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VisitDto"
+                  "$ref": "#/components/schemas/VisitNextPendingDto"
                 }
               }
             }
@@ -14742,6 +14742,149 @@
               "text/json": {
                 "schema": {
                   "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Visit/Historic": {
+      "get": {
+        "tags": [
+          "Visit"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Descending",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricDtoPagedResult"
                 }
               }
             }
@@ -16004,6 +16147,95 @@
         ],
         "type": "string"
       },
+      "HistoricDto": {
+        "type": "object",
+        "properties": {
+          "visitId": {
+            "type": "string",
+            "nullable": true
+          },
+          "localId": {
+            "type": "string",
+            "nullable": true
+          },
+          "localName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "doctorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "doctorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "visitDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startHour": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "endHour": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "visitStatusId": {
+            "type": "string",
+            "nullable": true
+          },
+          "visitStatus": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HistoricDtoPagedResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recordNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoricDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LevelDto": {
         "required": [
           "projectId"
@@ -16658,6 +16890,66 @@
         },
         "additionalProperties": false
       },
+      "TimeSpan": {
+        "type": "object",
+        "properties": {
+          "ticks": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "days": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "milliseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "minutes": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "seconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "totalDays": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalHours": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMilliseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMinutes": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalSeconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UserPostDto": {
         "required": [
           "email",
@@ -16747,9 +17039,12 @@
       "VisitDto": {
         "required": [
           "doctorId",
+          "endHour",
           "localId",
           "reason",
-          "userId"
+          "startHour",
+          "userId",
+          "visitDate"
         ],
         "type": "object",
         "properties": {
@@ -16773,17 +17068,17 @@
             "type": "string",
             "nullable": true
           },
-          "date": {
+          "visitDate": {
             "type": "string",
             "format": "date-time"
           },
           "startHour": {
-            "type": "string",
-            "format": "date-time"
+            "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+            "type": "string"
           },
           "endHour": {
-            "type": "string",
-            "format": "date-time"
+            "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+            "type": "string"
           },
           "visitStatusId": {
             "type": "string",
@@ -16817,6 +17112,46 @@
               "$ref": "#/components/schemas/VisitDto"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VisitNextPendingDto": {
+        "type": "object",
+        "properties": {
+          "visitId": {
+            "type": "string",
+            "nullable": true
+          },
+          "localId": {
+            "type": "string",
+            "nullable": true
+          },
+          "localName": {
+            "type": "string",
+            "nullable": true
+          },
+          "doctorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "doctorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "doctorImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "visitDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startHour": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "endHour": {
+            "$ref": "#/components/schemas/TimeSpan"
           }
         },
         "additionalProperties": false
@@ -16887,13 +17222,16 @@
             "type": "string",
             "nullable": true
           },
-          "orderBy": {
-            "type": "string",
-            "nullable": true
-          },
           "pageSize": {
             "type": "integer",
             "format": "int32"
+          },
+          "departments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           },
           "subDepartments": {
             "type": "array",
