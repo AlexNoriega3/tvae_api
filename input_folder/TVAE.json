@@ -13785,6 +13785,158 @@
         }
       }
     },
+    "/api/User/MostVisited/{userId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MostVisitedDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Visit": {
       "get": {
         "tags": [
@@ -16191,10 +16343,12 @@
             "format": "date-time"
           },
           "startHour": {
-            "$ref": "#/components/schemas/TimeSpan"
+            "type": "string",
+            "nullable": true
           },
           "endHour": {
-            "$ref": "#/components/schemas/TimeSpan"
+            "type": "string",
+            "nullable": true
           },
           "visitStatusId": {
             "type": "string",
@@ -16542,6 +16696,38 @@
         },
         "additionalProperties": false
       },
+      "MostVisitedDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "picture": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "department": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDto"
+            },
+            "nullable": true
+          },
+          "subDepartments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "NotificationsDto": {
         "required": [
           "fromUserId",
@@ -16833,6 +17019,20 @@
         },
         "additionalProperties": false
       },
+      "SelectDto": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "SubdepartmentDto": {
         "required": [
           "departmentId"
@@ -16886,66 +17086,6 @@
               "$ref": "#/components/schemas/SubdepartmentDto"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TimeSpan": {
-        "type": "object",
-        "properties": {
-          "ticks": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "days": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "hours": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "milliseconds": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "minutes": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "seconds": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "totalDays": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
-          },
-          "totalHours": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
-          },
-          "totalMilliseconds": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
-          },
-          "totalMinutes": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
-          },
-          "totalSeconds": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -17148,10 +17288,12 @@
             "format": "date-time"
           },
           "startHour": {
-            "$ref": "#/components/schemas/TimeSpan"
+            "type": "string",
+            "nullable": true
           },
           "endHour": {
-            "$ref": "#/components/schemas/TimeSpan"
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

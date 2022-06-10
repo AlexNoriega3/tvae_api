@@ -948,6 +948,14 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<List<MostVisitedDto>>> _apiUserMostVisitedUserIdPost(
+      {required String? userId}) {
+    final $url = '/api/User/MostVisited/${userId}';
+    final $request = Request('POST', $url, client.baseUrl);
+    return client.send<List<MostVisitedDto>, MostVisitedDto>($request);
+  }
+
+  @override
   Future<Response<List<VisitDto>>> _apiVisitGet() {
     final $url = '/api/Visit';
     final $request = Request('GET', $url, client.baseUrl);

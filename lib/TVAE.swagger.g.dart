@@ -286,12 +286,8 @@ HistoricDto _$HistoricDtoFromJson(Map<String, dynamic> json) => HistoricDto(
       visitDate: json['visitDate'] == null
           ? null
           : DateTime.parse(json['visitDate'] as String),
-      startHour: json['startHour'] == null
-          ? null
-          : TimeSpan.fromJson(json['startHour'] as Map<String, dynamic>),
-      endHour: json['endHour'] == null
-          ? null
-          : TimeSpan.fromJson(json['endHour'] as Map<String, dynamic>),
+      startHour: json['startHour'] as String?,
+      endHour: json['endHour'] as String?,
       visitStatusId: json['visitStatusId'] as String?,
       visitStatus: json['visitStatus'] as String?,
     );
@@ -308,8 +304,8 @@ Map<String, dynamic> _$HistoricDtoToJson(HistoricDto instance) =>
       'reason': instance.reason,
       'comments': instance.comments,
       'visitDate': instance.visitDate?.toIso8601String(),
-      'startHour': instance.startHour?.toJson(),
-      'endHour': instance.endHour?.toJson(),
+      'startHour': instance.startHour,
+      'endHour': instance.endHour,
       'visitStatusId': instance.visitStatusId,
       'visitStatus': instance.visitStatus,
     };
@@ -547,6 +543,31 @@ Map<String, dynamic> _$ModuleDtoPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+MostVisitedDto _$MostVisitedDtoFromJson(Map<String, dynamic> json) =>
+    MostVisitedDto(
+      id: json['id'] as String?,
+      picture: json['picture'] as String?,
+      name: json['name'] as String?,
+      department: (json['department'] as List<dynamic>?)
+              ?.map((e) => SelectDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      subDepartments: (json['subDepartments'] as List<dynamic>?)
+              ?.map((e) => SelectDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$MostVisitedDtoToJson(MostVisitedDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'picture': instance.picture,
+      'name': instance.name,
+      'department': instance.department?.map((e) => e.toJson()).toList(),
+      'subDepartments':
+          instance.subDepartments?.map((e) => e.toJson()).toList(),
+    };
+
 NotificationsDto _$NotificationsDtoFromJson(Map<String, dynamic> json) =>
     NotificationsDto(
       notificationId: json['notificationId'] as String?,
@@ -748,6 +769,16 @@ Map<String, dynamic> _$ScreenDtoPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+SelectDto _$SelectDtoFromJson(Map<String, dynamic> json) => SelectDto(
+      key: json['key'] as String?,
+      value: json['value'] as String?,
+    );
+
+Map<String, dynamic> _$SelectDtoToJson(SelectDto instance) => <String, dynamic>{
+      'key': instance.key,
+      'value': instance.value,
+    };
+
 SubdepartmentDto _$SubdepartmentDtoFromJson(Map<String, dynamic> json) =>
     SubdepartmentDto(
       subdepartmentId: json['subdepartmentId'] as String?,
@@ -787,34 +818,6 @@ Map<String, dynamic> _$SubdepartmentDtoPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
-    };
-
-TimeSpan _$TimeSpanFromJson(Map<String, dynamic> json) => TimeSpan(
-      ticks: json['ticks'] as num?,
-      days: json['days'] as int?,
-      hours: json['hours'] as int?,
-      milliseconds: json['milliseconds'] as int?,
-      minutes: json['minutes'] as int?,
-      seconds: json['seconds'] as int?,
-      totalDays: (json['totalDays'] as num?)?.toDouble(),
-      totalHours: (json['totalHours'] as num?)?.toDouble(),
-      totalMilliseconds: (json['totalMilliseconds'] as num?)?.toDouble(),
-      totalMinutes: (json['totalMinutes'] as num?)?.toDouble(),
-      totalSeconds: (json['totalSeconds'] as num?)?.toDouble(),
-    );
-
-Map<String, dynamic> _$TimeSpanToJson(TimeSpan instance) => <String, dynamic>{
-      'ticks': instance.ticks,
-      'days': instance.days,
-      'hours': instance.hours,
-      'milliseconds': instance.milliseconds,
-      'minutes': instance.minutes,
-      'seconds': instance.seconds,
-      'totalDays': instance.totalDays,
-      'totalHours': instance.totalHours,
-      'totalMilliseconds': instance.totalMilliseconds,
-      'totalMinutes': instance.totalMinutes,
-      'totalSeconds': instance.totalSeconds,
     };
 
 UserPostDto _$UserPostDtoFromJson(Map<String, dynamic> json) => UserPostDto(
@@ -926,12 +929,8 @@ VisitNextPendingDto _$VisitNextPendingDtoFromJson(Map<String, dynamic> json) =>
       visitDate: json['visitDate'] == null
           ? null
           : DateTime.parse(json['visitDate'] as String),
-      startHour: json['startHour'] == null
-          ? null
-          : TimeSpan.fromJson(json['startHour'] as Map<String, dynamic>),
-      endHour: json['endHour'] == null
-          ? null
-          : TimeSpan.fromJson(json['endHour'] as Map<String, dynamic>),
+      startHour: json['startHour'] as String?,
+      endHour: json['endHour'] as String?,
     );
 
 Map<String, dynamic> _$VisitNextPendingDtoToJson(
@@ -944,8 +943,8 @@ Map<String, dynamic> _$VisitNextPendingDtoToJson(
       'doctorName': instance.doctorName,
       'doctorImage': instance.doctorImage,
       'visitDate': instance.visitDate?.toIso8601String(),
-      'startHour': instance.startHour?.toJson(),
-      'endHour': instance.endHour?.toJson(),
+      'startHour': instance.startHour,
+      'endHour': instance.endHour,
     };
 
 VisitStatusDto _$VisitStatusDtoFromJson(Map<String, dynamic> json) =>
