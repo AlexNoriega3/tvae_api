@@ -1318,6 +1318,107 @@ abstract class TVAE extends ChopperService {
       {@Path('id') required String? id});
 
   ///
+  Future<chopper.Response<List<ScheduleDto>>> apiScheduleGet() {
+    generatedMapping.putIfAbsent(
+        ScheduleDto, () => ScheduleDto.fromJsonFactory);
+
+    return _apiScheduleGet();
+  }
+
+  ///
+  @Get(path: '/api/Schedule')
+  Future<chopper.Response<List<ScheduleDto>>> _apiScheduleGet();
+
+  ///
+  Future<chopper.Response<String>> apiSchedulePost(
+      {required ScheduleDto? body}) {
+    return _apiSchedulePost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Schedule')
+  Future<chopper.Response<String>> _apiSchedulePost(
+      {@Body() required ScheduleDto? body});
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param OrderBy
+  ///@param Descending
+  ///@param PageSize
+  Future<chopper.Response<ScheduleDtoPagedResult>> apiScheduleSearchGet(
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        ScheduleDtoPagedResult, () => ScheduleDtoPagedResult.fromJsonFactory);
+
+    return _apiScheduleSearchGet(
+        page: page,
+        search: search,
+        orderBy: orderBy,
+        descending: descending,
+        pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param OrderBy
+  ///@param Descending
+  ///@param PageSize
+  @Get(path: '/api/Schedule/Search')
+  Future<chopper.Response<ScheduleDtoPagedResult>> _apiScheduleSearchGet(
+      {@Query('Page') required int? page,
+      @Query('Search') String? search,
+      @Query('OrderBy') String? orderBy,
+      @Query('Descending') bool? descending,
+      @Query('PageSize') required int? pageSize});
+
+  ///
+  ///@param id
+  Future<chopper.Response<ScheduleDto>> apiScheduleIdGet(
+      {required String? id}) {
+    generatedMapping.putIfAbsent(
+        ScheduleDto, () => ScheduleDto.fromJsonFactory);
+
+    return _apiScheduleIdGet(id: id);
+  }
+
+  ///
+  ///@param id
+  @Get(path: '/api/Schedule/{id}')
+  Future<chopper.Response<ScheduleDto>> _apiScheduleIdGet(
+      {@Path('id') required String? id});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiScheduleIdPut(
+      {required String? id, required ScheduleDto? body}) {
+    return _apiScheduleIdPut(id: id, body: body);
+  }
+
+  ///
+  ///@param id
+  @Put(path: '/api/Schedule/{id}')
+  Future<chopper.Response<bool>> _apiScheduleIdPut(
+      {@Path('id') required String? id, @Body() required ScheduleDto? body});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiScheduleIdDelete({required String? id}) {
+    return _apiScheduleIdDelete(id: id);
+  }
+
+  ///
+  ///@param id
+  @Delete(path: '/api/Schedule/{id}')
+  Future<chopper.Response<bool>> _apiScheduleIdDelete(
+      {@Path('id') required String? id});
+
+  ///
   Future<chopper.Response<List<ScreenDto>>> apiScreenGet() {
     generatedMapping.putIfAbsent(ScreenDto, () => ScreenDto.fromJsonFactory);
 
@@ -1644,6 +1745,23 @@ abstract class TVAE extends ChopperService {
   @Post(path: '/api/User/MostVisited/{userId}', optionalBody: true)
   Future<chopper.Response<List<MostVisitedDto>>> _apiUserMostVisitedUserIdPost(
       {@Path('userId') required String? userId});
+
+  ///
+  ///@param providerId
+  Future<chopper.Response<ProviderProfileDto>>
+      apiUserProviderProfileProviderIdPost({required String? providerId}) {
+    generatedMapping.putIfAbsent(
+        ProviderProfileDto, () => ProviderProfileDto.fromJsonFactory);
+
+    return _apiUserProviderProfileProviderIdPost(providerId: providerId);
+  }
+
+  ///
+  ///@param providerId
+  @Post(path: '/api/User/ProviderProfile/{providerId}', optionalBody: true)
+  Future<chopper.Response<ProviderProfileDto>>
+      _apiUserProviderProfileProviderIdPost(
+          {@Path('providerId') required String? providerId});
 
   ///
   Future<chopper.Response<List<VisitDto>>> apiVisitGet() {
@@ -4480,6 +4598,150 @@ extension $ProjectDtoPagedResultExtension on ProjectDtoPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ProviderProfileDto {
+  ProviderProfileDto({
+    this.userId,
+    this.email,
+    this.name,
+    this.url,
+    this.gender,
+    this.phone,
+    this.address,
+    this.costPerAppointment,
+    this.levelLocal,
+    this.academicStudies,
+    this.department,
+    this.subDepartments,
+    this.schedules,
+  });
+
+  factory ProviderProfileDto.fromJson(Map<String, dynamic> json) =>
+      _$ProviderProfileDtoFromJson(json);
+
+  @JsonKey(name: 'userId')
+  final String? userId;
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'url')
+  final String? url;
+  @JsonKey(
+      name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
+  final enums.GenderEnum? gender;
+  @JsonKey(name: 'phone')
+  final String? phone;
+  @JsonKey(name: 'address')
+  final String? address;
+  @JsonKey(name: 'costPerAppointment')
+  final double? costPerAppointment;
+  @JsonKey(name: 'levelLocal', defaultValue: <SelectDto>[])
+  final List<SelectDto>? levelLocal;
+  @JsonKey(name: 'academicStudies', defaultValue: <AcademicStudiesDto>[])
+  final List<AcademicStudiesDto>? academicStudies;
+  @JsonKey(name: 'department', defaultValue: <SelectDto>[])
+  final List<SelectDto>? department;
+  @JsonKey(name: 'subDepartments', defaultValue: <SelectDto>[])
+  final List<SelectDto>? subDepartments;
+  @JsonKey(name: 'schedules', defaultValue: <ScheduleDto>[])
+  final List<ScheduleDto>? schedules;
+  static const fromJsonFactory = _$ProviderProfileDtoFromJson;
+  static const toJsonFactory = _$ProviderProfileDtoToJson;
+  Map<String, dynamic> toJson() => _$ProviderProfileDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ProviderProfileDto &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.gender, gender) ||
+                const DeepCollectionEquality().equals(other.gender, gender)) &&
+            (identical(other.phone, phone) ||
+                const DeepCollectionEquality().equals(other.phone, phone)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.costPerAppointment, costPerAppointment) ||
+                const DeepCollectionEquality()
+                    .equals(other.costPerAppointment, costPerAppointment)) &&
+            (identical(other.levelLocal, levelLocal) ||
+                const DeepCollectionEquality()
+                    .equals(other.levelLocal, levelLocal)) &&
+            (identical(other.academicStudies, academicStudies) ||
+                const DeepCollectionEquality()
+                    .equals(other.academicStudies, academicStudies)) &&
+            (identical(other.department, department) ||
+                const DeepCollectionEquality()
+                    .equals(other.department, department)) &&
+            (identical(other.subDepartments, subDepartments) ||
+                const DeepCollectionEquality()
+                    .equals(other.subDepartments, subDepartments)) &&
+            (identical(other.schedules, schedules) ||
+                const DeepCollectionEquality()
+                    .equals(other.schedules, schedules)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(gender) ^
+      const DeepCollectionEquality().hash(phone) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(costPerAppointment) ^
+      const DeepCollectionEquality().hash(levelLocal) ^
+      const DeepCollectionEquality().hash(academicStudies) ^
+      const DeepCollectionEquality().hash(department) ^
+      const DeepCollectionEquality().hash(subDepartments) ^
+      const DeepCollectionEquality().hash(schedules) ^
+      runtimeType.hashCode;
+}
+
+extension $ProviderProfileDtoExtension on ProviderProfileDto {
+  ProviderProfileDto copyWith(
+      {String? userId,
+      String? email,
+      String? name,
+      String? url,
+      enums.GenderEnum? gender,
+      String? phone,
+      String? address,
+      double? costPerAppointment,
+      List<SelectDto>? levelLocal,
+      List<AcademicStudiesDto>? academicStudies,
+      List<SelectDto>? department,
+      List<SelectDto>? subDepartments,
+      List<ScheduleDto>? schedules}) {
+    return ProviderProfileDto(
+        userId: userId ?? this.userId,
+        email: email ?? this.email,
+        name: name ?? this.name,
+        url: url ?? this.url,
+        gender: gender ?? this.gender,
+        phone: phone ?? this.phone,
+        address: address ?? this.address,
+        costPerAppointment: costPerAppointment ?? this.costPerAppointment,
+        levelLocal: levelLocal ?? this.levelLocal,
+        academicStudies: academicStudies ?? this.academicStudies,
+        department: department ?? this.department,
+        subDepartments: subDepartments ?? this.subDepartments,
+        schedules: schedules ?? this.schedules);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class ResetPasswordModel {
   ResetPasswordModel({
     required this.password,
@@ -4666,6 +4928,157 @@ extension $RoleDtoPagedResultExtension on RoleDtoPagedResult {
       int? totalPages,
       List<RoleDto>? items}) {
     return RoleDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ScheduleDto {
+  ScheduleDto({
+    this.scheduleId,
+    this.day,
+    required this.hourOpen,
+    required this.hourClose,
+    this.active,
+  });
+
+  factory ScheduleDto.fromJson(Map<String, dynamic> json) =>
+      _$ScheduleDtoFromJson(json);
+
+  @JsonKey(name: 'scheduleId')
+  final String? scheduleId;
+  @JsonKey(name: 'day')
+  final String? day;
+  @JsonKey(name: 'hourOpen')
+  final String hourOpen;
+  @JsonKey(name: 'hourClose')
+  final String hourClose;
+  @JsonKey(name: 'active')
+  final bool? active;
+  static const fromJsonFactory = _$ScheduleDtoFromJson;
+  static const toJsonFactory = _$ScheduleDtoToJson;
+  Map<String, dynamic> toJson() => _$ScheduleDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ScheduleDto &&
+            (identical(other.scheduleId, scheduleId) ||
+                const DeepCollectionEquality()
+                    .equals(other.scheduleId, scheduleId)) &&
+            (identical(other.day, day) ||
+                const DeepCollectionEquality().equals(other.day, day)) &&
+            (identical(other.hourOpen, hourOpen) ||
+                const DeepCollectionEquality()
+                    .equals(other.hourOpen, hourOpen)) &&
+            (identical(other.hourClose, hourClose) ||
+                const DeepCollectionEquality()
+                    .equals(other.hourClose, hourClose)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(scheduleId) ^
+      const DeepCollectionEquality().hash(day) ^
+      const DeepCollectionEquality().hash(hourOpen) ^
+      const DeepCollectionEquality().hash(hourClose) ^
+      const DeepCollectionEquality().hash(active) ^
+      runtimeType.hashCode;
+}
+
+extension $ScheduleDtoExtension on ScheduleDto {
+  ScheduleDto copyWith(
+      {String? scheduleId,
+      String? day,
+      String? hourOpen,
+      String? hourClose,
+      bool? active}) {
+    return ScheduleDto(
+        scheduleId: scheduleId ?? this.scheduleId,
+        day: day ?? this.day,
+        hourOpen: hourOpen ?? this.hourOpen,
+        hourClose: hourClose ?? this.hourClose,
+        active: active ?? this.active);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ScheduleDtoPagedResult {
+  ScheduleDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory ScheduleDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$ScheduleDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <ScheduleDto>[])
+  final List<ScheduleDto>? items;
+  static const fromJsonFactory = _$ScheduleDtoPagedResultFromJson;
+  static const toJsonFactory = _$ScheduleDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$ScheduleDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ScheduleDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $ScheduleDtoPagedResultExtension on ScheduleDtoPagedResult {
+  ScheduleDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<ScheduleDto>? items}) {
+    return ScheduleDtoPagedResult(
         totalCount: totalCount ?? this.totalCount,
         pageNumber: pageNumber ?? this.pageNumber,
         recordNumber: recordNumber ?? this.recordNumber,

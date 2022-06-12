@@ -765,6 +765,64 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<List<ScheduleDto>>> _apiScheduleGet() {
+    final $url = '/api/Schedule';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<ScheduleDto>, ScheduleDto>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiSchedulePost({required ScheduleDto? body}) {
+    final $url = '/api/Schedule';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<ScheduleDtoPagedResult>> _apiScheduleSearchGet(
+      {required int? page,
+      String? search,
+      String? orderBy,
+      bool? descending,
+      required int? pageSize}) {
+    final $url = '/api/Schedule/Search';
+    final $params = <String, dynamic>{
+      'Page': page,
+      'Search': search,
+      'OrderBy': orderBy,
+      'Descending': descending,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client
+        .send<ScheduleDtoPagedResult, ScheduleDtoPagedResult>($request);
+  }
+
+  @override
+  Future<Response<ScheduleDto>> _apiScheduleIdGet({required String? id}) {
+    final $url = '/api/Schedule/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<ScheduleDto, ScheduleDto>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiScheduleIdPut(
+      {required String? id, required ScheduleDto? body}) {
+    final $url = '/api/Schedule/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiScheduleIdDelete({required String? id}) {
+    final $url = '/api/Schedule/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<List<ScreenDto>>> _apiScreenGet() {
     final $url = '/api/Screen';
     final $request = Request('GET', $url, client.baseUrl);
@@ -953,6 +1011,14 @@ class _$TVAE extends TVAE {
     final $url = '/api/User/MostVisited/${userId}';
     final $request = Request('POST', $url, client.baseUrl);
     return client.send<List<MostVisitedDto>, MostVisitedDto>($request);
+  }
+
+  @override
+  Future<Response<ProviderProfileDto>> _apiUserProviderProfileProviderIdPost(
+      {required String? providerId}) {
+    final $url = '/api/User/ProviderProfile/${providerId}';
+    final $request = Request('POST', $url, client.baseUrl);
+    return client.send<ProviderProfileDto, ProviderProfileDto>($request);
   }
 
   @override

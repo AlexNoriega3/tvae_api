@@ -681,6 +681,58 @@ Map<String, dynamic> _$ProjectDtoPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+ProviderProfileDto _$ProviderProfileDtoFromJson(Map<String, dynamic> json) =>
+    ProviderProfileDto(
+      userId: json['userId'] as String?,
+      email: json['email'] as String?,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
+      gender: genderEnumFromJson(json['gender']),
+      phone: json['phone'] as String?,
+      address: json['address'] as String?,
+      costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
+      levelLocal: (json['levelLocal'] as List<dynamic>?)
+              ?.map((e) => SelectDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      academicStudies: (json['academicStudies'] as List<dynamic>?)
+              ?.map(
+                  (e) => AcademicStudiesDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      department: (json['department'] as List<dynamic>?)
+              ?.map((e) => SelectDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      subDepartments: (json['subDepartments'] as List<dynamic>?)
+              ?.map((e) => SelectDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      schedules: (json['schedules'] as List<dynamic>?)
+              ?.map((e) => ScheduleDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ProviderProfileDtoToJson(ProviderProfileDto instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+      'email': instance.email,
+      'name': instance.name,
+      'url': instance.url,
+      'gender': genderEnumToJson(instance.gender),
+      'phone': instance.phone,
+      'address': instance.address,
+      'costPerAppointment': instance.costPerAppointment,
+      'levelLocal': instance.levelLocal?.map((e) => e.toJson()).toList(),
+      'academicStudies':
+          instance.academicStudies?.map((e) => e.toJson()).toList(),
+      'department': instance.department?.map((e) => e.toJson()).toList(),
+      'subDepartments':
+          instance.subDepartments?.map((e) => e.toJson()).toList(),
+      'schedules': instance.schedules?.map((e) => e.toJson()).toList(),
+    };
+
 ResetPasswordModel _$ResetPasswordModelFromJson(Map<String, dynamic> json) =>
     ResetPasswordModel(
       password: json['password'] as String,
@@ -722,6 +774,46 @@ RoleDtoPagedResult _$RoleDtoPagedResultFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$RoleDtoPagedResultToJson(RoleDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+ScheduleDto _$ScheduleDtoFromJson(Map<String, dynamic> json) => ScheduleDto(
+      scheduleId: json['scheduleId'] as String?,
+      day: json['day'] as String?,
+      hourOpen: json['hourOpen'] as String,
+      hourClose: json['hourClose'] as String,
+      active: json['active'] as bool?,
+    );
+
+Map<String, dynamic> _$ScheduleDtoToJson(ScheduleDto instance) =>
+    <String, dynamic>{
+      'scheduleId': instance.scheduleId,
+      'day': instance.day,
+      'hourOpen': instance.hourOpen,
+      'hourClose': instance.hourClose,
+      'active': instance.active,
+    };
+
+ScheduleDtoPagedResult _$ScheduleDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    ScheduleDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => ScheduleDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ScheduleDtoPagedResultToJson(
+        ScheduleDtoPagedResult instance) =>
     <String, dynamic>{
       'totalCount': instance.totalCount,
       'pageNumber': instance.pageNumber,
