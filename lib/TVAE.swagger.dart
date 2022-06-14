@@ -2967,7 +2967,7 @@ extension $ContactDtoPagedResultExtension on ContactDtoPagedResult {
 class DepartmentDto {
   DepartmentDto({
     this.departmentId,
-    required this.moduleId,
+    this.sectionId,
     this.name,
     this.code,
     this.description,
@@ -2978,8 +2978,8 @@ class DepartmentDto {
 
   @JsonKey(name: 'departmentId')
   final String? departmentId;
-  @JsonKey(name: 'moduleId')
-  final String moduleId;
+  @JsonKey(name: 'sectionId')
+  final String? sectionId;
   @JsonKey(name: 'name')
   final String? name;
   @JsonKey(name: 'code')
@@ -3000,9 +3000,9 @@ class DepartmentDto {
             (identical(other.departmentId, departmentId) ||
                 const DeepCollectionEquality()
                     .equals(other.departmentId, departmentId)) &&
-            (identical(other.moduleId, moduleId) ||
+            (identical(other.sectionId, sectionId) ||
                 const DeepCollectionEquality()
-                    .equals(other.moduleId, moduleId)) &&
+                    .equals(other.sectionId, sectionId)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.code, code) ||
@@ -3015,7 +3015,7 @@ class DepartmentDto {
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(departmentId) ^
-      const DeepCollectionEquality().hash(moduleId) ^
+      const DeepCollectionEquality().hash(sectionId) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
@@ -3025,13 +3025,13 @@ class DepartmentDto {
 extension $DepartmentDtoExtension on DepartmentDto {
   DepartmentDto copyWith(
       {String? departmentId,
-      String? moduleId,
+      String? sectionId,
       String? name,
       String? code,
       String? description}) {
     return DepartmentDto(
         departmentId: departmentId ?? this.departmentId,
-        moduleId: moduleId ?? this.moduleId,
+        sectionId: sectionId ?? this.sectionId,
         name: name ?? this.name,
         code: code ?? this.code,
         description: description ?? this.description);

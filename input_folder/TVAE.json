@@ -17307,17 +17307,15 @@
         "additionalProperties": false
       },
       "DepartmentDto": {
-        "required": [
-          "moduleId"
-        ],
         "type": "object",
         "properties": {
           "departmentId": {
             "type": "string",
             "nullable": true
           },
-          "moduleId": {
-            "type": "string"
+          "sectionId": {
+            "type": "string",
+            "nullable": true
           },
           "name": {
             "type": "string",

@@ -248,7 +248,7 @@ Map<String, dynamic> _$ContactDtoPagedResultToJson(
 DepartmentDto _$DepartmentDtoFromJson(Map<String, dynamic> json) =>
     DepartmentDto(
       departmentId: json['departmentId'] as String?,
-      moduleId: json['moduleId'] as String,
+      sectionId: json['sectionId'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
@@ -257,7 +257,7 @@ DepartmentDto _$DepartmentDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$DepartmentDtoToJson(DepartmentDto instance) =>
     <String, dynamic>{
       'departmentId': instance.departmentId,
-      'moduleId': instance.moduleId,
+      'sectionId': instance.sectionId,
       'name': instance.name,
       'code': instance.code,
       'description': instance.description,
