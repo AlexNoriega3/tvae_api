@@ -136,6 +136,19 @@ Map<String, dynamic> _$AuthResponseDtoToJson(AuthResponseDto instance) =>
       'roles': instance.roles,
     };
 
+BusyDatesDto _$BusyDatesDtoFromJson(Map<String, dynamic> json) => BusyDatesDto(
+      date: json['date'] as String?,
+      startHour: json['startHour'] as String?,
+      endHour: json['endHour'] as String?,
+    );
+
+Map<String, dynamic> _$BusyDatesDtoToJson(BusyDatesDto instance) =>
+    <String, dynamic>{
+      'date': instance.date,
+      'startHour': instance.startHour,
+      'endHour': instance.endHour,
+    };
+
 ColorDto _$ColorDtoFromJson(Map<String, dynamic> json) => ColorDto(
       colorId: json['colorId'] as String?,
       projectId: json['projectId'] as String,
@@ -380,6 +393,7 @@ LocalDto _$LocalDtoFromJson(Map<String, dynamic> json) => LocalDto(
       typeId: json['typeId'] as String?,
       name: json['name'] as String?,
       code: json['code'] as String?,
+      address: json['address'] as String?,
       description: json['description'] as String?,
       meters2: (json['meters2'] as num?)?.toDouble(),
     );
@@ -391,6 +405,7 @@ Map<String, dynamic> _$LocalDtoToJson(LocalDto instance) => <String, dynamic>{
       'typeId': instance.typeId,
       'name': instance.name,
       'code': instance.code,
+      'address': instance.address,
       'description': instance.description,
       'meters2': instance.meters2,
     };
@@ -712,6 +727,10 @@ ProviderProfileDto _$ProviderProfileDtoFromJson(Map<String, dynamic> json) =>
               ?.map((e) => ScheduleDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
+      busyDates: (json['busyDates'] as List<dynamic>?)
+              ?.map((e) => BusyDatesDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$ProviderProfileDtoToJson(ProviderProfileDto instance) =>
@@ -731,6 +750,7 @@ Map<String, dynamic> _$ProviderProfileDtoToJson(ProviderProfileDto instance) =>
       'subDepartments':
           instance.subDepartments?.map((e) => e.toJson()).toList(),
       'schedules': instance.schedules?.map((e) => e.toJson()).toList(),
+      'busyDates': instance.busyDates?.map((e) => e.toJson()).toList(),
     };
 
 ResetPasswordModel _$ResetPasswordModelFromJson(Map<String, dynamic> json) =>
@@ -962,6 +982,36 @@ Map<String, dynamic> _$UserPutDtoToJson(UserPutDto instance) =>
       'costPerAppointment': instance.costPerAppointment,
     };
 
+VisitDetailsDto _$VisitDetailsDtoFromJson(Map<String, dynamic> json) =>
+    VisitDetailsDto(
+      visitId: json['visitId'] as String?,
+      localId: json['localId'] as String?,
+      doctorId: json['doctorId'] as String?,
+      localName: json['localName'] as String?,
+      doctorName: json['doctorName'] as String?,
+      doctorImage: json['doctorImage'] as String?,
+      visitDate: json['visitDate'] == null
+          ? null
+          : DateTime.parse(json['visitDate'] as String),
+      startHour: json['startHour'] as String?,
+      endHour: json['endHour'] as String?,
+      address: json['address'] as String?,
+    );
+
+Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
+    <String, dynamic>{
+      'visitId': instance.visitId,
+      'localId': instance.localId,
+      'doctorId': instance.doctorId,
+      'localName': instance.localName,
+      'doctorName': instance.doctorName,
+      'doctorImage': instance.doctorImage,
+      'visitDate': instance.visitDate?.toIso8601String(),
+      'startHour': instance.startHour,
+      'endHour': instance.endHour,
+      'address': instance.address,
+    };
+
 VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(
       visitId: json['visitId'] as String?,
       localId: json['localId'] as String,
@@ -1014,8 +1064,8 @@ VisitNextPendingDto _$VisitNextPendingDtoFromJson(Map<String, dynamic> json) =>
     VisitNextPendingDto(
       visitId: json['visitId'] as String?,
       localId: json['localId'] as String?,
-      localName: json['localName'] as String?,
       doctorId: json['doctorId'] as String?,
+      localName: json['localName'] as String?,
       doctorName: json['doctorName'] as String?,
       doctorImage: json['doctorImage'] as String?,
       visitDate: json['visitDate'] == null
@@ -1030,8 +1080,8 @@ Map<String, dynamic> _$VisitNextPendingDtoToJson(
     <String, dynamic>{
       'visitId': instance.visitId,
       'localId': instance.localId,
-      'localName': instance.localName,
       'doctorId': instance.doctorId,
+      'localName': instance.localName,
       'doctorName': instance.doctorName,
       'doctorImage': instance.doctorImage,
       'visitDate': instance.visitDate?.toIso8601String(),

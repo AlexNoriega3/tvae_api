@@ -15994,6 +15994,110 @@
         }
       }
     },
+    "/api/Visit/Detail/{visitId}": {
+      "get": {
+        "tags": [
+          "Visit"
+        ],
+        "parameters": [
+          {
+            "name": "visitId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetailsDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/VisitStatus": {
       "get": {
         "tags": [
@@ -17034,6 +17138,24 @@
         },
         "additionalProperties": false
       },
+      "BusyDatesDto": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "nullable": true
+          },
+          "startHour": {
+            "type": "string",
+            "nullable": true
+          },
+          "endHour": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ColorDto": {
         "required": [
           "projectId"
@@ -17425,6 +17547,10 @@
             "nullable": true
           },
           "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
             "type": "string",
             "nullable": true
           },
@@ -17913,6 +18039,13 @@
               "$ref": "#/components/schemas/ScheduleDto"
             },
             "nullable": true
+          },
+          "busyDates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusyDatesDto"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -18257,6 +18390,52 @@
         },
         "additionalProperties": false
       },
+      "VisitDetailsDto": {
+        "type": "object",
+        "properties": {
+          "visitId": {
+            "type": "string",
+            "nullable": true
+          },
+          "localId": {
+            "type": "string",
+            "nullable": true
+          },
+          "doctorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "localName": {
+            "type": "string",
+            "nullable": true
+          },
+          "doctorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "doctorImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "visitDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startHour": {
+            "type": "string",
+            "nullable": true
+          },
+          "endHour": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "VisitDto": {
         "required": [
           "doctorId",
@@ -18348,11 +18527,11 @@
             "type": "string",
             "nullable": true
           },
-          "localName": {
+          "doctorId": {
             "type": "string",
             "nullable": true
           },
-          "doctorId": {
+          "localName": {
             "type": "string",
             "nullable": true
           },

@@ -1929,6 +1929,22 @@ abstract class TVAE extends ChopperService {
       @Query('PageSize') required int? pageSize});
 
   ///
+  ///@param visitId
+  Future<chopper.Response<VisitDetailsDto>> apiVisitDetailVisitIdGet(
+      {required String? visitId}) {
+    generatedMapping.putIfAbsent(
+        VisitDetailsDto, () => VisitDetailsDto.fromJsonFactory);
+
+    return _apiVisitDetailVisitIdGet(visitId: visitId);
+  }
+
+  ///
+  ///@param visitId
+  @Get(path: '/api/Visit/Detail/{visitId}')
+  Future<chopper.Response<VisitDetailsDto>> _apiVisitDetailVisitIdGet(
+      {@Path('visitId') required String? visitId});
+
+  ///
   Future<chopper.Response<List<VisitStatusDto>>> apiVisitStatusGet() {
     generatedMapping.putIfAbsent(
         VisitStatusDto, () => VisitStatusDto.fromJsonFactory);
@@ -2511,6 +2527,60 @@ extension $AuthResponseDtoExtension on AuthResponseDto {
         phone: phone ?? this.phone,
         active: active ?? this.active,
         roles: roles ?? this.roles);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BusyDatesDto {
+  BusyDatesDto({
+    this.date,
+    this.startHour,
+    this.endHour,
+  });
+
+  factory BusyDatesDto.fromJson(Map<String, dynamic> json) =>
+      _$BusyDatesDtoFromJson(json);
+
+  @JsonKey(name: 'date')
+  final String? date;
+  @JsonKey(name: 'startHour')
+  final String? startHour;
+  @JsonKey(name: 'endHour')
+  final String? endHour;
+  static const fromJsonFactory = _$BusyDatesDtoFromJson;
+  static const toJsonFactory = _$BusyDatesDtoToJson;
+  Map<String, dynamic> toJson() => _$BusyDatesDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is BusyDatesDto &&
+            (identical(other.date, date) ||
+                const DeepCollectionEquality().equals(other.date, date)) &&
+            (identical(other.startHour, startHour) ||
+                const DeepCollectionEquality()
+                    .equals(other.startHour, startHour)) &&
+            (identical(other.endHour, endHour) ||
+                const DeepCollectionEquality().equals(other.endHour, endHour)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(date) ^
+      const DeepCollectionEquality().hash(startHour) ^
+      const DeepCollectionEquality().hash(endHour) ^
+      runtimeType.hashCode;
+}
+
+extension $BusyDatesDtoExtension on BusyDatesDto {
+  BusyDatesDto copyWith({String? date, String? startHour, String? endHour}) {
+    return BusyDatesDto(
+        date: date ?? this.date,
+        startHour: startHour ?? this.startHour,
+        endHour: endHour ?? this.endHour);
   }
 }
 
@@ -3445,6 +3515,7 @@ class LocalDto {
     this.typeId,
     this.name,
     this.code,
+    this.address,
     this.description,
     this.meters2,
   });
@@ -3464,6 +3535,8 @@ class LocalDto {
   final String? name;
   @JsonKey(name: 'code')
   final String? code;
+  @JsonKey(name: 'address')
+  final String? address;
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'meters2')
@@ -3494,6 +3567,9 @@ class LocalDto {
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.code, code) ||
                 const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
@@ -3509,6 +3585,7 @@ class LocalDto {
       const DeepCollectionEquality().hash(typeId) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(code) ^
+      const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(meters2) ^
       runtimeType.hashCode;
@@ -3522,6 +3599,7 @@ extension $LocalDtoExtension on LocalDto {
       String? typeId,
       String? name,
       String? code,
+      String? address,
       String? description,
       double? meters2}) {
     return LocalDto(
@@ -3531,6 +3609,7 @@ extension $LocalDtoExtension on LocalDto {
         typeId: typeId ?? this.typeId,
         name: name ?? this.name,
         code: code ?? this.code,
+        address: address ?? this.address,
         description: description ?? this.description,
         meters2: meters2 ?? this.meters2);
   }
@@ -4613,6 +4692,7 @@ class ProviderProfileDto {
     this.department,
     this.subDepartments,
     this.schedules,
+    this.busyDates,
   });
 
   factory ProviderProfileDto.fromJson(Map<String, dynamic> json) =>
@@ -4645,6 +4725,8 @@ class ProviderProfileDto {
   final List<SelectDto>? subDepartments;
   @JsonKey(name: 'schedules', defaultValue: <ScheduleDto>[])
   final List<ScheduleDto>? schedules;
+  @JsonKey(name: 'busyDates', defaultValue: <BusyDatesDto>[])
+  final List<BusyDatesDto>? busyDates;
   static const fromJsonFactory = _$ProviderProfileDtoFromJson;
   static const toJsonFactory = _$ProviderProfileDtoToJson;
   Map<String, dynamic> toJson() => _$ProviderProfileDtoToJson(this);
@@ -4688,7 +4770,10 @@ class ProviderProfileDto {
                     .equals(other.subDepartments, subDepartments)) &&
             (identical(other.schedules, schedules) ||
                 const DeepCollectionEquality()
-                    .equals(other.schedules, schedules)));
+                    .equals(other.schedules, schedules)) &&
+            (identical(other.busyDates, busyDates) ||
+                const DeepCollectionEquality()
+                    .equals(other.busyDates, busyDates)));
   }
 
   @override
@@ -4706,6 +4791,7 @@ class ProviderProfileDto {
       const DeepCollectionEquality().hash(department) ^
       const DeepCollectionEquality().hash(subDepartments) ^
       const DeepCollectionEquality().hash(schedules) ^
+      const DeepCollectionEquality().hash(busyDates) ^
       runtimeType.hashCode;
 }
 
@@ -4723,7 +4809,8 @@ extension $ProviderProfileDtoExtension on ProviderProfileDto {
       List<AcademicStudiesDto>? academicStudies,
       List<SelectDto>? department,
       List<SelectDto>? subDepartments,
-      List<ScheduleDto>? schedules}) {
+      List<ScheduleDto>? schedules,
+      List<BusyDatesDto>? busyDates}) {
     return ProviderProfileDto(
         userId: userId ?? this.userId,
         email: email ?? this.email,
@@ -4737,7 +4824,8 @@ extension $ProviderProfileDtoExtension on ProviderProfileDto {
         academicStudies: academicStudies ?? this.academicStudies,
         department: department ?? this.department,
         subDepartments: subDepartments ?? this.subDepartments,
-        schedules: schedules ?? this.schedules);
+        schedules: schedules ?? this.schedules,
+        busyDates: busyDates ?? this.busyDates);
   }
 }
 
@@ -5646,6 +5734,127 @@ extension $UserPutDtoExtension on UserPutDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class VisitDetailsDto {
+  VisitDetailsDto({
+    this.visitId,
+    this.localId,
+    this.doctorId,
+    this.localName,
+    this.doctorName,
+    this.doctorImage,
+    this.visitDate,
+    this.startHour,
+    this.endHour,
+    this.address,
+  });
+
+  factory VisitDetailsDto.fromJson(Map<String, dynamic> json) =>
+      _$VisitDetailsDtoFromJson(json);
+
+  @JsonKey(name: 'visitId')
+  final String? visitId;
+  @JsonKey(name: 'localId')
+  final String? localId;
+  @JsonKey(name: 'doctorId')
+  final String? doctorId;
+  @JsonKey(name: 'localName')
+  final String? localName;
+  @JsonKey(name: 'doctorName')
+  final String? doctorName;
+  @JsonKey(name: 'doctorImage')
+  final String? doctorImage;
+  @JsonKey(name: 'visitDate')
+  final DateTime? visitDate;
+  @JsonKey(name: 'startHour')
+  final String? startHour;
+  @JsonKey(name: 'endHour')
+  final String? endHour;
+  @JsonKey(name: 'address')
+  final String? address;
+  static const fromJsonFactory = _$VisitDetailsDtoFromJson;
+  static const toJsonFactory = _$VisitDetailsDtoToJson;
+  Map<String, dynamic> toJson() => _$VisitDetailsDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is VisitDetailsDto &&
+            (identical(other.visitId, visitId) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitId, visitId)) &&
+            (identical(other.localId, localId) ||
+                const DeepCollectionEquality()
+                    .equals(other.localId, localId)) &&
+            (identical(other.doctorId, doctorId) ||
+                const DeepCollectionEquality()
+                    .equals(other.doctorId, doctorId)) &&
+            (identical(other.localName, localName) ||
+                const DeepCollectionEquality()
+                    .equals(other.localName, localName)) &&
+            (identical(other.doctorName, doctorName) ||
+                const DeepCollectionEquality()
+                    .equals(other.doctorName, doctorName)) &&
+            (identical(other.doctorImage, doctorImage) ||
+                const DeepCollectionEquality()
+                    .equals(other.doctorImage, doctorImage)) &&
+            (identical(other.visitDate, visitDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitDate, visitDate)) &&
+            (identical(other.startHour, startHour) ||
+                const DeepCollectionEquality()
+                    .equals(other.startHour, startHour)) &&
+            (identical(other.endHour, endHour) ||
+                const DeepCollectionEquality()
+                    .equals(other.endHour, endHour)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality().equals(other.address, address)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(visitId) ^
+      const DeepCollectionEquality().hash(localId) ^
+      const DeepCollectionEquality().hash(doctorId) ^
+      const DeepCollectionEquality().hash(localName) ^
+      const DeepCollectionEquality().hash(doctorName) ^
+      const DeepCollectionEquality().hash(doctorImage) ^
+      const DeepCollectionEquality().hash(visitDate) ^
+      const DeepCollectionEquality().hash(startHour) ^
+      const DeepCollectionEquality().hash(endHour) ^
+      const DeepCollectionEquality().hash(address) ^
+      runtimeType.hashCode;
+}
+
+extension $VisitDetailsDtoExtension on VisitDetailsDto {
+  VisitDetailsDto copyWith(
+      {String? visitId,
+      String? localId,
+      String? doctorId,
+      String? localName,
+      String? doctorName,
+      String? doctorImage,
+      DateTime? visitDate,
+      String? startHour,
+      String? endHour,
+      String? address}) {
+    return VisitDetailsDto(
+        visitId: visitId ?? this.visitId,
+        localId: localId ?? this.localId,
+        doctorId: doctorId ?? this.doctorId,
+        localName: localName ?? this.localName,
+        doctorName: doctorName ?? this.doctorName,
+        doctorImage: doctorImage ?? this.doctorImage,
+        visitDate: visitDate ?? this.visitDate,
+        startHour: startHour ?? this.startHour,
+        endHour: endHour ?? this.endHour,
+        address: address ?? this.address);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class VisitDto {
   VisitDto({
     this.visitId,
@@ -5846,8 +6055,8 @@ class VisitNextPendingDto {
   VisitNextPendingDto({
     this.visitId,
     this.localId,
-    this.localName,
     this.doctorId,
+    this.localName,
     this.doctorName,
     this.doctorImage,
     this.visitDate,
@@ -5862,10 +6071,10 @@ class VisitNextPendingDto {
   final String? visitId;
   @JsonKey(name: 'localId')
   final String? localId;
-  @JsonKey(name: 'localName')
-  final String? localName;
   @JsonKey(name: 'doctorId')
   final String? doctorId;
+  @JsonKey(name: 'localName')
+  final String? localName;
   @JsonKey(name: 'doctorName')
   final String? doctorName;
   @JsonKey(name: 'doctorImage')
@@ -5893,12 +6102,12 @@ class VisitNextPendingDto {
             (identical(other.localId, localId) ||
                 const DeepCollectionEquality()
                     .equals(other.localId, localId)) &&
-            (identical(other.localName, localName) ||
-                const DeepCollectionEquality()
-                    .equals(other.localName, localName)) &&
             (identical(other.doctorId, doctorId) ||
                 const DeepCollectionEquality()
                     .equals(other.doctorId, doctorId)) &&
+            (identical(other.localName, localName) ||
+                const DeepCollectionEquality()
+                    .equals(other.localName, localName)) &&
             (identical(other.doctorName, doctorName) ||
                 const DeepCollectionEquality()
                     .equals(other.doctorName, doctorName)) &&
@@ -5919,8 +6128,8 @@ class VisitNextPendingDto {
   int get hashCode =>
       const DeepCollectionEquality().hash(visitId) ^
       const DeepCollectionEquality().hash(localId) ^
-      const DeepCollectionEquality().hash(localName) ^
       const DeepCollectionEquality().hash(doctorId) ^
+      const DeepCollectionEquality().hash(localName) ^
       const DeepCollectionEquality().hash(doctorName) ^
       const DeepCollectionEquality().hash(doctorImage) ^
       const DeepCollectionEquality().hash(visitDate) ^
@@ -5933,8 +6142,8 @@ extension $VisitNextPendingDtoExtension on VisitNextPendingDto {
   VisitNextPendingDto copyWith(
       {String? visitId,
       String? localId,
-      String? localName,
       String? doctorId,
+      String? localName,
       String? doctorName,
       String? doctorImage,
       DateTime? visitDate,
@@ -5943,8 +6152,8 @@ extension $VisitNextPendingDtoExtension on VisitNextPendingDto {
     return VisitNextPendingDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
-        localName: localName ?? this.localName,
         doctorId: doctorId ?? this.doctorId,
+        localName: localName ?? this.localName,
         doctorName: doctorName ?? this.doctorName,
         doctorImage: doctorImage ?? this.doctorImage,
         visitDate: visitDate ?? this.visitDate,
