@@ -34,17 +34,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<AcademicStudiesDtoPagedResult>> _apiAcademicStudiesSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/AcademicStudies/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -147,17 +141,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<ColorDtoPagedResult>> _apiColorSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Color/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -204,17 +192,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<ContactDtoPagedResult>> _apiContactSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Contact/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -261,17 +243,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<DepartmentDtoPagedResult>> _apiDepartmentSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Department/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -319,17 +295,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<LevelDtoPagedResult>> _apiLevelSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Level/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -376,17 +346,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<LocalDtoPagedResult>> _apiLocalSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Local/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -434,17 +398,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<LocalStatusDtoPagedResult>> _apiLocalStatusSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/LocalStatus/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -492,17 +450,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<LocalTypeDtoPagedResult>> _apiLocalTypeSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/LocalType/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -534,63 +486,6 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<List<ModuleDto>>> _apiModuleGet() {
-    final $url = '/api/Module';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<List<ModuleDto>, ModuleDto>($request);
-  }
-
-  @override
-  Future<Response<String>> _apiModulePost({required ModuleDto? body}) {
-    final $url = '/api/Module';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<String, String>($request);
-  }
-
-  @override
-  Future<Response<ModuleDtoPagedResult>> _apiModuleSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
-    final $url = '/api/Module/Search';
-    final $params = <String, dynamic>{
-      'Page': page,
-      'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
-      'PageSize': pageSize
-    };
-    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client.send<ModuleDtoPagedResult, ModuleDtoPagedResult>($request);
-  }
-
-  @override
-  Future<Response<ModuleDto>> _apiModuleIdGet({required String? id}) {
-    final $url = '/api/Module/${id}';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<ModuleDto, ModuleDto>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiModuleIdPut(
-      {required String? id, required ModuleDto? body}) {
-    final $url = '/api/Module/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiModuleIdDelete({required String? id}) {
-    final $url = '/api/Module/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
   Future<Response<List<NotificationsDto>>> _apiNotificationsGet() {
     final $url = '/api/Notifications';
     final $request = Request('GET', $url, client.baseUrl);
@@ -608,17 +503,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<NotificationsDtoPagedResult>> _apiNotificationsSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Notifications/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -652,17 +541,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<ProjectDtoPagedResult>> _apiProjectSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Project/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -708,6 +591,65 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<List<RatingDto>>> _apiRatingGet() {
+    final $url = '/api/Rating';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<RatingDto>, RatingDto>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiRatingPost({required RatingDto? body}) {
+    final $url = '/api/Rating';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<RatingDtoPagedResult>> _apiRatingSearchGet(
+      {required int? page, String? search, required int? pageSize}) {
+    final $url = '/api/Rating/Search';
+    final $params = <String, dynamic>{
+      'Page': page,
+      'Search': search,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<RatingDtoPagedResult, RatingDtoPagedResult>($request);
+  }
+
+  @override
+  Future<Response<RatingDto>> _apiRatingIdGet({required String? id}) {
+    final $url = '/api/Rating/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<RatingDto, RatingDto>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiRatingIdPut(
+      {required String? id, required RatingDto? body}) {
+    final $url = '/api/Rating/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiRatingIdDelete({required String? id}) {
+    final $url = '/api/Rating/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<RatingDto>> _apiRatingByUserUserIdGet(
+      {required String? userId}) {
+    final $url = '/api/Rating/byUser/${userId}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<RatingDto, RatingDto>($request);
+  }
+
+  @override
   Future<Response<List<RoleDto>>> _apiRoleGet() {
     final $url = '/api/Role';
     final $request = Request('GET', $url, client.baseUrl);
@@ -724,17 +666,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<RoleDtoPagedResult>> _apiRoleSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Role/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -781,17 +717,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<ScheduleDtoPagedResult>> _apiScheduleSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Schedule/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -839,17 +769,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<ScreenDtoPagedResult>> _apiScreenSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Screen/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -880,6 +804,57 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<List<SectionDto>>> _apiSectionGet() {
+    final $url = '/api/Section';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<SectionDto>, SectionDto>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiSectionPost({required SectionDto? body}) {
+    final $url = '/api/Section';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<SectionDtoPagedResult>> _apiSectionSearchGet(
+      {required int? page, String? search, required int? pageSize}) {
+    final $url = '/api/Section/Search';
+    final $params = <String, dynamic>{
+      'Page': page,
+      'Search': search,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<SectionDtoPagedResult, SectionDtoPagedResult>($request);
+  }
+
+  @override
+  Future<Response<SectionDto>> _apiSectionIdGet({required String? id}) {
+    final $url = '/api/Section/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<SectionDto, SectionDto>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiSectionIdPut(
+      {required String? id, required SectionDto? body}) {
+    final $url = '/api/Section/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiSectionIdDelete({required String? id}) {
+    final $url = '/api/Section/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<List<SubdepartmentDto>>> _apiSubdepartmentGet() {
     final $url = '/api/Subdepartment';
     final $request = Request('GET', $url, client.baseUrl);
@@ -897,17 +872,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<SubdepartmentDtoPagedResult>> _apiSubdepartmentSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Subdepartment/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -956,17 +925,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<AppUserDtoPagedResult>> _apiUserSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/User/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -1042,8 +1005,6 @@ class _$TVAE extends TVAE {
       String? dateVisit,
       required int? page,
       String? search,
-      String? orderBy,
-      bool? descending,
       required int? pageSize}) {
     final $url = '/api/Visit/Search';
     final $params = <String, dynamic>{
@@ -1051,8 +1012,6 @@ class _$TVAE extends TVAE {
       'DateVisit': dateVisit,
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -1095,16 +1054,12 @@ class _$TVAE extends TVAE {
       {required String? userId,
       required int? page,
       String? search,
-      String? orderBy,
-      bool? descending,
       required int? pageSize}) {
     final $url = '/api/Visit/Historic';
     final $params = <String, dynamic>{
       'userId': userId,
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -1138,17 +1093,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<VisitStatusDtoPagedResult>> _apiVisitStatusSearchGet(
-      {required int? page,
-      String? search,
-      String? orderBy,
-      bool? descending,
-      required int? pageSize}) {
+      {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/VisitStatus/Search';
     final $params = <String, dynamic>{
       'Page': page,
       'Search': search,
-      'OrderBy': orderBy,
-      'Descending': descending,
       'PageSize': pageSize
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
