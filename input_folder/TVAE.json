@@ -17732,6 +17732,18 @@
           },
           "active": {
             "type": "boolean"
+          },
+          "costPerAppointment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "department": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDto"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

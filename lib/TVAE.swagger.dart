@@ -2033,6 +2033,8 @@ class AppUserDto {
     this.rating,
     this.birthDate,
     this.active,
+    this.costPerAppointment,
+    this.department,
   });
 
   factory AppUserDto.fromJson(Map<String, dynamic> json) =>
@@ -2069,6 +2071,10 @@ class AppUserDto {
   final DateTime? birthDate;
   @JsonKey(name: 'active')
   final bool? active;
+  @JsonKey(name: 'costPerAppointment')
+  final double? costPerAppointment;
+  @JsonKey(name: 'department', defaultValue: <SelectDto>[])
+  final List<SelectDto>? department;
   static const fromJsonFactory = _$AppUserDtoFromJson;
   static const toJsonFactory = _$AppUserDtoToJson;
   Map<String, dynamic> toJson() => _$AppUserDtoToJson(this);
@@ -2115,7 +2121,13 @@ class AppUserDto {
                 const DeepCollectionEquality()
                     .equals(other.birthDate, birthDate)) &&
             (identical(other.active, active) ||
-                const DeepCollectionEquality().equals(other.active, active)));
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.costPerAppointment, costPerAppointment) ||
+                const DeepCollectionEquality()
+                    .equals(other.costPerAppointment, costPerAppointment)) &&
+            (identical(other.department, department) ||
+                const DeepCollectionEquality()
+                    .equals(other.department, department)));
   }
 
   @override
@@ -2135,6 +2147,8 @@ class AppUserDto {
       const DeepCollectionEquality().hash(rating) ^
       const DeepCollectionEquality().hash(birthDate) ^
       const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(costPerAppointment) ^
+      const DeepCollectionEquality().hash(department) ^
       runtimeType.hashCode;
 }
 
@@ -2154,7 +2168,9 @@ extension $AppUserDtoExtension on AppUserDto {
       String? address,
       double? rating,
       DateTime? birthDate,
-      bool? active}) {
+      bool? active,
+      double? costPerAppointment,
+      List<SelectDto>? department}) {
     return AppUserDto(
         id: id ?? this.id,
         email: email ?? this.email,
@@ -2170,7 +2186,9 @@ extension $AppUserDtoExtension on AppUserDto {
         address: address ?? this.address,
         rating: rating ?? this.rating,
         birthDate: birthDate ?? this.birthDate,
-        active: active ?? this.active);
+        active: active ?? this.active,
+        costPerAppointment: costPerAppointment ?? this.costPerAppointment,
+        department: department ?? this.department);
   }
 }
 

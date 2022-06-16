@@ -64,6 +64,11 @@ AppUserDto _$AppUserDtoFromJson(Map<String, dynamic> json) => AppUserDto(
           ? null
           : DateTime.parse(json['birthDate'] as String),
       active: json['active'] as bool?,
+      costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
+      department: (json['department'] as List<dynamic>?)
+              ?.map((e) => SelectDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$AppUserDtoToJson(AppUserDto instance) =>
@@ -83,6 +88,8 @@ Map<String, dynamic> _$AppUserDtoToJson(AppUserDto instance) =>
       'rating': instance.rating,
       'birthDate': instance.birthDate?.toIso8601String(),
       'active': instance.active,
+      'costPerAppointment': instance.costPerAppointment,
+      'department': instance.department?.map((e) => e.toJson()).toList(),
     };
 
 AppUserDtoPagedResult _$AppUserDtoPagedResultFromJson(
