@@ -3554,84 +3554,56 @@
         ],
         "requestBody": {
           "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
+                "type": "object",
+                "properties": {
+                  "DepartmentId": {
+                    "type": "string"
+                  },
+                  "SectionId": {
+                    "type": "string"
+                  },
+                  "ImageFile": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Image": {
+                    "type": "string"
+                  },
+                  "Code": {
+                    "type": "string"
+                  },
+                  "Description": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "DepartmentId": {
+                  "style": "form"
+                },
+                "SectionId": {
+                  "style": "form"
+                },
+                "ImageFile": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "Image": {
+                  "style": "form"
+                },
+                "Code": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -3965,88 +3937,59 @@
         ],
         "requestBody": {
           "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/DepartmentDto"
+                "type": "object",
+                "properties": {
+                  "DepartmentId": {
+                    "type": "string"
+                  },
+                  "SectionId": {
+                    "type": "string"
+                  },
+                  "ImageFile": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Image": {
+                    "type": "string"
+                  },
+                  "Code": {
+                    "type": "string"
+                  },
+                  "Description": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "DepartmentId": {
+                  "style": "form"
+                },
+                "SectionId": {
+                  "style": "form"
+                },
+                "ImageFile": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "Image": {
+                  "style": "form"
+                },
+                "Code": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                }
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -14890,84 +14833,100 @@
         ],
         "requestBody": {
           "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserPutDto"
+                "type": "object",
+                "properties": {
+                  "ImageFile": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "Url": {
+                    "type": "string"
+                  },
+                  "CountryCode": {
+                    "type": "string"
+                  },
+                  "TitleAbbreviation": {
+                    "type": "string"
+                  },
+                  "Gender": {
+                    "$ref": "#/components/schemas/GenderEnum"
+                  },
+                  "Phone": {
+                    "type": "string"
+                  },
+                  "Country": {
+                    "type": "string"
+                  },
+                  "City": {
+                    "type": "string"
+                  },
+                  "Address": {
+                    "type": "string"
+                  },
+                  "BirthDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "CostPerAppointment": {
+                    "type": "number",
+                    "format": "double"
+                  }
+                }
+              },
+              "encoding": {
+                "ImageFile": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "FirstName": {
+                  "style": "form"
+                },
+                "LastName": {
+                  "style": "form"
+                },
+                "Url": {
+                  "style": "form"
+                },
+                "CountryCode": {
+                  "style": "form"
+                },
+                "TitleAbbreviation": {
+                  "style": "form"
+                },
+                "Gender": {
+                  "style": "form"
+                },
+                "Phone": {
+                  "style": "form"
+                },
+                "Country": {
+                  "style": "form"
+                },
+                "City": {
+                  "style": "form"
+                },
+                "Address": {
+                  "style": "form"
+                },
+                "BirthDate": {
+                  "style": "form"
+                },
+                "CostPerAppointment": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -14978,82 +14937,82 @@
             "content": {
               "application/json;odata.metadata=minimal;odata.streaming=true": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/json;odata.metadata=minimal;odata.streaming=false": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/json;odata.metadata=minimal": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=true": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=false": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/json;odata.metadata=full": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=true": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=false": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/json;odata.metadata=none": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/json;odata.streaming=true": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/json;odata.streaming=false": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "application/octet-stream": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               }
             }
@@ -17685,6 +17644,10 @@
             "type": "string",
             "nullable": true
           },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
           "firstName": {
             "type": "string",
             "nullable": true
@@ -17698,6 +17661,10 @@
             "nullable": true
           },
           "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleAbbreviation": {
             "type": "string",
             "nullable": true
           },
@@ -17793,6 +17760,10 @@
             "nullable": true
           },
           "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
             "type": "string",
             "nullable": true
           },
@@ -18004,7 +17975,16 @@
             "type": "string",
             "nullable": true
           },
+          "imageFile": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          },
           "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
             "type": "string",
             "nullable": true
           },
@@ -18043,6 +18023,19 @@
             "items": {
               "$ref": "#/components/schemas/DepartmentDto"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EditUserResponse": {
+        "type": "object",
+        "properties": {
+          "saved": {
+            "type": "boolean"
+          },
+          "image": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -19087,61 +19080,6 @@
           },
           "roleName": {
             "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserPutDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "firstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "url": {
-            "type": "string",
-            "nullable": true
-          },
-          "countryCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "gender": {
-            "$ref": "#/components/schemas/GenderEnum"
-          },
-          "phone": {
-            "type": "string",
-            "nullable": true
-          },
-          "country": {
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "costPerAppointment": {
-            "type": "number",
-            "format": "double",
             "nullable": true
           }
         },

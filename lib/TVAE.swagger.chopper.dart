@@ -234,7 +234,8 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<String>> _apiDepartmentPost({required DepartmentDto? body}) {
+  Future<Response<String>> _apiDepartmentPost(
+      {required ApiDepartmentPost$RequestBody? body}) {
     final $url = '/api/Department';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -264,7 +265,7 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<bool>> _apiDepartmentIdPut(
-      {required String? id, required DepartmentDto? body}) {
+      {required String? id, required ApiDepartmentIdPut$RequestBody? body}) {
     final $url = '/api/Department/${id}';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);
@@ -944,12 +945,12 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<bool>> _apiUserIdPut(
-      {required String? id, required UserPutDto? body}) {
+  Future<Response<EditUserResponse>> _apiUserIdPut(
+      {required String? id, required ApiUserIdPut$RequestBody? body}) {
     final $url = '/api/User/${id}';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);
-    return client.send<bool, bool>($request);
+    return client.send<EditUserResponse, EditUserResponse>($request);
   }
 
   @override
