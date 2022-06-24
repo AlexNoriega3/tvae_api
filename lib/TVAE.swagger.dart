@@ -872,20 +872,6 @@ abstract class TVAE extends ChopperService {
 
   ///
   ///@param id
-  Future<chopper.Response<bool>> apiNotificationsIdPut(
-      {required String? id, required NotificationsDto? body}) {
-    return _apiNotificationsIdPut(id: id, body: body);
-  }
-
-  ///
-  ///@param id
-  @Put(path: '/api/Notifications/{id}')
-  Future<chopper.Response<bool>> _apiNotificationsIdPut(
-      {@Path('id') required String? id,
-      @Body() required NotificationsDto? body});
-
-  ///
-  ///@param id
   Future<chopper.Response<bool>> apiNotificationsIdDelete(
       {required String? id}) {
     return _apiNotificationsIdDelete(id: id);
@@ -896,6 +882,28 @@ abstract class TVAE extends ChopperService {
   @Delete(path: '/api/Notifications/{id}')
   Future<chopper.Response<bool>> _apiNotificationsIdDelete(
       {@Path('id') required String? id});
+
+  ///
+  Future<chopper.Response<bool>> apiNotificationsViewedPost(
+      {required String? body}) {
+    return _apiNotificationsViewedPost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Notifications/Viewed')
+  Future<chopper.Response<bool>> _apiNotificationsViewedPost(
+      {@Body() required String? body});
+
+  ///
+  Future<chopper.Response<bool>> apiNotificationsIgnorePost(
+      {required String? body}) {
+    return _apiNotificationsIgnorePost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Notifications/Ignore')
+  Future<chopper.Response<bool>> _apiNotificationsIgnorePost(
+      {@Body() required String? body});
 
   ///
   ///@param Page
@@ -3067,6 +3075,7 @@ class HistoricDto {
     this.localName,
     this.userId,
     this.userName,
+    this.doctorImage,
     this.doctorId,
     this.doctorName,
     this.rating,
@@ -3092,6 +3101,8 @@ class HistoricDto {
   final String? userId;
   @JsonKey(name: 'userName')
   final String? userName;
+  @JsonKey(name: 'doctorImage')
+  final String? doctorImage;
   @JsonKey(name: 'doctorId')
   final String? doctorId;
   @JsonKey(name: 'doctorName')
@@ -3137,6 +3148,9 @@ class HistoricDto {
             (identical(other.userName, userName) ||
                 const DeepCollectionEquality()
                     .equals(other.userName, userName)) &&
+            (identical(other.doctorImage, doctorImage) ||
+                const DeepCollectionEquality()
+                    .equals(other.doctorImage, doctorImage)) &&
             (identical(other.doctorId, doctorId) ||
                 const DeepCollectionEquality()
                     .equals(other.doctorId, doctorId)) &&
@@ -3174,6 +3188,7 @@ class HistoricDto {
       const DeepCollectionEquality().hash(localName) ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(userName) ^
+      const DeepCollectionEquality().hash(doctorImage) ^
       const DeepCollectionEquality().hash(doctorId) ^
       const DeepCollectionEquality().hash(doctorName) ^
       const DeepCollectionEquality().hash(rating) ^
@@ -3194,6 +3209,7 @@ extension $HistoricDtoExtension on HistoricDto {
       String? localName,
       String? userId,
       String? userName,
+      String? doctorImage,
       String? doctorId,
       String? doctorName,
       double? rating,
@@ -3210,6 +3226,7 @@ extension $HistoricDtoExtension on HistoricDto {
         localName: localName ?? this.localName,
         userId: userId ?? this.userId,
         userName: userName ?? this.userName,
+        doctorImage: doctorImage ?? this.doctorImage,
         doctorId: doctorId ?? this.doctorId,
         doctorName: doctorName ?? this.doctorName,
         rating: rating ?? this.rating,
@@ -4063,6 +4080,7 @@ class NotificationsDto {
     required this.title,
     required this.message,
     this.isRead,
+    this.ignore,
   });
 
   factory NotificationsDto.fromJson(Map<String, dynamic> json) =>
@@ -4080,6 +4098,8 @@ class NotificationsDto {
   final String message;
   @JsonKey(name: 'isRead')
   final bool? isRead;
+  @JsonKey(name: 'ignore')
+  final bool? ignore;
   static const fromJsonFactory = _$NotificationsDtoFromJson;
   static const toJsonFactory = _$NotificationsDtoToJson;
   Map<String, dynamic> toJson() => _$NotificationsDtoToJson(this);
@@ -4106,7 +4126,9 @@ class NotificationsDto {
                 const DeepCollectionEquality()
                     .equals(other.message, message)) &&
             (identical(other.isRead, isRead) ||
-                const DeepCollectionEquality().equals(other.isRead, isRead)));
+                const DeepCollectionEquality().equals(other.isRead, isRead)) &&
+            (identical(other.ignore, ignore) ||
+                const DeepCollectionEquality().equals(other.ignore, ignore)));
   }
 
   @override
@@ -4117,6 +4139,7 @@ class NotificationsDto {
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(message) ^
       const DeepCollectionEquality().hash(isRead) ^
+      const DeepCollectionEquality().hash(ignore) ^
       runtimeType.hashCode;
 }
 
@@ -4127,14 +4150,16 @@ extension $NotificationsDtoExtension on NotificationsDto {
       String? fromUserId,
       String? title,
       String? message,
-      bool? isRead}) {
+      bool? isRead,
+      bool? ignore}) {
     return NotificationsDto(
         notificationId: notificationId ?? this.notificationId,
         toUserId: toUserId ?? this.toUserId,
         fromUserId: fromUserId ?? this.fromUserId,
         title: title ?? this.title,
         message: message ?? this.message,
-        isRead: isRead ?? this.isRead);
+        isRead: isRead ?? this.isRead,
+        ignore: ignore ?? this.ignore);
   }
 }
 
@@ -5852,9 +5877,11 @@ class VisitDto {
     this.visitId,
     required this.localId,
     required this.userId,
-    required this.doctorId,
+    required this.providerId,
     required this.reason,
     this.comments,
+    this.cancelled,
+    this.cancelOther,
     required this.visitDate,
     required this.startHour,
     required this.endHour,
@@ -5870,12 +5897,19 @@ class VisitDto {
   final String localId;
   @JsonKey(name: 'userId')
   final String userId;
-  @JsonKey(name: 'doctorId')
-  final String doctorId;
+  @JsonKey(name: 'providerId')
+  final String providerId;
   @JsonKey(name: 'reason')
   final String reason;
   @JsonKey(name: 'comments')
   final String? comments;
+  @JsonKey(
+      name: 'cancelled',
+      toJson: cancellationOfVisitEnumToJson,
+      fromJson: cancellationOfVisitEnumFromJson)
+  final enums.CancellationOfVisitEnum? cancelled;
+  @JsonKey(name: 'cancelOther')
+  final String? cancelOther;
   @JsonKey(name: 'visitDate')
   final DateTime visitDate;
   @JsonKey(name: 'startHour')
@@ -5903,14 +5937,20 @@ class VisitDto {
                     .equals(other.localId, localId)) &&
             (identical(other.userId, userId) ||
                 const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.doctorId, doctorId) ||
+            (identical(other.providerId, providerId) ||
                 const DeepCollectionEquality()
-                    .equals(other.doctorId, doctorId)) &&
+                    .equals(other.providerId, providerId)) &&
             (identical(other.reason, reason) ||
                 const DeepCollectionEquality().equals(other.reason, reason)) &&
             (identical(other.comments, comments) ||
                 const DeepCollectionEquality()
                     .equals(other.comments, comments)) &&
+            (identical(other.cancelled, cancelled) ||
+                const DeepCollectionEquality()
+                    .equals(other.cancelled, cancelled)) &&
+            (identical(other.cancelOther, cancelOther) ||
+                const DeepCollectionEquality()
+                    .equals(other.cancelOther, cancelOther)) &&
             (identical(other.visitDate, visitDate) ||
                 const DeepCollectionEquality()
                     .equals(other.visitDate, visitDate)) &&
@@ -5930,9 +5970,11 @@ class VisitDto {
       const DeepCollectionEquality().hash(visitId) ^
       const DeepCollectionEquality().hash(localId) ^
       const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(doctorId) ^
+      const DeepCollectionEquality().hash(providerId) ^
       const DeepCollectionEquality().hash(reason) ^
       const DeepCollectionEquality().hash(comments) ^
+      const DeepCollectionEquality().hash(cancelled) ^
+      const DeepCollectionEquality().hash(cancelOther) ^
       const DeepCollectionEquality().hash(visitDate) ^
       const DeepCollectionEquality().hash(startHour) ^
       const DeepCollectionEquality().hash(endHour) ^
@@ -5945,9 +5987,11 @@ extension $VisitDtoExtension on VisitDto {
       {String? visitId,
       String? localId,
       String? userId,
-      String? doctorId,
+      String? providerId,
       String? reason,
       String? comments,
+      enums.CancellationOfVisitEnum? cancelled,
+      String? cancelOther,
       DateTime? visitDate,
       String? startHour,
       String? endHour,
@@ -5956,9 +6000,11 @@ extension $VisitDtoExtension on VisitDto {
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
         userId: userId ?? this.userId,
-        doctorId: doctorId ?? this.doctorId,
+        providerId: providerId ?? this.providerId,
         reason: reason ?? this.reason,
         comments: comments ?? this.comments,
+        cancelled: cancelled ?? this.cancelled,
+        cancelOther: cancelOther ?? this.cancelOther,
         visitDate: visitDate ?? this.visitDate,
         startHour: startHour ?? this.startHour,
         endHour: endHour ?? this.endHour,
@@ -6385,6 +6431,61 @@ extension $UserSearchDtoExtension on UserSearchDto {
         subDepartments: subDepartments ?? this.subDepartments,
         role: role ?? this.role);
   }
+}
+
+String? cancellationOfVisitEnumToJson(
+    enums.CancellationOfVisitEnum? cancellationOfVisitEnum) {
+  return enums.$CancellationOfVisitEnumMap[cancellationOfVisitEnum];
+}
+
+enums.CancellationOfVisitEnum cancellationOfVisitEnumFromJson(
+  Object? cancellationOfVisitEnum, [
+  enums.CancellationOfVisitEnum? defaultValue,
+]) {
+  if (cancellationOfVisitEnum is String) {
+    return enums.$CancellationOfVisitEnumMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                cancellationOfVisitEnum.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.CancellationOfVisitEnum.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  final pasredResult = defaultValue == null
+      ? null
+      : enums.$CancellationOfVisitEnumMap.entries
+          .firstWhereOrNull((element) => element.value == defaultValue)
+          ?.key;
+
+  return pasredResult ??
+      defaultValue ??
+      enums.CancellationOfVisitEnum.swaggerGeneratedUnknown;
+}
+
+List<String> cancellationOfVisitEnumListToJson(
+    List<enums.CancellationOfVisitEnum>? cancellationOfVisitEnum) {
+  if (cancellationOfVisitEnum == null) {
+    return [];
+  }
+
+  return cancellationOfVisitEnum
+      .map((e) => enums.$CancellationOfVisitEnumMap[e]!)
+      .toList();
+}
+
+List<enums.CancellationOfVisitEnum> cancellationOfVisitEnumListFromJson(
+  List? cancellationOfVisitEnum, [
+  List<enums.CancellationOfVisitEnum>? defaultValue,
+]) {
+  if (cancellationOfVisitEnum == null) {
+    return defaultValue ?? [];
+  }
+
+  return cancellationOfVisitEnum
+      .map((e) => cancellationOfVisitEnumFromJson(e.toString()))
+      .toList();
 }
 
 String? genderEnumToJson(enums.GenderEnum? genderEnum) {

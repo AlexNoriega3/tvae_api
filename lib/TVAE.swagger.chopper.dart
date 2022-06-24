@@ -525,18 +525,25 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<bool>> _apiNotificationsIdPut(
-      {required String? id, required NotificationsDto? body}) {
+  Future<Response<bool>> _apiNotificationsIdDelete({required String? id}) {
     final $url = '/api/Notifications/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
   }
 
   @override
-  Future<Response<bool>> _apiNotificationsIdDelete({required String? id}) {
-    final $url = '/api/Notifications/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
+  Future<Response<bool>> _apiNotificationsViewedPost({required String? body}) {
+    final $url = '/api/Notifications/Viewed';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiNotificationsIgnorePost({required String? body}) {
+    final $url = '/api/Notifications/Ignore';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<bool, bool>($request);
   }
 

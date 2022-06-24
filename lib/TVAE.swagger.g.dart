@@ -323,6 +323,7 @@ HistoricDto _$HistoricDtoFromJson(Map<String, dynamic> json) => HistoricDto(
       localName: json['localName'] as String?,
       userId: json['userId'] as String?,
       userName: json['userName'] as String?,
+      doctorImage: json['doctorImage'] as String?,
       doctorId: json['doctorId'] as String?,
       doctorName: json['doctorName'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
@@ -344,6 +345,7 @@ Map<String, dynamic> _$HistoricDtoToJson(HistoricDto instance) =>
       'localName': instance.localName,
       'userId': instance.userId,
       'userName': instance.userName,
+      'doctorImage': instance.doctorImage,
       'doctorId': instance.doctorId,
       'doctorName': instance.doctorName,
       'rating': instance.rating,
@@ -587,6 +589,7 @@ NotificationsDto _$NotificationsDtoFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       message: json['message'] as String,
       isRead: json['isRead'] as bool?,
+      ignore: json['ignore'] as bool?,
     );
 
 Map<String, dynamic> _$NotificationsDtoToJson(NotificationsDto instance) =>
@@ -597,6 +600,7 @@ Map<String, dynamic> _$NotificationsDtoToJson(NotificationsDto instance) =>
       'title': instance.title,
       'message': instance.message,
       'isRead': instance.isRead,
+      'ignore': instance.ignore,
     };
 
 NotificationsDtoPagedResult _$NotificationsDtoPagedResultFromJson(
@@ -1062,9 +1066,11 @@ VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(
       visitId: json['visitId'] as String?,
       localId: json['localId'] as String,
       userId: json['userId'] as String,
-      doctorId: json['doctorId'] as String,
+      providerId: json['providerId'] as String,
       reason: json['reason'] as String,
       comments: json['comments'] as String?,
+      cancelled: cancellationOfVisitEnumFromJson(json['cancelled']),
+      cancelOther: json['cancelOther'] as String?,
       visitDate: DateTime.parse(json['visitDate'] as String),
       startHour: json['startHour'] as String,
       endHour: json['endHour'] as String,
@@ -1075,9 +1081,11 @@ Map<String, dynamic> _$VisitDtoToJson(VisitDto instance) => <String, dynamic>{
       'visitId': instance.visitId,
       'localId': instance.localId,
       'userId': instance.userId,
-      'doctorId': instance.doctorId,
+      'providerId': instance.providerId,
       'reason': instance.reason,
       'comments': instance.comments,
+      'cancelled': cancellationOfVisitEnumToJson(instance.cancelled),
+      'cancelOther': instance.cancelOther,
       'visitDate': instance.visitDate.toIso8601String(),
       'startHour': instance.startHour,
       'endHour': instance.endHour,

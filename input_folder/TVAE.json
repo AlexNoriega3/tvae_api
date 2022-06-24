@@ -8052,7 +8052,7 @@
           }
         }
       },
-      "put": {
+      "delete": {
         "tags": [
           "Notifications"
         ],
@@ -8066,90 +8066,183 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Notifications/Viewed": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
         "requestBody": {
           "content": {
             "application/json;odata.metadata=minimal;odata.streaming=true": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/json;odata.metadata=minimal;odata.streaming=false": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/json;odata.metadata=minimal": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/json;odata.metadata=full;odata.streaming=true": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/json;odata.metadata=full;odata.streaming=false": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/json;odata.metadata=full": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/json;odata.metadata=none;odata.streaming=true": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/json;odata.metadata=none;odata.streaming=false": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/json;odata.metadata=none": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/json;odata.streaming=true": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/json;odata.streaming=false": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "text/plain": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/NotificationsDto"
+                "type": "string"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -8238,21 +8331,97 @@
             }
           }
         }
-      },
-      "delete": {
+      }
+    },
+    "/api/Notifications/Ignore": {
+      "post": {
         "tags": [
           "Notifications"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Success",
@@ -17814,6 +17983,16 @@
         },
         "additionalProperties": false
       },
+      "CancellationOfVisitEnum": {
+        "enum": [
+          "Ninguno",
+          "Imprevisto",
+          "Confusion",
+          "Resolucion",
+          "Otro"
+        ],
+        "type": "string"
+      },
       "ColorDto": {
         "required": [
           "projectId"
@@ -18069,6 +18248,10 @@
             "nullable": true
           },
           "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "doctorImage": {
             "type": "string",
             "nullable": true
           },
@@ -18462,6 +18645,10 @@
           },
           "isRead": {
             "type": "boolean"
+          },
+          "ignore": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -19138,9 +19325,9 @@
       },
       "VisitDto": {
         "required": [
-          "doctorId",
           "endHour",
           "localId",
+          "providerId",
           "reason",
           "startHour",
           "userId",
@@ -19158,13 +19345,20 @@
           "userId": {
             "type": "string"
           },
-          "doctorId": {
+          "providerId": {
             "type": "string"
           },
           "reason": {
             "type": "string"
           },
           "comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "cancelled": {
+            "$ref": "#/components/schemas/CancellationOfVisitEnum"
+          },
+          "cancelOther": {
             "type": "string",
             "nullable": true
           },
