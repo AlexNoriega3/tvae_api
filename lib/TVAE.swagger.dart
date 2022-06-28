@@ -1570,18 +1570,20 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param id
   Future<chopper.Response<EditUserResponse>> apiUserIdPut(
-      {required String? id, required UserPutDto? body}) {
+      {required String? id, required List<int> partFile}) {
     generatedMapping.putIfAbsent(
         EditUserResponse, () => EditUserResponse.fromJsonFactory);
 
-    return _apiUserIdPut(id: id, body: body);
+    return _apiUserIdPut(id: id, partFile: partFile);
   }
 
   ///
   ///@param id
   @Put(path: '/api/User/{id}')
+  @Multipart()
   Future<chopper.Response<EditUserResponse>> _apiUserIdPut(
-      {@Path('id') required String? id, @Body() required UserPutDto? body});
+      {@Path('id') required String? id,
+      @PartFile() required List<int> partFile});
 
   ///
   ///@param id
@@ -1597,19 +1599,35 @@ abstract class TVAE extends ChopperService {
 
   ///
   ///@param id
-  Future<chopper.Response<EditUserResponse>> apiUserUploadImageIdPut(
-      {required String? id, required List<int> partFile}) {
+  Future<chopper.Response<EditUserResponse>> apiUserEditUserAppIdPut(
+      {required String? id, required UserPutDto? body}) {
     generatedMapping.putIfAbsent(
         EditUserResponse, () => EditUserResponse.fromJsonFactory);
 
-    return _apiUserUploadImageIdPut(id: id, partFile: partFile);
+    return _apiUserEditUserAppIdPut(id: id, body: body);
   }
 
   ///
   ///@param id
-  @Put(path: '/api/User/UploadImage/{id}')
+  @Put(path: '/api/User/EditUserApp/{id}')
+  Future<chopper.Response<EditUserResponse>> _apiUserEditUserAppIdPut(
+      {@Path('id') required String? id, @Body() required UserPutDto? body});
+
+  ///
+  ///@param id
+  Future<chopper.Response<EditUserResponse>> apiUserUploadImageIdPost(
+      {required String? id, required List<int> partFile}) {
+    generatedMapping.putIfAbsent(
+        EditUserResponse, () => EditUserResponse.fromJsonFactory);
+
+    return _apiUserUploadImageIdPost(id: id, partFile: partFile);
+  }
+
+  ///
+  ///@param id
+  @Post(path: '/api/User/UploadImage/{id}')
   @Multipart()
-  Future<chopper.Response<EditUserResponse>> _apiUserUploadImageIdPut(
+  Future<chopper.Response<EditUserResponse>> _apiUserUploadImageIdPost(
       {@Path('id') required String? id,
       @PartFile() required List<int> partFile});
 
