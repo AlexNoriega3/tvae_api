@@ -1030,6 +1030,43 @@ Map<String, dynamic> _$UserPostDtoToJson(UserPostDto instance) =>
       'roleName': instance.roleName,
     };
 
+UserPutDto _$UserPutDtoFromJson(Map<String, dynamic> json) => UserPutDto(
+      imageFile: json['imageFile'] as String?,
+      name: json['name'] as String?,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+      url: json['url'] as String?,
+      countryCode: json['countryCode'] as String?,
+      titleAbbreviation: json['titleAbbreviation'] as String?,
+      gender: genderEnumFromJson(json['gender']),
+      phone: json['phone'] as String,
+      country: json['country'] as String?,
+      city: json['city'] as String?,
+      address: json['address'] as String?,
+      birthDate: json['birthDate'] == null
+          ? null
+          : DateTime.parse(json['birthDate'] as String),
+      costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$UserPutDtoToJson(UserPutDto instance) =>
+    <String, dynamic>{
+      'imageFile': instance.imageFile,
+      'name': instance.name,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'url': instance.url,
+      'countryCode': instance.countryCode,
+      'titleAbbreviation': instance.titleAbbreviation,
+      'gender': genderEnumToJson(instance.gender),
+      'phone': instance.phone,
+      'country': instance.country,
+      'city': instance.city,
+      'address': instance.address,
+      'birthDate': instance.birthDate?.toIso8601String(),
+      'costPerAppointment': instance.costPerAppointment,
+    };
+
 VisitDetailsDto _$VisitDetailsDtoFromJson(Map<String, dynamic> json) =>
     VisitDetailsDto(
       visitId: json['visitId'] as String?,

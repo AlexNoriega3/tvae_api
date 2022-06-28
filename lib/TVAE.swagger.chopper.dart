@@ -954,11 +954,10 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<EditUserResponse>> _apiUserIdPut(
-      {required String? id, required List<int> partFile}) {
+      {required String? id, required UserPutDto? body}) {
     final $url = '/api/User/${id}';
-    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
-    final $request =
-        Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
     return client.send<EditUserResponse, EditUserResponse>($request);
   }
 

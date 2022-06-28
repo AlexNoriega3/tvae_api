@@ -15002,110 +15002,84 @@
         ],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
               "schema": {
-                "required": [
-                  "firstName",
-                  "lastName",
-                  "phone"
-                ],
-                "type": "object",
-                "properties": {
-                  "imageFile": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "name": {
-                    "pattern": "^[a-zA-Z\\s]+$",
-                    "type": "string"
-                  },
-                  "firstName": {
-                    "pattern": "^[a-zA-Z\\s]+$",
-                    "type": "string"
-                  },
-                  "lastName": {
-                    "pattern": "^[a-zA-Z\\s]+$",
-                    "type": "string"
-                  },
-                  "Url": {
-                    "type": "string"
-                  },
-                  "countryCode": {
-                    "type": "string"
-                  },
-                  "titleAbbreviation": {
-                    "type": "string"
-                  },
-                  "gender": {
-                    "$ref": "#/components/schemas/GenderEnum"
-                  },
-                  "phone": {
-                    "maxLength": 10,
-                    "minLength": 10,
-                    "type": "string"
-                  },
-                  "country": {
-                    "type": "string"
-                  },
-                  "city": {
-                    "type": "string"
-                  },
-                  "address": {
-                    "type": "string"
-                  },
-                  "birthDate": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "costPerAppointment": {
-                    "type": "number",
-                    "format": "double"
-                  }
-                }
-              },
-              "encoding": {
-                "imageFile": {
-                  "style": "form"
-                },
-                "name": {
-                  "style": "form"
-                },
-                "firstName": {
-                  "style": "form"
-                },
-                "lastName": {
-                  "style": "form"
-                },
-                "Url": {
-                  "style": "form"
-                },
-                "countryCode": {
-                  "style": "form"
-                },
-                "titleAbbreviation": {
-                  "style": "form"
-                },
-                "gender": {
-                  "style": "form"
-                },
-                "phone": {
-                  "style": "form"
-                },
-                "country": {
-                  "style": "form"
-                },
-                "city": {
-                  "style": "form"
-                },
-                "address": {
-                  "style": "form"
-                },
-                "birthDate": {
-                  "style": "form"
-                },
-                "costPerAppointment": {
-                  "style": "form"
-                }
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPutDto"
               }
             }
           }
@@ -19277,6 +19251,77 @@
           },
           "roleName": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserPutDto": {
+        "required": [
+          "firstName",
+          "lastName",
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "imageFile": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          },
+          "name": {
+            "pattern": "^[a-zA-Z\\s]+$",
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "pattern": "^[a-zA-Z\\s]+$",
+            "type": "string"
+          },
+          "lastName": {
+            "pattern": "^[a-zA-Z\\s]+$",
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleAbbreviation": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GenderEnum"
+          },
+          "phone": {
+            "maxLength": 10,
+            "minLength": 10,
+            "type": "string"
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "costPerAppointment": {
+            "type": "number",
+            "format": "double",
             "nullable": true
           }
         },

@@ -1570,20 +1570,18 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param id
   Future<chopper.Response<EditUserResponse>> apiUserIdPut(
-      {required String? id, required List<int> partFile}) {
+      {required String? id, required UserPutDto? body}) {
     generatedMapping.putIfAbsent(
         EditUserResponse, () => EditUserResponse.fromJsonFactory);
 
-    return _apiUserIdPut(id: id, partFile: partFile);
+    return _apiUserIdPut(id: id, body: body);
   }
 
   ///
   ///@param id
   @Put(path: '/api/User/{id}')
-  @Multipart()
   Future<chopper.Response<EditUserResponse>> _apiUserIdPut(
-      {@Path('id') required String? id,
-      @PartFile() required List<int> partFile});
+      {@Path('id') required String? id, @Body() required UserPutDto? body});
 
   ///
   ///@param id
@@ -5742,6 +5740,160 @@ extension $UserPostDtoExtension on UserPostDto {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         roleName: roleName ?? this.roleName);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserPutDto {
+  UserPutDto({
+    this.imageFile,
+    this.name,
+    required this.firstName,
+    required this.lastName,
+    this.url,
+    this.countryCode,
+    this.titleAbbreviation,
+    this.gender,
+    required this.phone,
+    this.country,
+    this.city,
+    this.address,
+    this.birthDate,
+    this.costPerAppointment,
+  });
+
+  factory UserPutDto.fromJson(Map<String, dynamic> json) =>
+      _$UserPutDtoFromJson(json);
+
+  @JsonKey(name: 'imageFile')
+  final String? imageFile;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'firstName')
+  final String firstName;
+  @JsonKey(name: 'lastName')
+  final String lastName;
+  @JsonKey(name: 'url')
+  final String? url;
+  @JsonKey(name: 'countryCode')
+  final String? countryCode;
+  @JsonKey(name: 'titleAbbreviation')
+  final String? titleAbbreviation;
+  @JsonKey(
+      name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
+  final enums.GenderEnum? gender;
+  @JsonKey(name: 'phone')
+  final String phone;
+  @JsonKey(name: 'country')
+  final String? country;
+  @JsonKey(name: 'city')
+  final String? city;
+  @JsonKey(name: 'address')
+  final String? address;
+  @JsonKey(name: 'birthDate')
+  final DateTime? birthDate;
+  @JsonKey(name: 'costPerAppointment')
+  final double? costPerAppointment;
+  static const fromJsonFactory = _$UserPutDtoFromJson;
+  static const toJsonFactory = _$UserPutDtoToJson;
+  Map<String, dynamic> toJson() => _$UserPutDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UserPutDto &&
+            (identical(other.imageFile, imageFile) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageFile, imageFile)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.countryCode, countryCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.countryCode, countryCode)) &&
+            (identical(other.titleAbbreviation, titleAbbreviation) ||
+                const DeepCollectionEquality()
+                    .equals(other.titleAbbreviation, titleAbbreviation)) &&
+            (identical(other.gender, gender) ||
+                const DeepCollectionEquality().equals(other.gender, gender)) &&
+            (identical(other.phone, phone) ||
+                const DeepCollectionEquality().equals(other.phone, phone)) &&
+            (identical(other.country, country) ||
+                const DeepCollectionEquality()
+                    .equals(other.country, country)) &&
+            (identical(other.city, city) ||
+                const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.birthDate, birthDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.birthDate, birthDate)) &&
+            (identical(other.costPerAppointment, costPerAppointment) ||
+                const DeepCollectionEquality()
+                    .equals(other.costPerAppointment, costPerAppointment)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(imageFile) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(countryCode) ^
+      const DeepCollectionEquality().hash(titleAbbreviation) ^
+      const DeepCollectionEquality().hash(gender) ^
+      const DeepCollectionEquality().hash(phone) ^
+      const DeepCollectionEquality().hash(country) ^
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(birthDate) ^
+      const DeepCollectionEquality().hash(costPerAppointment) ^
+      runtimeType.hashCode;
+}
+
+extension $UserPutDtoExtension on UserPutDto {
+  UserPutDto copyWith(
+      {String? imageFile,
+      String? name,
+      String? firstName,
+      String? lastName,
+      String? url,
+      String? countryCode,
+      String? titleAbbreviation,
+      enums.GenderEnum? gender,
+      String? phone,
+      String? country,
+      String? city,
+      String? address,
+      DateTime? birthDate,
+      double? costPerAppointment}) {
+    return UserPutDto(
+        imageFile: imageFile ?? this.imageFile,
+        name: name ?? this.name,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        url: url ?? this.url,
+        countryCode: countryCode ?? this.countryCode,
+        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
+        gender: gender ?? this.gender,
+        phone: phone ?? this.phone,
+        country: country ?? this.country,
+        city: city ?? this.city,
+        address: address ?? this.address,
+        birthDate: birthDate ?? this.birthDate,
+        costPerAppointment: costPerAppointment ?? this.costPerAppointment);
   }
 }
 
