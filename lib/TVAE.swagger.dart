@@ -394,14 +394,15 @@ abstract class TVAE extends ChopperService {
 
   ///
   Future<chopper.Response<String>> apiDepartmentPost(
-      {required ApiDepartmentPost$RequestBody? body}) {
-    return _apiDepartmentPost(body: body);
+      {required List<int> partFile}) {
+    return _apiDepartmentPost(partFile: partFile);
   }
 
   ///
   @Post(path: '/api/Department')
+  @Multipart()
   Future<chopper.Response<String>> _apiDepartmentPost(
-      {@Body() required ApiDepartmentPost$RequestBody? body});
+      {@PartFile() required List<int> partFile});
 
   ///
   ///@param Page
@@ -445,16 +446,17 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param id
   Future<chopper.Response<bool>> apiDepartmentIdPut(
-      {required String? id, required ApiDepartmentIdPut$RequestBody? body}) {
-    return _apiDepartmentIdPut(id: id, body: body);
+      {required String? id, required List<int> partFile}) {
+    return _apiDepartmentIdPut(id: id, partFile: partFile);
   }
 
   ///
   ///@param id
   @Put(path: '/api/Department/{id}')
+  @Multipart()
   Future<chopper.Response<bool>> _apiDepartmentIdPut(
       {@Path('id') required String? id,
-      @Body() required ApiDepartmentIdPut$RequestBody? body});
+      @PartFile() required List<int> partFile});
 
   ///
   ///@param id
@@ -1568,19 +1570,20 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param id
   Future<chopper.Response<EditUserResponse>> apiUserIdPut(
-      {required String? id, required ApiUserIdPut$RequestBody? body}) {
+      {required String? id, required List<int> partFile}) {
     generatedMapping.putIfAbsent(
         EditUserResponse, () => EditUserResponse.fromJsonFactory);
 
-    return _apiUserIdPut(id: id, body: body);
+    return _apiUserIdPut(id: id, partFile: partFile);
   }
 
   ///
   ///@param id
   @Put(path: '/api/User/{id}')
+  @Multipart()
   Future<chopper.Response<EditUserResponse>> _apiUserIdPut(
       {@Path('id') required String? id,
-      @Body() required ApiUserIdPut$RequestBody? body});
+      @PartFile() required List<int> partFile});
 
   ///
   ///@param id
@@ -6453,13 +6456,13 @@ enums.CancellationOfVisitEnum cancellationOfVisitEnumFromJson(
         .key;
   }
 
-  final pasredResult = defaultValue == null
+  final parsedResult = defaultValue == null
       ? null
       : enums.$CancellationOfVisitEnumMap.entries
           .firstWhereOrNull((element) => element.value == defaultValue)
           ?.key;
 
-  return pasredResult ??
+  return parsedResult ??
       defaultValue ??
       enums.CancellationOfVisitEnum.swaggerGeneratedUnknown;
 }
@@ -6506,13 +6509,13 @@ enums.GenderEnum genderEnumFromJson(
         .key;
   }
 
-  final pasredResult = defaultValue == null
+  final parsedResult = defaultValue == null
       ? null
       : enums.$GenderEnumMap.entries
           .firstWhereOrNull((element) => element.value == defaultValue)
           ?.key;
 
-  return pasredResult ??
+  return parsedResult ??
       defaultValue ??
       enums.GenderEnum.swaggerGeneratedUnknown;
 }
@@ -6536,346 +6539,6 @@ List<enums.GenderEnum> genderEnumListFromJson(
   return genderEnum.map((e) => genderEnumFromJson(e.toString())).toList();
 }
 
-@JsonSerializable(explicitToJson: true)
-class ApiDepartmentPost$RequestBody {
-  ApiDepartmentPost$RequestBody({
-    this.departmentId,
-    this.sectionId,
-    this.imageFile,
-    this.name,
-    this.image,
-    this.code,
-    this.description,
-  });
-
-  factory ApiDepartmentPost$RequestBody.fromJson(Map<String, dynamic> json) =>
-      _$ApiDepartmentPost$RequestBodyFromJson(json);
-
-  @JsonKey(name: 'DepartmentId')
-  final String? departmentId;
-  @JsonKey(name: 'SectionId')
-  final String? sectionId;
-  @JsonKey(name: 'ImageFile')
-  final String? imageFile;
-  @JsonKey(name: 'Name')
-  final String? name;
-  @JsonKey(name: 'Image')
-  final String? image;
-  @JsonKey(name: 'Code')
-  final String? code;
-  @JsonKey(name: 'Description')
-  final String? description;
-  static const fromJsonFactory = _$ApiDepartmentPost$RequestBodyFromJson;
-  static const toJsonFactory = _$ApiDepartmentPost$RequestBodyToJson;
-  Map<String, dynamic> toJson() => _$ApiDepartmentPost$RequestBodyToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is ApiDepartmentPost$RequestBody &&
-            (identical(other.departmentId, departmentId) ||
-                const DeepCollectionEquality()
-                    .equals(other.departmentId, departmentId)) &&
-            (identical(other.sectionId, sectionId) ||
-                const DeepCollectionEquality()
-                    .equals(other.sectionId, sectionId)) &&
-            (identical(other.imageFile, imageFile) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageFile, imageFile)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(departmentId) ^
-      const DeepCollectionEquality().hash(sectionId) ^
-      const DeepCollectionEquality().hash(imageFile) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(image) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(description) ^
-      runtimeType.hashCode;
-}
-
-extension $ApiDepartmentPost$RequestBodyExtension
-    on ApiDepartmentPost$RequestBody {
-  ApiDepartmentPost$RequestBody copyWith(
-      {String? departmentId,
-      String? sectionId,
-      String? imageFile,
-      String? name,
-      String? image,
-      String? code,
-      String? description}) {
-    return ApiDepartmentPost$RequestBody(
-        departmentId: departmentId ?? this.departmentId,
-        sectionId: sectionId ?? this.sectionId,
-        imageFile: imageFile ?? this.imageFile,
-        name: name ?? this.name,
-        image: image ?? this.image,
-        code: code ?? this.code,
-        description: description ?? this.description);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class ApiDepartmentIdPut$RequestBody {
-  ApiDepartmentIdPut$RequestBody({
-    this.departmentId,
-    this.sectionId,
-    this.imageFile,
-    this.name,
-    this.image,
-    this.code,
-    this.description,
-  });
-
-  factory ApiDepartmentIdPut$RequestBody.fromJson(Map<String, dynamic> json) =>
-      _$ApiDepartmentIdPut$RequestBodyFromJson(json);
-
-  @JsonKey(name: 'DepartmentId')
-  final String? departmentId;
-  @JsonKey(name: 'SectionId')
-  final String? sectionId;
-  @JsonKey(name: 'ImageFile')
-  final String? imageFile;
-  @JsonKey(name: 'Name')
-  final String? name;
-  @JsonKey(name: 'Image')
-  final String? image;
-  @JsonKey(name: 'Code')
-  final String? code;
-  @JsonKey(name: 'Description')
-  final String? description;
-  static const fromJsonFactory = _$ApiDepartmentIdPut$RequestBodyFromJson;
-  static const toJsonFactory = _$ApiDepartmentIdPut$RequestBodyToJson;
-  Map<String, dynamic> toJson() => _$ApiDepartmentIdPut$RequestBodyToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is ApiDepartmentIdPut$RequestBody &&
-            (identical(other.departmentId, departmentId) ||
-                const DeepCollectionEquality()
-                    .equals(other.departmentId, departmentId)) &&
-            (identical(other.sectionId, sectionId) ||
-                const DeepCollectionEquality()
-                    .equals(other.sectionId, sectionId)) &&
-            (identical(other.imageFile, imageFile) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageFile, imageFile)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(departmentId) ^
-      const DeepCollectionEquality().hash(sectionId) ^
-      const DeepCollectionEquality().hash(imageFile) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(image) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(description) ^
-      runtimeType.hashCode;
-}
-
-extension $ApiDepartmentIdPut$RequestBodyExtension
-    on ApiDepartmentIdPut$RequestBody {
-  ApiDepartmentIdPut$RequestBody copyWith(
-      {String? departmentId,
-      String? sectionId,
-      String? imageFile,
-      String? name,
-      String? image,
-      String? code,
-      String? description}) {
-    return ApiDepartmentIdPut$RequestBody(
-        departmentId: departmentId ?? this.departmentId,
-        sectionId: sectionId ?? this.sectionId,
-        imageFile: imageFile ?? this.imageFile,
-        name: name ?? this.name,
-        image: image ?? this.image,
-        code: code ?? this.code,
-        description: description ?? this.description);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class ApiUserIdPut$RequestBody {
-  ApiUserIdPut$RequestBody({
-    this.imageFile,
-    this.name,
-    this.firstName,
-    this.lastName,
-    this.url,
-    this.countryCode,
-    this.titleAbbreviation,
-    this.gender,
-    this.phone,
-    this.country,
-    this.city,
-    this.address,
-    this.birthDate,
-    this.costPerAppointment,
-  });
-
-  factory ApiUserIdPut$RequestBody.fromJson(Map<String, dynamic> json) =>
-      _$ApiUserIdPut$RequestBodyFromJson(json);
-
-  @JsonKey(name: 'ImageFile')
-  final String? imageFile;
-  @JsonKey(name: 'Name')
-  final String? name;
-  @JsonKey(name: 'FirstName')
-  final String? firstName;
-  @JsonKey(name: 'LastName')
-  final String? lastName;
-  @JsonKey(name: 'Url')
-  final String? url;
-  @JsonKey(name: 'CountryCode')
-  final String? countryCode;
-  @JsonKey(name: 'TitleAbbreviation')
-  final String? titleAbbreviation;
-  @JsonKey(
-      name: 'Gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
-  final enums.GenderEnum? gender;
-  @JsonKey(name: 'Phone')
-  final String? phone;
-  @JsonKey(name: 'Country')
-  final String? country;
-  @JsonKey(name: 'City')
-  final String? city;
-  @JsonKey(name: 'Address')
-  final String? address;
-  @JsonKey(name: 'BirthDate')
-  final DateTime? birthDate;
-  @JsonKey(name: 'CostPerAppointment')
-  final double? costPerAppointment;
-  static const fromJsonFactory = _$ApiUserIdPut$RequestBodyFromJson;
-  static const toJsonFactory = _$ApiUserIdPut$RequestBodyToJson;
-  Map<String, dynamic> toJson() => _$ApiUserIdPut$RequestBodyToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is ApiUserIdPut$RequestBody &&
-            (identical(other.imageFile, imageFile) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageFile, imageFile)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.firstName, firstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
-            (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.countryCode, countryCode) ||
-                const DeepCollectionEquality()
-                    .equals(other.countryCode, countryCode)) &&
-            (identical(other.titleAbbreviation, titleAbbreviation) ||
-                const DeepCollectionEquality()
-                    .equals(other.titleAbbreviation, titleAbbreviation)) &&
-            (identical(other.gender, gender) ||
-                const DeepCollectionEquality().equals(other.gender, gender)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.country, country) ||
-                const DeepCollectionEquality()
-                    .equals(other.country, country)) &&
-            (identical(other.city, city) ||
-                const DeepCollectionEquality().equals(other.city, city)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.birthDate, birthDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.birthDate, birthDate)) &&
-            (identical(other.costPerAppointment, costPerAppointment) ||
-                const DeepCollectionEquality()
-                    .equals(other.costPerAppointment, costPerAppointment)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(imageFile) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(countryCode) ^
-      const DeepCollectionEquality().hash(titleAbbreviation) ^
-      const DeepCollectionEquality().hash(gender) ^
-      const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(country) ^
-      const DeepCollectionEquality().hash(city) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(birthDate) ^
-      const DeepCollectionEquality().hash(costPerAppointment) ^
-      runtimeType.hashCode;
-}
-
-extension $ApiUserIdPut$RequestBodyExtension on ApiUserIdPut$RequestBody {
-  ApiUserIdPut$RequestBody copyWith(
-      {String? imageFile,
-      String? name,
-      String? firstName,
-      String? lastName,
-      String? url,
-      String? countryCode,
-      String? titleAbbreviation,
-      enums.GenderEnum? gender,
-      String? phone,
-      String? country,
-      String? city,
-      String? address,
-      DateTime? birthDate,
-      double? costPerAppointment}) {
-    return ApiUserIdPut$RequestBody(
-        imageFile: imageFile ?? this.imageFile,
-        name: name ?? this.name,
-        firstName: firstName ?? this.firstName,
-        lastName: lastName ?? this.lastName,
-        url: url ?? this.url,
-        countryCode: countryCode ?? this.countryCode,
-        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
-        gender: gender ?? this.gender,
-        phone: phone ?? this.phone,
-        country: country ?? this.country,
-        city: city ?? this.city,
-        address: address ?? this.address,
-        birthDate: birthDate ?? this.birthDate,
-        costPerAppointment: costPerAppointment ?? this.costPerAppointment);
-  }
-}
-
 typedef $JsonFactory<T> = T Function(Map<String, dynamic> json);
 
 class $CustomJsonDecoder {
@@ -6889,6 +6552,14 @@ class $CustomJsonDecoder {
     }
 
     if (entity is T) {
+      return entity;
+    }
+
+    if (isTypeOf<T, Map>()) {
+      return entity;
+    }
+
+    if (isTypeOf<T, Iterable>()) {
       return entity;
     }
 

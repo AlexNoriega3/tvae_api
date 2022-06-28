@@ -15004,96 +15004,106 @@
           "content": {
             "multipart/form-data": {
               "schema": {
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "phone"
+                ],
                 "type": "object",
                 "properties": {
-                  "ImageFile": {
+                  "imageFile": {
                     "type": "string",
                     "format": "binary"
                   },
-                  "Name": {
+                  "name": {
+                    "pattern": "^[a-zA-Z\\s]+$",
                     "type": "string"
                   },
-                  "FirstName": {
+                  "firstName": {
+                    "pattern": "^[a-zA-Z\\s]+$",
                     "type": "string"
                   },
-                  "LastName": {
+                  "lastName": {
+                    "pattern": "^[a-zA-Z\\s]+$",
                     "type": "string"
                   },
                   "Url": {
                     "type": "string"
                   },
-                  "CountryCode": {
+                  "countryCode": {
                     "type": "string"
                   },
-                  "TitleAbbreviation": {
+                  "titleAbbreviation": {
                     "type": "string"
                   },
-                  "Gender": {
+                  "gender": {
                     "$ref": "#/components/schemas/GenderEnum"
                   },
-                  "Phone": {
+                  "phone": {
+                    "maxLength": 10,
+                    "minLength": 10,
                     "type": "string"
                   },
-                  "Country": {
+                  "country": {
                     "type": "string"
                   },
-                  "City": {
+                  "city": {
                     "type": "string"
                   },
-                  "Address": {
+                  "address": {
                     "type": "string"
                   },
-                  "BirthDate": {
+                  "birthDate": {
                     "type": "string",
                     "format": "date-time"
                   },
-                  "CostPerAppointment": {
+                  "costPerAppointment": {
                     "type": "number",
                     "format": "double"
                   }
                 }
               },
               "encoding": {
-                "ImageFile": {
+                "imageFile": {
                   "style": "form"
                 },
-                "Name": {
+                "name": {
                   "style": "form"
                 },
-                "FirstName": {
+                "firstName": {
                   "style": "form"
                 },
-                "LastName": {
+                "lastName": {
                   "style": "form"
                 },
                 "Url": {
                   "style": "form"
                 },
-                "CountryCode": {
+                "countryCode": {
                   "style": "form"
                 },
-                "TitleAbbreviation": {
+                "titleAbbreviation": {
                   "style": "form"
                 },
-                "Gender": {
+                "gender": {
                   "style": "form"
                 },
-                "Phone": {
+                "phone": {
                   "style": "form"
                 },
-                "Country": {
+                "country": {
                   "style": "form"
                 },
-                "City": {
+                "city": {
                   "style": "form"
                 },
-                "Address": {
+                "address": {
                   "style": "form"
                 },
-                "BirthDate": {
+                "birthDate": {
                   "style": "form"
                 },
-                "CostPerAppointment": {
+                "costPerAppointment": {
                   "style": "form"
                 }
               }

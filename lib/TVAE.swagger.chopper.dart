@@ -234,11 +234,11 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<String>> _apiDepartmentPost(
-      {required ApiDepartmentPost$RequestBody? body}) {
+  Future<Response<String>> _apiDepartmentPost({required List<int> partFile}) {
     final $url = '/api/Department';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<String, String>($request);
   }
 
@@ -265,10 +265,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<bool>> _apiDepartmentIdPut(
-      {required String? id, required ApiDepartmentIdPut$RequestBody? body}) {
+      {required String? id, required List<int> partFile}) {
     final $url = '/api/Department/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<bool, bool>($request);
   }
 
@@ -953,10 +954,11 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<EditUserResponse>> _apiUserIdPut(
-      {required String? id, required ApiUserIdPut$RequestBody? body}) {
+      {required String? id, required List<int> partFile}) {
     final $url = '/api/User/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<EditUserResponse, EditUserResponse>($request);
   }
 
