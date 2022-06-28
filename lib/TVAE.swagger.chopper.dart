@@ -969,6 +969,16 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<EditUserResponse>> _apiUserUploadImageIdPut(
+      {required String? id, required List<int> partFile}) {
+    final $url = '/api/User/UploadImage/${id}';
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
+    return client.send<EditUserResponse, EditUserResponse>($request);
+  }
+
+  @override
   Future<Response<AppUserDto>> _apiUserByRoleAndDepartmentPost(
       {required UserSearchDto? body}) {
     final $url = '/api/User/byRoleAndDepartment';

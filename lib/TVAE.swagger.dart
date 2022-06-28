@@ -1595,6 +1595,24 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response<bool>> _apiUserIdDelete(
       {@Path('id') required String? id});
 
+  ///
+  ///@param id
+  Future<chopper.Response<EditUserResponse>> apiUserUploadImageIdPut(
+      {required String? id, required List<int> partFile}) {
+    generatedMapping.putIfAbsent(
+        EditUserResponse, () => EditUserResponse.fromJsonFactory);
+
+    return _apiUserUploadImageIdPut(id: id, partFile: partFile);
+  }
+
+  ///
+  ///@param id
+  @Put(path: '/api/User/UploadImage/{id}')
+  @Multipart()
+  Future<chopper.Response<EditUserResponse>> _apiUserUploadImageIdPut(
+      {@Path('id') required String? id,
+      @PartFile() required List<int> partFile});
+
   ///Obtiene el listado de usuarios filtrados
   Future<chopper.Response<AppUserDto>> apiUserByRoleAndDepartmentPost(
       {required UserSearchDto? body}) {
