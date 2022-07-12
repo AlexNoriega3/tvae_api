@@ -381,6 +381,73 @@ Map<String, dynamic> _$HistoricDtoPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+HistoricResidentDto _$HistoricResidentDtoFromJson(Map<String, dynamic> json) =>
+    HistoricResidentDto(
+      visitId: json['visitId'] as String?,
+      localId: json['localId'] as String?,
+      localName: json['localName'] as String?,
+      userId: json['userId'] as String?,
+      userName: json['userName'] as String?,
+      userImage: json['userImage'] as String?,
+      phone: json['phone'] as String?,
+      email: json['email'] as String?,
+      rating: (json['rating'] as num?)?.toDouble(),
+      reason: json['reason'] as String?,
+      comments: json['comments'] as String?,
+      visitDate: json['visitDate'] == null
+          ? null
+          : DateTime.parse(json['visitDate'] as String),
+      startHour: json['startHour'] as String?,
+      endHour: json['endHour'] as String?,
+      visitStatusId: json['visitStatusId'] as String?,
+      visitStatus: json['visitStatus'] as String?,
+    );
+
+Map<String, dynamic> _$HistoricResidentDtoToJson(
+        HistoricResidentDto instance) =>
+    <String, dynamic>{
+      'visitId': instance.visitId,
+      'localId': instance.localId,
+      'localName': instance.localName,
+      'userId': instance.userId,
+      'userName': instance.userName,
+      'userImage': instance.userImage,
+      'phone': instance.phone,
+      'email': instance.email,
+      'rating': instance.rating,
+      'reason': instance.reason,
+      'comments': instance.comments,
+      'visitDate': instance.visitDate?.toIso8601String(),
+      'startHour': instance.startHour,
+      'endHour': instance.endHour,
+      'visitStatusId': instance.visitStatusId,
+      'visitStatus': instance.visitStatus,
+    };
+
+HistoricResidentDtoPagedResult _$HistoricResidentDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    HistoricResidentDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) =>
+                  HistoricResidentDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$HistoricResidentDtoPagedResultToJson(
+        HistoricResidentDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 LevelDto _$LevelDtoFromJson(Map<String, dynamic> json) => LevelDto(
       levelId: json['levelId'] as String?,
       projectId: json['projectId'] as String,
@@ -559,6 +626,9 @@ MostVisitedDto _$MostVisitedDtoFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       picture: json['picture'] as String?,
       name: json['name'] as String?,
+      abbreviation: json['abbreviation'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
       department: (json['department'] as List<dynamic>?)
               ?.map((e) => SelectDto.fromJson(e as Map<String, dynamic>))
@@ -575,6 +645,9 @@ Map<String, dynamic> _$MostVisitedDtoToJson(MostVisitedDto instance) =>
       'id': instance.id,
       'picture': instance.picture,
       'name': instance.name,
+      'abbreviation': instance.abbreviation,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
       'rating': instance.rating,
       'department': instance.department?.map((e) => e.toJson()).toList(),
       'subDepartments':
@@ -808,6 +881,65 @@ Map<String, dynamic> _$ResetPasswordModelToJson(ResetPasswordModel instance) =>
       'confirmPassword': instance.confirmPassword,
       'email': instance.email,
       'token': instance.token,
+    };
+
+ResultUserDto _$ResultUserDtoFromJson(Map<String, dynamic> json) =>
+    ResultUserDto(
+      id: json['id'] as String?,
+      email: json['email'] as String?,
+      image: json['image'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      titleAbbreviation: json['titleAbbreviation'] as String?,
+      gender: genderEnumFromJson(json['gender']),
+      phone: json['phone'] as String?,
+      address: json['address'] as String?,
+      rating: (json['rating'] as num?)?.toDouble(),
+      visitDate: json['visitDate'] == null
+          ? null
+          : DateTime.parse(json['visitDate'] as String),
+      startHour: json['startHour'] as String?,
+      endHour: json['endHour'] as String?,
+    );
+
+Map<String, dynamic> _$ResultUserDtoToJson(ResultUserDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'email': instance.email,
+      'image': instance.image,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'titleAbbreviation': instance.titleAbbreviation,
+      'gender': genderEnumToJson(instance.gender),
+      'phone': instance.phone,
+      'address': instance.address,
+      'rating': instance.rating,
+      'visitDate': instance.visitDate?.toIso8601String(),
+      'startHour': instance.startHour,
+      'endHour': instance.endHour,
+    };
+
+ResultUserDtoPagedResult _$ResultUserDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    ResultUserDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => ResultUserDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ResultUserDtoPagedResultToJson(
+        ResultUserDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
 RoleDto _$RoleDtoFromJson(Map<String, dynamic> json) => RoleDto(
@@ -1074,6 +1206,9 @@ VisitDetailsDto _$VisitDetailsDtoFromJson(Map<String, dynamic> json) =>
       doctorId: json['doctorId'] as String?,
       localName: json['localName'] as String?,
       doctorName: json['doctorName'] as String?,
+      abbreviation: json['abbreviation'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
       doctorImage: json['doctorImage'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
       visitDate: json['visitDate'] == null
@@ -1091,6 +1226,9 @@ Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
       'doctorId': instance.doctorId,
       'localName': instance.localName,
       'doctorName': instance.doctorName,
+      'abbreviation': instance.abbreviation,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
       'doctorImage': instance.doctorImage,
       'rating': instance.rating,
       'visitDate': instance.visitDate?.toIso8601String(),
@@ -1158,6 +1296,9 @@ VisitNextPendingDto _$VisitNextPendingDtoFromJson(Map<String, dynamic> json) =>
       doctorId: json['doctorId'] as String?,
       localName: json['localName'] as String?,
       doctorName: json['doctorName'] as String?,
+      abbreviation: json['abbreviation'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
       doctorImage: json['doctorImage'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
       visitDate: json['visitDate'] == null
@@ -1175,6 +1316,9 @@ Map<String, dynamic> _$VisitNextPendingDtoToJson(
       'doctorId': instance.doctorId,
       'localName': instance.localName,
       'doctorName': instance.doctorName,
+      'abbreviation': instance.abbreviation,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
       'doctorImage': instance.doctorImage,
       'rating': instance.rating,
       'visitDate': instance.visitDate?.toIso8601String(),
