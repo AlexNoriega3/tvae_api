@@ -18423,6 +18423,13 @@
             "type": "string",
             "nullable": true
           },
+          "titleAbbreviation": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GenderEnum"
+          },
           "url": {
             "type": "string",
             "nullable": true
@@ -18430,13 +18437,6 @@
           "countryCode": {
             "type": "string",
             "nullable": true
-          },
-          "titleAbbreviation": {
-            "type": "string",
-            "nullable": true
-          },
-          "gender": {
-            "$ref": "#/components/schemas/GenderEnum"
           },
           "phone": {
             "type": "string",
@@ -18849,6 +18849,18 @@
             "type": "string",
             "nullable": true
           },
+          "userFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userTitleAbbreviation": {
+            "type": "string",
+            "nullable": true
+          },
           "doctorImage": {
             "type": "string",
             "nullable": true
@@ -18858,6 +18870,18 @@
             "nullable": true
           },
           "doctorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "doctorFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "doctorLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "doctorTitleAbbreviation": {
             "type": "string",
             "nullable": true
           },
@@ -18950,6 +18974,18 @@
             "nullable": true
           },
           "userImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "userFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userTitleAbbreviation": {
             "type": "string",
             "nullable": true
           },
@@ -19510,6 +19546,18 @@
             "nullable": true
           },
           "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleAbbreviation": {
             "type": "string",
             "nullable": true
           },

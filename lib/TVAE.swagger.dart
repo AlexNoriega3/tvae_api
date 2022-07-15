@@ -2136,10 +2136,10 @@ class AppUserDto {
     this.image,
     this.firstName,
     this.lastName,
-    this.url,
-    this.countryCode,
     this.titleAbbreviation,
     this.gender,
+    this.url,
+    this.countryCode,
     this.phone,
     this.country,
     this.city,
@@ -2166,15 +2166,15 @@ class AppUserDto {
   final String? firstName;
   @JsonKey(name: 'lastName')
   final String? lastName;
-  @JsonKey(name: 'url')
-  final String? url;
-  @JsonKey(name: 'countryCode')
-  final String? countryCode;
   @JsonKey(name: 'titleAbbreviation')
   final String? titleAbbreviation;
   @JsonKey(
       name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
   final enums.GenderEnum? gender;
+  @JsonKey(name: 'url')
+  final String? url;
+  @JsonKey(name: 'countryCode')
+  final String? countryCode;
   @JsonKey(name: 'phone')
   final String? phone;
   @JsonKey(name: 'country')
@@ -2218,16 +2218,16 @@ class AppUserDto {
             (identical(other.lastName, lastName) ||
                 const DeepCollectionEquality()
                     .equals(other.lastName, lastName)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.countryCode, countryCode) ||
-                const DeepCollectionEquality()
-                    .equals(other.countryCode, countryCode)) &&
             (identical(other.titleAbbreviation, titleAbbreviation) ||
                 const DeepCollectionEquality()
                     .equals(other.titleAbbreviation, titleAbbreviation)) &&
             (identical(other.gender, gender) ||
                 const DeepCollectionEquality().equals(other.gender, gender)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.countryCode, countryCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.countryCode, countryCode)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.country, country) ||
@@ -2261,10 +2261,10 @@ class AppUserDto {
       const DeepCollectionEquality().hash(image) ^
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(countryCode) ^
       const DeepCollectionEquality().hash(titleAbbreviation) ^
       const DeepCollectionEquality().hash(gender) ^
+      const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(countryCode) ^
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(country) ^
       const DeepCollectionEquality().hash(city) ^
@@ -2285,10 +2285,10 @@ extension $AppUserDtoExtension on AppUserDto {
       String? image,
       String? firstName,
       String? lastName,
-      String? url,
-      String? countryCode,
       String? titleAbbreviation,
       enums.GenderEnum? gender,
+      String? url,
+      String? countryCode,
       String? phone,
       String? country,
       String? city,
@@ -2305,10 +2305,10 @@ extension $AppUserDtoExtension on AppUserDto {
         image: image ?? this.image,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
-        url: url ?? this.url,
-        countryCode: countryCode ?? this.countryCode,
         titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
         gender: gender ?? this.gender,
+        url: url ?? this.url,
+        countryCode: countryCode ?? this.countryCode,
         phone: phone ?? this.phone,
         country: country ?? this.country,
         city: city ?? this.city,
@@ -3174,9 +3174,15 @@ class HistoricDto {
     this.localName,
     this.userId,
     this.userName,
+    this.userFirstName,
+    this.userLastName,
+    this.userTitleAbbreviation,
     this.doctorImage,
     this.doctorId,
     this.doctorName,
+    this.doctorFirstName,
+    this.doctorLastName,
+    this.doctorTitleAbbreviation,
     this.rating,
     this.reason,
     this.comments,
@@ -3200,12 +3206,24 @@ class HistoricDto {
   final String? userId;
   @JsonKey(name: 'userName')
   final String? userName;
+  @JsonKey(name: 'userFirstName')
+  final String? userFirstName;
+  @JsonKey(name: 'userLastName')
+  final String? userLastName;
+  @JsonKey(name: 'userTitleAbbreviation')
+  final String? userTitleAbbreviation;
   @JsonKey(name: 'doctorImage')
   final String? doctorImage;
   @JsonKey(name: 'doctorId')
   final String? doctorId;
   @JsonKey(name: 'doctorName')
   final String? doctorName;
+  @JsonKey(name: 'doctorFirstName')
+  final String? doctorFirstName;
+  @JsonKey(name: 'doctorLastName')
+  final String? doctorLastName;
+  @JsonKey(name: 'doctorTitleAbbreviation')
+  final String? doctorTitleAbbreviation;
   @JsonKey(name: 'rating')
   final double? rating;
   @JsonKey(name: 'reason')
@@ -3247,6 +3265,15 @@ class HistoricDto {
             (identical(other.userName, userName) ||
                 const DeepCollectionEquality()
                     .equals(other.userName, userName)) &&
+            (identical(other.userFirstName, userFirstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.userFirstName, userFirstName)) &&
+            (identical(other.userLastName, userLastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.userLastName, userLastName)) &&
+            (identical(other.userTitleAbbreviation, userTitleAbbreviation) ||
+                const DeepCollectionEquality().equals(
+                    other.userTitleAbbreviation, userTitleAbbreviation)) &&
             (identical(other.doctorImage, doctorImage) ||
                 const DeepCollectionEquality()
                     .equals(other.doctorImage, doctorImage)) &&
@@ -3256,6 +3283,15 @@ class HistoricDto {
             (identical(other.doctorName, doctorName) ||
                 const DeepCollectionEquality()
                     .equals(other.doctorName, doctorName)) &&
+            (identical(other.doctorFirstName, doctorFirstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.doctorFirstName, doctorFirstName)) &&
+            (identical(other.doctorLastName, doctorLastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.doctorLastName, doctorLastName)) &&
+            (identical(other.doctorTitleAbbreviation, doctorTitleAbbreviation) ||
+                const DeepCollectionEquality().equals(
+                    other.doctorTitleAbbreviation, doctorTitleAbbreviation)) &&
             (identical(other.rating, rating) ||
                 const DeepCollectionEquality().equals(other.rating, rating)) &&
             (identical(other.reason, reason) ||
@@ -3276,8 +3312,7 @@ class HistoricDto {
                 const DeepCollectionEquality()
                     .equals(other.visitStatusId, visitStatusId)) &&
             (identical(other.visitStatus, visitStatus) ||
-                const DeepCollectionEquality()
-                    .equals(other.visitStatus, visitStatus)));
+                const DeepCollectionEquality().equals(other.visitStatus, visitStatus)));
   }
 
   @override
@@ -3287,9 +3322,15 @@ class HistoricDto {
       const DeepCollectionEquality().hash(localName) ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(userName) ^
+      const DeepCollectionEquality().hash(userFirstName) ^
+      const DeepCollectionEquality().hash(userLastName) ^
+      const DeepCollectionEquality().hash(userTitleAbbreviation) ^
       const DeepCollectionEquality().hash(doctorImage) ^
       const DeepCollectionEquality().hash(doctorId) ^
       const DeepCollectionEquality().hash(doctorName) ^
+      const DeepCollectionEquality().hash(doctorFirstName) ^
+      const DeepCollectionEquality().hash(doctorLastName) ^
+      const DeepCollectionEquality().hash(doctorTitleAbbreviation) ^
       const DeepCollectionEquality().hash(rating) ^
       const DeepCollectionEquality().hash(reason) ^
       const DeepCollectionEquality().hash(comments) ^
@@ -3308,9 +3349,15 @@ extension $HistoricDtoExtension on HistoricDto {
       String? localName,
       String? userId,
       String? userName,
+      String? userFirstName,
+      String? userLastName,
+      String? userTitleAbbreviation,
       String? doctorImage,
       String? doctorId,
       String? doctorName,
+      String? doctorFirstName,
+      String? doctorLastName,
+      String? doctorTitleAbbreviation,
       double? rating,
       String? reason,
       String? comments,
@@ -3325,9 +3372,17 @@ extension $HistoricDtoExtension on HistoricDto {
         localName: localName ?? this.localName,
         userId: userId ?? this.userId,
         userName: userName ?? this.userName,
+        userFirstName: userFirstName ?? this.userFirstName,
+        userLastName: userLastName ?? this.userLastName,
+        userTitleAbbreviation:
+            userTitleAbbreviation ?? this.userTitleAbbreviation,
         doctorImage: doctorImage ?? this.doctorImage,
         doctorId: doctorId ?? this.doctorId,
         doctorName: doctorName ?? this.doctorName,
+        doctorFirstName: doctorFirstName ?? this.doctorFirstName,
+        doctorLastName: doctorLastName ?? this.doctorLastName,
+        doctorTitleAbbreviation:
+            doctorTitleAbbreviation ?? this.doctorTitleAbbreviation,
         rating: rating ?? this.rating,
         reason: reason ?? this.reason,
         comments: comments ?? this.comments,
@@ -3424,6 +3479,9 @@ class HistoricResidentDto {
     this.userId,
     this.userName,
     this.userImage,
+    this.userFirstName,
+    this.userLastName,
+    this.userTitleAbbreviation,
     this.phone,
     this.email,
     this.rating,
@@ -3451,6 +3509,12 @@ class HistoricResidentDto {
   final String? userName;
   @JsonKey(name: 'userImage')
   final String? userImage;
+  @JsonKey(name: 'userFirstName')
+  final String? userFirstName;
+  @JsonKey(name: 'userLastName')
+  final String? userLastName;
+  @JsonKey(name: 'userTitleAbbreviation')
+  final String? userTitleAbbreviation;
   @JsonKey(name: 'phone')
   final String? phone;
   @JsonKey(name: 'email')
@@ -3499,6 +3563,15 @@ class HistoricResidentDto {
             (identical(other.userImage, userImage) ||
                 const DeepCollectionEquality()
                     .equals(other.userImage, userImage)) &&
+            (identical(other.userFirstName, userFirstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.userFirstName, userFirstName)) &&
+            (identical(other.userLastName, userLastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.userLastName, userLastName)) &&
+            (identical(other.userTitleAbbreviation, userTitleAbbreviation) ||
+                const DeepCollectionEquality().equals(
+                    other.userTitleAbbreviation, userTitleAbbreviation)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.email, email) ||
@@ -3535,6 +3608,9 @@ class HistoricResidentDto {
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(userName) ^
       const DeepCollectionEquality().hash(userImage) ^
+      const DeepCollectionEquality().hash(userFirstName) ^
+      const DeepCollectionEquality().hash(userLastName) ^
+      const DeepCollectionEquality().hash(userTitleAbbreviation) ^
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(rating) ^
@@ -3556,6 +3632,9 @@ extension $HistoricResidentDtoExtension on HistoricResidentDto {
       String? userId,
       String? userName,
       String? userImage,
+      String? userFirstName,
+      String? userLastName,
+      String? userTitleAbbreviation,
       String? phone,
       String? email,
       double? rating,
@@ -3573,6 +3652,10 @@ extension $HistoricResidentDtoExtension on HistoricResidentDto {
         userId: userId ?? this.userId,
         userName: userName ?? this.userName,
         userImage: userImage ?? this.userImage,
+        userFirstName: userFirstName ?? this.userFirstName,
+        userLastName: userLastName ?? this.userLastName,
+        userTitleAbbreviation:
+            userTitleAbbreviation ?? this.userTitleAbbreviation,
         phone: phone ?? this.phone,
         email: email ?? this.email,
         rating: rating ?? this.rating,
@@ -4891,6 +4974,9 @@ class ProviderProfileDto {
     this.userId,
     this.email,
     this.name,
+    this.firstName,
+    this.lastName,
+    this.titleAbbreviation,
     this.url,
     this.gender,
     this.phone,
@@ -4914,6 +5000,12 @@ class ProviderProfileDto {
   final String? email;
   @JsonKey(name: 'name')
   final String? name;
+  @JsonKey(name: 'firstName')
+  final String? firstName;
+  @JsonKey(name: 'lastName')
+  final String? lastName;
+  @JsonKey(name: 'titleAbbreviation')
+  final String? titleAbbreviation;
   @JsonKey(name: 'url')
   final String? url;
   @JsonKey(
@@ -4956,6 +5048,15 @@ class ProviderProfileDto {
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.titleAbbreviation, titleAbbreviation) ||
+                const DeepCollectionEquality()
+                    .equals(other.titleAbbreviation, titleAbbreviation)) &&
             (identical(other.url, url) ||
                 const DeepCollectionEquality().equals(other.url, url)) &&
             (identical(other.gender, gender) ||
@@ -4995,6 +5096,9 @@ class ProviderProfileDto {
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(titleAbbreviation) ^
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(gender) ^
       const DeepCollectionEquality().hash(phone) ^
@@ -5015,6 +5119,9 @@ extension $ProviderProfileDtoExtension on ProviderProfileDto {
       {String? userId,
       String? email,
       String? name,
+      String? firstName,
+      String? lastName,
+      String? titleAbbreviation,
       String? url,
       enums.GenderEnum? gender,
       String? phone,
@@ -5031,6 +5138,9 @@ extension $ProviderProfileDtoExtension on ProviderProfileDto {
         userId: userId ?? this.userId,
         email: email ?? this.email,
         name: name ?? this.name,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
         url: url ?? this.url,
         gender: gender ?? this.gender,
         phone: phone ?? this.phone,
