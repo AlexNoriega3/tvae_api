@@ -717,7 +717,7 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<String>> _apiSchedulePost({required ScheduleDto? body}) {
+  Future<Response<String>> _apiSchedulePost({required SchedulePostDto? body}) {
     final $url = '/api/Schedule';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -736,6 +736,15 @@ class _$TVAE extends TVAE {
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
         .send<ScheduleDtoPagedResult, ScheduleDtoPagedResult>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiScheduleAddRangePost(
+      {required List<SchedulePostDto>? body}) {
+    final $url = '/api/Schedule/AddRange';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<bool, bool>($request);
   }
 
   @override
@@ -759,6 +768,22 @@ class _$TVAE extends TVAE {
     final $url = '/api/Schedule/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<ScheduleDto>> _apiScheduleByResidentResidentIdGet(
+      {required String? residentId}) {
+    final $url = '/api/Schedule/ByResident/${residentId}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<ScheduleDto, ScheduleDto>($request);
+  }
+
+  @override
+  Future<Response<BusyDatesDto>> _apiScheduleBusyDatesResidentIdGet(
+      {required String? residentId}) {
+    final $url = '/api/Schedule/BusyDates/${residentId}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<BusyDatesDto, BusyDatesDto>($request);
   }
 
   @override
@@ -918,6 +943,14 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<List<SubdepartmentDto>>> _apiSubdepartmentByDepartmentIdGet(
+      {required String? id}) {
+    final $url = '/api/Subdepartment/byDepartment/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<SubdepartmentDto>, SubdepartmentDto>($request);
+  }
+
+  @override
   Future<Response<List<AppUserDto>>> _apiUserGet() {
     final $url = '/api/User';
     final $request = Request('GET', $url, client.baseUrl);
@@ -1032,6 +1065,23 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<EditUserResponse>> _apiUserEditProviderIdPut(
+      {required String? id, required ProviderPutDto? body}) {
+    final $url = '/api/User/EditProvider/${id}';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
+    return client.send<EditUserResponse, EditUserResponse>($request);
+  }
+
+  @override
+  Future<Response<AppUserDto>> _apiUserByPhonePhoneGet(
+      {required String? phone}) {
+    final $url = '/api/User/ByPhone/${phone}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<AppUserDto, AppUserDto>($request);
+  }
+
+  @override
   Future<Response<List<VisitDto>>> _apiVisitGet() {
     final $url = '/api/Visit';
     final $request = Request('GET', $url, client.baseUrl);
@@ -1115,6 +1165,14 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<VisitDetailsDto>> _apiVisitDetailVisitIdGet(
+      {required String? visitId}) {
+    final $url = '/api/Visit/Detail/${visitId}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<VisitDetailsDto, VisitDetailsDto>($request);
+  }
+
+  @override
   Future<Response<HistoricResidentDtoPagedResult>> _apiVisitHistoricResidentGet(
       {required String? userId,
       required int? page,
@@ -1133,11 +1191,12 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<VisitDetailsDto>> _apiVisitDetailVisitIdGet(
-      {required String? visitId}) {
-    final $url = '/api/Visit/Detail/${visitId}';
+  Future<Response<VisitNextPendingResidentDto>>
+      _apiVisitNextPendingResidentResidentIdGet({required String? residentId}) {
+    final $url = '/api/Visit/NextPendingResident/${residentId}';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<VisitDetailsDto, VisitDetailsDto>($request);
+    return client.send<VisitNextPendingResidentDto,
+        VisitNextPendingResidentDto>($request);
   }
 
   @override

@@ -9,7 +9,7 @@ part of 'TVAE.swagger.dart';
 AcademicStudiesDto _$AcademicStudiesDtoFromJson(Map<String, dynamic> json) =>
     AcademicStudiesDto(
       academicStudiesId: json['academicStudiesId'] as String?,
-      userId: json['userId'] as String,
+      userId: json['userId'] as String?,
       degree: json['degree'] as String?,
       school: json['school'] as String?,
     );
@@ -852,6 +852,63 @@ Map<String, dynamic> _$ProviderProfileDtoToJson(ProviderProfileDto instance) =>
       'busyDates': instance.busyDates?.map((e) => e.toJson()).toList(),
     };
 
+ProviderPutDto _$ProviderPutDtoFromJson(Map<String, dynamic> json) =>
+    ProviderPutDto(
+      imageFile: json['imageFile'] as String?,
+      name: json['name'] as String?,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+      url: json['url'] as String?,
+      countryCode: json['countryCode'] as String?,
+      titleAbbreviation: json['titleAbbreviation'] as String?,
+      gender: genderEnumFromJson(json['gender']),
+      phone: json['phone'] as String,
+      country: json['country'] as String?,
+      city: json['city'] as String?,
+      address: json['address'] as String?,
+      birthDate: json['birthDate'] == null
+          ? null
+          : DateTime.parse(json['birthDate'] as String),
+      costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
+      localId: json['localId'] as String?,
+      subDepartments: (json['subDepartments'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      academicStudies: (json['academicStudies'] as List<dynamic>?)
+              ?.map(
+                  (e) => AcademicStudiesDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      schedules: (json['schedules'] as List<dynamic>?)
+              ?.map((e) => ScheduleDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ProviderPutDtoToJson(ProviderPutDto instance) =>
+    <String, dynamic>{
+      'imageFile': instance.imageFile,
+      'name': instance.name,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'url': instance.url,
+      'countryCode': instance.countryCode,
+      'titleAbbreviation': instance.titleAbbreviation,
+      'gender': genderEnumToJson(instance.gender),
+      'phone': instance.phone,
+      'country': instance.country,
+      'city': instance.city,
+      'address': instance.address,
+      'birthDate': instance.birthDate?.toIso8601String(),
+      'costPerAppointment': instance.costPerAppointment,
+      'localId': instance.localId,
+      'subDepartments': instance.subDepartments,
+      'academicStudies':
+          instance.academicStudies?.map((e) => e.toJson()).toList(),
+      'schedules': instance.schedules?.map((e) => e.toJson()).toList(),
+    };
+
 RatingDto _$RatingDtoFromJson(Map<String, dynamic> json) => RatingDto(
       ratingId: json['ratingId'] as String?,
       userId: json['userId'] as String?,
@@ -1004,6 +1061,9 @@ ScheduleDto _$ScheduleDtoFromJson(Map<String, dynamic> json) => ScheduleDto(
       day: json['day'] as String?,
       hourOpen: json['hourOpen'] as String,
       hourClose: json['hourClose'] as String,
+      secondHourOpen: json['secondHourOpen'] as String?,
+      secondHourClose: json['secondHourClose'] as String?,
+      orderDay: json['orderDay'] as int?,
       active: json['active'] as bool?,
     );
 
@@ -1013,6 +1073,9 @@ Map<String, dynamic> _$ScheduleDtoToJson(ScheduleDto instance) =>
       'day': instance.day,
       'hourOpen': instance.hourOpen,
       'hourClose': instance.hourClose,
+      'secondHourOpen': instance.secondHourOpen,
+      'secondHourClose': instance.secondHourClose,
+      'orderDay': instance.orderDay,
       'active': instance.active,
     };
 
@@ -1037,6 +1100,34 @@ Map<String, dynamic> _$ScheduleDtoPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+SchedulePostDto _$SchedulePostDtoFromJson(Map<String, dynamic> json) =>
+    SchedulePostDto(
+      scheduleId: json['scheduleId'] as String?,
+      day: json['day'] as String?,
+      hourOpen: json['hourOpen'] as String,
+      hourClose: json['hourClose'] as String,
+      secondHourOpen: json['secondHourOpen'] as String?,
+      secondHourClose: json['secondHourClose'] as String?,
+      orderDay: json['orderDay'] as int?,
+      active: json['active'] as bool?,
+      userId: json['userId'] as String,
+      localId: json['localId'] as String,
+    );
+
+Map<String, dynamic> _$SchedulePostDtoToJson(SchedulePostDto instance) =>
+    <String, dynamic>{
+      'scheduleId': instance.scheduleId,
+      'day': instance.day,
+      'hourOpen': instance.hourOpen,
+      'hourClose': instance.hourClose,
+      'secondHourOpen': instance.secondHourOpen,
+      'secondHourClose': instance.secondHourClose,
+      'orderDay': instance.orderDay,
+      'active': instance.active,
+      'userId': instance.userId,
+      'localId': instance.localId,
     };
 
 ScreenDto _$ScreenDtoFromJson(Map<String, dynamic> json) => ScreenDto(
@@ -1344,6 +1435,44 @@ Map<String, dynamic> _$VisitNextPendingDtoToJson(
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'doctorImage': instance.doctorImage,
+      'rating': instance.rating,
+      'visitDate': instance.visitDate?.toIso8601String(),
+      'startHour': instance.startHour,
+      'endHour': instance.endHour,
+    };
+
+VisitNextPendingResidentDto _$VisitNextPendingResidentDtoFromJson(
+        Map<String, dynamic> json) =>
+    VisitNextPendingResidentDto(
+      visitId: json['visitId'] as String?,
+      localId: json['localId'] as String?,
+      userId: json['userId'] as String?,
+      localName: json['localName'] as String?,
+      userName: json['userName'] as String?,
+      abbreviation: json['abbreviation'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      userImage: json['userImage'] as String?,
+      rating: (json['rating'] as num?)?.toDouble(),
+      visitDate: json['visitDate'] == null
+          ? null
+          : DateTime.parse(json['visitDate'] as String),
+      startHour: json['startHour'] as String?,
+      endHour: json['endHour'] as String?,
+    );
+
+Map<String, dynamic> _$VisitNextPendingResidentDtoToJson(
+        VisitNextPendingResidentDto instance) =>
+    <String, dynamic>{
+      'visitId': instance.visitId,
+      'localId': instance.localId,
+      'userId': instance.userId,
+      'localName': instance.localName,
+      'userName': instance.userName,
+      'abbreviation': instance.abbreviation,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'userImage': instance.userImage,
       'rating': instance.rating,
       'visitDate': instance.visitDate?.toIso8601String(),
       'startHour': instance.startHour,

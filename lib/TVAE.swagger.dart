@@ -1182,14 +1182,14 @@ abstract class TVAE extends ChopperService {
 
   ///
   Future<chopper.Response<String>> apiSchedulePost(
-      {required ScheduleDto? body}) {
+      {required SchedulePostDto? body}) {
     return _apiSchedulePost(body: body);
   }
 
   ///
   @Post(path: '/api/Schedule')
   Future<chopper.Response<String>> _apiSchedulePost(
-      {@Body() required ScheduleDto? body});
+      {@Body() required SchedulePostDto? body});
 
   ///
   ///@param Page
@@ -1213,6 +1213,17 @@ abstract class TVAE extends ChopperService {
       {@Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('PageSize') required int? pageSize});
+
+  ///
+  Future<chopper.Response<bool>> apiScheduleAddRangePost(
+      {required List<SchedulePostDto>? body}) {
+    return _apiScheduleAddRangePost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Schedule/AddRange')
+  Future<chopper.Response<bool>> _apiScheduleAddRangePost(
+      {@Body() required List<SchedulePostDto>? body});
 
   ///
   ///@param id
@@ -1254,6 +1265,38 @@ abstract class TVAE extends ChopperService {
   @Delete(path: '/api/Schedule/{id}')
   Future<chopper.Response<bool>> _apiScheduleIdDelete(
       {@Path('id') required String? id});
+
+  ///
+  ///@param residentId
+  Future<chopper.Response<ScheduleDto>> apiScheduleByResidentResidentIdGet(
+      {required String? residentId}) {
+    generatedMapping.putIfAbsent(
+        ScheduleDto, () => ScheduleDto.fromJsonFactory);
+
+    return _apiScheduleByResidentResidentIdGet(residentId: residentId);
+  }
+
+  ///
+  ///@param residentId
+  @Get(path: '/api/Schedule/ByResident/{residentId}')
+  Future<chopper.Response<ScheduleDto>> _apiScheduleByResidentResidentIdGet(
+      {@Path('residentId') required String? residentId});
+
+  ///
+  ///@param residentId
+  Future<chopper.Response<BusyDatesDto>> apiScheduleBusyDatesResidentIdGet(
+      {required String? residentId}) {
+    generatedMapping.putIfAbsent(
+        BusyDatesDto, () => BusyDatesDto.fromJsonFactory);
+
+    return _apiScheduleBusyDatesResidentIdGet(residentId: residentId);
+  }
+
+  ///
+  ///@param residentId
+  @Get(path: '/api/Schedule/BusyDates/{residentId}')
+  Future<chopper.Response<BusyDatesDto>> _apiScheduleBusyDatesResidentIdGet(
+      {@Path('residentId') required String? residentId});
 
   ///
   Future<chopper.Response<List<ScreenDto>>> apiScreenGet() {
@@ -1511,6 +1554,22 @@ abstract class TVAE extends ChopperService {
       {@Path('id') required String? id});
 
   ///
+  ///@param id
+  Future<chopper.Response<List<SubdepartmentDto>>>
+      apiSubdepartmentByDepartmentIdGet({required String? id}) {
+    generatedMapping.putIfAbsent(
+        SubdepartmentDto, () => SubdepartmentDto.fromJsonFactory);
+
+    return _apiSubdepartmentByDepartmentIdGet(id: id);
+  }
+
+  ///
+  ///@param id
+  @Get(path: '/api/Subdepartment/byDepartment/{id}')
+  Future<chopper.Response<List<SubdepartmentDto>>>
+      _apiSubdepartmentByDepartmentIdGet({@Path('id') required String? id});
+
+  ///
   Future<chopper.Response<List<AppUserDto>>> apiUserGet() {
     generatedMapping.putIfAbsent(AppUserDto, () => AppUserDto.fromJsonFactory);
 
@@ -1709,6 +1768,37 @@ abstract class TVAE extends ChopperService {
           @Query('PageSize') required int? pageSize});
 
   ///
+  ///@param id
+  Future<chopper.Response<EditUserResponse>> apiUserEditProviderIdPut(
+      {required String? id, required ProviderPutDto? body}) {
+    generatedMapping.putIfAbsent(
+        EditUserResponse, () => EditUserResponse.fromJsonFactory);
+
+    return _apiUserEditProviderIdPut(id: id, body: body);
+  }
+
+  ///
+  ///@param id
+  @Put(path: '/api/User/EditProvider/{id}')
+  Future<chopper.Response<EditUserResponse>> _apiUserEditProviderIdPut(
+      {@Path('id') required String? id, @Body() required ProviderPutDto? body});
+
+  ///
+  ///@param phone
+  Future<chopper.Response<AppUserDto>> apiUserByPhonePhoneGet(
+      {required String? phone}) {
+    generatedMapping.putIfAbsent(AppUserDto, () => AppUserDto.fromJsonFactory);
+
+    return _apiUserByPhonePhoneGet(phone: phone);
+  }
+
+  ///
+  ///@param phone
+  @Get(path: '/api/User/ByPhone/{phone}')
+  Future<chopper.Response<AppUserDto>> _apiUserByPhonePhoneGet(
+      {@Path('phone') required String? phone});
+
+  ///
   Future<chopper.Response<List<VisitDto>>> apiVisitGet() {
     generatedMapping.putIfAbsent(VisitDto, () => VisitDto.fromJsonFactory);
 
@@ -1851,6 +1941,22 @@ abstract class TVAE extends ChopperService {
       @Query('PageSize') required int? pageSize});
 
   ///
+  ///@param visitId
+  Future<chopper.Response<VisitDetailsDto>> apiVisitDetailVisitIdGet(
+      {required String? visitId}) {
+    generatedMapping.putIfAbsent(
+        VisitDetailsDto, () => VisitDetailsDto.fromJsonFactory);
+
+    return _apiVisitDetailVisitIdGet(visitId: visitId);
+  }
+
+  ///
+  ///@param visitId
+  @Get(path: '/api/Visit/Detail/{visitId}')
+  Future<chopper.Response<VisitDetailsDto>> _apiVisitDetailVisitIdGet(
+      {@Path('visitId') required String? visitId});
+
+  ///
   ///@param userId
   ///@param Page
   ///@param Search
@@ -1882,20 +1988,21 @@ abstract class TVAE extends ChopperService {
           @Query('PageSize') required int? pageSize});
 
   ///
-  ///@param visitId
-  Future<chopper.Response<VisitDetailsDto>> apiVisitDetailVisitIdGet(
-      {required String? visitId}) {
-    generatedMapping.putIfAbsent(
-        VisitDetailsDto, () => VisitDetailsDto.fromJsonFactory);
+  ///@param residentId
+  Future<chopper.Response<VisitNextPendingResidentDto>>
+      apiVisitNextPendingResidentResidentIdGet({required String? residentId}) {
+    generatedMapping.putIfAbsent(VisitNextPendingResidentDto,
+        () => VisitNextPendingResidentDto.fromJsonFactory);
 
-    return _apiVisitDetailVisitIdGet(visitId: visitId);
+    return _apiVisitNextPendingResidentResidentIdGet(residentId: residentId);
   }
 
   ///
-  ///@param visitId
-  @Get(path: '/api/Visit/Detail/{visitId}')
-  Future<chopper.Response<VisitDetailsDto>> _apiVisitDetailVisitIdGet(
-      {@Path('visitId') required String? visitId});
+  ///@param residentId
+  @Get(path: '/api/Visit/NextPendingResident/{residentId}')
+  Future<chopper.Response<VisitNextPendingResidentDto>>
+      _apiVisitNextPendingResidentResidentIdGet(
+          {@Path('residentId') required String? residentId});
 
   ///
   Future<chopper.Response<List<VisitStatusDto>>> apiVisitStatusGet() {
@@ -1989,7 +2096,7 @@ abstract class TVAE extends ChopperService {
 class AcademicStudiesDto {
   AcademicStudiesDto({
     this.academicStudiesId,
-    required this.userId,
+    this.userId,
     this.degree,
     this.school,
   });
@@ -2000,7 +2107,7 @@ class AcademicStudiesDto {
   @JsonKey(name: 'academicStudiesId')
   final String? academicStudiesId;
   @JsonKey(name: 'userId')
-  final String userId;
+  final String? userId;
   @JsonKey(name: 'degree')
   final String? degree;
   @JsonKey(name: 'school')
@@ -5157,6 +5264,196 @@ extension $ProviderProfileDtoExtension on ProviderProfileDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ProviderPutDto {
+  ProviderPutDto({
+    this.imageFile,
+    this.name,
+    required this.firstName,
+    required this.lastName,
+    this.url,
+    this.countryCode,
+    this.titleAbbreviation,
+    this.gender,
+    required this.phone,
+    this.country,
+    this.city,
+    this.address,
+    this.birthDate,
+    this.costPerAppointment,
+    this.localId,
+    this.subDepartments,
+    this.academicStudies,
+    this.schedules,
+  });
+
+  factory ProviderPutDto.fromJson(Map<String, dynamic> json) =>
+      _$ProviderPutDtoFromJson(json);
+
+  @JsonKey(name: 'imageFile')
+  final String? imageFile;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'firstName')
+  final String firstName;
+  @JsonKey(name: 'lastName')
+  final String lastName;
+  @JsonKey(name: 'url')
+  final String? url;
+  @JsonKey(name: 'countryCode')
+  final String? countryCode;
+  @JsonKey(name: 'titleAbbreviation')
+  final String? titleAbbreviation;
+  @JsonKey(
+      name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
+  final enums.GenderEnum? gender;
+  @JsonKey(name: 'phone')
+  final String phone;
+  @JsonKey(name: 'country')
+  final String? country;
+  @JsonKey(name: 'city')
+  final String? city;
+  @JsonKey(name: 'address')
+  final String? address;
+  @JsonKey(name: 'birthDate')
+  final DateTime? birthDate;
+  @JsonKey(name: 'costPerAppointment')
+  final double? costPerAppointment;
+  @JsonKey(name: 'localId')
+  final String? localId;
+  @JsonKey(name: 'subDepartments', defaultValue: <String>[])
+  final List<String>? subDepartments;
+  @JsonKey(name: 'academicStudies', defaultValue: <AcademicStudiesDto>[])
+  final List<AcademicStudiesDto>? academicStudies;
+  @JsonKey(name: 'schedules', defaultValue: <ScheduleDto>[])
+  final List<ScheduleDto>? schedules;
+  static const fromJsonFactory = _$ProviderPutDtoFromJson;
+  static const toJsonFactory = _$ProviderPutDtoToJson;
+  Map<String, dynamic> toJson() => _$ProviderPutDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ProviderPutDto &&
+            (identical(other.imageFile, imageFile) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageFile, imageFile)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.countryCode, countryCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.countryCode, countryCode)) &&
+            (identical(other.titleAbbreviation, titleAbbreviation) ||
+                const DeepCollectionEquality()
+                    .equals(other.titleAbbreviation, titleAbbreviation)) &&
+            (identical(other.gender, gender) ||
+                const DeepCollectionEquality().equals(other.gender, gender)) &&
+            (identical(other.phone, phone) ||
+                const DeepCollectionEquality().equals(other.phone, phone)) &&
+            (identical(other.country, country) ||
+                const DeepCollectionEquality()
+                    .equals(other.country, country)) &&
+            (identical(other.city, city) ||
+                const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.birthDate, birthDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.birthDate, birthDate)) &&
+            (identical(other.costPerAppointment, costPerAppointment) ||
+                const DeepCollectionEquality()
+                    .equals(other.costPerAppointment, costPerAppointment)) &&
+            (identical(other.localId, localId) ||
+                const DeepCollectionEquality()
+                    .equals(other.localId, localId)) &&
+            (identical(other.subDepartments, subDepartments) ||
+                const DeepCollectionEquality()
+                    .equals(other.subDepartments, subDepartments)) &&
+            (identical(other.academicStudies, academicStudies) ||
+                const DeepCollectionEquality()
+                    .equals(other.academicStudies, academicStudies)) &&
+            (identical(other.schedules, schedules) ||
+                const DeepCollectionEquality()
+                    .equals(other.schedules, schedules)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(imageFile) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(countryCode) ^
+      const DeepCollectionEquality().hash(titleAbbreviation) ^
+      const DeepCollectionEquality().hash(gender) ^
+      const DeepCollectionEquality().hash(phone) ^
+      const DeepCollectionEquality().hash(country) ^
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(birthDate) ^
+      const DeepCollectionEquality().hash(costPerAppointment) ^
+      const DeepCollectionEquality().hash(localId) ^
+      const DeepCollectionEquality().hash(subDepartments) ^
+      const DeepCollectionEquality().hash(academicStudies) ^
+      const DeepCollectionEquality().hash(schedules) ^
+      runtimeType.hashCode;
+}
+
+extension $ProviderPutDtoExtension on ProviderPutDto {
+  ProviderPutDto copyWith(
+      {String? imageFile,
+      String? name,
+      String? firstName,
+      String? lastName,
+      String? url,
+      String? countryCode,
+      String? titleAbbreviation,
+      enums.GenderEnum? gender,
+      String? phone,
+      String? country,
+      String? city,
+      String? address,
+      DateTime? birthDate,
+      double? costPerAppointment,
+      String? localId,
+      List<String>? subDepartments,
+      List<AcademicStudiesDto>? academicStudies,
+      List<ScheduleDto>? schedules}) {
+    return ProviderPutDto(
+        imageFile: imageFile ?? this.imageFile,
+        name: name ?? this.name,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        url: url ?? this.url,
+        countryCode: countryCode ?? this.countryCode,
+        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
+        gender: gender ?? this.gender,
+        phone: phone ?? this.phone,
+        country: country ?? this.country,
+        city: city ?? this.city,
+        address: address ?? this.address,
+        birthDate: birthDate ?? this.birthDate,
+        costPerAppointment: costPerAppointment ?? this.costPerAppointment,
+        localId: localId ?? this.localId,
+        subDepartments: subDepartments ?? this.subDepartments,
+        academicStudies: academicStudies ?? this.academicStudies,
+        schedules: schedules ?? this.schedules);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class RatingDto {
   RatingDto({
     this.ratingId,
@@ -5728,6 +6025,9 @@ class ScheduleDto {
     this.day,
     required this.hourOpen,
     required this.hourClose,
+    this.secondHourOpen,
+    this.secondHourClose,
+    this.orderDay,
     this.active,
   });
 
@@ -5742,6 +6042,12 @@ class ScheduleDto {
   final String hourOpen;
   @JsonKey(name: 'hourClose')
   final String hourClose;
+  @JsonKey(name: 'secondHourOpen')
+  final String? secondHourOpen;
+  @JsonKey(name: 'secondHourClose')
+  final String? secondHourClose;
+  @JsonKey(name: 'orderDay')
+  final int? orderDay;
   @JsonKey(name: 'active')
   final bool? active;
   static const fromJsonFactory = _$ScheduleDtoFromJson;
@@ -5766,6 +6072,15 @@ class ScheduleDto {
             (identical(other.hourClose, hourClose) ||
                 const DeepCollectionEquality()
                     .equals(other.hourClose, hourClose)) &&
+            (identical(other.secondHourOpen, secondHourOpen) ||
+                const DeepCollectionEquality()
+                    .equals(other.secondHourOpen, secondHourOpen)) &&
+            (identical(other.secondHourClose, secondHourClose) ||
+                const DeepCollectionEquality()
+                    .equals(other.secondHourClose, secondHourClose)) &&
+            (identical(other.orderDay, orderDay) ||
+                const DeepCollectionEquality()
+                    .equals(other.orderDay, orderDay)) &&
             (identical(other.active, active) ||
                 const DeepCollectionEquality().equals(other.active, active)));
   }
@@ -5776,6 +6091,9 @@ class ScheduleDto {
       const DeepCollectionEquality().hash(day) ^
       const DeepCollectionEquality().hash(hourOpen) ^
       const DeepCollectionEquality().hash(hourClose) ^
+      const DeepCollectionEquality().hash(secondHourOpen) ^
+      const DeepCollectionEquality().hash(secondHourClose) ^
+      const DeepCollectionEquality().hash(orderDay) ^
       const DeepCollectionEquality().hash(active) ^
       runtimeType.hashCode;
 }
@@ -5786,12 +6104,18 @@ extension $ScheduleDtoExtension on ScheduleDto {
       String? day,
       String? hourOpen,
       String? hourClose,
+      String? secondHourOpen,
+      String? secondHourClose,
+      int? orderDay,
       bool? active}) {
     return ScheduleDto(
         scheduleId: scheduleId ?? this.scheduleId,
         day: day ?? this.day,
         hourOpen: hourOpen ?? this.hourOpen,
         hourClose: hourClose ?? this.hourClose,
+        secondHourOpen: secondHourOpen ?? this.secondHourOpen,
+        secondHourClose: secondHourClose ?? this.secondHourClose,
+        orderDay: orderDay ?? this.orderDay,
         active: active ?? this.active);
   }
 }
@@ -5869,6 +6193,124 @@ extension $ScheduleDtoPagedResultExtension on ScheduleDtoPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SchedulePostDto {
+  SchedulePostDto({
+    this.scheduleId,
+    this.day,
+    required this.hourOpen,
+    required this.hourClose,
+    this.secondHourOpen,
+    this.secondHourClose,
+    this.orderDay,
+    this.active,
+    required this.userId,
+    required this.localId,
+  });
+
+  factory SchedulePostDto.fromJson(Map<String, dynamic> json) =>
+      _$SchedulePostDtoFromJson(json);
+
+  @JsonKey(name: 'scheduleId')
+  final String? scheduleId;
+  @JsonKey(name: 'day')
+  final String? day;
+  @JsonKey(name: 'hourOpen')
+  final String hourOpen;
+  @JsonKey(name: 'hourClose')
+  final String hourClose;
+  @JsonKey(name: 'secondHourOpen')
+  final String? secondHourOpen;
+  @JsonKey(name: 'secondHourClose')
+  final String? secondHourClose;
+  @JsonKey(name: 'orderDay')
+  final int? orderDay;
+  @JsonKey(name: 'active')
+  final bool? active;
+  @JsonKey(name: 'userId')
+  final String userId;
+  @JsonKey(name: 'localId')
+  final String localId;
+  static const fromJsonFactory = _$SchedulePostDtoFromJson;
+  static const toJsonFactory = _$SchedulePostDtoToJson;
+  Map<String, dynamic> toJson() => _$SchedulePostDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SchedulePostDto &&
+            (identical(other.scheduleId, scheduleId) ||
+                const DeepCollectionEquality()
+                    .equals(other.scheduleId, scheduleId)) &&
+            (identical(other.day, day) ||
+                const DeepCollectionEquality().equals(other.day, day)) &&
+            (identical(other.hourOpen, hourOpen) ||
+                const DeepCollectionEquality()
+                    .equals(other.hourOpen, hourOpen)) &&
+            (identical(other.hourClose, hourClose) ||
+                const DeepCollectionEquality()
+                    .equals(other.hourClose, hourClose)) &&
+            (identical(other.secondHourOpen, secondHourOpen) ||
+                const DeepCollectionEquality()
+                    .equals(other.secondHourOpen, secondHourOpen)) &&
+            (identical(other.secondHourClose, secondHourClose) ||
+                const DeepCollectionEquality()
+                    .equals(other.secondHourClose, secondHourClose)) &&
+            (identical(other.orderDay, orderDay) ||
+                const DeepCollectionEquality()
+                    .equals(other.orderDay, orderDay)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.localId, localId) ||
+                const DeepCollectionEquality().equals(other.localId, localId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(scheduleId) ^
+      const DeepCollectionEquality().hash(day) ^
+      const DeepCollectionEquality().hash(hourOpen) ^
+      const DeepCollectionEquality().hash(hourClose) ^
+      const DeepCollectionEquality().hash(secondHourOpen) ^
+      const DeepCollectionEquality().hash(secondHourClose) ^
+      const DeepCollectionEquality().hash(orderDay) ^
+      const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(localId) ^
+      runtimeType.hashCode;
+}
+
+extension $SchedulePostDtoExtension on SchedulePostDto {
+  SchedulePostDto copyWith(
+      {String? scheduleId,
+      String? day,
+      String? hourOpen,
+      String? hourClose,
+      String? secondHourOpen,
+      String? secondHourClose,
+      int? orderDay,
+      bool? active,
+      String? userId,
+      String? localId}) {
+    return SchedulePostDto(
+        scheduleId: scheduleId ?? this.scheduleId,
+        day: day ?? this.day,
+        hourOpen: hourOpen ?? this.hourOpen,
+        hourClose: hourClose ?? this.hourClose,
+        secondHourOpen: secondHourOpen ?? this.secondHourOpen,
+        secondHourClose: secondHourClose ?? this.secondHourClose,
+        orderDay: orderDay ?? this.orderDay,
+        active: active ?? this.active,
+        userId: userId ?? this.userId,
+        localId: localId ?? this.localId);
   }
 }
 
@@ -7112,6 +7554,152 @@ extension $VisitNextPendingDtoExtension on VisitNextPendingDto {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         doctorImage: doctorImage ?? this.doctorImage,
+        rating: rating ?? this.rating,
+        visitDate: visitDate ?? this.visitDate,
+        startHour: startHour ?? this.startHour,
+        endHour: endHour ?? this.endHour);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class VisitNextPendingResidentDto {
+  VisitNextPendingResidentDto({
+    this.visitId,
+    this.localId,
+    this.userId,
+    this.localName,
+    this.userName,
+    this.abbreviation,
+    this.firstName,
+    this.lastName,
+    this.userImage,
+    this.rating,
+    this.visitDate,
+    this.startHour,
+    this.endHour,
+  });
+
+  factory VisitNextPendingResidentDto.fromJson(Map<String, dynamic> json) =>
+      _$VisitNextPendingResidentDtoFromJson(json);
+
+  @JsonKey(name: 'visitId')
+  final String? visitId;
+  @JsonKey(name: 'localId')
+  final String? localId;
+  @JsonKey(name: 'userId')
+  final String? userId;
+  @JsonKey(name: 'localName')
+  final String? localName;
+  @JsonKey(name: 'userName')
+  final String? userName;
+  @JsonKey(name: 'abbreviation')
+  final String? abbreviation;
+  @JsonKey(name: 'firstName')
+  final String? firstName;
+  @JsonKey(name: 'lastName')
+  final String? lastName;
+  @JsonKey(name: 'userImage')
+  final String? userImage;
+  @JsonKey(name: 'rating')
+  final double? rating;
+  @JsonKey(name: 'visitDate')
+  final DateTime? visitDate;
+  @JsonKey(name: 'startHour')
+  final String? startHour;
+  @JsonKey(name: 'endHour')
+  final String? endHour;
+  static const fromJsonFactory = _$VisitNextPendingResidentDtoFromJson;
+  static const toJsonFactory = _$VisitNextPendingResidentDtoToJson;
+  Map<String, dynamic> toJson() => _$VisitNextPendingResidentDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is VisitNextPendingResidentDto &&
+            (identical(other.visitId, visitId) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitId, visitId)) &&
+            (identical(other.localId, localId) ||
+                const DeepCollectionEquality()
+                    .equals(other.localId, localId)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.localName, localName) ||
+                const DeepCollectionEquality()
+                    .equals(other.localName, localName)) &&
+            (identical(other.userName, userName) ||
+                const DeepCollectionEquality()
+                    .equals(other.userName, userName)) &&
+            (identical(other.abbreviation, abbreviation) ||
+                const DeepCollectionEquality()
+                    .equals(other.abbreviation, abbreviation)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.userImage, userImage) ||
+                const DeepCollectionEquality()
+                    .equals(other.userImage, userImage)) &&
+            (identical(other.rating, rating) ||
+                const DeepCollectionEquality().equals(other.rating, rating)) &&
+            (identical(other.visitDate, visitDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitDate, visitDate)) &&
+            (identical(other.startHour, startHour) ||
+                const DeepCollectionEquality()
+                    .equals(other.startHour, startHour)) &&
+            (identical(other.endHour, endHour) ||
+                const DeepCollectionEquality().equals(other.endHour, endHour)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(visitId) ^
+      const DeepCollectionEquality().hash(localId) ^
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(localName) ^
+      const DeepCollectionEquality().hash(userName) ^
+      const DeepCollectionEquality().hash(abbreviation) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(userImage) ^
+      const DeepCollectionEquality().hash(rating) ^
+      const DeepCollectionEquality().hash(visitDate) ^
+      const DeepCollectionEquality().hash(startHour) ^
+      const DeepCollectionEquality().hash(endHour) ^
+      runtimeType.hashCode;
+}
+
+extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
+  VisitNextPendingResidentDto copyWith(
+      {String? visitId,
+      String? localId,
+      String? userId,
+      String? localName,
+      String? userName,
+      String? abbreviation,
+      String? firstName,
+      String? lastName,
+      String? userImage,
+      double? rating,
+      DateTime? visitDate,
+      String? startHour,
+      String? endHour}) {
+    return VisitNextPendingResidentDto(
+        visitId: visitId ?? this.visitId,
+        localId: localId ?? this.localId,
+        userId: userId ?? this.userId,
+        localName: localName ?? this.localName,
+        userName: userName ?? this.userName,
+        abbreviation: abbreviation ?? this.abbreviation,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        userImage: userImage ?? this.userImage,
         rating: rating ?? this.rating,
         visitDate: visitDate ?? this.visitDate,
         startHour: startHour ?? this.startHour,
