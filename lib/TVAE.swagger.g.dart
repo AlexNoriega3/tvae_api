@@ -675,8 +675,8 @@ Map<String, dynamic> _$MostVisitedDtoToJson(MostVisitedDto instance) =>
 NotificationsDto _$NotificationsDtoFromJson(Map<String, dynamic> json) =>
     NotificationsDto(
       notificationId: json['notificationId'] as String?,
-      toUserId: json['toUserId'] as String,
-      fromUserId: json['fromUserId'] as String,
+      receiverId: json['receiverId'] as String,
+      transmitterId: json['transmitterId'] as String,
       title: json['title'] as String,
       message: json['message'] as String,
       isRead: json['isRead'] as bool?,
@@ -686,8 +686,8 @@ NotificationsDto _$NotificationsDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$NotificationsDtoToJson(NotificationsDto instance) =>
     <String, dynamic>{
       'notificationId': instance.notificationId,
-      'toUserId': instance.toUserId,
-      'fromUserId': instance.fromUserId,
+      'receiverId': instance.receiverId,
+      'transmitterId': instance.transmitterId,
       'title': instance.title,
       'message': instance.message,
       'isRead': instance.isRead,
@@ -715,6 +715,50 @@ Map<String, dynamic> _$NotificationsDtoPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+NotificationsResponseDto _$NotificationsResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    NotificationsResponseDto(
+      notificationId: json['notificationId'] as String?,
+      receiverId: json['receiverId'] as String,
+      transmitterId: json['transmitterId'] as String,
+      title: json['title'] as String,
+      message: json['message'] as String,
+      isRead: json['isRead'] as bool?,
+      ignore: json['ignore'] as bool?,
+      userId: json['userId'] as String?,
+      image: json['image'] as String?,
+      email: json['email'] as String?,
+      name: json['name'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      titleAbbreviation: json['titleAbbreviation'] as String?,
+      priority: notificationPriorityFromJson(json['priority']),
+      viewed: json['viewed'] == null
+          ? null
+          : DateTime.parse(json['viewed'] as String),
+    );
+
+Map<String, dynamic> _$NotificationsResponseDtoToJson(
+        NotificationsResponseDto instance) =>
+    <String, dynamic>{
+      'notificationId': instance.notificationId,
+      'receiverId': instance.receiverId,
+      'transmitterId': instance.transmitterId,
+      'title': instance.title,
+      'message': instance.message,
+      'isRead': instance.isRead,
+      'ignore': instance.ignore,
+      'userId': instance.userId,
+      'image': instance.image,
+      'email': instance.email,
+      'name': instance.name,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'titleAbbreviation': instance.titleAbbreviation,
+      'priority': notificationPriorityToJson(instance.priority),
+      'viewed': instance.viewed?.toIso8601String(),
     };
 
 ProblemDetails _$ProblemDetailsFromJson(Map<String, dynamic> json) =>
@@ -946,6 +990,76 @@ Map<String, dynamic> _$RatingDtoPagedResultToJson(
       'recordNumber': instance.recordNumber,
       'totalPages': instance.totalPages,
       'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+RatingResponseDto _$RatingResponseDtoFromJson(Map<String, dynamic> json) =>
+    RatingResponseDto(
+      ratingId: json['ratingId'] as String?,
+      createDate: json['createDate'] == null
+          ? null
+          : DateTime.parse(json['createDate'] as String),
+      score: (json['score'] as num?)?.toDouble(),
+      comments: json['comments'] as String?,
+      user: json['user'] == null
+          ? null
+          : RatingUserDto.fromJson(json['user'] as Map<String, dynamic>),
+      resident: json['resident'] == null
+          ? null
+          : RatingUserDto.fromJson(json['resident'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$RatingResponseDtoToJson(RatingResponseDto instance) =>
+    <String, dynamic>{
+      'ratingId': instance.ratingId,
+      'createDate': instance.createDate?.toIso8601String(),
+      'score': instance.score,
+      'comments': instance.comments,
+      'user': instance.user?.toJson(),
+      'resident': instance.resident?.toJson(),
+    };
+
+RatingResponseDtoPagedResult _$RatingResponseDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    RatingResponseDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map(
+                  (e) => RatingResponseDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$RatingResponseDtoPagedResultToJson(
+        RatingResponseDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
+RatingUserDto _$RatingUserDtoFromJson(Map<String, dynamic> json) =>
+    RatingUserDto(
+      id: json['id'] as String?,
+      email: json['email'] as String?,
+      image: json['image'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      titleAbbreviation: json['titleAbbreviation'] as String?,
+    );
+
+Map<String, dynamic> _$RatingUserDtoToJson(RatingUserDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'email': instance.email,
+      'image': instance.image,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'titleAbbreviation': instance.titleAbbreviation,
     };
 
 ResetPasswordModel _$ResetPasswordModelFromJson(Map<String, dynamic> json) =>
@@ -1453,6 +1567,8 @@ VisitNextPendingResidentDto _$VisitNextPendingResidentDtoFromJson(
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       userImage: json['userImage'] as String?,
+      reason: json['reason'] as String?,
+      comments: json['comments'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
       visitDate: json['visitDate'] == null
           ? null
@@ -1473,10 +1589,37 @@ Map<String, dynamic> _$VisitNextPendingResidentDtoToJson(
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'userImage': instance.userImage,
+      'reason': instance.reason,
+      'comments': instance.comments,
       'rating': instance.rating,
       'visitDate': instance.visitDate?.toIso8601String(),
       'startHour': instance.startHour,
       'endHour': instance.endHour,
+    };
+
+VisitNextPendingResidentDtoPagedResult
+    _$VisitNextPendingResidentDtoPagedResultFromJson(
+            Map<String, dynamic> json) =>
+        VisitNextPendingResidentDtoPagedResult(
+          totalCount: json['totalCount'] as int?,
+          pageNumber: json['pageNumber'] as int?,
+          recordNumber: json['recordNumber'] as int?,
+          totalPages: json['totalPages'] as int?,
+          items: (json['items'] as List<dynamic>?)
+                  ?.map((e) => VisitNextPendingResidentDto.fromJson(
+                      e as Map<String, dynamic>))
+                  .toList() ??
+              [],
+        );
+
+Map<String, dynamic> _$VisitNextPendingResidentDtoPagedResultToJson(
+        VisitNextPendingResidentDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
 VisitStatusDto _$VisitStatusDtoFromJson(Map<String, dynamic> json) =>

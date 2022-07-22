@@ -908,6 +908,22 @@ abstract class TVAE extends ChopperService {
       {@Body() required String? body});
 
   ///
+  ///@param id
+  Future<chopper.Response<NotificationsResponseDto>>
+      apiNotificationsByUserIdGet({required String? id}) {
+    generatedMapping.putIfAbsent(NotificationsResponseDto,
+        () => NotificationsResponseDto.fromJsonFactory);
+
+    return _apiNotificationsByUserIdGet(id: id);
+  }
+
+  ///
+  ///@param id
+  @Get(path: '/api/Notifications/ByUser/{id}')
+  Future<chopper.Response<NotificationsResponseDto>>
+      _apiNotificationsByUserIdGet({@Path('id') required String? id});
+
+  ///
   ///@param Page
   ///@param Search
   ///@param PageSize
@@ -1085,6 +1101,48 @@ abstract class TVAE extends ChopperService {
   @Get(path: '/api/Rating/byUser/{userId}')
   Future<chopper.Response<RatingDto>> _apiRatingByUserUserIdGet(
       {@Path('userId') required String? userId});
+
+  ///
+  ///@param UserId
+  ///@param OrderDescending
+  ///@param DescendingRating
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<RatingResponseDtoPagedResult>> apiRatingReviewsGet(
+      {required String? userId,
+      bool? orderDescending,
+      bool? descendingRating,
+      required int? page,
+      String? search,
+      required int? pageSize}) {
+    generatedMapping.putIfAbsent(RatingResponseDtoPagedResult,
+        () => RatingResponseDtoPagedResult.fromJsonFactory);
+
+    return _apiRatingReviewsGet(
+        userId: userId,
+        orderDescending: orderDescending,
+        descendingRating: descendingRating,
+        page: page,
+        search: search,
+        pageSize: pageSize);
+  }
+
+  ///
+  ///@param UserId
+  ///@param OrderDescending
+  ///@param DescendingRating
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Rating/Reviews')
+  Future<chopper.Response<RatingResponseDtoPagedResult>> _apiRatingReviewsGet(
+      {@Query('UserId') required String? userId,
+      @Query('OrderDescending') bool? orderDescending,
+      @Query('DescendingRating') bool? descendingRating,
+      @Query('Page') required int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') required int? pageSize});
 
   ///
   Future<chopper.Response<List<RoleDto>>> apiRoleGet() {
@@ -1820,13 +1878,15 @@ abstract class TVAE extends ChopperService {
       {@Body() required VisitDto? body});
 
   ///
+  ///@param UserId
   ///@param Code
   ///@param DateVisit
   ///@param Page
   ///@param Search
   ///@param PageSize
   Future<chopper.Response<VisitDtoPagedResult>> apiVisitSearchGet(
-      {String? code,
+      {required String? userId,
+      String? code,
       String? dateVisit,
       required int? page,
       String? search,
@@ -1835,6 +1895,7 @@ abstract class TVAE extends ChopperService {
         VisitDtoPagedResult, () => VisitDtoPagedResult.fromJsonFactory);
 
     return _apiVisitSearchGet(
+        userId: userId,
         code: code,
         dateVisit: dateVisit,
         page: page,
@@ -1843,6 +1904,7 @@ abstract class TVAE extends ChopperService {
   }
 
   ///
+  ///@param UserId
   ///@param Code
   ///@param DateVisit
   ///@param Page
@@ -1850,7 +1912,8 @@ abstract class TVAE extends ChopperService {
   ///@param PageSize
   @Get(path: '/api/Visit/Search')
   Future<chopper.Response<VisitDtoPagedResult>> _apiVisitSearchGet(
-      {@Query('Code') String? code,
+      {@Query('UserId') required String? userId,
+      @Query('Code') String? code,
       @Query('DateVisit') String? dateVisit,
       @Query('Page') required int? page,
       @Query('Search') String? search,
@@ -2003,6 +2066,72 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response<VisitNextPendingResidentDto>>
       _apiVisitNextPendingResidentResidentIdGet(
           {@Path('residentId') required String? residentId});
+
+  ///Obtiene el listado de visitas filtradas por fecha
+  ///@param residentId
+  ///@param date
+  Future<chopper.Response<VisitNextPendingResidentDto>>
+      apiVisitResidentResidentIdVistDateDateGet(
+          {required String? residentId, required String? date}) {
+    generatedMapping.putIfAbsent(VisitNextPendingResidentDto,
+        () => VisitNextPendingResidentDto.fromJsonFactory);
+
+    return _apiVisitResidentResidentIdVistDateDateGet(
+        residentId: residentId, date: date);
+  }
+
+  ///Obtiene el listado de visitas filtradas por fecha
+  ///@param residentId
+  ///@param date
+  @Get(path: '/api/Visit/resident/{residentId}/vistDate/{date}')
+  Future<chopper.Response<VisitNextPendingResidentDto>>
+      _apiVisitResidentResidentIdVistDateDateGet(
+          {@Path('residentId') required String? residentId,
+          @Path('date') required String? date});
+
+  ///
+  ///@param UserId
+  ///@param Code
+  ///@param DateVisit
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<VisitNextPendingResidentDtoPagedResult>>
+      apiVisitLatestGet(
+          {required String? userId,
+          String? code,
+          String? dateVisit,
+          required int? page,
+          String? search,
+          required int? pageSize}) {
+    generatedMapping.putIfAbsent(VisitNextPendingResidentDtoPagedResult,
+        () => VisitNextPendingResidentDtoPagedResult.fromJsonFactory);
+
+    return _apiVisitLatestGet(
+        userId: userId,
+        code: code,
+        dateVisit: dateVisit,
+        page: page,
+        search: search,
+        pageSize: pageSize);
+  }
+
+  ///
+  ///@param UserId
+  ///@param Code
+  ///@param DateVisit
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Visit/Latest')
+  Future<chopper.Response<VisitNextPendingResidentDtoPagedResult>>
+      _apiVisitLatestGet(
+          {@Query('UserId') required String? userId,
+          @Query('Code') String? code,
+          @Query('DateVisit') String? dateVisit,
+          @Query('Page') required int? page,
+          @Query('Search') String? search,
+          @Query('PageSize') required int? pageSize});
 
   ///
   Future<chopper.Response<List<VisitStatusDto>>> apiVisitStatusGet() {
@@ -4639,8 +4768,8 @@ extension $MostVisitedDtoExtension on MostVisitedDto {
 class NotificationsDto {
   NotificationsDto({
     this.notificationId,
-    required this.toUserId,
-    required this.fromUserId,
+    required this.receiverId,
+    required this.transmitterId,
     required this.title,
     required this.message,
     this.isRead,
@@ -4652,10 +4781,10 @@ class NotificationsDto {
 
   @JsonKey(name: 'notificationId')
   final String? notificationId;
-  @JsonKey(name: 'toUserId')
-  final String toUserId;
-  @JsonKey(name: 'fromUserId')
-  final String fromUserId;
+  @JsonKey(name: 'receiverId')
+  final String receiverId;
+  @JsonKey(name: 'transmitterId')
+  final String transmitterId;
   @JsonKey(name: 'title')
   final String title;
   @JsonKey(name: 'message')
@@ -4678,12 +4807,12 @@ class NotificationsDto {
             (identical(other.notificationId, notificationId) ||
                 const DeepCollectionEquality()
                     .equals(other.notificationId, notificationId)) &&
-            (identical(other.toUserId, toUserId) ||
+            (identical(other.receiverId, receiverId) ||
                 const DeepCollectionEquality()
-                    .equals(other.toUserId, toUserId)) &&
-            (identical(other.fromUserId, fromUserId) ||
+                    .equals(other.receiverId, receiverId)) &&
+            (identical(other.transmitterId, transmitterId) ||
                 const DeepCollectionEquality()
-                    .equals(other.fromUserId, fromUserId)) &&
+                    .equals(other.transmitterId, transmitterId)) &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.message, message) ||
@@ -4698,8 +4827,8 @@ class NotificationsDto {
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(notificationId) ^
-      const DeepCollectionEquality().hash(toUserId) ^
-      const DeepCollectionEquality().hash(fromUserId) ^
+      const DeepCollectionEquality().hash(receiverId) ^
+      const DeepCollectionEquality().hash(transmitterId) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(message) ^
       const DeepCollectionEquality().hash(isRead) ^
@@ -4710,16 +4839,16 @@ class NotificationsDto {
 extension $NotificationsDtoExtension on NotificationsDto {
   NotificationsDto copyWith(
       {String? notificationId,
-      String? toUserId,
-      String? fromUserId,
+      String? receiverId,
+      String? transmitterId,
       String? title,
       String? message,
       bool? isRead,
       bool? ignore}) {
     return NotificationsDto(
         notificationId: notificationId ?? this.notificationId,
-        toUserId: toUserId ?? this.toUserId,
-        fromUserId: fromUserId ?? this.fromUserId,
+        receiverId: receiverId ?? this.receiverId,
+        transmitterId: transmitterId ?? this.transmitterId,
         title: title ?? this.title,
         message: message ?? this.message,
         isRead: isRead ?? this.isRead,
@@ -4800,6 +4929,177 @@ extension $NotificationsDtoPagedResultExtension on NotificationsDtoPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class NotificationsResponseDto {
+  NotificationsResponseDto({
+    this.notificationId,
+    required this.receiverId,
+    required this.transmitterId,
+    required this.title,
+    required this.message,
+    this.isRead,
+    this.ignore,
+    this.userId,
+    this.image,
+    this.email,
+    this.name,
+    this.firstName,
+    this.lastName,
+    this.titleAbbreviation,
+    this.priority,
+    this.viewed,
+  });
+
+  factory NotificationsResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$NotificationsResponseDtoFromJson(json);
+
+  @JsonKey(name: 'notificationId')
+  final String? notificationId;
+  @JsonKey(name: 'receiverId')
+  final String receiverId;
+  @JsonKey(name: 'transmitterId')
+  final String transmitterId;
+  @JsonKey(name: 'title')
+  final String title;
+  @JsonKey(name: 'message')
+  final String message;
+  @JsonKey(name: 'isRead')
+  final bool? isRead;
+  @JsonKey(name: 'ignore')
+  final bool? ignore;
+  @JsonKey(name: 'userId')
+  final String? userId;
+  @JsonKey(name: 'image')
+  final String? image;
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'firstName')
+  final String? firstName;
+  @JsonKey(name: 'lastName')
+  final String? lastName;
+  @JsonKey(name: 'titleAbbreviation')
+  final String? titleAbbreviation;
+  @JsonKey(
+      name: 'priority',
+      toJson: notificationPriorityToJson,
+      fromJson: notificationPriorityFromJson)
+  final enums.NotificationPriority? priority;
+  @JsonKey(name: 'viewed')
+  final DateTime? viewed;
+  static const fromJsonFactory = _$NotificationsResponseDtoFromJson;
+  static const toJsonFactory = _$NotificationsResponseDtoToJson;
+  Map<String, dynamic> toJson() => _$NotificationsResponseDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is NotificationsResponseDto &&
+            (identical(other.notificationId, notificationId) ||
+                const DeepCollectionEquality()
+                    .equals(other.notificationId, notificationId)) &&
+            (identical(other.receiverId, receiverId) ||
+                const DeepCollectionEquality()
+                    .equals(other.receiverId, receiverId)) &&
+            (identical(other.transmitterId, transmitterId) ||
+                const DeepCollectionEquality()
+                    .equals(other.transmitterId, transmitterId)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality()
+                    .equals(other.message, message)) &&
+            (identical(other.isRead, isRead) ||
+                const DeepCollectionEquality().equals(other.isRead, isRead)) &&
+            (identical(other.ignore, ignore) ||
+                const DeepCollectionEquality().equals(other.ignore, ignore)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.titleAbbreviation, titleAbbreviation) ||
+                const DeepCollectionEquality()
+                    .equals(other.titleAbbreviation, titleAbbreviation)) &&
+            (identical(other.priority, priority) ||
+                const DeepCollectionEquality()
+                    .equals(other.priority, priority)) &&
+            (identical(other.viewed, viewed) ||
+                const DeepCollectionEquality().equals(other.viewed, viewed)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(notificationId) ^
+      const DeepCollectionEquality().hash(receiverId) ^
+      const DeepCollectionEquality().hash(transmitterId) ^
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(message) ^
+      const DeepCollectionEquality().hash(isRead) ^
+      const DeepCollectionEquality().hash(ignore) ^
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(image) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(titleAbbreviation) ^
+      const DeepCollectionEquality().hash(priority) ^
+      const DeepCollectionEquality().hash(viewed) ^
+      runtimeType.hashCode;
+}
+
+extension $NotificationsResponseDtoExtension on NotificationsResponseDto {
+  NotificationsResponseDto copyWith(
+      {String? notificationId,
+      String? receiverId,
+      String? transmitterId,
+      String? title,
+      String? message,
+      bool? isRead,
+      bool? ignore,
+      String? userId,
+      String? image,
+      String? email,
+      String? name,
+      String? firstName,
+      String? lastName,
+      String? titleAbbreviation,
+      enums.NotificationPriority? priority,
+      DateTime? viewed}) {
+    return NotificationsResponseDto(
+        notificationId: notificationId ?? this.notificationId,
+        receiverId: receiverId ?? this.receiverId,
+        transmitterId: transmitterId ?? this.transmitterId,
+        title: title ?? this.title,
+        message: message ?? this.message,
+        isRead: isRead ?? this.isRead,
+        ignore: ignore ?? this.ignore,
+        userId: userId ?? this.userId,
+        image: image ?? this.image,
+        email: email ?? this.email,
+        name: name ?? this.name,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
+        priority: priority ?? this.priority,
+        viewed: viewed ?? this.viewed);
   }
 }
 
@@ -5601,6 +5901,250 @@ extension $RatingDtoPagedResultExtension on RatingDtoPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class RatingResponseDto {
+  RatingResponseDto({
+    this.ratingId,
+    this.createDate,
+    this.score,
+    this.comments,
+    this.user,
+    this.resident,
+  });
+
+  factory RatingResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$RatingResponseDtoFromJson(json);
+
+  @JsonKey(name: 'ratingId')
+  final String? ratingId;
+  @JsonKey(name: 'createDate')
+  final DateTime? createDate;
+  @JsonKey(name: 'score')
+  final double? score;
+  @JsonKey(name: 'comments')
+  final String? comments;
+  @JsonKey(name: 'user')
+  final RatingUserDto? user;
+  @JsonKey(name: 'resident')
+  final RatingUserDto? resident;
+  static const fromJsonFactory = _$RatingResponseDtoFromJson;
+  static const toJsonFactory = _$RatingResponseDtoToJson;
+  Map<String, dynamic> toJson() => _$RatingResponseDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RatingResponseDto &&
+            (identical(other.ratingId, ratingId) ||
+                const DeepCollectionEquality()
+                    .equals(other.ratingId, ratingId)) &&
+            (identical(other.createDate, createDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.createDate, createDate)) &&
+            (identical(other.score, score) ||
+                const DeepCollectionEquality().equals(other.score, score)) &&
+            (identical(other.comments, comments) ||
+                const DeepCollectionEquality()
+                    .equals(other.comments, comments)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.resident, resident) ||
+                const DeepCollectionEquality()
+                    .equals(other.resident, resident)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(ratingId) ^
+      const DeepCollectionEquality().hash(createDate) ^
+      const DeepCollectionEquality().hash(score) ^
+      const DeepCollectionEquality().hash(comments) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(resident) ^
+      runtimeType.hashCode;
+}
+
+extension $RatingResponseDtoExtension on RatingResponseDto {
+  RatingResponseDto copyWith(
+      {String? ratingId,
+      DateTime? createDate,
+      double? score,
+      String? comments,
+      RatingUserDto? user,
+      RatingUserDto? resident}) {
+    return RatingResponseDto(
+        ratingId: ratingId ?? this.ratingId,
+        createDate: createDate ?? this.createDate,
+        score: score ?? this.score,
+        comments: comments ?? this.comments,
+        user: user ?? this.user,
+        resident: resident ?? this.resident);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class RatingResponseDtoPagedResult {
+  RatingResponseDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory RatingResponseDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$RatingResponseDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <RatingResponseDto>[])
+  final List<RatingResponseDto>? items;
+  static const fromJsonFactory = _$RatingResponseDtoPagedResultFromJson;
+  static const toJsonFactory = _$RatingResponseDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$RatingResponseDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RatingResponseDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $RatingResponseDtoPagedResultExtension
+    on RatingResponseDtoPagedResult {
+  RatingResponseDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<RatingResponseDto>? items}) {
+    return RatingResponseDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class RatingUserDto {
+  RatingUserDto({
+    this.id,
+    this.email,
+    this.image,
+    this.firstName,
+    this.lastName,
+    this.titleAbbreviation,
+  });
+
+  factory RatingUserDto.fromJson(Map<String, dynamic> json) =>
+      _$RatingUserDtoFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'image')
+  final String? image;
+  @JsonKey(name: 'firstName')
+  final String? firstName;
+  @JsonKey(name: 'lastName')
+  final String? lastName;
+  @JsonKey(name: 'titleAbbreviation')
+  final String? titleAbbreviation;
+  static const fromJsonFactory = _$RatingUserDtoFromJson;
+  static const toJsonFactory = _$RatingUserDtoToJson;
+  Map<String, dynamic> toJson() => _$RatingUserDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RatingUserDto &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.titleAbbreviation, titleAbbreviation) ||
+                const DeepCollectionEquality()
+                    .equals(other.titleAbbreviation, titleAbbreviation)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(image) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(titleAbbreviation) ^
+      runtimeType.hashCode;
+}
+
+extension $RatingUserDtoExtension on RatingUserDto {
+  RatingUserDto copyWith(
+      {String? id,
+      String? email,
+      String? image,
+      String? firstName,
+      String? lastName,
+      String? titleAbbreviation}) {
+    return RatingUserDto(
+        id: id ?? this.id,
+        email: email ?? this.email,
+        image: image ?? this.image,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation);
   }
 }
 
@@ -7573,6 +8117,8 @@ class VisitNextPendingResidentDto {
     this.firstName,
     this.lastName,
     this.userImage,
+    this.reason,
+    this.comments,
     this.rating,
     this.visitDate,
     this.startHour,
@@ -7600,6 +8146,10 @@ class VisitNextPendingResidentDto {
   final String? lastName;
   @JsonKey(name: 'userImage')
   final String? userImage;
+  @JsonKey(name: 'reason')
+  final String? reason;
+  @JsonKey(name: 'comments')
+  final String? comments;
   @JsonKey(name: 'rating')
   final double? rating;
   @JsonKey(name: 'visitDate')
@@ -7645,6 +8195,11 @@ class VisitNextPendingResidentDto {
             (identical(other.userImage, userImage) ||
                 const DeepCollectionEquality()
                     .equals(other.userImage, userImage)) &&
+            (identical(other.reason, reason) ||
+                const DeepCollectionEquality().equals(other.reason, reason)) &&
+            (identical(other.comments, comments) ||
+                const DeepCollectionEquality()
+                    .equals(other.comments, comments)) &&
             (identical(other.rating, rating) ||
                 const DeepCollectionEquality().equals(other.rating, rating)) &&
             (identical(other.visitDate, visitDate) ||
@@ -7668,6 +8223,8 @@ class VisitNextPendingResidentDto {
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
       const DeepCollectionEquality().hash(userImage) ^
+      const DeepCollectionEquality().hash(reason) ^
+      const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(rating) ^
       const DeepCollectionEquality().hash(visitDate) ^
       const DeepCollectionEquality().hash(startHour) ^
@@ -7686,6 +8243,8 @@ extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
       String? firstName,
       String? lastName,
       String? userImage,
+      String? reason,
+      String? comments,
       double? rating,
       DateTime? visitDate,
       String? startHour,
@@ -7700,10 +8259,92 @@ extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         userImage: userImage ?? this.userImage,
+        reason: reason ?? this.reason,
+        comments: comments ?? this.comments,
         rating: rating ?? this.rating,
         visitDate: visitDate ?? this.visitDate,
         startHour: startHour ?? this.startHour,
         endHour: endHour ?? this.endHour);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class VisitNextPendingResidentDtoPagedResult {
+  VisitNextPendingResidentDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory VisitNextPendingResidentDtoPagedResult.fromJson(
+          Map<String, dynamic> json) =>
+      _$VisitNextPendingResidentDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <VisitNextPendingResidentDto>[])
+  final List<VisitNextPendingResidentDto>? items;
+  static const fromJsonFactory =
+      _$VisitNextPendingResidentDtoPagedResultFromJson;
+  static const toJsonFactory = _$VisitNextPendingResidentDtoPagedResultToJson;
+  Map<String, dynamic> toJson() =>
+      _$VisitNextPendingResidentDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is VisitNextPendingResidentDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $VisitNextPendingResidentDtoPagedResultExtension
+    on VisitNextPendingResidentDtoPagedResult {
+  VisitNextPendingResidentDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<VisitNextPendingResidentDto>? items}) {
+    return VisitNextPendingResidentDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
   }
 }
 
@@ -8033,6 +8674,61 @@ List<enums.GenderEnum> genderEnumListFromJson(
   }
 
   return genderEnum.map((e) => genderEnumFromJson(e.toString())).toList();
+}
+
+String? notificationPriorityToJson(
+    enums.NotificationPriority? notificationPriority) {
+  return enums.$NotificationPriorityMap[notificationPriority];
+}
+
+enums.NotificationPriority notificationPriorityFromJson(
+  Object? notificationPriority, [
+  enums.NotificationPriority? defaultValue,
+]) {
+  if (notificationPriority is String) {
+    return enums.$NotificationPriorityMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() ==
+                notificationPriority.toLowerCase(),
+            orElse: () => const MapEntry(
+                enums.NotificationPriority.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  final parsedResult = defaultValue == null
+      ? null
+      : enums.$NotificationPriorityMap.entries
+          .firstWhereOrNull((element) => element.value == defaultValue)
+          ?.key;
+
+  return parsedResult ??
+      defaultValue ??
+      enums.NotificationPriority.swaggerGeneratedUnknown;
+}
+
+List<String> notificationPriorityListToJson(
+    List<enums.NotificationPriority>? notificationPriority) {
+  if (notificationPriority == null) {
+    return [];
+  }
+
+  return notificationPriority
+      .map((e) => enums.$NotificationPriorityMap[e]!)
+      .toList();
+}
+
+List<enums.NotificationPriority> notificationPriorityListFromJson(
+  List? notificationPriority, [
+  List<enums.NotificationPriority>? defaultValue,
+]) {
+  if (notificationPriority == null) {
+    return defaultValue ?? [];
+  }
+
+  return notificationPriority
+      .map((e) => notificationPriorityFromJson(e.toString()))
+      .toList();
 }
 
 typedef $JsonFactory<T> = T Function(Map<String, dynamic> json);

@@ -39,3 +39,23 @@ const $GenderEnumMap = {
   GenderEnum.mujer: 'Mujer',
   GenderEnum.ninguno: 'Ninguno'
 };
+
+enum NotificationPriority {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('Urgent')
+  urgent,
+  @JsonValue('High')
+  high,
+  @JsonValue('Medium')
+  medium,
+  @JsonValue('Low')
+  low
+}
+
+const $NotificationPriorityMap = {
+  NotificationPriority.urgent: 'Urgent',
+  NotificationPriority.high: 'High',
+  NotificationPriority.medium: 'Medium',
+  NotificationPriority.low: 'Low'
+};

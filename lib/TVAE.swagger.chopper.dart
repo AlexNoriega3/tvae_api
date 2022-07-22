@@ -549,6 +549,15 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<NotificationsResponseDto>> _apiNotificationsByUserIdGet(
+      {required String? id}) {
+    final $url = '/api/Notifications/ByUser/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client
+        .send<NotificationsResponseDto, NotificationsResponseDto>($request);
+  }
+
+  @override
   Future<Response<ProjectDtoPagedResult>> _apiProjectSearchGet(
       {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Project/Search';
@@ -656,6 +665,28 @@ class _$TVAE extends TVAE {
     final $url = '/api/Rating/byUser/${userId}';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<RatingDto, RatingDto>($request);
+  }
+
+  @override
+  Future<Response<RatingResponseDtoPagedResult>> _apiRatingReviewsGet(
+      {required String? userId,
+      bool? orderDescending,
+      bool? descendingRating,
+      required int? page,
+      String? search,
+      required int? pageSize}) {
+    final $url = '/api/Rating/Reviews';
+    final $params = <String, dynamic>{
+      'UserId': userId,
+      'OrderDescending': orderDescending,
+      'DescendingRating': descendingRating,
+      'Page': page,
+      'Search': search,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<RatingResponseDtoPagedResult,
+        RatingResponseDtoPagedResult>($request);
   }
 
   @override
@@ -1098,13 +1129,15 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<VisitDtoPagedResult>> _apiVisitSearchGet(
-      {String? code,
+      {required String? userId,
+      String? code,
       String? dateVisit,
       required int? page,
       String? search,
       required int? pageSize}) {
     final $url = '/api/Visit/Search';
     final $params = <String, dynamic>{
+      'UserId': userId,
       'Code': code,
       'DateVisit': dateVisit,
       'Page': page,
@@ -1197,6 +1230,38 @@ class _$TVAE extends TVAE {
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<VisitNextPendingResidentDto,
         VisitNextPendingResidentDto>($request);
+  }
+
+  @override
+  Future<Response<VisitNextPendingResidentDto>>
+      _apiVisitResidentResidentIdVistDateDateGet(
+          {required String? residentId, required String? date}) {
+    final $url = '/api/Visit/resident/${residentId}/vistDate/${date}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<VisitNextPendingResidentDto,
+        VisitNextPendingResidentDto>($request);
+  }
+
+  @override
+  Future<Response<VisitNextPendingResidentDtoPagedResult>> _apiVisitLatestGet(
+      {required String? userId,
+      String? code,
+      String? dateVisit,
+      required int? page,
+      String? search,
+      required int? pageSize}) {
+    final $url = '/api/Visit/Latest';
+    final $params = <String, dynamic>{
+      'UserId': userId,
+      'Code': code,
+      'DateVisit': dateVisit,
+      'Page': page,
+      'Search': search,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<VisitNextPendingResidentDtoPagedResult,
+        VisitNextPendingResidentDtoPagedResult>($request);
   }
 
   @override
