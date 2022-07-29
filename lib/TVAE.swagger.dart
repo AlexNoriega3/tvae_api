@@ -151,13 +151,13 @@ abstract class TVAE extends ChopperService {
       {@Body() required AuthResponseDto? body});
 
   ///
-  Future<chopper.Response> apiAccountLogoutPost() {
+  Future<chopper.Response<bool>> apiAccountLogoutPost() {
     return _apiAccountLogoutPost();
   }
 
   ///
   @Post(path: '/api/Account/logout', optionalBody: true)
-  Future<chopper.Response> _apiAccountLogoutPost();
+  Future<chopper.Response<bool>> _apiAccountLogoutPost();
 
   ///
   ///@param userEmail
@@ -206,14 +206,14 @@ abstract class TVAE extends ChopperService {
       {@Query('email') String? email});
 
   ///
-  Future<chopper.Response> apiAccountResetpasswordPost(
+  Future<chopper.Response<bool>> apiAccountResetpasswordPost(
       {required ResetPasswordModel? body}) {
     return _apiAccountResetpasswordPost(body: body);
   }
 
   ///
   @Post(path: '/api/Account/resetpassword')
-  Future<chopper.Response> _apiAccountResetpasswordPost(
+  Future<chopper.Response<bool>> _apiAccountResetpasswordPost(
       {@Body() required ResetPasswordModel? body});
 
   ///
@@ -469,6 +469,43 @@ abstract class TVAE extends ChopperService {
   @Delete(path: '/api/Department/{id}')
   Future<chopper.Response<bool>> _apiDepartmentIdDelete(
       {@Path('id') required String? id});
+
+  ///
+  ///@param LocalId
+  ///@param DateVisit
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<KioskoResponseDtoPagedResult>> apiKioskoSearchGet(
+      {required String? localId,
+      String? dateVisit,
+      required int? page,
+      String? search,
+      required int? pageSize}) {
+    generatedMapping.putIfAbsent(KioskoResponseDtoPagedResult,
+        () => KioskoResponseDtoPagedResult.fromJsonFactory);
+
+    return _apiKioskoSearchGet(
+        localId: localId,
+        dateVisit: dateVisit,
+        page: page,
+        search: search,
+        pageSize: pageSize);
+  }
+
+  ///
+  ///@param LocalId
+  ///@param DateVisit
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Kiosko/Search')
+  Future<chopper.Response<KioskoResponseDtoPagedResult>> _apiKioskoSearchGet(
+      {@Query('LocalId') required String? localId,
+      @Query('DateVisit') String? dateVisit,
+      @Query('Page') required int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') required int? pageSize});
 
   ///
   Future<chopper.Response<List<LevelDto>>> apiLevelGet() {
@@ -994,18 +1031,6 @@ abstract class TVAE extends ChopperService {
       {@Path('id') required String? id, @Body() required ProjectDto? body});
 
   ///
-  ///@param id
-  Future<chopper.Response<bool>> apiProjectIdDelete({required String? id}) {
-    return _apiProjectIdDelete(id: id);
-  }
-
-  ///
-  ///@param id
-  @Delete(path: '/api/Project/{id}')
-  Future<chopper.Response<bool>> _apiProjectIdDelete(
-      {@Path('id') required String? id});
-
-  ///
   Future<chopper.Response<List<RatingDto>>> apiRatingGet() {
     generatedMapping.putIfAbsent(RatingDto, () => RatingDto.fromJsonFactory);
 
@@ -1074,18 +1099,6 @@ abstract class TVAE extends ChopperService {
   @Put(path: '/api/Rating/{id}')
   Future<chopper.Response<bool>> _apiRatingIdPut(
       {@Path('id') required String? id, @Body() required RatingDto? body});
-
-  ///
-  ///@param id
-  Future<chopper.Response<bool>> apiRatingIdDelete({required String? id}) {
-    return _apiRatingIdDelete(id: id);
-  }
-
-  ///
-  ///@param id
-  @Delete(path: '/api/Rating/{id}')
-  Future<chopper.Response<bool>> _apiRatingIdDelete(
-      {@Path('id') required String? id});
 
   ///
   ///@param userId
@@ -1509,18 +1522,6 @@ abstract class TVAE extends ChopperService {
       {@Path('id') required String? id, @Body() required SectionDto? body});
 
   ///
-  ///@param id
-  Future<chopper.Response<bool>> apiSectionIdDelete({required String? id}) {
-    return _apiSectionIdDelete(id: id);
-  }
-
-  ///
-  ///@param id
-  @Delete(path: '/api/Section/{id}')
-  Future<chopper.Response<bool>> _apiSectionIdDelete(
-      {@Path('id') required String? id});
-
-  ///
   Future<chopper.Response<List<SubdepartmentDto>>> apiSubdepartmentGet() {
     generatedMapping.putIfAbsent(
         SubdepartmentDto, () => SubdepartmentDto.fromJsonFactory);
@@ -1701,18 +1702,6 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response<EditUserResponse>> _apiUserIdPut(
       {@Path('id') required String? id,
       @PartFile() required List<int> partFile});
-
-  ///
-  ///@param id
-  Future<chopper.Response<bool>> apiUserIdDelete({required String? id}) {
-    return _apiUserIdDelete(id: id);
-  }
-
-  ///
-  ///@param id
-  @Delete(path: '/api/User/{id}')
-  Future<chopper.Response<bool>> _apiUserIdDelete(
-      {@Path('id') required String? id});
 
   ///
   ///@param id
@@ -1963,18 +1952,6 @@ abstract class TVAE extends ChopperService {
       {@Path('id') required String? id, @Body() required VisitDto? body});
 
   ///
-  ///@param id
-  Future<chopper.Response<bool>> apiVisitIdDelete({required String? id}) {
-    return _apiVisitIdDelete(id: id);
-  }
-
-  ///
-  ///@param id
-  @Delete(path: '/api/Visit/{id}')
-  Future<chopper.Response<bool>> _apiVisitIdDelete(
-      {@Path('id') required String? id});
-
-  ///
   ///@param userId
   ///@param Page
   ///@param Search
@@ -2207,18 +2184,6 @@ abstract class TVAE extends ChopperService {
   @Put(path: '/api/VisitStatus/{id}')
   Future<chopper.Response<bool>> _apiVisitStatusIdPut(
       {@Path('id') required String? id, @Body() required VisitStatusDto? body});
-
-  ///
-  ///@param id
-  Future<chopper.Response<bool>> apiVisitStatusIdDelete({required String? id}) {
-    return _apiVisitStatusIdDelete(id: id);
-  }
-
-  ///
-  ///@param id
-  @Delete(path: '/api/VisitStatus/{id}')
-  Future<chopper.Response<bool>> _apiVisitStatusIdDelete(
-      {@Path('id') required String? id});
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -3974,6 +3939,185 @@ extension $HistoricResidentDtoPagedResultExtension
       int? totalPages,
       List<HistoricResidentDto>? items}) {
     return HistoricResidentDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class KioskoResponseDto {
+  KioskoResponseDto({
+    this.visitId,
+    this.visitDate,
+    this.startHour,
+    this.endHour,
+    this.reason,
+    this.comments,
+    this.user,
+    this.resident,
+  });
+
+  factory KioskoResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$KioskoResponseDtoFromJson(json);
+
+  @JsonKey(name: 'visitId')
+  final String? visitId;
+  @JsonKey(name: 'visitDate')
+  final DateTime? visitDate;
+  @JsonKey(name: 'startHour')
+  final String? startHour;
+  @JsonKey(name: 'endHour')
+  final String? endHour;
+  @JsonKey(name: 'reason')
+  final String? reason;
+  @JsonKey(name: 'comments')
+  final String? comments;
+  @JsonKey(name: 'user')
+  final UserAttributesDto? user;
+  @JsonKey(name: 'resident')
+  final UserAttributesDto? resident;
+  static const fromJsonFactory = _$KioskoResponseDtoFromJson;
+  static const toJsonFactory = _$KioskoResponseDtoToJson;
+  Map<String, dynamic> toJson() => _$KioskoResponseDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is KioskoResponseDto &&
+            (identical(other.visitId, visitId) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitId, visitId)) &&
+            (identical(other.visitDate, visitDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitDate, visitDate)) &&
+            (identical(other.startHour, startHour) ||
+                const DeepCollectionEquality()
+                    .equals(other.startHour, startHour)) &&
+            (identical(other.endHour, endHour) ||
+                const DeepCollectionEquality()
+                    .equals(other.endHour, endHour)) &&
+            (identical(other.reason, reason) ||
+                const DeepCollectionEquality().equals(other.reason, reason)) &&
+            (identical(other.comments, comments) ||
+                const DeepCollectionEquality()
+                    .equals(other.comments, comments)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.resident, resident) ||
+                const DeepCollectionEquality()
+                    .equals(other.resident, resident)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(visitId) ^
+      const DeepCollectionEquality().hash(visitDate) ^
+      const DeepCollectionEquality().hash(startHour) ^
+      const DeepCollectionEquality().hash(endHour) ^
+      const DeepCollectionEquality().hash(reason) ^
+      const DeepCollectionEquality().hash(comments) ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(resident) ^
+      runtimeType.hashCode;
+}
+
+extension $KioskoResponseDtoExtension on KioskoResponseDto {
+  KioskoResponseDto copyWith(
+      {String? visitId,
+      DateTime? visitDate,
+      String? startHour,
+      String? endHour,
+      String? reason,
+      String? comments,
+      UserAttributesDto? user,
+      UserAttributesDto? resident}) {
+    return KioskoResponseDto(
+        visitId: visitId ?? this.visitId,
+        visitDate: visitDate ?? this.visitDate,
+        startHour: startHour ?? this.startHour,
+        endHour: endHour ?? this.endHour,
+        reason: reason ?? this.reason,
+        comments: comments ?? this.comments,
+        user: user ?? this.user,
+        resident: resident ?? this.resident);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class KioskoResponseDtoPagedResult {
+  KioskoResponseDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory KioskoResponseDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$KioskoResponseDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <KioskoResponseDto>[])
+  final List<KioskoResponseDto>? items;
+  static const fromJsonFactory = _$KioskoResponseDtoPagedResultFromJson;
+  static const toJsonFactory = _$KioskoResponseDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$KioskoResponseDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is KioskoResponseDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $KioskoResponseDtoPagedResultExtension
+    on KioskoResponseDtoPagedResult {
+  KioskoResponseDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<KioskoResponseDto>? items}) {
+    return KioskoResponseDtoPagedResult(
         totalCount: totalCount ?? this.totalCount,
         pageNumber: pageNumber ?? this.pageNumber,
         recordNumber: recordNumber ?? this.recordNumber,
@@ -5927,9 +6071,9 @@ class RatingResponseDto {
   @JsonKey(name: 'comments')
   final String? comments;
   @JsonKey(name: 'user')
-  final RatingUserDto? user;
+  final UserAttributesDto? user;
   @JsonKey(name: 'resident')
-  final RatingUserDto? resident;
+  final UserAttributesDto? resident;
   static const fromJsonFactory = _$RatingResponseDtoFromJson;
   static const toJsonFactory = _$RatingResponseDtoToJson;
   Map<String, dynamic> toJson() => _$RatingResponseDtoToJson(this);
@@ -5976,8 +6120,8 @@ extension $RatingResponseDtoExtension on RatingResponseDto {
       DateTime? createDate,
       double? score,
       String? comments,
-      RatingUserDto? user,
-      RatingUserDto? resident}) {
+      UserAttributesDto? user,
+      UserAttributesDto? resident}) {
     return RatingResponseDto(
         ratingId: ratingId ?? this.ratingId,
         createDate: createDate ?? this.createDate,
@@ -6062,89 +6206,6 @@ extension $RatingResponseDtoPagedResultExtension
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class RatingUserDto {
-  RatingUserDto({
-    this.id,
-    this.email,
-    this.image,
-    this.firstName,
-    this.lastName,
-    this.titleAbbreviation,
-  });
-
-  factory RatingUserDto.fromJson(Map<String, dynamic> json) =>
-      _$RatingUserDtoFromJson(json);
-
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'email')
-  final String? email;
-  @JsonKey(name: 'image')
-  final String? image;
-  @JsonKey(name: 'firstName')
-  final String? firstName;
-  @JsonKey(name: 'lastName')
-  final String? lastName;
-  @JsonKey(name: 'titleAbbreviation')
-  final String? titleAbbreviation;
-  static const fromJsonFactory = _$RatingUserDtoFromJson;
-  static const toJsonFactory = _$RatingUserDtoToJson;
-  Map<String, dynamic> toJson() => _$RatingUserDtoToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is RatingUserDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)) &&
-            (identical(other.firstName, firstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
-            (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.titleAbbreviation, titleAbbreviation) ||
-                const DeepCollectionEquality()
-                    .equals(other.titleAbbreviation, titleAbbreviation)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(image) ^
-      const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(titleAbbreviation) ^
-      runtimeType.hashCode;
-}
-
-extension $RatingUserDtoExtension on RatingUserDto {
-  RatingUserDto copyWith(
-      {String? id,
-      String? email,
-      String? image,
-      String? firstName,
-      String? lastName,
-      String? titleAbbreviation}) {
-    return RatingUserDto(
-        id: id ?? this.id,
-        email: email ?? this.email,
-        image: image ?? this.image,
-        firstName: firstName ?? this.firstName,
-        lastName: lastName ?? this.lastName,
-        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation);
   }
 }
 
@@ -7352,6 +7413,89 @@ extension $SubdepartmentDtoPagedResultExtension on SubdepartmentDtoPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserAttributesDto {
+  UserAttributesDto({
+    this.id,
+    this.email,
+    this.image,
+    this.firstName,
+    this.lastName,
+    this.titleAbbreviation,
+  });
+
+  factory UserAttributesDto.fromJson(Map<String, dynamic> json) =>
+      _$UserAttributesDtoFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'image')
+  final String? image;
+  @JsonKey(name: 'firstName')
+  final String? firstName;
+  @JsonKey(name: 'lastName')
+  final String? lastName;
+  @JsonKey(name: 'titleAbbreviation')
+  final String? titleAbbreviation;
+  static const fromJsonFactory = _$UserAttributesDtoFromJson;
+  static const toJsonFactory = _$UserAttributesDtoToJson;
+  Map<String, dynamic> toJson() => _$UserAttributesDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UserAttributesDto &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.titleAbbreviation, titleAbbreviation) ||
+                const DeepCollectionEquality()
+                    .equals(other.titleAbbreviation, titleAbbreviation)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(image) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(titleAbbreviation) ^
+      runtimeType.hashCode;
+}
+
+extension $UserAttributesDtoExtension on UserAttributesDto {
+  UserAttributesDto copyWith(
+      {String? id,
+      String? email,
+      String? image,
+      String? firstName,
+      String? lastName,
+      String? titleAbbreviation}) {
+    return UserAttributesDto(
+        id: id ?? this.id,
+        email: email ?? this.email,
+        image: image ?? this.image,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation);
   }
 }
 

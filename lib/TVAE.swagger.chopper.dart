@@ -88,10 +88,10 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<dynamic>> _apiAccountLogoutPost() {
+  Future<Response<bool>> _apiAccountLogoutPost() {
     final $url = '/api/Account/logout';
     final $request = Request('POST', $url, client.baseUrl);
-    return client.send<dynamic, dynamic>($request);
+    return client.send<bool, bool>($request);
   }
 
   @override
@@ -116,12 +116,12 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<dynamic>> _apiAccountResetpasswordPost(
+  Future<Response<bool>> _apiAccountResetpasswordPost(
       {required ResetPasswordModel? body}) {
     final $url = '/api/Account/resetpassword';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<dynamic, dynamic>($request);
+    return client.send<bool, bool>($request);
   }
 
   @override
@@ -278,6 +278,26 @@ class _$TVAE extends TVAE {
     final $url = '/api/Department/${id}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<KioskoResponseDtoPagedResult>> _apiKioskoSearchGet(
+      {required String? localId,
+      String? dateVisit,
+      required int? page,
+      String? search,
+      required int? pageSize}) {
+    final $url = '/api/Kiosko/Search';
+    final $params = <String, dynamic>{
+      'LocalId': localId,
+      'DateVisit': dateVisit,
+      'Page': page,
+      'Search': search,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<KioskoResponseDtoPagedResult,
+        KioskoResponseDtoPagedResult>($request);
   }
 
   @override
@@ -602,13 +622,6 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<bool>> _apiProjectIdDelete({required String? id}) {
-    final $url = '/api/Project/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
   Future<Response<List<RatingDto>>> _apiRatingGet() {
     final $url = '/api/Rating';
     final $request = Request('GET', $url, client.baseUrl);
@@ -649,13 +662,6 @@ class _$TVAE extends TVAE {
     final $url = '/api/Rating/${id}';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiRatingIdDelete({required String? id}) {
-    final $url = '/api/Rating/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
   }
 
@@ -913,13 +919,6 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<bool>> _apiSectionIdDelete({required String? id}) {
-    final $url = '/api/Section/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
   Future<Response<List<SubdepartmentDto>>> _apiSubdepartmentGet() {
     final $url = '/api/Subdepartment';
     final $request = Request('GET', $url, client.baseUrl);
@@ -1024,13 +1023,6 @@ class _$TVAE extends TVAE {
     final $request =
         Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
     return client.send<EditUserResponse, EditUserResponse>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiUserIdDelete({required String? id}) {
-    final $url = '/api/User/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
   }
 
   @override
@@ -1173,13 +1165,6 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<bool>> _apiVisitIdDelete({required String? id}) {
-    final $url = '/api/Visit/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
   Future<Response<HistoricDtoPagedResult>> _apiVisitHistoricGet(
       {required String? userId,
       required int? page,
@@ -1307,13 +1292,6 @@ class _$TVAE extends TVAE {
     final $url = '/api/VisitStatus/${id}';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiVisitStatusIdDelete({required String? id}) {
-    final $url = '/api/VisitStatus/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<bool, bool>($request);
   }
 }

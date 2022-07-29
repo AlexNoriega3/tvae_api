@@ -1485,7 +1485,89 @@
             "description": "Server Error"
           },
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
           }
         }
       }
@@ -1733,7 +1815,89 @@
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
           }
         }
       }
@@ -4175,6 +4339,142 @@
               "text/json": {
                 "schema": {
                   "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Kiosko/Search": {
+      "get": {
+        "tags": [
+          "Kiosko"
+        ],
+        "parameters": [
+          {
+            "name": "LocalId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DateVisit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KioskoResponseDtoPagedResult"
                 }
               }
             }
@@ -9343,108 +9643,6 @@
             }
           }
         }
-      },
-      "delete": {
-        "tags": [
-          "Project"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/api/Rating": {
@@ -10088,108 +10286,6 @@
           },
           "required": true
         },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Rating"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -14184,108 +14280,6 @@
             }
           }
         }
-      },
-      "delete": {
-        "tags": [
-          "Section"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/api/Subdepartment": {
@@ -15909,6 +15903,8 @@
                     "format": "date-time"
                   },
                   "costPerAppointment": {
+                    "maximum": 100000,
+                    "minimum": 0,
                     "type": "number",
                     "format": "double"
                   }
@@ -16043,108 +16039,6 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EditUserResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "User"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "boolean"
                 }
               }
             }
@@ -18175,108 +18069,6 @@
             }
           }
         }
-      },
-      "delete": {
-        "tags": [
-          "Visit"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/api/Visit/Historic": {
@@ -19730,108 +19522,6 @@
             }
           }
         }
-      },
-      "delete": {
-        "tags": [
-          "VisitStatus"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json;odata.metadata=minimal;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=minimal;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=minimal": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=full": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.metadata=none": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.streaming=true": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json;odata.streaming=false": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
       }
     }
   },
@@ -20548,6 +20238,71 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/HistoricResidentDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "KioskoResponseDto": {
+        "type": "object",
+        "properties": {
+          "visitId": {
+            "type": "string",
+            "nullable": true
+          },
+          "visitDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startHour": {
+            "type": "string",
+            "nullable": true
+          },
+          "endHour": {
+            "type": "string",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserAttributesDto"
+          },
+          "resident": {
+            "$ref": "#/components/schemas/UserAttributesDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "KioskoResponseDtoPagedResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recordNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KioskoResponseDto"
             },
             "nullable": true
           }
@@ -21285,6 +21040,8 @@
             "nullable": true
           },
           "costPerAppointment": {
+            "maximum": 100000,
+            "minimum": 0,
             "type": "number",
             "format": "double",
             "nullable": true
@@ -21394,10 +21151,10 @@
             "nullable": true
           },
           "user": {
-            "$ref": "#/components/schemas/RatingUserDto"
+            "$ref": "#/components/schemas/UserAttributesDto"
           },
           "resident": {
-            "$ref": "#/components/schemas/RatingUserDto"
+            "$ref": "#/components/schemas/UserAttributesDto"
           }
         },
         "additionalProperties": false
@@ -21426,36 +21183,6 @@
             "items": {
               "$ref": "#/components/schemas/RatingResponseDto"
             },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RatingUserDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "image": {
-            "type": "string",
-            "nullable": true
-          },
-          "firstName": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "titleAbbreviation": {
-            "type": "string",
             "nullable": true
           }
         },
@@ -21924,6 +21651,36 @@
         },
         "additionalProperties": false
       },
+      "UserAttributesDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleAbbreviation": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UserPostDto": {
         "required": [
           "email",
@@ -22037,6 +21794,8 @@
             "nullable": true
           },
           "costPerAppointment": {
+            "maximum": 100000,
+            "minimum": 0,
             "type": "number",
             "format": "double",
             "nullable": true
