@@ -1502,6 +1502,16 @@ VisitDetailsDto _$VisitDetailsDtoFromJson(Map<String, dynamic> json) =>
       startHour: json['startHour'] as String?,
       endHour: json['endHour'] as String?,
       address: json['address'] as String?,
+      reason: json['reason'] as String?,
+      comments: json['comments'] as String?,
+      cancelled: cancellationOfVisitEnumFromJson(json['cancelled']),
+      cancelOther: json['cancelOther'] as String?,
+      userName: json['userName'] as String?,
+      userAbbreviation: json['userAbbreviation'] as String?,
+      userFirstName: json['userFirstName'] as String?,
+      userLastName: json['userLastName'] as String?,
+      userImage: json['userImage'] as String?,
+      userRating: (json['userRating'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
@@ -1520,6 +1530,16 @@ Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
       'startHour': instance.startHour,
       'endHour': instance.endHour,
       'address': instance.address,
+      'reason': instance.reason,
+      'comments': instance.comments,
+      'cancelled': cancellationOfVisitEnumToJson(instance.cancelled),
+      'cancelOther': instance.cancelOther,
+      'userName': instance.userName,
+      'userAbbreviation': instance.userAbbreviation,
+      'userFirstName': instance.userFirstName,
+      'userLastName': instance.userLastName,
+      'userImage': instance.userImage,
+      'userRating': instance.userRating,
     };
 
 VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(

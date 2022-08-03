@@ -7746,6 +7746,16 @@ class VisitDetailsDto {
     this.startHour,
     this.endHour,
     this.address,
+    this.reason,
+    this.comments,
+    this.cancelled,
+    this.cancelOther,
+    this.userName,
+    this.userAbbreviation,
+    this.userFirstName,
+    this.userLastName,
+    this.userImage,
+    this.userRating,
   });
 
   factory VisitDetailsDto.fromJson(Map<String, dynamic> json) =>
@@ -7779,6 +7789,29 @@ class VisitDetailsDto {
   final String? endHour;
   @JsonKey(name: 'address')
   final String? address;
+  @JsonKey(name: 'reason')
+  final String? reason;
+  @JsonKey(name: 'comments')
+  final String? comments;
+  @JsonKey(
+      name: 'cancelled',
+      toJson: cancellationOfVisitEnumToJson,
+      fromJson: cancellationOfVisitEnumFromJson)
+  final enums.CancellationOfVisitEnum? cancelled;
+  @JsonKey(name: 'cancelOther')
+  final String? cancelOther;
+  @JsonKey(name: 'userName')
+  final String? userName;
+  @JsonKey(name: 'userAbbreviation')
+  final String? userAbbreviation;
+  @JsonKey(name: 'userFirstName')
+  final String? userFirstName;
+  @JsonKey(name: 'userLastName')
+  final String? userLastName;
+  @JsonKey(name: 'userImage')
+  final String? userImage;
+  @JsonKey(name: 'userRating')
+  final double? userRating;
   static const fromJsonFactory = _$VisitDetailsDtoFromJson;
   static const toJsonFactory = _$VisitDetailsDtoToJson;
   Map<String, dynamic> toJson() => _$VisitDetailsDtoToJson(this);
@@ -7829,7 +7862,34 @@ class VisitDetailsDto {
                 const DeepCollectionEquality()
                     .equals(other.endHour, endHour)) &&
             (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(other.address, address)));
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.reason, reason) ||
+                const DeepCollectionEquality().equals(other.reason, reason)) &&
+            (identical(other.comments, comments) ||
+                const DeepCollectionEquality()
+                    .equals(other.comments, comments)) &&
+            (identical(other.cancelled, cancelled) ||
+                const DeepCollectionEquality()
+                    .equals(other.cancelled, cancelled)) &&
+            (identical(other.cancelOther, cancelOther) ||
+                const DeepCollectionEquality()
+                    .equals(other.cancelOther, cancelOther)) &&
+            (identical(other.userName, userName) ||
+                const DeepCollectionEquality()
+                    .equals(other.userName, userName)) &&
+            (identical(other.userAbbreviation, userAbbreviation) ||
+                const DeepCollectionEquality()
+                    .equals(other.userAbbreviation, userAbbreviation)) &&
+            (identical(other.userFirstName, userFirstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.userFirstName, userFirstName)) &&
+            (identical(other.userLastName, userLastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.userLastName, userLastName)) &&
+            (identical(other.userImage, userImage) ||
+                const DeepCollectionEquality().equals(other.userImage, userImage)) &&
+            (identical(other.userRating, userRating) || const DeepCollectionEquality().equals(other.userRating, userRating)));
   }
 
   @override
@@ -7848,6 +7908,16 @@ class VisitDetailsDto {
       const DeepCollectionEquality().hash(startHour) ^
       const DeepCollectionEquality().hash(endHour) ^
       const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(reason) ^
+      const DeepCollectionEquality().hash(comments) ^
+      const DeepCollectionEquality().hash(cancelled) ^
+      const DeepCollectionEquality().hash(cancelOther) ^
+      const DeepCollectionEquality().hash(userName) ^
+      const DeepCollectionEquality().hash(userAbbreviation) ^
+      const DeepCollectionEquality().hash(userFirstName) ^
+      const DeepCollectionEquality().hash(userLastName) ^
+      const DeepCollectionEquality().hash(userImage) ^
+      const DeepCollectionEquality().hash(userRating) ^
       runtimeType.hashCode;
 }
 
@@ -7866,7 +7936,17 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
       DateTime? visitDate,
       String? startHour,
       String? endHour,
-      String? address}) {
+      String? address,
+      String? reason,
+      String? comments,
+      enums.CancellationOfVisitEnum? cancelled,
+      String? cancelOther,
+      String? userName,
+      String? userAbbreviation,
+      String? userFirstName,
+      String? userLastName,
+      String? userImage,
+      double? userRating}) {
     return VisitDetailsDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
@@ -7881,7 +7961,17 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
         visitDate: visitDate ?? this.visitDate,
         startHour: startHour ?? this.startHour,
         endHour: endHour ?? this.endHour,
-        address: address ?? this.address);
+        address: address ?? this.address,
+        reason: reason ?? this.reason,
+        comments: comments ?? this.comments,
+        cancelled: cancelled ?? this.cancelled,
+        cancelOther: cancelOther ?? this.cancelOther,
+        userName: userName ?? this.userName,
+        userAbbreviation: userAbbreviation ?? this.userAbbreviation,
+        userFirstName: userFirstName ?? this.userFirstName,
+        userLastName: userLastName ?? this.userLastName,
+        userImage: userImage ?? this.userImage,
+        userRating: userRating ?? this.userRating);
   }
 }
 

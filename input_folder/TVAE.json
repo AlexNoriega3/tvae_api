@@ -21862,6 +21862,46 @@
           "address": {
             "type": "string",
             "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "cancelled": {
+            "$ref": "#/components/schemas/CancellationOfVisitEnum"
+          },
+          "cancelOther": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userAbbreviation": {
+            "type": "string",
+            "nullable": true
+          },
+          "userFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "userRating": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
           }
         },
         "additionalProperties": false
