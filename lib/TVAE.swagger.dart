@@ -1672,6 +1672,17 @@ abstract class TVAE extends ChopperService {
       @Query('PageSize') required int? pageSize});
 
   ///
+  Future<chopper.Response<String>> apiUserAddVisitorPost(
+      {required VisitorDto? body}) {
+    return _apiUserAddVisitorPost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/User/AddVisitor')
+  Future<chopper.Response<String>> _apiUserAddVisitorPost(
+      {@Body() required VisitorDto? body});
+
+  ///
   ///@param id
   Future<chopper.Response<AppUserDto>> apiUserIdGet({required String? id}) {
     generatedMapping.putIfAbsent(AppUserDto, () => AppUserDto.fromJsonFactory);
@@ -1953,11 +1964,13 @@ abstract class TVAE extends ChopperService {
 
   ///
   ///@param userId
+  ///@param DateVisit
   ///@param Page
   ///@param Search
   ///@param PageSize
   Future<chopper.Response<HistoricDtoPagedResult>> apiVisitHistoricGet(
       {required String? userId,
+      String? dateVisit,
       required int? page,
       String? search,
       required int? pageSize}) {
@@ -1965,17 +1978,23 @@ abstract class TVAE extends ChopperService {
         HistoricDtoPagedResult, () => HistoricDtoPagedResult.fromJsonFactory);
 
     return _apiVisitHistoricGet(
-        userId: userId, page: page, search: search, pageSize: pageSize);
+        userId: userId,
+        dateVisit: dateVisit,
+        page: page,
+        search: search,
+        pageSize: pageSize);
   }
 
   ///
   ///@param userId
+  ///@param DateVisit
   ///@param Page
   ///@param Search
   ///@param PageSize
   @Get(path: '/api/Visit/Historic')
   Future<chopper.Response<HistoricDtoPagedResult>> _apiVisitHistoricGet(
       {@Query('userId') required String? userId,
+      @Query('DateVisit') String? dateVisit,
       @Query('Page') required int? page,
       @Query('Search') String? search,
       @Query('PageSize') required int? pageSize});
@@ -1998,12 +2017,14 @@ abstract class TVAE extends ChopperService {
 
   ///
   ///@param userId
+  ///@param DateVisit
   ///@param Page
   ///@param Search
   ///@param PageSize
   Future<chopper.Response<HistoricResidentDtoPagedResult>>
       apiVisitHistoricResidentGet(
           {required String? userId,
+          String? dateVisit,
           required int? page,
           String? search,
           required int? pageSize}) {
@@ -2011,11 +2032,16 @@ abstract class TVAE extends ChopperService {
         () => HistoricResidentDtoPagedResult.fromJsonFactory);
 
     return _apiVisitHistoricResidentGet(
-        userId: userId, page: page, search: search, pageSize: pageSize);
+        userId: userId,
+        dateVisit: dateVisit,
+        page: page,
+        search: search,
+        pageSize: pageSize);
   }
 
   ///
   ///@param userId
+  ///@param DateVisit
   ///@param Page
   ///@param Search
   ///@param PageSize
@@ -2023,6 +2049,7 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response<HistoricResidentDtoPagedResult>>
       _apiVisitHistoricResidentGet(
           {@Query('userId') required String? userId,
+          @Query('DateVisit') String? dateVisit,
           @Query('Page') required int? page,
           @Query('Search') String? search,
           @Query('PageSize') required int? pageSize});
@@ -8721,6 +8748,90 @@ extension $VisitStatusDtoPagedResultExtension on VisitStatusDtoPagedResult {
         recordNumber: recordNumber ?? this.recordNumber,
         totalPages: totalPages ?? this.totalPages,
         items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class VisitorDto {
+  VisitorDto({
+    required this.phone,
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    this.birthDate,
+    this.gender,
+  });
+
+  factory VisitorDto.fromJson(Map<String, dynamic> json) =>
+      _$VisitorDtoFromJson(json);
+
+  @JsonKey(name: 'phone')
+  final String phone;
+  @JsonKey(name: 'firstName')
+  final String firstName;
+  @JsonKey(name: 'lastName')
+  final String lastName;
+  @JsonKey(name: 'email')
+  final String email;
+  @JsonKey(name: 'birthDate')
+  final DateTime? birthDate;
+  @JsonKey(
+      name: 'gender', toJson: genderEnumToJson, fromJson: genderEnumFromJson)
+  final enums.GenderEnum? gender;
+  static const fromJsonFactory = _$VisitorDtoFromJson;
+  static const toJsonFactory = _$VisitorDtoToJson;
+  Map<String, dynamic> toJson() => _$VisitorDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is VisitorDto &&
+            (identical(other.phone, phone) ||
+                const DeepCollectionEquality().equals(other.phone, phone)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.birthDate, birthDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.birthDate, birthDate)) &&
+            (identical(other.gender, gender) ||
+                const DeepCollectionEquality().equals(other.gender, gender)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(phone) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(birthDate) ^
+      const DeepCollectionEquality().hash(gender) ^
+      runtimeType.hashCode;
+}
+
+extension $VisitorDtoExtension on VisitorDto {
+  VisitorDto copyWith(
+      {String? phone,
+      String? firstName,
+      String? lastName,
+      String? email,
+      DateTime? birthDate,
+      enums.GenderEnum? gender}) {
+    return VisitorDto(
+        phone: phone ?? this.phone,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        email: email ?? this.email,
+        birthDate: birthDate ?? this.birthDate,
+        gender: gender ?? this.gender);
   }
 }
 

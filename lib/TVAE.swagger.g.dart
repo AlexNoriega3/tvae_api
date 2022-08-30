@@ -1737,6 +1737,27 @@ Map<String, dynamic> _$VisitStatusDtoPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+VisitorDto _$VisitorDtoFromJson(Map<String, dynamic> json) => VisitorDto(
+      phone: json['phone'] as String,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+      email: json['email'] as String,
+      birthDate: json['birthDate'] == null
+          ? null
+          : DateTime.parse(json['birthDate'] as String),
+      gender: genderEnumFromJson(json['gender']),
+    );
+
+Map<String, dynamic> _$VisitorDtoToJson(VisitorDto instance) =>
+    <String, dynamic>{
+      'phone': instance.phone,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'email': instance.email,
+      'birthDate': instance.birthDate?.toIso8601String(),
+      'gender': genderEnumToJson(instance.gender),
+    };
+
 UserSearchDto _$UserSearchDtoFromJson(Map<String, dynamic> json) =>
     UserSearchDto(
       page: json['page'] as int,

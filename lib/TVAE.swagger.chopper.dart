@@ -1009,6 +1009,14 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<String>> _apiUserAddVisitorPost({required VisitorDto? body}) {
+    final $url = '/api/User/AddVisitor';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<String, String>($request);
+  }
+
+  @override
   Future<Response<AppUserDto>> _apiUserIdGet({required String? id}) {
     final $url = '/api/User/${id}';
     final $request = Request('GET', $url, client.baseUrl);
@@ -1167,12 +1175,14 @@ class _$TVAE extends TVAE {
   @override
   Future<Response<HistoricDtoPagedResult>> _apiVisitHistoricGet(
       {required String? userId,
+      String? dateVisit,
       required int? page,
       String? search,
       required int? pageSize}) {
     final $url = '/api/Visit/Historic';
     final $params = <String, dynamic>{
       'userId': userId,
+      'DateVisit': dateVisit,
       'Page': page,
       'Search': search,
       'PageSize': pageSize
@@ -1193,12 +1203,14 @@ class _$TVAE extends TVAE {
   @override
   Future<Response<HistoricResidentDtoPagedResult>> _apiVisitHistoricResidentGet(
       {required String? userId,
+      String? dateVisit,
       required int? page,
       String? search,
       required int? pageSize}) {
     final $url = '/api/Visit/HistoricResident';
     final $params = <String, dynamic>{
       'userId': userId,
+      'DateVisit': dateVisit,
       'Page': page,
       'Search': search,
       'PageSize': pageSize
