@@ -22082,6 +22082,10 @@
             "type": "string",
             "nullable": true
           },
+          "userEmail": {
+            "type": "string",
+            "nullable": true
+          },
           "userLastName": {
             "type": "string",
             "nullable": true

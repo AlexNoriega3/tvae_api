@@ -7780,6 +7780,7 @@ class VisitDetailsDto {
     this.userName,
     this.userAbbreviation,
     this.userFirstName,
+    this.userEmail,
     this.userLastName,
     this.userImage,
     this.userRating,
@@ -7833,6 +7834,8 @@ class VisitDetailsDto {
   final String? userAbbreviation;
   @JsonKey(name: 'userFirstName')
   final String? userFirstName;
+  @JsonKey(name: 'userEmail')
+  final String? userEmail;
   @JsonKey(name: 'userLastName')
   final String? userLastName;
   @JsonKey(name: 'userImage')
@@ -7911,11 +7914,12 @@ class VisitDetailsDto {
             (identical(other.userFirstName, userFirstName) ||
                 const DeepCollectionEquality()
                     .equals(other.userFirstName, userFirstName)) &&
-            (identical(other.userLastName, userLastName) ||
+            (identical(other.userEmail, userEmail) ||
                 const DeepCollectionEquality()
-                    .equals(other.userLastName, userLastName)) &&
-            (identical(other.userImage, userImage) ||
-                const DeepCollectionEquality().equals(other.userImage, userImage)) &&
+                    .equals(other.userEmail, userEmail)) &&
+            (identical(other.userLastName, userLastName) ||
+                const DeepCollectionEquality().equals(other.userLastName, userLastName)) &&
+            (identical(other.userImage, userImage) || const DeepCollectionEquality().equals(other.userImage, userImage)) &&
             (identical(other.userRating, userRating) || const DeepCollectionEquality().equals(other.userRating, userRating)));
   }
 
@@ -7942,6 +7946,7 @@ class VisitDetailsDto {
       const DeepCollectionEquality().hash(userName) ^
       const DeepCollectionEquality().hash(userAbbreviation) ^
       const DeepCollectionEquality().hash(userFirstName) ^
+      const DeepCollectionEquality().hash(userEmail) ^
       const DeepCollectionEquality().hash(userLastName) ^
       const DeepCollectionEquality().hash(userImage) ^
       const DeepCollectionEquality().hash(userRating) ^
@@ -7971,6 +7976,7 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
       String? userName,
       String? userAbbreviation,
       String? userFirstName,
+      String? userEmail,
       String? userLastName,
       String? userImage,
       double? userRating}) {
@@ -7996,6 +8002,7 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
         userName: userName ?? this.userName,
         userAbbreviation: userAbbreviation ?? this.userAbbreviation,
         userFirstName: userFirstName ?? this.userFirstName,
+        userEmail: userEmail ?? this.userEmail,
         userLastName: userLastName ?? this.userLastName,
         userImage: userImage ?? this.userImage,
         userRating: userRating ?? this.userRating);
