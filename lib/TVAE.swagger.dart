@@ -2074,7 +2074,7 @@ abstract class TVAE extends ChopperService {
   ///Obtiene el listado de visitas filtradas por fecha
   ///@param residentId
   ///@param date
-  Future<chopper.Response<VisitNextPendingResidentDto>>
+  Future<chopper.Response<List<VisitNextPendingResidentDto>>>
       apiVisitResidentResidentIdVistDateDateGet(
           {required String? residentId, required String? date}) {
     generatedMapping.putIfAbsent(VisitNextPendingResidentDto,
@@ -2088,7 +2088,7 @@ abstract class TVAE extends ChopperService {
   ///@param residentId
   ///@param date
   @Get(path: '/api/Visit/resident/{residentId}/vistDate/{date}')
-  Future<chopper.Response<VisitNextPendingResidentDto>>
+  Future<chopper.Response<List<VisitNextPendingResidentDto>>>
       _apiVisitResidentResidentIdVistDateDateGet(
           {@Path('residentId') required String? residentId,
           @Path('date') required String? date});

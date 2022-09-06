@@ -1230,12 +1230,12 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<VisitNextPendingResidentDto>>
+  Future<Response<List<VisitNextPendingResidentDto>>>
       _apiVisitResidentResidentIdVistDateDateGet(
           {required String? residentId, required String? date}) {
     final $url = '/api/Visit/resident/${residentId}/vistDate/${date}';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<VisitNextPendingResidentDto,
+    return client.send<List<VisitNextPendingResidentDto>,
         VisitNextPendingResidentDto>($request);
   }
 
