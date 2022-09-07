@@ -22138,6 +22138,10 @@
             "type": "string",
             "nullable": true
           },
+          "userPhone": {
+            "type": "string",
+            "nullable": true
+          },
           "userImage": {
             "type": "string",
             "nullable": true
