@@ -1511,6 +1511,7 @@ VisitDetailsDto _$VisitDetailsDtoFromJson(Map<String, dynamic> json) =>
       userFirstName: json['userFirstName'] as String?,
       userEmail: json['userEmail'] as String?,
       userLastName: json['userLastName'] as String?,
+      userCel: json['userCel'] as String?,
       userImage: json['userImage'] as String?,
       userRating: (json['userRating'] as num?)?.toDouble(),
     );
@@ -1540,6 +1541,7 @@ Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
       'userFirstName': instance.userFirstName,
       'userEmail': instance.userEmail,
       'userLastName': instance.userLastName,
+      'userCel': instance.userCel,
       'userImage': instance.userImage,
       'userRating': instance.userRating,
     };

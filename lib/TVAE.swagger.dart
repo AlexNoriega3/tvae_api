@@ -7782,6 +7782,7 @@ class VisitDetailsDto {
     this.userFirstName,
     this.userEmail,
     this.userLastName,
+    this.userCel,
     this.userImage,
     this.userRating,
   });
@@ -7838,6 +7839,8 @@ class VisitDetailsDto {
   final String? userEmail;
   @JsonKey(name: 'userLastName')
   final String? userLastName;
+  @JsonKey(name: 'userCel')
+  final String? userCel;
   @JsonKey(name: 'userImage')
   final String? userImage;
   @JsonKey(name: 'userRating')
@@ -7919,6 +7922,7 @@ class VisitDetailsDto {
                     .equals(other.userEmail, userEmail)) &&
             (identical(other.userLastName, userLastName) ||
                 const DeepCollectionEquality().equals(other.userLastName, userLastName)) &&
+            (identical(other.userCel, userCel) || const DeepCollectionEquality().equals(other.userCel, userCel)) &&
             (identical(other.userImage, userImage) || const DeepCollectionEquality().equals(other.userImage, userImage)) &&
             (identical(other.userRating, userRating) || const DeepCollectionEquality().equals(other.userRating, userRating)));
   }
@@ -7948,6 +7952,7 @@ class VisitDetailsDto {
       const DeepCollectionEquality().hash(userFirstName) ^
       const DeepCollectionEquality().hash(userEmail) ^
       const DeepCollectionEquality().hash(userLastName) ^
+      const DeepCollectionEquality().hash(userCel) ^
       const DeepCollectionEquality().hash(userImage) ^
       const DeepCollectionEquality().hash(userRating) ^
       runtimeType.hashCode;
@@ -7978,6 +7983,7 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
       String? userFirstName,
       String? userEmail,
       String? userLastName,
+      String? userCel,
       String? userImage,
       double? userRating}) {
     return VisitDetailsDto(
@@ -8004,6 +8010,7 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
         userFirstName: userFirstName ?? this.userFirstName,
         userEmail: userEmail ?? this.userEmail,
         userLastName: userLastName ?? this.userLastName,
+        userCel: userCel ?? this.userCel,
         userImage: userImage ?? this.userImage,
         userRating: userRating ?? this.userRating);
   }
