@@ -22118,6 +22118,10 @@
             "type": "string",
             "nullable": true
           },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
           "userName": {
             "type": "string",
             "nullable": true

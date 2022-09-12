@@ -7777,6 +7777,7 @@ class VisitDetailsDto {
     this.comments,
     this.cancelled,
     this.cancelOther,
+    this.userId,
     this.userName,
     this.userAbbreviation,
     this.userFirstName,
@@ -7829,6 +7830,8 @@ class VisitDetailsDto {
   final enums.CancellationOfVisitEnum? cancelled;
   @JsonKey(name: 'cancelOther')
   final String? cancelOther;
+  @JsonKey(name: 'userId')
+  final String? userId;
   @JsonKey(name: 'userName')
   final String? userName;
   @JsonKey(name: 'userAbbreviation')
@@ -7908,6 +7911,8 @@ class VisitDetailsDto {
             (identical(other.cancelOther, cancelOther) ||
                 const DeepCollectionEquality()
                     .equals(other.cancelOther, cancelOther)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
             (identical(other.userName, userName) ||
                 const DeepCollectionEquality()
                     .equals(other.userName, userName)) &&
@@ -7920,8 +7925,7 @@ class VisitDetailsDto {
             (identical(other.userEmail, userEmail) ||
                 const DeepCollectionEquality()
                     .equals(other.userEmail, userEmail)) &&
-            (identical(other.userLastName, userLastName) ||
-                const DeepCollectionEquality().equals(other.userLastName, userLastName)) &&
+            (identical(other.userLastName, userLastName) || const DeepCollectionEquality().equals(other.userLastName, userLastName)) &&
             (identical(other.userCel, userCel) || const DeepCollectionEquality().equals(other.userCel, userCel)) &&
             (identical(other.userImage, userImage) || const DeepCollectionEquality().equals(other.userImage, userImage)) &&
             (identical(other.userRating, userRating) || const DeepCollectionEquality().equals(other.userRating, userRating)));
@@ -7947,6 +7951,7 @@ class VisitDetailsDto {
       const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(cancelled) ^
       const DeepCollectionEquality().hash(cancelOther) ^
+      const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(userName) ^
       const DeepCollectionEquality().hash(userAbbreviation) ^
       const DeepCollectionEquality().hash(userFirstName) ^
@@ -7978,6 +7983,7 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
       String? comments,
       enums.CancellationOfVisitEnum? cancelled,
       String? cancelOther,
+      String? userId,
       String? userName,
       String? userAbbreviation,
       String? userFirstName,
@@ -8005,6 +8011,7 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
         comments: comments ?? this.comments,
         cancelled: cancelled ?? this.cancelled,
         cancelOther: cancelOther ?? this.cancelOther,
+        userId: userId ?? this.userId,
         userName: userName ?? this.userName,
         userAbbreviation: userAbbreviation ?? this.userAbbreviation,
         userFirstName: userFirstName ?? this.userFirstName,
