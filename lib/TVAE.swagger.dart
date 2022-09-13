@@ -8402,6 +8402,9 @@ class VisitNextPendingResidentDto {
     this.reason,
     this.comments,
     this.rating,
+    this.visitStatusId,
+    this.visitStatus,
+    this.visitStatusCode,
     this.visitDate,
     this.startHour,
     this.endHour,
@@ -8434,6 +8437,12 @@ class VisitNextPendingResidentDto {
   final String? comments;
   @JsonKey(name: 'rating')
   final double? rating;
+  @JsonKey(name: 'visitStatusId')
+  final String? visitStatusId;
+  @JsonKey(name: 'visitStatus')
+  final String? visitStatus;
+  @JsonKey(name: 'visitStatusCode')
+  final String? visitStatusCode;
   @JsonKey(name: 'visitDate')
   final DateTime? visitDate;
   @JsonKey(name: 'startHour')
@@ -8484,6 +8493,15 @@ class VisitNextPendingResidentDto {
                     .equals(other.comments, comments)) &&
             (identical(other.rating, rating) ||
                 const DeepCollectionEquality().equals(other.rating, rating)) &&
+            (identical(other.visitStatusId, visitStatusId) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitStatusId, visitStatusId)) &&
+            (identical(other.visitStatus, visitStatus) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitStatus, visitStatus)) &&
+            (identical(other.visitStatusCode, visitStatusCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitStatusCode, visitStatusCode)) &&
             (identical(other.visitDate, visitDate) ||
                 const DeepCollectionEquality()
                     .equals(other.visitDate, visitDate)) &&
@@ -8508,6 +8526,9 @@ class VisitNextPendingResidentDto {
       const DeepCollectionEquality().hash(reason) ^
       const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(rating) ^
+      const DeepCollectionEquality().hash(visitStatusId) ^
+      const DeepCollectionEquality().hash(visitStatus) ^
+      const DeepCollectionEquality().hash(visitStatusCode) ^
       const DeepCollectionEquality().hash(visitDate) ^
       const DeepCollectionEquality().hash(startHour) ^
       const DeepCollectionEquality().hash(endHour) ^
@@ -8528,6 +8549,9 @@ extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
       String? reason,
       String? comments,
       double? rating,
+      String? visitStatusId,
+      String? visitStatus,
+      String? visitStatusCode,
       DateTime? visitDate,
       String? startHour,
       String? endHour}) {
@@ -8544,6 +8568,9 @@ extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
         reason: reason ?? this.reason,
         comments: comments ?? this.comments,
         rating: rating ?? this.rating,
+        visitStatusId: visitStatusId ?? this.visitStatusId,
+        visitStatus: visitStatus ?? this.visitStatus,
+        visitStatusCode: visitStatusCode ?? this.visitStatusCode,
         visitDate: visitDate ?? this.visitDate,
         startHour: startHour ?? this.startHour,
         endHour: endHour ?? this.endHour);

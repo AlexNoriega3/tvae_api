@@ -1652,6 +1652,9 @@ VisitNextPendingResidentDto _$VisitNextPendingResidentDtoFromJson(
       reason: json['reason'] as String?,
       comments: json['comments'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
+      visitStatusId: json['visitStatusId'] as String?,
+      visitStatus: json['visitStatus'] as String?,
+      visitStatusCode: json['visitStatusCode'] as String?,
       visitDate: json['visitDate'] == null
           ? null
           : DateTime.parse(json['visitDate'] as String),
@@ -1674,6 +1677,9 @@ Map<String, dynamic> _$VisitNextPendingResidentDtoToJson(
       'reason': instance.reason,
       'comments': instance.comments,
       'rating': instance.rating,
+      'visitStatusId': instance.visitStatusId,
+      'visitStatus': instance.visitStatus,
+      'visitStatusCode': instance.visitStatusCode,
       'visitDate': instance.visitDate?.toIso8601String(),
       'startHour': instance.startHour,
       'endHour': instance.endHour,

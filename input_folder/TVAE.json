@@ -22356,6 +22356,18 @@
             "format": "double",
             "nullable": true
           },
+          "visitStatusId": {
+            "type": "string",
+            "nullable": true
+          },
+          "visitStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "visitStatusCode": {
+            "type": "string",
+            "nullable": true
+          },
           "visitDate": {
             "type": "string",
             "format": "date-time"
