@@ -1114,6 +1114,17 @@ Map<String, dynamic> _$ResetPasswordModelToJson(ResetPasswordModel instance) =>
       'token': instance.token,
     };
 
+ResponseDto _$ResponseDtoFromJson(Map<String, dynamic> json) => ResponseDto(
+      saved: json['saved'] as bool?,
+      image: json['image'] as String?,
+    );
+
+Map<String, dynamic> _$ResponseDtoToJson(ResponseDto instance) =>
+    <String, dynamic>{
+      'saved': instance.saved,
+      'image': instance.image,
+    };
+
 ResultUserDto _$ResultUserDtoFromJson(Map<String, dynamic> json) =>
     ResultUserDto(
       id: json['id'] as String?,

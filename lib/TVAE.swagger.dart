@@ -2138,6 +2138,42 @@ abstract class TVAE extends ChopperService {
           @Query('PageSize') required int? pageSize});
 
   ///
+  ///@param id
+  Future<chopper.Response<ResponseDto>> apiVisitUploaQRAppIdPost(
+      {required String? id, required List<int> partFile}) {
+    generatedMapping.putIfAbsent(
+        ResponseDto, () => ResponseDto.fromJsonFactory);
+
+    return _apiVisitUploaQRAppIdPost(id: id, partFile: partFile);
+  }
+
+  ///
+  ///@param id
+  @Post(path: '/api/Visit/UploaQRApp/{id}')
+  @Multipart()
+  Future<chopper.Response<ResponseDto>> _apiVisitUploaQRAppIdPost(
+      {@Path('id') required String? id,
+      @PartFile() required List<int> partFile});
+
+  ///
+  ///@param id
+  Future<chopper.Response<ResponseDto>> apiVisitUploaQRWebIdPost(
+      {required String? id, required List<int> partFile}) {
+    generatedMapping.putIfAbsent(
+        ResponseDto, () => ResponseDto.fromJsonFactory);
+
+    return _apiVisitUploaQRWebIdPost(id: id, partFile: partFile);
+  }
+
+  ///
+  ///@param id
+  @Post(path: '/api/Visit/UploaQRWeb/{id}')
+  @Multipart()
+  Future<chopper.Response<ResponseDto>> _apiVisitUploaQRWebIdPost(
+      {@Path('id') required String? id,
+      @PartFile() required List<int> partFile});
+
+  ///
   Future<chopper.Response<List<VisitStatusDto>>> apiVisitStatusGet() {
     generatedMapping.putIfAbsent(
         VisitStatusDto, () => VisitStatusDto.fromJsonFactory);
@@ -6299,6 +6335,50 @@ extension $ResetPasswordModelExtension on ResetPasswordModel {
         confirmPassword: confirmPassword ?? this.confirmPassword,
         email: email ?? this.email,
         token: token ?? this.token);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ResponseDto {
+  ResponseDto({
+    this.saved,
+    this.image,
+  });
+
+  factory ResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$ResponseDtoFromJson(json);
+
+  @JsonKey(name: 'saved')
+  final bool? saved;
+  @JsonKey(name: 'image')
+  final String? image;
+  static const fromJsonFactory = _$ResponseDtoFromJson;
+  static const toJsonFactory = _$ResponseDtoToJson;
+  Map<String, dynamic> toJson() => _$ResponseDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ResponseDto &&
+            (identical(other.saved, saved) ||
+                const DeepCollectionEquality().equals(other.saved, saved)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(saved) ^
+      const DeepCollectionEquality().hash(image) ^
+      runtimeType.hashCode;
+}
+
+extension $ResponseDtoExtension on ResponseDto {
+  ResponseDto copyWith({bool? saved, String? image}) {
+    return ResponseDto(saved: saved ?? this.saved, image: image ?? this.image);
   }
 }
 

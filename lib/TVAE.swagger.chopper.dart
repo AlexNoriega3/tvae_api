@@ -1262,6 +1262,26 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<ResponseDto>> _apiVisitUploaQRAppIdPost(
+      {required String? id, required List<int> partFile}) {
+    final $url = '/api/Visit/UploaQRApp/${id}';
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
+    return client.send<ResponseDto, ResponseDto>($request);
+  }
+
+  @override
+  Future<Response<ResponseDto>> _apiVisitUploaQRWebIdPost(
+      {required String? id, required List<int> partFile}) {
+    final $url = '/api/Visit/UploaQRWeb/${id}';
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
+    return client.send<ResponseDto, ResponseDto>($request);
+  }
+
+  @override
   Future<Response<List<VisitStatusDto>>> _apiVisitStatusGet() {
     final $url = '/api/VisitStatus';
     final $request = Request('GET', $url, client.baseUrl);
