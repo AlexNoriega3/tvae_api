@@ -2138,40 +2138,38 @@ abstract class TVAE extends ChopperService {
           @Query('PageSize') required int? pageSize});
 
   ///
-  ///@param id
-  Future<chopper.Response<ResponseDto>> apiVisitUploaQRAppIdPost(
-      {required String? id, required List<int> partFile}) {
+  ///@param visitId
+  Future<chopper.Response<ResponseDto>> apiVisitUploadQRAppVisitIdPost(
+      {required String? visitId, required List<int> partFile}) {
     generatedMapping.putIfAbsent(
         ResponseDto, () => ResponseDto.fromJsonFactory);
 
-    return _apiVisitUploaQRAppIdPost(id: id, partFile: partFile);
+    return _apiVisitUploadQRAppVisitIdPost(
+        visitId: visitId, partFile: partFile);
   }
 
   ///
-  ///@param id
-  @Post(path: '/api/Visit/UploaQRApp/{id}')
+  ///@param visitId
+  @Post(path: '/api/Visit/UploadQRApp/{visitId}')
   @Multipart()
-  Future<chopper.Response<ResponseDto>> _apiVisitUploaQRAppIdPost(
-      {@Path('id') required String? id,
+  Future<chopper.Response<ResponseDto>> _apiVisitUploadQRAppVisitIdPost(
+      {@Path('visitId') required String? visitId,
       @PartFile() required List<int> partFile});
 
   ///
-  ///@param id
-  Future<chopper.Response<ResponseDto>> apiVisitUploaQRWebIdPost(
-      {required String? id, required List<int> partFile}) {
+  Future<chopper.Response<ResponseDto>> apiVisitUploadQRPost(
+      {required List<int> partFile}) {
     generatedMapping.putIfAbsent(
         ResponseDto, () => ResponseDto.fromJsonFactory);
 
-    return _apiVisitUploaQRWebIdPost(id: id, partFile: partFile);
+    return _apiVisitUploadQRPost(partFile: partFile);
   }
 
   ///
-  ///@param id
-  @Post(path: '/api/Visit/UploaQRWeb/{id}')
+  @Post(path: '/api/Visit/UploadQR')
   @Multipart()
-  Future<chopper.Response<ResponseDto>> _apiVisitUploaQRWebIdPost(
-      {@Path('id') required String? id,
-      @PartFile() required List<int> partFile});
+  Future<chopper.Response<ResponseDto>> _apiVisitUploadQRPost(
+      {@PartFile() required List<int> partFile});
 
   ///
   Future<chopper.Response<List<VisitStatusDto>>> apiVisitStatusGet() {

@@ -1262,9 +1262,9 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<ResponseDto>> _apiVisitUploaQRAppIdPost(
-      {required String? id, required List<int> partFile}) {
-    final $url = '/api/Visit/UploaQRApp/${id}';
+  Future<Response<ResponseDto>> _apiVisitUploadQRAppVisitIdPost(
+      {required String? visitId, required List<int> partFile}) {
+    final $url = '/api/Visit/UploadQRApp/${visitId}';
     final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
     final $request =
         Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
@@ -1272,9 +1272,9 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<ResponseDto>> _apiVisitUploaQRWebIdPost(
-      {required String? id, required List<int> partFile}) {
-    final $url = '/api/Visit/UploaQRWeb/${id}';
+  Future<Response<ResponseDto>> _apiVisitUploadQRPost(
+      {required List<int> partFile}) {
+    final $url = '/api/Visit/UploadQR';
     final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
     final $request =
         Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);

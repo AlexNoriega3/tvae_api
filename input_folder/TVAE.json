@@ -19034,14 +19034,14 @@
         }
       }
     },
-    "/api/Visit/UploaQRApp/{id}": {
+    "/api/Visit/UploadQRApp/{visitId}": {
       "post": {
         "tags": [
           "Visit"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "visitId",
             "in": "path",
             "required": true,
             "schema": {
@@ -19158,20 +19158,10 @@
         }
       }
     },
-    "/api/Visit/UploaQRWeb/{id}": {
+    "/api/Visit/UploadQR": {
       "post": {
         "tags": [
           "Visit"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
         ],
         "requestBody": {
           "content": {
@@ -19182,30 +19172,9 @@
                   "id": {
                     "type": "string"
                   },
-                  "ContentType": {
-                    "type": "string"
-                  },
-                  "ContentDisposition": {
-                    "type": "string"
-                  },
-                  "Headers": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "Length": {
-                    "type": "integer",
-                    "format": "int64"
-                  },
-                  "Name": {
-                    "type": "string"
-                  },
-                  "FileName": {
-                    "type": "string"
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               },
@@ -19213,22 +19182,7 @@
                 "id": {
                   "style": "form"
                 },
-                "ContentType": {
-                  "style": "form"
-                },
-                "ContentDisposition": {
-                  "style": "form"
-                },
-                "Headers": {
-                  "style": "form"
-                },
-                "Length": {
-                  "style": "form"
-                },
-                "Name": {
-                  "style": "form"
-                },
-                "FileName": {
+                "image": {
                   "style": "form"
                 }
               }
