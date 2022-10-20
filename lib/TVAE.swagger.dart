@@ -1868,13 +1868,17 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response<List<VisitDto>>> _apiVisitGet();
 
   ///
-  Future<chopper.Response<String>> apiVisitPost({required VisitDto? body}) {
+  Future<chopper.Response<VisitCreateDto>> apiVisitPost(
+      {required VisitDto? body}) {
+    generatedMapping.putIfAbsent(
+        VisitCreateDto, () => VisitCreateDto.fromJsonFactory);
+
     return _apiVisitPost(body: body);
   }
 
   ///
   @Post(path: '/api/Visit')
-  Future<chopper.Response<String>> _apiVisitPost(
+  Future<chopper.Response<VisitCreateDto>> _apiVisitPost(
       {@Body() required VisitDto? body});
 
   ///
@@ -7835,6 +7839,51 @@ extension $UserPutDtoExtension on UserPutDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class VisitCreateDto {
+  VisitCreateDto({
+    this.visitId,
+    this.qr,
+  });
+
+  factory VisitCreateDto.fromJson(Map<String, dynamic> json) =>
+      _$VisitCreateDtoFromJson(json);
+
+  @JsonKey(name: 'visitId')
+  final String? visitId;
+  @JsonKey(name: 'qr')
+  final String? qr;
+  static const fromJsonFactory = _$VisitCreateDtoFromJson;
+  static const toJsonFactory = _$VisitCreateDtoToJson;
+  Map<String, dynamic> toJson() => _$VisitCreateDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is VisitCreateDto &&
+            (identical(other.visitId, visitId) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitId, visitId)) &&
+            (identical(other.qr, qr) ||
+                const DeepCollectionEquality().equals(other.qr, qr)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(visitId) ^
+      const DeepCollectionEquality().hash(qr) ^
+      runtimeType.hashCode;
+}
+
+extension $VisitCreateDtoExtension on VisitCreateDto {
+  VisitCreateDto copyWith({String? visitId, String? qr}) {
+    return VisitCreateDto(visitId: visitId ?? this.visitId, qr: qr ?? this.qr);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class VisitDetailsDto {
   VisitDetailsDto({
     this.visitId,
@@ -7863,6 +7912,7 @@ class VisitDetailsDto {
     this.userLastName,
     this.userCel,
     this.userImage,
+    this.qr,
     this.userRating,
   });
 
@@ -7924,6 +7974,8 @@ class VisitDetailsDto {
   final String? userCel;
   @JsonKey(name: 'userImage')
   final String? userImage;
+  @JsonKey(name: 'qr')
+  final String? qr;
   @JsonKey(name: 'userRating')
   final double? userRating;
   static const fromJsonFactory = _$VisitDetailsDtoFromJson;
@@ -8006,6 +8058,7 @@ class VisitDetailsDto {
             (identical(other.userLastName, userLastName) || const DeepCollectionEquality().equals(other.userLastName, userLastName)) &&
             (identical(other.userCel, userCel) || const DeepCollectionEquality().equals(other.userCel, userCel)) &&
             (identical(other.userImage, userImage) || const DeepCollectionEquality().equals(other.userImage, userImage)) &&
+            (identical(other.qr, qr) || const DeepCollectionEquality().equals(other.qr, qr)) &&
             (identical(other.userRating, userRating) || const DeepCollectionEquality().equals(other.userRating, userRating)));
   }
 
@@ -8037,6 +8090,7 @@ class VisitDetailsDto {
       const DeepCollectionEquality().hash(userLastName) ^
       const DeepCollectionEquality().hash(userCel) ^
       const DeepCollectionEquality().hash(userImage) ^
+      const DeepCollectionEquality().hash(qr) ^
       const DeepCollectionEquality().hash(userRating) ^
       runtimeType.hashCode;
 }
@@ -8069,6 +8123,7 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
       String? userLastName,
       String? userCel,
       String? userImage,
+      String? qr,
       double? userRating}) {
     return VisitDetailsDto(
         visitId: visitId ?? this.visitId,
@@ -8097,6 +8152,7 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
         userLastName: userLastName ?? this.userLastName,
         userCel: userCel ?? this.userCel,
         userImage: userImage ?? this.userImage,
+        qr: qr ?? this.qr,
         userRating: userRating ?? this.userRating);
   }
 }
@@ -8471,6 +8527,7 @@ class VisitNextPendingResidentDto {
     this.visitId,
     this.localId,
     this.userId,
+    this.qr,
     this.localName,
     this.userName,
     this.abbreviation,
@@ -8497,6 +8554,8 @@ class VisitNextPendingResidentDto {
   final String? localId;
   @JsonKey(name: 'userId')
   final String? userId;
+  @JsonKey(name: 'qr')
+  final String? qr;
   @JsonKey(name: 'localName')
   final String? localName;
   @JsonKey(name: 'userName')
@@ -8546,6 +8605,8 @@ class VisitNextPendingResidentDto {
                     .equals(other.localId, localId)) &&
             (identical(other.userId, userId) ||
                 const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.qr, qr) ||
+                const DeepCollectionEquality().equals(other.qr, qr)) &&
             (identical(other.localName, localName) ||
                 const DeepCollectionEquality()
                     .equals(other.localName, localName)) &&
@@ -8595,6 +8656,7 @@ class VisitNextPendingResidentDto {
       const DeepCollectionEquality().hash(visitId) ^
       const DeepCollectionEquality().hash(localId) ^
       const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(qr) ^
       const DeepCollectionEquality().hash(localName) ^
       const DeepCollectionEquality().hash(userName) ^
       const DeepCollectionEquality().hash(abbreviation) ^
@@ -8618,6 +8680,7 @@ extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
       {String? visitId,
       String? localId,
       String? userId,
+      String? qr,
       String? localName,
       String? userName,
       String? abbreviation,
@@ -8637,6 +8700,7 @@ extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
         userId: userId ?? this.userId,
+        qr: qr ?? this.qr,
         localName: localName ?? this.localName,
         userName: userName ?? this.userName,
         abbreviation: abbreviation ?? this.abbreviation,

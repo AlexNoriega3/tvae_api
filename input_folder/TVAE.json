@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "TVA API - Development",
+    "title": "TVA API - QA",
     "description": "TVA .NET Core Web API",
     "termsOfService": "https://example.com/terms",
     "contact": {
@@ -17628,82 +17628,82 @@
             "content": {
               "application/json;odata.metadata=minimal;odata.streaming=true": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/json;odata.metadata=minimal;odata.streaming=false": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/json;odata.metadata=minimal": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=true": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/json;odata.metadata=full;odata.streaming=false": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/json;odata.metadata=full": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=true": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/json;odata.metadata=none;odata.streaming=false": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/json;odata.metadata=none": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/json;odata.streaming=true": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/json;odata.streaming=false": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "application/octet-stream": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/VisitCreateDto"
                 }
               }
             }
@@ -22300,6 +22300,20 @@
         },
         "additionalProperties": false
       },
+      "VisitCreateDto": {
+        "type": "object",
+        "properties": {
+          "visitId": {
+            "type": "string",
+            "nullable": true
+          },
+          "qr": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "VisitDetailsDto": {
         "type": "object",
         "properties": {
@@ -22404,6 +22418,10 @@
             "nullable": true
           },
           "userImage": {
+            "type": "string",
+            "nullable": true
+          },
+          "qr": {
             "type": "string",
             "nullable": true
           },
@@ -22573,6 +22591,10 @@
             "nullable": true
           },
           "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "qr": {
             "type": "string",
             "nullable": true
           },

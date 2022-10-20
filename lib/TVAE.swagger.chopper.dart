@@ -1120,11 +1120,11 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<String>> _apiVisitPost({required VisitDto? body}) {
+  Future<Response<VisitCreateDto>> _apiVisitPost({required VisitDto? body}) {
     final $url = '/api/Visit';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<String, String>($request);
+    return client.send<VisitCreateDto, VisitCreateDto>($request);
   }
 
   @override

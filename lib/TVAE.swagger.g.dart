@@ -1495,6 +1495,18 @@ Map<String, dynamic> _$UserPutDtoToJson(UserPutDto instance) =>
       'costPerAppointment': instance.costPerAppointment,
     };
 
+VisitCreateDto _$VisitCreateDtoFromJson(Map<String, dynamic> json) =>
+    VisitCreateDto(
+      visitId: json['visitId'] as String?,
+      qr: json['qr'] as String?,
+    );
+
+Map<String, dynamic> _$VisitCreateDtoToJson(VisitCreateDto instance) =>
+    <String, dynamic>{
+      'visitId': instance.visitId,
+      'qr': instance.qr,
+    };
+
 VisitDetailsDto _$VisitDetailsDtoFromJson(Map<String, dynamic> json) =>
     VisitDetailsDto(
       visitId: json['visitId'] as String?,
@@ -1525,6 +1537,7 @@ VisitDetailsDto _$VisitDetailsDtoFromJson(Map<String, dynamic> json) =>
       userLastName: json['userLastName'] as String?,
       userCel: json['userCel'] as String?,
       userImage: json['userImage'] as String?,
+      qr: json['qr'] as String?,
       userRating: (json['userRating'] as num?)?.toDouble(),
     );
 
@@ -1556,6 +1569,7 @@ Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
       'userLastName': instance.userLastName,
       'userCel': instance.userCel,
       'userImage': instance.userImage,
+      'qr': instance.qr,
       'userRating': instance.userRating,
     };
 
@@ -1654,6 +1668,7 @@ VisitNextPendingResidentDto _$VisitNextPendingResidentDtoFromJson(
       visitId: json['visitId'] as String?,
       localId: json['localId'] as String?,
       userId: json['userId'] as String?,
+      qr: json['qr'] as String?,
       localName: json['localName'] as String?,
       userName: json['userName'] as String?,
       abbreviation: json['abbreviation'] as String?,
@@ -1679,6 +1694,7 @@ Map<String, dynamic> _$VisitNextPendingResidentDtoToJson(
       'visitId': instance.visitId,
       'localId': instance.localId,
       'userId': instance.userId,
+      'qr': instance.qr,
       'localName': instance.localName,
       'userName': instance.userName,
       'abbreviation': instance.abbreviation,
