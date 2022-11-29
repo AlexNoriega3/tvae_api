@@ -482,16 +482,14 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response<List<DeviceDto>>> _apiDeviceGet();
 
   ///
-  Future<chopper.Response<String>> apiDevicePost(
-      {required List<int> partFile}) {
-    return _apiDevicePost(partFile: partFile);
+  Future<chopper.Response<String>> apiDevicePost({required DeviceDto? body}) {
+    return _apiDevicePost(body: body);
   }
 
   ///
   @Post(path: '/api/Device')
-  @Multipart()
   Future<chopper.Response<String>> _apiDevicePost(
-      {@PartFile() required List<int> partFile});
+      {@Body() required DeviceDto? body});
 
   ///
   ///@param Page
@@ -532,17 +530,15 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param id
   Future<chopper.Response<bool>> apiDeviceIdPut(
-      {required String? id, required List<int> partFile}) {
-    return _apiDeviceIdPut(id: id, partFile: partFile);
+      {required String? id, required DeviceDto? body}) {
+    return _apiDeviceIdPut(id: id, body: body);
   }
 
   ///
   ///@param id
   @Put(path: '/api/Device/{id}')
-  @Multipart()
   Future<chopper.Response<bool>> _apiDeviceIdPut(
-      {@Path('id') required String? id,
-      @PartFile() required List<int> partFile});
+      {@Path('id') required String? id, @Body() required DeviceDto? body});
 
   ///
   ///@param id

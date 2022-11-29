@@ -4493,55 +4493,84 @@
         ],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "DeviceId": {
-                    "type": "string"
-                  },
-                  "TokenDevice": {
-                    "type": "string"
-                  },
-                  "DeviceName": {
-                    "type": "string"
-                  },
-                  "Subcribed": {
-                    "type": "string"
-                  },
-                  "Active": {
-                    "type": "boolean"
-                  },
-                  "PlatForm": {
-                    "$ref": "#/components/schemas/PlatFormEnum"
-                  },
-                  "Identifier": {
-                    "type": "string"
-                  }
-                }
-              },
-              "encoding": {
-                "DeviceId": {
-                  "style": "form"
-                },
-                "TokenDevice": {
-                  "style": "form"
-                },
-                "DeviceName": {
-                  "style": "form"
-                },
-                "Subcribed": {
-                  "style": "form"
-                },
-                "Active": {
-                  "style": "form"
-                },
-                "PlatForm": {
-                  "style": "form"
-                },
-                "Identifier": {
-                  "style": "form"
-                }
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
               }
             }
           }
@@ -4875,55 +4904,84 @@
         ],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "DeviceId": {
-                    "type": "string"
-                  },
-                  "TokenDevice": {
-                    "type": "string"
-                  },
-                  "DeviceName": {
-                    "type": "string"
-                  },
-                  "Subcribed": {
-                    "type": "string"
-                  },
-                  "Active": {
-                    "type": "boolean"
-                  },
-                  "PlatForm": {
-                    "$ref": "#/components/schemas/PlatFormEnum"
-                  },
-                  "Identifier": {
-                    "type": "string"
-                  }
-                }
-              },
-              "encoding": {
-                "DeviceId": {
-                  "style": "form"
-                },
-                "TokenDevice": {
-                  "style": "form"
-                },
-                "DeviceName": {
-                  "style": "form"
-                },
-                "Subcribed": {
-                  "style": "form"
-                },
-                "Active": {
-                  "style": "form"
-                },
-                "PlatForm": {
-                  "style": "form"
-                },
-                "Identifier": {
-                  "style": "form"
-                }
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceDto"
               }
             }
           }

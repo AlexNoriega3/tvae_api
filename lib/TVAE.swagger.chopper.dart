@@ -288,11 +288,10 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<String>> _apiDevicePost({required List<int> partFile}) {
+  Future<Response<String>> _apiDevicePost({required DeviceDto? body}) {
     final $url = '/api/Device';
-    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
-    final $request =
-        Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<String, String>($request);
   }
 
@@ -318,11 +317,10 @@ class _$TVAE extends TVAE {
 
   @override
   Future<Response<bool>> _apiDeviceIdPut(
-      {required String? id, required List<int> partFile}) {
+      {required String? id, required DeviceDto? body}) {
     final $url = '/api/Device/${id}';
-    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
-    final $request =
-        Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
     return client.send<bool, bool>($request);
   }
 
