@@ -59,3 +59,20 @@ const $NotificationPriorityMap = {
   NotificationPriority.medium: 'Medium',
   NotificationPriority.low: 'Low'
 };
+
+enum PlatFormEnum {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('Android')
+  android,
+  @JsonValue('IOS')
+  ios,
+  @JsonValue('Web')
+  web
+}
+
+const $PlatFormEnumMap = {
+  PlatFormEnum.android: 'Android',
+  PlatFormEnum.ios: 'IOS',
+  PlatFormEnum.web: 'Web'
+};

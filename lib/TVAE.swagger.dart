@@ -471,6 +471,92 @@ abstract class TVAE extends ChopperService {
       {@Path('id') required String? id});
 
   ///
+  Future<chopper.Response<List<DeviceDto>>> apiDeviceGet() {
+    generatedMapping.putIfAbsent(DeviceDto, () => DeviceDto.fromJsonFactory);
+
+    return _apiDeviceGet();
+  }
+
+  ///
+  @Get(path: '/api/Device')
+  Future<chopper.Response<List<DeviceDto>>> _apiDeviceGet();
+
+  ///
+  Future<chopper.Response<String>> apiDevicePost(
+      {required List<int> partFile}) {
+    return _apiDevicePost(partFile: partFile);
+  }
+
+  ///
+  @Post(path: '/api/Device')
+  @Multipart()
+  Future<chopper.Response<String>> _apiDevicePost(
+      {@PartFile() required List<int> partFile});
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  Future<chopper.Response<DeviceDtoPagedResult>> apiDeviceSearchGet(
+      {required int? page, String? search, required int? pageSize}) {
+    generatedMapping.putIfAbsent(
+        DeviceDtoPagedResult, () => DeviceDtoPagedResult.fromJsonFactory);
+
+    return _apiDeviceSearchGet(page: page, search: search, pageSize: pageSize);
+  }
+
+  ///
+  ///@param Page
+  ///@param Search
+  ///@param PageSize
+  @Get(path: '/api/Device/Search')
+  Future<chopper.Response<DeviceDtoPagedResult>> _apiDeviceSearchGet(
+      {@Query('Page') required int? page,
+      @Query('Search') String? search,
+      @Query('PageSize') required int? pageSize});
+
+  ///
+  ///@param id
+  Future<chopper.Response<DeviceDto>> apiDeviceIdGet({required String? id}) {
+    generatedMapping.putIfAbsent(DeviceDto, () => DeviceDto.fromJsonFactory);
+
+    return _apiDeviceIdGet(id: id);
+  }
+
+  ///
+  ///@param id
+  @Get(path: '/api/Device/{id}')
+  Future<chopper.Response<DeviceDto>> _apiDeviceIdGet(
+      {@Path('id') required String? id});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiDeviceIdPut(
+      {required String? id, required List<int> partFile}) {
+    return _apiDeviceIdPut(id: id, partFile: partFile);
+  }
+
+  ///
+  ///@param id
+  @Put(path: '/api/Device/{id}')
+  @Multipart()
+  Future<chopper.Response<bool>> _apiDeviceIdPut(
+      {@Path('id') required String? id,
+      @PartFile() required List<int> partFile});
+
+  ///
+  ///@param id
+  Future<chopper.Response<bool>> apiDeviceIdDelete({required String? id}) {
+    return _apiDeviceIdDelete(id: id);
+  }
+
+  ///
+  ///@param id
+  @Delete(path: '/api/Device/{id}')
+  Future<chopper.Response<bool>> _apiDeviceIdDelete(
+      {@Path('id') required String? id});
+
+  ///
   ///@param LocalId
   ///@param DateVisit
   ///@param Page
@@ -3379,6 +3465,179 @@ extension $DepartmentDtoPagedResultExtension on DepartmentDtoPagedResult {
       int? totalPages,
       List<DepartmentDto>? items}) {
     return DepartmentDtoPagedResult(
+        totalCount: totalCount ?? this.totalCount,
+        pageNumber: pageNumber ?? this.pageNumber,
+        recordNumber: recordNumber ?? this.recordNumber,
+        totalPages: totalPages ?? this.totalPages,
+        items: items ?? this.items);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class DeviceDto {
+  DeviceDto({
+    this.deviceId,
+    this.tokenDevice,
+    this.deviceName,
+    this.subcribed,
+    this.active,
+    this.platForm,
+    this.identifier,
+  });
+
+  factory DeviceDto.fromJson(Map<String, dynamic> json) =>
+      _$DeviceDtoFromJson(json);
+
+  @JsonKey(name: 'deviceId')
+  final String? deviceId;
+  @JsonKey(name: 'tokenDevice')
+  final String? tokenDevice;
+  @JsonKey(name: 'deviceName')
+  final String? deviceName;
+  @JsonKey(name: 'subcribed')
+  final String? subcribed;
+  @JsonKey(name: 'active')
+  final bool? active;
+  @JsonKey(
+      name: 'platForm',
+      toJson: platFormEnumToJson,
+      fromJson: platFormEnumFromJson)
+  final enums.PlatFormEnum? platForm;
+  @JsonKey(name: 'identifier')
+  final String? identifier;
+  static const fromJsonFactory = _$DeviceDtoFromJson;
+  static const toJsonFactory = _$DeviceDtoToJson;
+  Map<String, dynamic> toJson() => _$DeviceDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DeviceDto &&
+            (identical(other.deviceId, deviceId) ||
+                const DeepCollectionEquality()
+                    .equals(other.deviceId, deviceId)) &&
+            (identical(other.tokenDevice, tokenDevice) ||
+                const DeepCollectionEquality()
+                    .equals(other.tokenDevice, tokenDevice)) &&
+            (identical(other.deviceName, deviceName) ||
+                const DeepCollectionEquality()
+                    .equals(other.deviceName, deviceName)) &&
+            (identical(other.subcribed, subcribed) ||
+                const DeepCollectionEquality()
+                    .equals(other.subcribed, subcribed)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.platForm, platForm) ||
+                const DeepCollectionEquality()
+                    .equals(other.platForm, platForm)) &&
+            (identical(other.identifier, identifier) ||
+                const DeepCollectionEquality()
+                    .equals(other.identifier, identifier)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(deviceId) ^
+      const DeepCollectionEquality().hash(tokenDevice) ^
+      const DeepCollectionEquality().hash(deviceName) ^
+      const DeepCollectionEquality().hash(subcribed) ^
+      const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(platForm) ^
+      const DeepCollectionEquality().hash(identifier) ^
+      runtimeType.hashCode;
+}
+
+extension $DeviceDtoExtension on DeviceDto {
+  DeviceDto copyWith(
+      {String? deviceId,
+      String? tokenDevice,
+      String? deviceName,
+      String? subcribed,
+      bool? active,
+      enums.PlatFormEnum? platForm,
+      String? identifier}) {
+    return DeviceDto(
+        deviceId: deviceId ?? this.deviceId,
+        tokenDevice: tokenDevice ?? this.tokenDevice,
+        deviceName: deviceName ?? this.deviceName,
+        subcribed: subcribed ?? this.subcribed,
+        active: active ?? this.active,
+        platForm: platForm ?? this.platForm,
+        identifier: identifier ?? this.identifier);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class DeviceDtoPagedResult {
+  DeviceDtoPagedResult({
+    this.totalCount,
+    this.pageNumber,
+    this.recordNumber,
+    this.totalPages,
+    this.items,
+  });
+
+  factory DeviceDtoPagedResult.fromJson(Map<String, dynamic> json) =>
+      _$DeviceDtoPagedResultFromJson(json);
+
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @JsonKey(name: 'pageNumber')
+  final int? pageNumber;
+  @JsonKey(name: 'recordNumber')
+  final int? recordNumber;
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @JsonKey(name: 'items', defaultValue: <DeviceDto>[])
+  final List<DeviceDto>? items;
+  static const fromJsonFactory = _$DeviceDtoPagedResultFromJson;
+  static const toJsonFactory = _$DeviceDtoPagedResultToJson;
+  Map<String, dynamic> toJson() => _$DeviceDtoPagedResultToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DeviceDtoPagedResult &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
+            (identical(other.recordNumber, recordNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.recordNumber, recordNumber)) &&
+            (identical(other.totalPages, totalPages) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalPages, totalPages)) &&
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalCount) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
+      const DeepCollectionEquality().hash(recordNumber) ^
+      const DeepCollectionEquality().hash(totalPages) ^
+      const DeepCollectionEquality().hash(items) ^
+      runtimeType.hashCode;
+}
+
+extension $DeviceDtoPagedResultExtension on DeviceDtoPagedResult {
+  DeviceDtoPagedResult copyWith(
+      {int? totalCount,
+      int? pageNumber,
+      int? recordNumber,
+      int? totalPages,
+      List<DeviceDto>? items}) {
+    return DeviceDtoPagedResult(
         totalCount: totalCount ?? this.totalCount,
         pageNumber: pageNumber ?? this.pageNumber,
         recordNumber: recordNumber ?? this.recordNumber,
@@ -9264,6 +9523,54 @@ List<enums.NotificationPriority> notificationPriorityListFromJson(
   return notificationPriority
       .map((e) => notificationPriorityFromJson(e.toString()))
       .toList();
+}
+
+String? platFormEnumToJson(enums.PlatFormEnum? platFormEnum) {
+  return enums.$PlatFormEnumMap[platFormEnum];
+}
+
+enums.PlatFormEnum platFormEnumFromJson(
+  Object? platFormEnum, [
+  enums.PlatFormEnum? defaultValue,
+]) {
+  if (platFormEnum is String) {
+    return enums.$PlatFormEnumMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == platFormEnum.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.PlatFormEnum.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  final parsedResult = defaultValue == null
+      ? null
+      : enums.$PlatFormEnumMap.entries
+          .firstWhereOrNull((element) => element.value == defaultValue)
+          ?.key;
+
+  return parsedResult ??
+      defaultValue ??
+      enums.PlatFormEnum.swaggerGeneratedUnknown;
+}
+
+List<String> platFormEnumListToJson(List<enums.PlatFormEnum>? platFormEnum) {
+  if (platFormEnum == null) {
+    return [];
+  }
+
+  return platFormEnum.map((e) => enums.$PlatFormEnumMap[e]!).toList();
+}
+
+List<enums.PlatFormEnum> platFormEnumListFromJson(
+  List? platFormEnum, [
+  List<enums.PlatFormEnum>? defaultValue,
+]) {
+  if (platFormEnum == null) {
+    return defaultValue ?? [];
+  }
+
+  return platFormEnum.map((e) => platFormEnumFromJson(e.toString())).toList();
 }
 
 typedef $JsonFactory<T> = T Function(Map<String, dynamic> json);

@@ -281,6 +281,59 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<List<DeviceDto>>> _apiDeviceGet() {
+    final $url = '/api/Device';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<DeviceDto>, DeviceDto>($request);
+  }
+
+  @override
+  Future<Response<String>> _apiDevicePost({required List<int> partFile}) {
+    final $url = '/api/Device';
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
+    return client.send<String, String>($request);
+  }
+
+  @override
+  Future<Response<DeviceDtoPagedResult>> _apiDeviceSearchGet(
+      {required int? page, String? search, required int? pageSize}) {
+    final $url = '/api/Device/Search';
+    final $params = <String, dynamic>{
+      'Page': page,
+      'Search': search,
+      'PageSize': pageSize
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<DeviceDtoPagedResult, DeviceDtoPagedResult>($request);
+  }
+
+  @override
+  Future<Response<DeviceDto>> _apiDeviceIdGet({required String? id}) {
+    final $url = '/api/Device/${id}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<DeviceDto, DeviceDto>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiDeviceIdPut(
+      {required String? id, required List<int> partFile}) {
+    final $url = '/api/Device/${id}';
+    final $parts = <PartValue>[PartValueFile<List<int>>('partFile', partFile)];
+    final $request =
+        Request('PUT', $url, client.baseUrl, parts: $parts, multipart: true);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
+  Future<Response<bool>> _apiDeviceIdDelete({required String? id}) {
+    final $url = '/api/Device/${id}';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<KioskoResponseDtoPagedResult>> _apiKioskoSearchGet(
       {required String? localId,
       String? dateVisit,

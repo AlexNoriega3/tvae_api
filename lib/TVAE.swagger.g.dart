@@ -305,6 +305,49 @@ Map<String, dynamic> _$DepartmentDtoPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
+DeviceDto _$DeviceDtoFromJson(Map<String, dynamic> json) => DeviceDto(
+      deviceId: json['deviceId'] as String?,
+      tokenDevice: json['tokenDevice'] as String?,
+      deviceName: json['deviceName'] as String?,
+      subcribed: json['subcribed'] as String?,
+      active: json['active'] as bool?,
+      platForm: platFormEnumFromJson(json['platForm']),
+      identifier: json['identifier'] as String?,
+    );
+
+Map<String, dynamic> _$DeviceDtoToJson(DeviceDto instance) => <String, dynamic>{
+      'deviceId': instance.deviceId,
+      'tokenDevice': instance.tokenDevice,
+      'deviceName': instance.deviceName,
+      'subcribed': instance.subcribed,
+      'active': instance.active,
+      'platForm': platFormEnumToJson(instance.platForm),
+      'identifier': instance.identifier,
+    };
+
+DeviceDtoPagedResult _$DeviceDtoPagedResultFromJson(
+        Map<String, dynamic> json) =>
+    DeviceDtoPagedResult(
+      totalCount: json['totalCount'] as int?,
+      pageNumber: json['pageNumber'] as int?,
+      recordNumber: json['recordNumber'] as int?,
+      totalPages: json['totalPages'] as int?,
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => DeviceDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$DeviceDtoPagedResultToJson(
+        DeviceDtoPagedResult instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'recordNumber': instance.recordNumber,
+      'totalPages': instance.totalPages,
+      'items': instance.items?.map((e) => e.toJson()).toList(),
+    };
+
 EditUserResponse _$EditUserResponseFromJson(Map<String, dynamic> json) =>
     EditUserResponse(
       saved: json['saved'] as bool?,
