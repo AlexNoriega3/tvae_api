@@ -1028,7 +1028,7 @@ abstract class TVAE extends ChopperService {
 
   ///
   ///@param id
-  Future<chopper.Response<NotificationsResponseDto>>
+  Future<chopper.Response<List<NotificationsResponseDto>>>
       apiNotificationsByUserIdGet({required String? id}) {
     generatedMapping.putIfAbsent(NotificationsResponseDto,
         () => NotificationsResponseDto.fromJsonFactory);
@@ -1039,8 +1039,19 @@ abstract class TVAE extends ChopperService {
   ///
   ///@param id
   @Get(path: '/api/Notifications/ByUser/{id}')
-  Future<chopper.Response<NotificationsResponseDto>>
+  Future<chopper.Response<List<NotificationsResponseDto>>>
       _apiNotificationsByUserIdGet({@Path('id') required String? id});
+
+  ///
+  Future<chopper.Response> apiNotificationsSendNotificationPost(
+      {required PushNotificationDto? body}) {
+    return _apiNotificationsSendNotificationPost(body: body);
+  }
+
+  ///
+  @Post(path: '/api/Notifications/SendNotification')
+  Future<chopper.Response> _apiNotificationsSendNotificationPost(
+      {@Body() required PushNotificationDto? body});
 
   ///
   ///@param Page
@@ -6214,6 +6225,80 @@ extension $ProviderPutDtoExtension on ProviderPutDto {
         subDepartments: subDepartments ?? this.subDepartments,
         academicStudies: academicStudies ?? this.academicStudies,
         schedules: schedules ?? this.schedules);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PushNotificationDto {
+  PushNotificationDto({
+    this.token,
+    this.userId,
+    this.isSingleAndroiodDevice,
+    this.title,
+    this.body,
+  });
+
+  factory PushNotificationDto.fromJson(Map<String, dynamic> json) =>
+      _$PushNotificationDtoFromJson(json);
+
+  @JsonKey(name: 'token')
+  final String? token;
+  @JsonKey(name: 'userId')
+  final String? userId;
+  @JsonKey(name: 'isSingleAndroiodDevice')
+  final bool? isSingleAndroiodDevice;
+  @JsonKey(name: 'title')
+  final String? title;
+  @JsonKey(name: 'body')
+  final String? body;
+  static const fromJsonFactory = _$PushNotificationDtoFromJson;
+  static const toJsonFactory = _$PushNotificationDtoToJson;
+  Map<String, dynamic> toJson() => _$PushNotificationDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PushNotificationDto &&
+            (identical(other.token, token) ||
+                const DeepCollectionEquality().equals(other.token, token)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.isSingleAndroiodDevice, isSingleAndroiodDevice) ||
+                const DeepCollectionEquality().equals(
+                    other.isSingleAndroiodDevice, isSingleAndroiodDevice)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.body, body) ||
+                const DeepCollectionEquality().equals(other.body, body)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(token) ^
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(isSingleAndroiodDevice) ^
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(body) ^
+      runtimeType.hashCode;
+}
+
+extension $PushNotificationDtoExtension on PushNotificationDto {
+  PushNotificationDto copyWith(
+      {String? token,
+      String? userId,
+      bool? isSingleAndroiodDevice,
+      String? title,
+      String? body}) {
+    return PushNotificationDto(
+        token: token ?? this.token,
+        userId: userId ?? this.userId,
+        isSingleAndroiodDevice:
+            isSingleAndroiodDevice ?? this.isSingleAndroiodDevice,
+        title: title ?? this.title,
+        body: body ?? this.body);
   }
 }
 

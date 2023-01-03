@@ -620,12 +620,21 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<NotificationsResponseDto>> _apiNotificationsByUserIdGet(
+  Future<Response<List<NotificationsResponseDto>>> _apiNotificationsByUserIdGet(
       {required String? id}) {
     final $url = '/api/Notifications/ByUser/${id}';
     final $request = Request('GET', $url, client.baseUrl);
-    return client
-        .send<NotificationsResponseDto, NotificationsResponseDto>($request);
+    return client.send<List<NotificationsResponseDto>,
+        NotificationsResponseDto>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> _apiNotificationsSendNotificationPost(
+      {required PushNotificationDto? body}) {
+    final $url = '/api/Notifications/SendNotification';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
   }
 
   @override

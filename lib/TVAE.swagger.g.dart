@@ -1051,6 +1051,25 @@ Map<String, dynamic> _$ProviderPutDtoToJson(ProviderPutDto instance) =>
       'schedules': instance.schedules?.map((e) => e.toJson()).toList(),
     };
 
+PushNotificationDto _$PushNotificationDtoFromJson(Map<String, dynamic> json) =>
+    PushNotificationDto(
+      token: json['token'] as String?,
+      userId: json['userId'] as String?,
+      isSingleAndroiodDevice: json['isSingleAndroiodDevice'] as bool?,
+      title: json['title'] as String?,
+      body: json['body'] as String?,
+    );
+
+Map<String, dynamic> _$PushNotificationDtoToJson(
+        PushNotificationDto instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'userId': instance.userId,
+      'isSingleAndroiodDevice': instance.isSingleAndroiodDevice,
+      'title': instance.title,
+      'body': instance.body,
+    };
+
 RatingDto _$RatingDtoFromJson(Map<String, dynamic> json) => RatingDto(
       ratingId: json['ratingId'] as String?,
       userId: json['userId'] as String?,
