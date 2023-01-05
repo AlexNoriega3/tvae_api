@@ -22272,6 +22272,10 @@
             "type": "string",
             "nullable": true
           },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
           "titleAbbreviation": {
             "type": "string",
             "nullable": true

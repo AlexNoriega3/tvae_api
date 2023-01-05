@@ -5423,6 +5423,7 @@ class NotificationsResponseDto {
     this.name,
     this.firstName,
     this.lastName,
+    this.createDate,
     this.titleAbbreviation,
     this.priority,
     this.viewed,
@@ -5457,6 +5458,8 @@ class NotificationsResponseDto {
   final String? firstName;
   @JsonKey(name: 'lastName')
   final String? lastName;
+  @JsonKey(name: 'createDate')
+  final DateTime? createDate;
   @JsonKey(name: 'titleAbbreviation')
   final String? titleAbbreviation;
   @JsonKey(
@@ -5509,6 +5512,9 @@ class NotificationsResponseDto {
             (identical(other.lastName, lastName) ||
                 const DeepCollectionEquality()
                     .equals(other.lastName, lastName)) &&
+            (identical(other.createDate, createDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.createDate, createDate)) &&
             (identical(other.titleAbbreviation, titleAbbreviation) ||
                 const DeepCollectionEquality()
                     .equals(other.titleAbbreviation, titleAbbreviation)) &&
@@ -5534,6 +5540,7 @@ class NotificationsResponseDto {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(createDate) ^
       const DeepCollectionEquality().hash(titleAbbreviation) ^
       const DeepCollectionEquality().hash(priority) ^
       const DeepCollectionEquality().hash(viewed) ^
@@ -5555,6 +5562,7 @@ extension $NotificationsResponseDtoExtension on NotificationsResponseDto {
       String? name,
       String? firstName,
       String? lastName,
+      DateTime? createDate,
       String? titleAbbreviation,
       enums.NotificationPriority? priority,
       DateTime? viewed}) {
@@ -5572,6 +5580,7 @@ extension $NotificationsResponseDtoExtension on NotificationsResponseDto {
         name: name ?? this.name,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
+        createDate: createDate ?? this.createDate,
         titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
         priority: priority ?? this.priority,
         viewed: viewed ?? this.viewed);

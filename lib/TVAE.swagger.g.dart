@@ -831,6 +831,9 @@ NotificationsResponseDto _$NotificationsResponseDtoFromJson(
       name: json['name'] as String?,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
+      createDate: json['createDate'] == null
+          ? null
+          : DateTime.parse(json['createDate'] as String),
       titleAbbreviation: json['titleAbbreviation'] as String?,
       priority: notificationPriorityFromJson(json['priority']),
       viewed: json['viewed'] == null
@@ -854,6 +857,7 @@ Map<String, dynamic> _$NotificationsResponseDtoToJson(
       'name': instance.name,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
+      'createDate': instance.createDate?.toIso8601String(),
       'titleAbbreviation': instance.titleAbbreviation,
       'priority': notificationPriorityToJson(instance.priority),
       'viewed': instance.viewed?.toIso8601String(),
