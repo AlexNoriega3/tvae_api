@@ -23,6 +23,15 @@ const $CancellationOfVisitEnumMap = {
   CancellationOfVisitEnum.otro: 'Otro'
 };
 
+enum EntitiesEnum {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  @JsonValue('Visit')
+  visit
+}
+
+const $EntitiesEnumMap = {EntitiesEnum.visit: 'Visit'};
+
 enum GenderEnum {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,

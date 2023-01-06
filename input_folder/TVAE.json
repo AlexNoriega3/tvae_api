@@ -21522,6 +21522,12 @@
         },
         "additionalProperties": false
       },
+      "EntitiesEnum": {
+        "enum": [
+          "Visit"
+        ],
+        "type": "string"
+      },
       "GenderEnum": {
         "enum": [
           "Hombre",
@@ -22287,6 +22293,13 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
+          },
+          "relationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "entityRelated": {
+            "$ref": "#/components/schemas/EntitiesEnum"
           }
         },
         "additionalProperties": false

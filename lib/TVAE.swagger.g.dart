@@ -839,6 +839,8 @@ NotificationsResponseDto _$NotificationsResponseDtoFromJson(
       viewed: json['viewed'] == null
           ? null
           : DateTime.parse(json['viewed'] as String),
+      relationId: json['relationId'] as String?,
+      entityRelated: entitiesEnumFromJson(json['entityRelated']),
     );
 
 Map<String, dynamic> _$NotificationsResponseDtoToJson(
@@ -861,6 +863,8 @@ Map<String, dynamic> _$NotificationsResponseDtoToJson(
       'titleAbbreviation': instance.titleAbbreviation,
       'priority': notificationPriorityToJson(instance.priority),
       'viewed': instance.viewed?.toIso8601String(),
+      'relationId': instance.relationId,
+      'entityRelated': entitiesEnumToJson(instance.entityRelated),
     };
 
 ProblemDetails _$ProblemDetailsFromJson(Map<String, dynamic> json) =>

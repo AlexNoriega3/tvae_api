@@ -5427,6 +5427,8 @@ class NotificationsResponseDto {
     this.titleAbbreviation,
     this.priority,
     this.viewed,
+    this.relationId,
+    this.entityRelated,
   });
 
   factory NotificationsResponseDto.fromJson(Map<String, dynamic> json) =>
@@ -5469,6 +5471,13 @@ class NotificationsResponseDto {
   final enums.NotificationPriority? priority;
   @JsonKey(name: 'viewed')
   final DateTime? viewed;
+  @JsonKey(name: 'relationId')
+  final String? relationId;
+  @JsonKey(
+      name: 'entityRelated',
+      toJson: entitiesEnumToJson,
+      fromJson: entitiesEnumFromJson)
+  final enums.EntitiesEnum? entityRelated;
   static const fromJsonFactory = _$NotificationsResponseDtoFromJson;
   static const toJsonFactory = _$NotificationsResponseDtoToJson;
   Map<String, dynamic> toJson() => _$NotificationsResponseDtoToJson(this);
@@ -5522,7 +5531,13 @@ class NotificationsResponseDto {
                 const DeepCollectionEquality()
                     .equals(other.priority, priority)) &&
             (identical(other.viewed, viewed) ||
-                const DeepCollectionEquality().equals(other.viewed, viewed)));
+                const DeepCollectionEquality().equals(other.viewed, viewed)) &&
+            (identical(other.relationId, relationId) ||
+                const DeepCollectionEquality()
+                    .equals(other.relationId, relationId)) &&
+            (identical(other.entityRelated, entityRelated) ||
+                const DeepCollectionEquality()
+                    .equals(other.entityRelated, entityRelated)));
   }
 
   @override
@@ -5544,6 +5559,8 @@ class NotificationsResponseDto {
       const DeepCollectionEquality().hash(titleAbbreviation) ^
       const DeepCollectionEquality().hash(priority) ^
       const DeepCollectionEquality().hash(viewed) ^
+      const DeepCollectionEquality().hash(relationId) ^
+      const DeepCollectionEquality().hash(entityRelated) ^
       runtimeType.hashCode;
 }
 
@@ -5565,7 +5582,9 @@ extension $NotificationsResponseDtoExtension on NotificationsResponseDto {
       DateTime? createDate,
       String? titleAbbreviation,
       enums.NotificationPriority? priority,
-      DateTime? viewed}) {
+      DateTime? viewed,
+      String? relationId,
+      enums.EntitiesEnum? entityRelated}) {
     return NotificationsResponseDto(
         notificationId: notificationId ?? this.notificationId,
         receiverId: receiverId ?? this.receiverId,
@@ -5583,7 +5602,9 @@ extension $NotificationsResponseDtoExtension on NotificationsResponseDto {
         createDate: createDate ?? this.createDate,
         titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
         priority: priority ?? this.priority,
-        viewed: viewed ?? this.viewed);
+        viewed: viewed ?? this.viewed,
+        relationId: relationId ?? this.relationId,
+        entityRelated: entityRelated ?? this.entityRelated);
   }
 }
 
@@ -9510,6 +9531,54 @@ List<enums.CancellationOfVisitEnum> cancellationOfVisitEnumListFromJson(
   return cancellationOfVisitEnum
       .map((e) => cancellationOfVisitEnumFromJson(e.toString()))
       .toList();
+}
+
+String? entitiesEnumToJson(enums.EntitiesEnum? entitiesEnum) {
+  return enums.$EntitiesEnumMap[entitiesEnum];
+}
+
+enums.EntitiesEnum entitiesEnumFromJson(
+  Object? entitiesEnum, [
+  enums.EntitiesEnum? defaultValue,
+]) {
+  if (entitiesEnum is String) {
+    return enums.$EntitiesEnumMap.entries
+        .firstWhere(
+            (element) =>
+                element.value.toLowerCase() == entitiesEnum.toLowerCase(),
+            orElse: () =>
+                const MapEntry(enums.EntitiesEnum.swaggerGeneratedUnknown, ''))
+        .key;
+  }
+
+  final parsedResult = defaultValue == null
+      ? null
+      : enums.$EntitiesEnumMap.entries
+          .firstWhereOrNull((element) => element.value == defaultValue)
+          ?.key;
+
+  return parsedResult ??
+      defaultValue ??
+      enums.EntitiesEnum.swaggerGeneratedUnknown;
+}
+
+List<String> entitiesEnumListToJson(List<enums.EntitiesEnum>? entitiesEnum) {
+  if (entitiesEnum == null) {
+    return [];
+  }
+
+  return entitiesEnum.map((e) => enums.$EntitiesEnumMap[e]!).toList();
+}
+
+List<enums.EntitiesEnum> entitiesEnumListFromJson(
+  List? entitiesEnum, [
+  List<enums.EntitiesEnum>? defaultValue,
+]) {
+  if (entitiesEnum == null) {
+    return defaultValue ?? [];
+  }
+
+  return entitiesEnum.map((e) => entitiesEnumFromJson(e.toString())).toList();
 }
 
 String? genderEnumToJson(enums.GenderEnum? genderEnum) {
