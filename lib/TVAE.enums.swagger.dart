@@ -27,10 +27,18 @@ enum EntitiesEnum {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
   @JsonValue('Visit')
-  visit
+  visit,
+  @JsonValue('Visit_Canceled')
+  visitCanceled,
+  @JsonValue('Review')
+  review
 }
 
-const $EntitiesEnumMap = {EntitiesEnum.visit: 'Visit'};
+const $EntitiesEnumMap = {
+  EntitiesEnum.visit: 'Visit',
+  EntitiesEnum.visitCanceled: 'Visit_Canceled',
+  EntitiesEnum.review: 'Review'
+};
 
 enum GenderEnum {
   @JsonValue('swaggerGeneratedUnknown')

@@ -21524,7 +21524,9 @@
       },
       "EntitiesEnum": {
         "enum": [
-          "Visit"
+          "Visit",
+          "Visit_Canceled",
+          "Review"
         ],
         "type": "string"
       },
