@@ -21532,9 +21532,9 @@
       },
       "GenderEnum": {
         "enum": [
-          "Hombre",
-          "Mujer",
-          "Ninguno"
+          "Masculino",
+          "Femenino",
+          "Otro"
         ],
         "type": "string"
       },

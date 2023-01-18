@@ -43,18 +43,18 @@ const $EntitiesEnumMap = {
 enum GenderEnum {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
-  @JsonValue('Hombre')
-  hombre,
-  @JsonValue('Mujer')
-  mujer,
-  @JsonValue('Ninguno')
-  ninguno
+  @JsonValue('Masculino')
+  masculino,
+  @JsonValue('Femenino')
+  femenino,
+  @JsonValue('Otro')
+  otro
 }
 
 const $GenderEnumMap = {
-  GenderEnum.hombre: 'Hombre',
-  GenderEnum.mujer: 'Mujer',
-  GenderEnum.ninguno: 'Ninguno'
+  GenderEnum.masculino: 'Masculino',
+  GenderEnum.femenino: 'Femenino',
+  GenderEnum.otro: 'Otro'
 };
 
 enum NotificationPriority {
