@@ -604,18 +604,18 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<bool>> _apiNotificationsViewedPost({required String? body}) {
-    final $url = '/api/Notifications/Viewed';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+  Future<Response<bool>> _apiNotificationsViewedNotiIdPut(
+      {required String? notiId}) {
+    final $url = '/api/Notifications/Viewed/${notiId}';
+    final $request = Request('PUT', $url, client.baseUrl);
     return client.send<bool, bool>($request);
   }
 
   @override
-  Future<Response<bool>> _apiNotificationsIgnorePost({required String? body}) {
-    final $url = '/api/Notifications/Ignore';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+  Future<Response<bool>> _apiNotificationsIgnoreNotiIdPut(
+      {required String? notiId}) {
+    final $url = '/api/Notifications/Ignore/${notiId}';
+    final $request = Request('PUT', $url, client.baseUrl);
     return client.send<bool, bool>($request);
   }
 

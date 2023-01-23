@@ -9286,95 +9286,21 @@
         }
       }
     },
-    "/api/Notifications/Viewed": {
-      "post": {
+    "/api/Notifications/Viewed/{notiId}": {
+      "put": {
         "tags": [
           "Notifications"
         ],
-        "requestBody": {
-          "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "string"
-              }
+        "parameters": [
+          {
+            "name": "notiId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -9464,95 +9390,21 @@
         }
       }
     },
-    "/api/Notifications/Ignore": {
-      "post": {
+    "/api/Notifications/Ignore/{notiId}": {
+      "put": {
         "tags": [
           "Notifications"
         ],
-        "requestBody": {
-          "content": {
-            "application/json;odata.metadata=minimal;odata.streaming=true": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=minimal;odata.streaming=false": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=minimal": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=true": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=full;odata.streaming=false": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=full": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=true": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=none;odata.streaming=false": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.metadata=none": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.streaming=true": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json;odata.streaming=false": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "text/plain": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "string"
-              }
+        "parameters": [
+          {
+            "name": "notiId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "Success",

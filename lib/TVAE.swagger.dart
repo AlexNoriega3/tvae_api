@@ -1005,26 +1005,30 @@ abstract class TVAE extends ChopperService {
       {@Path('id') required String? id});
 
   ///
-  Future<chopper.Response<bool>> apiNotificationsViewedPost(
-      {required String? body}) {
-    return _apiNotificationsViewedPost(body: body);
+  ///@param notiId
+  Future<chopper.Response<bool>> apiNotificationsViewedNotiIdPut(
+      {required String? notiId}) {
+    return _apiNotificationsViewedNotiIdPut(notiId: notiId);
   }
 
   ///
-  @Post(path: '/api/Notifications/Viewed')
-  Future<chopper.Response<bool>> _apiNotificationsViewedPost(
-      {@Body() required String? body});
+  ///@param notiId
+  @Put(path: '/api/Notifications/Viewed/{notiId}', optionalBody: true)
+  Future<chopper.Response<bool>> _apiNotificationsViewedNotiIdPut(
+      {@Path('notiId') required String? notiId});
 
   ///
-  Future<chopper.Response<bool>> apiNotificationsIgnorePost(
-      {required String? body}) {
-    return _apiNotificationsIgnorePost(body: body);
+  ///@param notiId
+  Future<chopper.Response<bool>> apiNotificationsIgnoreNotiIdPut(
+      {required String? notiId}) {
+    return _apiNotificationsIgnoreNotiIdPut(notiId: notiId);
   }
 
   ///
-  @Post(path: '/api/Notifications/Ignore')
-  Future<chopper.Response<bool>> _apiNotificationsIgnorePost(
-      {@Body() required String? body});
+  ///@param notiId
+  @Put(path: '/api/Notifications/Ignore/{notiId}', optionalBody: true)
+  Future<chopper.Response<bool>> _apiNotificationsIgnoreNotiIdPut(
+      {@Path('notiId') required String? notiId});
 
   ///
   ///@param id
