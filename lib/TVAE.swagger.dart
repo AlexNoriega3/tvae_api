@@ -8288,6 +8288,8 @@ class VisitDetailsDto {
     this.userImage,
     this.qr,
     this.userRating,
+    this.canceledBy,
+    this.userCancel,
   });
 
   factory VisitDetailsDto.fromJson(Map<String, dynamic> json) =>
@@ -8352,6 +8354,10 @@ class VisitDetailsDto {
   final String? qr;
   @JsonKey(name: 'userRating')
   final double? userRating;
+  @JsonKey(name: 'canceledBy')
+  final AppUserDto? canceledBy;
+  @JsonKey(name: 'userCancel')
+  final bool? userCancel;
   static const fromJsonFactory = _$VisitDetailsDtoFromJson;
   static const toJsonFactory = _$VisitDetailsDtoToJson;
   Map<String, dynamic> toJson() => _$VisitDetailsDtoToJson(this);
@@ -8433,7 +8439,9 @@ class VisitDetailsDto {
             (identical(other.userCel, userCel) || const DeepCollectionEquality().equals(other.userCel, userCel)) &&
             (identical(other.userImage, userImage) || const DeepCollectionEquality().equals(other.userImage, userImage)) &&
             (identical(other.qr, qr) || const DeepCollectionEquality().equals(other.qr, qr)) &&
-            (identical(other.userRating, userRating) || const DeepCollectionEquality().equals(other.userRating, userRating)));
+            (identical(other.userRating, userRating) || const DeepCollectionEquality().equals(other.userRating, userRating)) &&
+            (identical(other.canceledBy, canceledBy) || const DeepCollectionEquality().equals(other.canceledBy, canceledBy)) &&
+            (identical(other.userCancel, userCancel) || const DeepCollectionEquality().equals(other.userCancel, userCancel)));
   }
 
   @override
@@ -8466,6 +8474,8 @@ class VisitDetailsDto {
       const DeepCollectionEquality().hash(userImage) ^
       const DeepCollectionEquality().hash(qr) ^
       const DeepCollectionEquality().hash(userRating) ^
+      const DeepCollectionEquality().hash(canceledBy) ^
+      const DeepCollectionEquality().hash(userCancel) ^
       runtimeType.hashCode;
 }
 
@@ -8498,7 +8508,9 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
       String? userCel,
       String? userImage,
       String? qr,
-      double? userRating}) {
+      double? userRating,
+      AppUserDto? canceledBy,
+      bool? userCancel}) {
     return VisitDetailsDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
@@ -8527,7 +8539,9 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
         userCel: userCel ?? this.userCel,
         userImage: userImage ?? this.userImage,
         qr: qr ?? this.qr,
-        userRating: userRating ?? this.userRating);
+        userRating: userRating ?? this.userRating,
+        canceledBy: canceledBy ?? this.canceledBy,
+        userCancel: userCancel ?? this.userCancel);
   }
 }
 

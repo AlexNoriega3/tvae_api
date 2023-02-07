@@ -1609,6 +1609,10 @@ VisitDetailsDto _$VisitDetailsDtoFromJson(Map<String, dynamic> json) =>
       userImage: json['userImage'] as String?,
       qr: json['qr'] as String?,
       userRating: (json['userRating'] as num?)?.toDouble(),
+      canceledBy: json['canceledBy'] == null
+          ? null
+          : AppUserDto.fromJson(json['canceledBy'] as Map<String, dynamic>),
+      userCancel: json['userCancel'] as bool?,
     );
 
 Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
@@ -1641,6 +1645,8 @@ Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
       'userImage': instance.userImage,
       'qr': instance.qr,
       'userRating': instance.userRating,
+      'canceledBy': instance.canceledBy?.toJson(),
+      'userCancel': instance.userCancel,
     };
 
 VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(

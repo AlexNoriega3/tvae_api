@@ -23394,6 +23394,12 @@
             "type": "number",
             "format": "double",
             "nullable": true
+          },
+          "canceledBy": {
+            "$ref": "#/components/schemas/AppUserDto"
+          },
+          "userCancel": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
