@@ -12,7 +12,9 @@ enum CancellationOfVisitEnum {
   @JsonValue('Resolucion')
   resolucion,
   @JsonValue('Otro')
-  otro
+  otro,
+  @JsonValue('Perdida')
+  perdida
 }
 
 const $CancellationOfVisitEnumMap = {
@@ -20,7 +22,8 @@ const $CancellationOfVisitEnumMap = {
   CancellationOfVisitEnum.imprevisto: 'Imprevisto',
   CancellationOfVisitEnum.confusion: 'Confusion',
   CancellationOfVisitEnum.resolucion: 'Resolucion',
-  CancellationOfVisitEnum.otro: 'Otro'
+  CancellationOfVisitEnum.otro: 'Otro',
+  CancellationOfVisitEnum.perdida: 'Perdida'
 };
 
 enum EntitiesEnum {

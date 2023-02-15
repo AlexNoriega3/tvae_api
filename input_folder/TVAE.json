@@ -19861,6 +19861,110 @@
         }
       }
     },
+    "/api/Visit/Complete/{visitId}": {
+      "put": {
+        "tags": [
+          "Visit"
+        ],
+        "parameters": [
+          {
+            "name": "visitId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Visit/UploadQRApp/{visitId}": {
       "post": {
         "tags": [
@@ -21080,7 +21184,8 @@
           "Imprevisto",
           "Confusion",
           "Resolucion",
-          "Otro"
+          "Otro",
+          "Perdida"
         ],
         "type": "string"
       },
@@ -21481,6 +21586,10 @@
           "visitStatus": {
             "type": "string",
             "nullable": true
+          },
+          "visitStatusCode": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -21591,6 +21700,10 @@
             "nullable": true
           },
           "visitStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "visitStatusCode": {
             "type": "string",
             "nullable": true
           }
@@ -23400,6 +23513,18 @@
           },
           "userCancel": {
             "type": "boolean"
+          },
+          "visitStatusId": {
+            "type": "string",
+            "nullable": true
+          },
+          "visitStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "visitStatusCode": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

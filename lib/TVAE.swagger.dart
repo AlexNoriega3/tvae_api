@@ -2240,6 +2240,19 @@ abstract class TVAE extends ChopperService {
 
   ///
   ///@param visitId
+  Future<chopper.Response<bool>> apiVisitCompleteVisitIdPut(
+      {required String? visitId}) {
+    return _apiVisitCompleteVisitIdPut(visitId: visitId);
+  }
+
+  ///
+  ///@param visitId
+  @Put(path: '/api/Visit/Complete/{visitId}', optionalBody: true)
+  Future<chopper.Response<bool>> _apiVisitCompleteVisitIdPut(
+      {@Path('visitId') required String? visitId});
+
+  ///
+  ///@param visitId
   Future<chopper.Response<ResponseDto>> apiVisitUploadQRAppVisitIdPost(
       {required String? visitId, required List<int> partFile}) {
     generatedMapping.putIfAbsent(
@@ -3727,6 +3740,7 @@ class HistoricDto {
     this.endHour,
     this.visitStatusId,
     this.visitStatus,
+    this.visitStatusCode,
   });
 
   factory HistoricDto.fromJson(Map<String, dynamic> json) =>
@@ -3776,6 +3790,8 @@ class HistoricDto {
   final String? visitStatusId;
   @JsonKey(name: 'visitStatus')
   final String? visitStatus;
+  @JsonKey(name: 'visitStatusCode')
+  final String? visitStatusCode;
   static const fromJsonFactory = _$HistoricDtoFromJson;
   static const toJsonFactory = _$HistoricDtoToJson;
   Map<String, dynamic> toJson() => _$HistoricDtoToJson(this);
@@ -3848,7 +3864,8 @@ class HistoricDto {
                 const DeepCollectionEquality()
                     .equals(other.visitStatusId, visitStatusId)) &&
             (identical(other.visitStatus, visitStatus) ||
-                const DeepCollectionEquality().equals(other.visitStatus, visitStatus)));
+                const DeepCollectionEquality().equals(other.visitStatus, visitStatus)) &&
+            (identical(other.visitStatusCode, visitStatusCode) || const DeepCollectionEquality().equals(other.visitStatusCode, visitStatusCode)));
   }
 
   @override
@@ -3875,6 +3892,7 @@ class HistoricDto {
       const DeepCollectionEquality().hash(endHour) ^
       const DeepCollectionEquality().hash(visitStatusId) ^
       const DeepCollectionEquality().hash(visitStatus) ^
+      const DeepCollectionEquality().hash(visitStatusCode) ^
       runtimeType.hashCode;
 }
 
@@ -3901,7 +3919,8 @@ extension $HistoricDtoExtension on HistoricDto {
       String? startHour,
       String? endHour,
       String? visitStatusId,
-      String? visitStatus}) {
+      String? visitStatus,
+      String? visitStatusCode}) {
     return HistoricDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
@@ -3926,7 +3945,8 @@ extension $HistoricDtoExtension on HistoricDto {
         startHour: startHour ?? this.startHour,
         endHour: endHour ?? this.endHour,
         visitStatusId: visitStatusId ?? this.visitStatusId,
-        visitStatus: visitStatus ?? this.visitStatus);
+        visitStatus: visitStatus ?? this.visitStatus,
+        visitStatusCode: visitStatusCode ?? this.visitStatusCode);
   }
 }
 
@@ -4028,6 +4048,7 @@ class HistoricResidentDto {
     this.endHour,
     this.visitStatusId,
     this.visitStatus,
+    this.visitStatusCode,
   });
 
   factory HistoricResidentDto.fromJson(Map<String, dynamic> json) =>
@@ -4071,6 +4092,8 @@ class HistoricResidentDto {
   final String? visitStatusId;
   @JsonKey(name: 'visitStatus')
   final String? visitStatus;
+  @JsonKey(name: 'visitStatusCode')
+  final String? visitStatusCode;
   static const fromJsonFactory = _$HistoricResidentDtoFromJson;
   static const toJsonFactory = _$HistoricResidentDtoToJson;
   Map<String, dynamic> toJson() => _$HistoricResidentDtoToJson(this);
@@ -4133,7 +4156,10 @@ class HistoricResidentDto {
                     .equals(other.visitStatusId, visitStatusId)) &&
             (identical(other.visitStatus, visitStatus) ||
                 const DeepCollectionEquality()
-                    .equals(other.visitStatus, visitStatus)));
+                    .equals(other.visitStatus, visitStatus)) &&
+            (identical(other.visitStatusCode, visitStatusCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitStatusCode, visitStatusCode)));
   }
 
   @override
@@ -4157,6 +4183,7 @@ class HistoricResidentDto {
       const DeepCollectionEquality().hash(endHour) ^
       const DeepCollectionEquality().hash(visitStatusId) ^
       const DeepCollectionEquality().hash(visitStatus) ^
+      const DeepCollectionEquality().hash(visitStatusCode) ^
       runtimeType.hashCode;
 }
 
@@ -4180,7 +4207,8 @@ extension $HistoricResidentDtoExtension on HistoricResidentDto {
       String? startHour,
       String? endHour,
       String? visitStatusId,
-      String? visitStatus}) {
+      String? visitStatus,
+      String? visitStatusCode}) {
     return HistoricResidentDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
@@ -4201,7 +4229,8 @@ extension $HistoricResidentDtoExtension on HistoricResidentDto {
         startHour: startHour ?? this.startHour,
         endHour: endHour ?? this.endHour,
         visitStatusId: visitStatusId ?? this.visitStatusId,
-        visitStatus: visitStatus ?? this.visitStatus);
+        visitStatus: visitStatus ?? this.visitStatus,
+        visitStatusCode: visitStatusCode ?? this.visitStatusCode);
   }
 }
 
@@ -8290,6 +8319,9 @@ class VisitDetailsDto {
     this.userRating,
     this.canceledBy,
     this.userCancel,
+    this.visitStatusId,
+    this.visitStatus,
+    this.visitStatusCode,
   });
 
   factory VisitDetailsDto.fromJson(Map<String, dynamic> json) =>
@@ -8358,6 +8390,12 @@ class VisitDetailsDto {
   final AppUserDto? canceledBy;
   @JsonKey(name: 'userCancel')
   final bool? userCancel;
+  @JsonKey(name: 'visitStatusId')
+  final String? visitStatusId;
+  @JsonKey(name: 'visitStatus')
+  final String? visitStatus;
+  @JsonKey(name: 'visitStatusCode')
+  final String? visitStatusCode;
   static const fromJsonFactory = _$VisitDetailsDtoFromJson;
   static const toJsonFactory = _$VisitDetailsDtoToJson;
   Map<String, dynamic> toJson() => _$VisitDetailsDtoToJson(this);
@@ -8441,7 +8479,10 @@ class VisitDetailsDto {
             (identical(other.qr, qr) || const DeepCollectionEquality().equals(other.qr, qr)) &&
             (identical(other.userRating, userRating) || const DeepCollectionEquality().equals(other.userRating, userRating)) &&
             (identical(other.canceledBy, canceledBy) || const DeepCollectionEquality().equals(other.canceledBy, canceledBy)) &&
-            (identical(other.userCancel, userCancel) || const DeepCollectionEquality().equals(other.userCancel, userCancel)));
+            (identical(other.userCancel, userCancel) || const DeepCollectionEquality().equals(other.userCancel, userCancel)) &&
+            (identical(other.visitStatusId, visitStatusId) || const DeepCollectionEquality().equals(other.visitStatusId, visitStatusId)) &&
+            (identical(other.visitStatus, visitStatus) || const DeepCollectionEquality().equals(other.visitStatus, visitStatus)) &&
+            (identical(other.visitStatusCode, visitStatusCode) || const DeepCollectionEquality().equals(other.visitStatusCode, visitStatusCode)));
   }
 
   @override
@@ -8476,6 +8517,9 @@ class VisitDetailsDto {
       const DeepCollectionEquality().hash(userRating) ^
       const DeepCollectionEquality().hash(canceledBy) ^
       const DeepCollectionEquality().hash(userCancel) ^
+      const DeepCollectionEquality().hash(visitStatusId) ^
+      const DeepCollectionEquality().hash(visitStatus) ^
+      const DeepCollectionEquality().hash(visitStatusCode) ^
       runtimeType.hashCode;
 }
 
@@ -8510,7 +8554,10 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
       String? qr,
       double? userRating,
       AppUserDto? canceledBy,
-      bool? userCancel}) {
+      bool? userCancel,
+      String? visitStatusId,
+      String? visitStatus,
+      String? visitStatusCode}) {
     return VisitDetailsDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
@@ -8541,7 +8588,10 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
         qr: qr ?? this.qr,
         userRating: userRating ?? this.userRating,
         canceledBy: canceledBy ?? this.canceledBy,
-        userCancel: userCancel ?? this.userCancel);
+        userCancel: userCancel ?? this.userCancel,
+        visitStatusId: visitStatusId ?? this.visitStatusId,
+        visitStatus: visitStatus ?? this.visitStatus,
+        visitStatusCode: visitStatusCode ?? this.visitStatusCode);
   }
 }
 

@@ -385,6 +385,7 @@ HistoricDto _$HistoricDtoFromJson(Map<String, dynamic> json) => HistoricDto(
       endHour: json['endHour'] as String?,
       visitStatusId: json['visitStatusId'] as String?,
       visitStatus: json['visitStatus'] as String?,
+      visitStatusCode: json['visitStatusCode'] as String?,
     );
 
 Map<String, dynamic> _$HistoricDtoToJson(HistoricDto instance) =>
@@ -411,6 +412,7 @@ Map<String, dynamic> _$HistoricDtoToJson(HistoricDto instance) =>
       'endHour': instance.endHour,
       'visitStatusId': instance.visitStatusId,
       'visitStatus': instance.visitStatus,
+      'visitStatusCode': instance.visitStatusCode,
     };
 
 HistoricDtoPagedResult _$HistoricDtoPagedResultFromJson(
@@ -459,6 +461,7 @@ HistoricResidentDto _$HistoricResidentDtoFromJson(Map<String, dynamic> json) =>
       endHour: json['endHour'] as String?,
       visitStatusId: json['visitStatusId'] as String?,
       visitStatus: json['visitStatus'] as String?,
+      visitStatusCode: json['visitStatusCode'] as String?,
     );
 
 Map<String, dynamic> _$HistoricResidentDtoToJson(
@@ -483,6 +486,7 @@ Map<String, dynamic> _$HistoricResidentDtoToJson(
       'endHour': instance.endHour,
       'visitStatusId': instance.visitStatusId,
       'visitStatus': instance.visitStatus,
+      'visitStatusCode': instance.visitStatusCode,
     };
 
 HistoricResidentDtoPagedResult _$HistoricResidentDtoPagedResultFromJson(
@@ -1613,6 +1617,9 @@ VisitDetailsDto _$VisitDetailsDtoFromJson(Map<String, dynamic> json) =>
           ? null
           : AppUserDto.fromJson(json['canceledBy'] as Map<String, dynamic>),
       userCancel: json['userCancel'] as bool?,
+      visitStatusId: json['visitStatusId'] as String?,
+      visitStatus: json['visitStatus'] as String?,
+      visitStatusCode: json['visitStatusCode'] as String?,
     );
 
 Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
@@ -1647,6 +1654,9 @@ Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
       'userRating': instance.userRating,
       'canceledBy': instance.canceledBy?.toJson(),
       'userCancel': instance.userCancel,
+      'visitStatusId': instance.visitStatusId,
+      'visitStatus': instance.visitStatus,
+      'visitStatusCode': instance.visitStatusCode,
     };
 
 VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(

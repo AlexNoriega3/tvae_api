@@ -1322,6 +1322,14 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<bool>> _apiVisitCompleteVisitIdPut(
+      {required String? visitId}) {
+    final $url = '/api/Visit/Complete/${visitId}';
+    final $request = Request('PUT', $url, client.baseUrl);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<ResponseDto>> _apiVisitUploadQRAppVisitIdPost(
       {required String? visitId, required List<int> partFile}) {
     final $url = '/api/Visit/UploadQRApp/${visitId}';
