@@ -1255,6 +1255,18 @@ abstract class TVAE extends ChopperService {
       @Query('PageSize') required int? pageSize});
 
   ///
+  Future<chopper.Response<MissingReviewDto>> apiRatingLastMissingRateGet() {
+    generatedMapping.putIfAbsent(
+        MissingReviewDto, () => MissingReviewDto.fromJsonFactory);
+
+    return _apiRatingLastMissingRateGet();
+  }
+
+  ///
+  @Get(path: '/api/Rating/LastMissingRate')
+  Future<chopper.Response<MissingReviewDto>> _apiRatingLastMissingRateGet();
+
+  ///
   Future<chopper.Response<List<RoleDto>>> apiRoleGet() {
     generatedMapping.putIfAbsent(RoleDto, () => RoleDto.fromJsonFactory);
 
@@ -5163,6 +5175,97 @@ extension $LoginDtoExtension on LoginDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class MissingReviewDto {
+  MissingReviewDto({
+    this.id,
+    this.email,
+    this.image,
+    this.firstName,
+    this.lastName,
+    this.titleAbbreviation,
+    this.visitId,
+  });
+
+  factory MissingReviewDto.fromJson(Map<String, dynamic> json) =>
+      _$MissingReviewDtoFromJson(json);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'image')
+  final String? image;
+  @JsonKey(name: 'firstName')
+  final String? firstName;
+  @JsonKey(name: 'lastName')
+  final String? lastName;
+  @JsonKey(name: 'titleAbbreviation')
+  final String? titleAbbreviation;
+  @JsonKey(name: 'visitId')
+  final String? visitId;
+  static const fromJsonFactory = _$MissingReviewDtoFromJson;
+  static const toJsonFactory = _$MissingReviewDtoToJson;
+  Map<String, dynamic> toJson() => _$MissingReviewDtoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is MissingReviewDto &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.titleAbbreviation, titleAbbreviation) ||
+                const DeepCollectionEquality()
+                    .equals(other.titleAbbreviation, titleAbbreviation)) &&
+            (identical(other.visitId, visitId) ||
+                const DeepCollectionEquality().equals(other.visitId, visitId)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(image) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(titleAbbreviation) ^
+      const DeepCollectionEquality().hash(visitId) ^
+      runtimeType.hashCode;
+}
+
+extension $MissingReviewDtoExtension on MissingReviewDto {
+  MissingReviewDto copyWith(
+      {String? id,
+      String? email,
+      String? image,
+      String? firstName,
+      String? lastName,
+      String? titleAbbreviation,
+      String? visitId}) {
+    return MissingReviewDto(
+        id: id ?? this.id,
+        email: email ?? this.email,
+        image: image ?? this.image,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
+        visitId: visitId ?? this.visitId);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class MostVisitedDto {
   MostVisitedDto({
     this.id,
@@ -6371,6 +6474,7 @@ class RatingDto {
     this.ratingId,
     this.userId,
     this.doctorId,
+    this.visitId,
     this.score,
     this.comments,
   });
@@ -6384,6 +6488,8 @@ class RatingDto {
   final String? userId;
   @JsonKey(name: 'doctorId')
   final String? doctorId;
+  @JsonKey(name: 'visitId')
+  final String? visitId;
   @JsonKey(name: 'score')
   final int? score;
   @JsonKey(name: 'comments')
@@ -6407,6 +6513,9 @@ class RatingDto {
             (identical(other.doctorId, doctorId) ||
                 const DeepCollectionEquality()
                     .equals(other.doctorId, doctorId)) &&
+            (identical(other.visitId, visitId) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitId, visitId)) &&
             (identical(other.score, score) ||
                 const DeepCollectionEquality().equals(other.score, score)) &&
             (identical(other.comments, comments) ||
@@ -6419,6 +6528,7 @@ class RatingDto {
       const DeepCollectionEquality().hash(ratingId) ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(doctorId) ^
+      const DeepCollectionEquality().hash(visitId) ^
       const DeepCollectionEquality().hash(score) ^
       const DeepCollectionEquality().hash(comments) ^
       runtimeType.hashCode;
@@ -6429,12 +6539,14 @@ extension $RatingDtoExtension on RatingDto {
       {String? ratingId,
       String? userId,
       String? doctorId,
+      String? visitId,
       int? score,
       String? comments}) {
     return RatingDto(
         ratingId: ratingId ?? this.ratingId,
         userId: userId ?? this.userId,
         doctorId: doctorId ?? this.doctorId,
+        visitId: visitId ?? this.visitId,
         score: score ?? this.score,
         comments: comments ?? this.comments);
   }

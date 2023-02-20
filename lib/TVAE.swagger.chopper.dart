@@ -756,6 +756,13 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<MissingReviewDto>> _apiRatingLastMissingRateGet() {
+    final $url = '/api/Rating/LastMissingRate';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<MissingReviewDto, MissingReviewDto>($request);
+  }
+
+  @override
   Future<Response<List<RoleDto>>> _apiRoleGet() {
     final $url = '/api/Role';
     final $request = Request('GET', $url, client.baseUrl);

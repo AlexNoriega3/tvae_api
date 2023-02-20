@@ -741,6 +741,28 @@ Map<String, dynamic> _$LoginDtoToJson(LoginDto instance) => <String, dynamic>{
       'password': instance.password,
     };
 
+MissingReviewDto _$MissingReviewDtoFromJson(Map<String, dynamic> json) =>
+    MissingReviewDto(
+      id: json['id'] as String?,
+      email: json['email'] as String?,
+      image: json['image'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      titleAbbreviation: json['titleAbbreviation'] as String?,
+      visitId: json['visitId'] as String?,
+    );
+
+Map<String, dynamic> _$MissingReviewDtoToJson(MissingReviewDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'email': instance.email,
+      'image': instance.image,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'titleAbbreviation': instance.titleAbbreviation,
+      'visitId': instance.visitId,
+    };
+
 MostVisitedDto _$MostVisitedDtoFromJson(Map<String, dynamic> json) =>
     MostVisitedDto(
       id: json['id'] as String?,
@@ -1086,6 +1108,7 @@ RatingDto _$RatingDtoFromJson(Map<String, dynamic> json) => RatingDto(
       ratingId: json['ratingId'] as String?,
       userId: json['userId'] as String?,
       doctorId: json['doctorId'] as String?,
+      visitId: json['visitId'] as String?,
       score: json['score'] as int?,
       comments: json['comments'] as String?,
     );
@@ -1094,6 +1117,7 @@ Map<String, dynamic> _$RatingDtoToJson(RatingDto instance) => <String, dynamic>{
       'ratingId': instance.ratingId,
       'userId': instance.userId,
       'doctorId': instance.doctorId,
+      'visitId': instance.visitId,
       'score': instance.score,
       'comments': instance.comments,
     };
