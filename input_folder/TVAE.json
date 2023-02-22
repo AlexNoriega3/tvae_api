@@ -22183,6 +22183,26 @@
           "visitId": {
             "type": "string",
             "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "visitDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startHour": {
+            "type": "string",
+            "nullable": true
+          },
+          "endHour": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -22773,8 +22793,8 @@
           "score": {
             "maximum": 5,
             "minimum": 1,
-            "type": "integer",
-            "format": "int32"
+            "type": "number",
+            "format": "double"
           },
           "comments": {
             "type": "string",

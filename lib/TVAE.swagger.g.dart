@@ -750,6 +750,13 @@ MissingReviewDto _$MissingReviewDtoFromJson(Map<String, dynamic> json) =>
       lastName: json['lastName'] as String?,
       titleAbbreviation: json['titleAbbreviation'] as String?,
       visitId: json['visitId'] as String?,
+      reason: json['reason'] as String?,
+      comments: json['comments'] as String?,
+      visitDate: json['visitDate'] == null
+          ? null
+          : DateTime.parse(json['visitDate'] as String),
+      startHour: json['startHour'] as String?,
+      endHour: json['endHour'] as String?,
     );
 
 Map<String, dynamic> _$MissingReviewDtoToJson(MissingReviewDto instance) =>
@@ -761,6 +768,11 @@ Map<String, dynamic> _$MissingReviewDtoToJson(MissingReviewDto instance) =>
       'lastName': instance.lastName,
       'titleAbbreviation': instance.titleAbbreviation,
       'visitId': instance.visitId,
+      'reason': instance.reason,
+      'comments': instance.comments,
+      'visitDate': instance.visitDate?.toIso8601String(),
+      'startHour': instance.startHour,
+      'endHour': instance.endHour,
     };
 
 MostVisitedDto _$MostVisitedDtoFromJson(Map<String, dynamic> json) =>
@@ -1109,7 +1121,7 @@ RatingDto _$RatingDtoFromJson(Map<String, dynamic> json) => RatingDto(
       userId: json['userId'] as String?,
       doctorId: json['doctorId'] as String?,
       visitId: json['visitId'] as String?,
-      score: json['score'] as int?,
+      score: (json['score'] as num?)?.toDouble(),
       comments: json['comments'] as String?,
     );
 

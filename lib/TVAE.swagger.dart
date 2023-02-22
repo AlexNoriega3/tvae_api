@@ -5184,6 +5184,11 @@ class MissingReviewDto {
     this.lastName,
     this.titleAbbreviation,
     this.visitId,
+    this.reason,
+    this.comments,
+    this.visitDate,
+    this.startHour,
+    this.endHour,
   });
 
   factory MissingReviewDto.fromJson(Map<String, dynamic> json) =>
@@ -5203,6 +5208,16 @@ class MissingReviewDto {
   final String? titleAbbreviation;
   @JsonKey(name: 'visitId')
   final String? visitId;
+  @JsonKey(name: 'reason')
+  final String? reason;
+  @JsonKey(name: 'comments')
+  final String? comments;
+  @JsonKey(name: 'visitDate')
+  final DateTime? visitDate;
+  @JsonKey(name: 'startHour')
+  final String? startHour;
+  @JsonKey(name: 'endHour')
+  final String? endHour;
   static const fromJsonFactory = _$MissingReviewDtoFromJson;
   static const toJsonFactory = _$MissingReviewDtoToJson;
   Map<String, dynamic> toJson() => _$MissingReviewDtoToJson(this);
@@ -5230,7 +5245,21 @@ class MissingReviewDto {
                 const DeepCollectionEquality()
                     .equals(other.titleAbbreviation, titleAbbreviation)) &&
             (identical(other.visitId, visitId) ||
-                const DeepCollectionEquality().equals(other.visitId, visitId)));
+                const DeepCollectionEquality()
+                    .equals(other.visitId, visitId)) &&
+            (identical(other.reason, reason) ||
+                const DeepCollectionEquality().equals(other.reason, reason)) &&
+            (identical(other.comments, comments) ||
+                const DeepCollectionEquality()
+                    .equals(other.comments, comments)) &&
+            (identical(other.visitDate, visitDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.visitDate, visitDate)) &&
+            (identical(other.startHour, startHour) ||
+                const DeepCollectionEquality()
+                    .equals(other.startHour, startHour)) &&
+            (identical(other.endHour, endHour) ||
+                const DeepCollectionEquality().equals(other.endHour, endHour)));
   }
 
   @override
@@ -5242,6 +5271,11 @@ class MissingReviewDto {
       const DeepCollectionEquality().hash(lastName) ^
       const DeepCollectionEquality().hash(titleAbbreviation) ^
       const DeepCollectionEquality().hash(visitId) ^
+      const DeepCollectionEquality().hash(reason) ^
+      const DeepCollectionEquality().hash(comments) ^
+      const DeepCollectionEquality().hash(visitDate) ^
+      const DeepCollectionEquality().hash(startHour) ^
+      const DeepCollectionEquality().hash(endHour) ^
       runtimeType.hashCode;
 }
 
@@ -5253,7 +5287,12 @@ extension $MissingReviewDtoExtension on MissingReviewDto {
       String? firstName,
       String? lastName,
       String? titleAbbreviation,
-      String? visitId}) {
+      String? visitId,
+      String? reason,
+      String? comments,
+      DateTime? visitDate,
+      String? startHour,
+      String? endHour}) {
     return MissingReviewDto(
         id: id ?? this.id,
         email: email ?? this.email,
@@ -5261,7 +5300,12 @@ extension $MissingReviewDtoExtension on MissingReviewDto {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
-        visitId: visitId ?? this.visitId);
+        visitId: visitId ?? this.visitId,
+        reason: reason ?? this.reason,
+        comments: comments ?? this.comments,
+        visitDate: visitDate ?? this.visitDate,
+        startHour: startHour ?? this.startHour,
+        endHour: endHour ?? this.endHour);
   }
 }
 
@@ -6491,7 +6535,7 @@ class RatingDto {
   @JsonKey(name: 'visitId')
   final String? visitId;
   @JsonKey(name: 'score')
-  final int? score;
+  final double? score;
   @JsonKey(name: 'comments')
   final String? comments;
   static const fromJsonFactory = _$RatingDtoFromJson;
@@ -6540,7 +6584,7 @@ extension $RatingDtoExtension on RatingDto {
       String? userId,
       String? doctorId,
       String? visitId,
-      int? score,
+      double? score,
       String? comments}) {
     return RatingDto(
         ratingId: ratingId ?? this.ratingId,
