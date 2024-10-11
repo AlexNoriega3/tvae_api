@@ -1145,6 +1145,14 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<ProviderQRInfo>> _apiUserProviderQRInfoProviderIdPost(
+      {required String? providerId}) {
+    final $url = '/api/User/ProviderQRInfo/${providerId}';
+    final $request = Request('POST', $url, client.baseUrl);
+    return client.send<ProviderQRInfo, ProviderQRInfo>($request);
+  }
+
+  @override
   Future<Response<ResultUserDtoPagedResult>> _apiUserSearchUserByProviderGet(
       {required String? providerId,
       required int? page,
@@ -1177,6 +1185,15 @@ class _$TVAE extends TVAE {
     final $url = '/api/User/ByPhone/${phone}';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<AppUserDto, AppUserDto>($request);
+  }
+
+  @override
+  Future<Response<List<ProviderProfileDto>>>
+      _apiUserGetAssignedDoctorsSubordinateUserIdGet(
+          {required String? subordinateUserId}) {
+    final $url = '/api/User/GetAssignedDoctors/${subordinateUserId}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<ProviderProfileDto>, ProviderProfileDto>($request);
   }
 
   @override

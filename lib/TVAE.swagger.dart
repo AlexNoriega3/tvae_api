@@ -38,7 +38,7 @@ abstract class TVAE extends ChopperService {
     return _$TVAE(newClient);
   }
 
-  ///
+  ///Get all AcademicStudies
   Future<chopper.Response<List<AcademicStudiesDto>>> apiAcademicStudiesGet() {
     generatedMapping.putIfAbsent(
         AcademicStudiesDto, () => AcademicStudiesDto.fromJsonFactory);
@@ -46,7 +46,7 @@ abstract class TVAE extends ChopperService {
     return _apiAcademicStudiesGet();
   }
 
-  ///
+  ///Get all AcademicStudies
   @Get(path: '/api/AcademicStudies')
   Future<chopper.Response<List<AcademicStudiesDto>>> _apiAcademicStudiesGet();
 
@@ -129,12 +129,12 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response<bool>> _apiAcademicStudiesIdDelete(
       {@Path('id') required String? id});
 
-  ///Endpoint para realizar el login del usuario de los usuarios
+  ///Endpoint para realizar el login del usuario de los usuarios.
   Future<chopper.Response> apiAccountLoginPost({required LoginDto? body}) {
     return _apiAccountLoginPost(body: body);
   }
 
-  ///Endpoint para realizar el login del usuario de los usuarios
+  ///Endpoint para realizar el login del usuario de los usuarios.
   @Post(path: '/api/Account/login')
   Future<chopper.Response> _apiAccountLoginPost(
       {@Body() required LoginDto? body});
@@ -1905,6 +1905,22 @@ abstract class TVAE extends ChopperService {
 
   ///
   ///@param providerId
+  Future<chopper.Response<ProviderQRInfo>> apiUserProviderQRInfoProviderIdPost(
+      {required String? providerId}) {
+    generatedMapping.putIfAbsent(
+        ProviderQRInfo, () => ProviderQRInfo.fromJsonFactory);
+
+    return _apiUserProviderQRInfoProviderIdPost(providerId: providerId);
+  }
+
+  ///
+  ///@param providerId
+  @Post(path: '/api/User/ProviderQRInfo/{providerId}', optionalBody: true)
+  Future<chopper.Response<ProviderQRInfo>> _apiUserProviderQRInfoProviderIdPost(
+      {@Path('providerId') required String? providerId});
+
+  ///
+  ///@param providerId
   ///@param Page
   ///@param Search
   ///@param PageSize
@@ -1964,6 +1980,25 @@ abstract class TVAE extends ChopperService {
   @Get(path: '/api/User/ByPhone/{phone}')
   Future<chopper.Response<AppUserDto>> _apiUserByPhonePhoneGet(
       {@Path('phone') required String? phone});
+
+  ///
+  ///@param subordinateUserId
+  Future<chopper.Response<List<ProviderProfileDto>>>
+      apiUserGetAssignedDoctorsSubordinateUserIdGet(
+          {required String? subordinateUserId}) {
+    generatedMapping.putIfAbsent(
+        ProviderProfileDto, () => ProviderProfileDto.fromJsonFactory);
+
+    return _apiUserGetAssignedDoctorsSubordinateUserIdGet(
+        subordinateUserId: subordinateUserId);
+  }
+
+  ///
+  ///@param subordinateUserId
+  @Get(path: '/api/User/GetAssignedDoctors/{subordinateUserId}')
+  Future<chopper.Response<List<ProviderProfileDto>>>
+      _apiUserGetAssignedDoctorsSubordinateUserIdGet(
+          {@Path('subordinateUserId') required String? subordinateUserId});
 
   ///
   Future<chopper.Response<List<VisitDto>>> apiVisitGet() {
@@ -3351,6 +3386,7 @@ class DepartmentDto {
     this.image,
     this.code,
     this.description,
+    this.active,
   });
 
   factory DepartmentDto.fromJson(Map<String, dynamic> json) =>
@@ -3370,6 +3406,8 @@ class DepartmentDto {
   final String? code;
   @JsonKey(name: 'description')
   final String? description;
+  @JsonKey(name: 'active')
+  final bool? active;
   static const fromJsonFactory = _$DepartmentDtoFromJson;
   static const toJsonFactory = _$DepartmentDtoToJson;
   Map<String, dynamic> toJson() => _$DepartmentDtoToJson(this);
@@ -3398,7 +3436,9 @@ class DepartmentDto {
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
-                    .equals(other.description, description)));
+                    .equals(other.description, description)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)));
   }
 
   @override
@@ -3410,6 +3450,7 @@ class DepartmentDto {
       const DeepCollectionEquality().hash(image) ^
       const DeepCollectionEquality().hash(code) ^
       const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(active) ^
       runtimeType.hashCode;
 }
 
@@ -3421,7 +3462,8 @@ extension $DepartmentDtoExtension on DepartmentDto {
       String? name,
       String? image,
       String? code,
-      String? description}) {
+      String? description,
+      bool? active}) {
     return DepartmentDto(
         departmentId: departmentId ?? this.departmentId,
         sectionId: sectionId ?? this.sectionId,
@@ -3429,7 +3471,8 @@ extension $DepartmentDtoExtension on DepartmentDto {
         name: name ?? this.name,
         image: image ?? this.image,
         code: code ?? this.code,
-        description: description ?? this.description);
+        description: description ?? this.description,
+        active: active ?? this.active);
   }
 }
 
@@ -5875,6 +5918,8 @@ class ProjectDto {
     this.rfc,
     this.logo,
     this.logoApp,
+    this.titleUserApp,
+    this.titleProviderApp,
   });
 
   factory ProjectDto.fromJson(Map<String, dynamic> json) =>
@@ -5902,6 +5947,10 @@ class ProjectDto {
   final String? logo;
   @JsonKey(name: 'logoApp')
   final String? logoApp;
+  @JsonKey(name: 'titleUserApp')
+  final String? titleUserApp;
+  @JsonKey(name: 'titleProviderApp')
+  final String? titleProviderApp;
   static const fromJsonFactory = _$ProjectDtoFromJson;
   static const toJsonFactory = _$ProjectDtoToJson;
   Map<String, dynamic> toJson() => _$ProjectDtoToJson(this);
@@ -5937,7 +5986,14 @@ class ProjectDto {
             (identical(other.logo, logo) ||
                 const DeepCollectionEquality().equals(other.logo, logo)) &&
             (identical(other.logoApp, logoApp) ||
-                const DeepCollectionEquality().equals(other.logoApp, logoApp)));
+                const DeepCollectionEquality()
+                    .equals(other.logoApp, logoApp)) &&
+            (identical(other.titleUserApp, titleUserApp) ||
+                const DeepCollectionEquality()
+                    .equals(other.titleUserApp, titleUserApp)) &&
+            (identical(other.titleProviderApp, titleProviderApp) ||
+                const DeepCollectionEquality()
+                    .equals(other.titleProviderApp, titleProviderApp)));
   }
 
   @override
@@ -5953,6 +6009,8 @@ class ProjectDto {
       const DeepCollectionEquality().hash(rfc) ^
       const DeepCollectionEquality().hash(logo) ^
       const DeepCollectionEquality().hash(logoApp) ^
+      const DeepCollectionEquality().hash(titleUserApp) ^
+      const DeepCollectionEquality().hash(titleProviderApp) ^
       runtimeType.hashCode;
 }
 
@@ -5968,7 +6026,9 @@ extension $ProjectDtoExtension on ProjectDto {
       String? city,
       String? rfc,
       String? logo,
-      String? logoApp}) {
+      String? logoApp,
+      String? titleUserApp,
+      String? titleProviderApp}) {
     return ProjectDto(
         projectId: projectId ?? this.projectId,
         name: name ?? this.name,
@@ -5980,7 +6040,9 @@ extension $ProjectDtoExtension on ProjectDto {
         city: city ?? this.city,
         rfc: rfc ?? this.rfc,
         logo: logo ?? this.logo,
-        logoApp: logoApp ?? this.logoApp);
+        logoApp: logoApp ?? this.logoApp,
+        titleUserApp: titleUserApp ?? this.titleUserApp,
+        titleProviderApp: titleProviderApp ?? this.titleProviderApp);
   }
 }
 
@@ -6075,6 +6137,8 @@ class ProviderProfileDto {
     this.address,
     this.costPerAppointment,
     this.rating,
+    this.pin,
+    this.carNo,
     this.levelLocal,
     this.academicStudies,
     this.department,
@@ -6111,6 +6175,10 @@ class ProviderProfileDto {
   final double? costPerAppointment;
   @JsonKey(name: 'rating')
   final double? rating;
+  @JsonKey(name: 'pin')
+  final String? pin;
+  @JsonKey(name: 'carNo')
+  final String? carNo;
   @JsonKey(name: 'levelLocal', defaultValue: <SelectDto>[])
   final List<SelectDto>? levelLocal;
   @JsonKey(name: 'academicStudies', defaultValue: <AcademicStudiesDto>[])
@@ -6163,6 +6231,10 @@ class ProviderProfileDto {
                     .equals(other.costPerAppointment, costPerAppointment)) &&
             (identical(other.rating, rating) ||
                 const DeepCollectionEquality().equals(other.rating, rating)) &&
+            (identical(other.pin, pin) ||
+                const DeepCollectionEquality().equals(other.pin, pin)) &&
+            (identical(other.carNo, carNo) ||
+                const DeepCollectionEquality().equals(other.carNo, carNo)) &&
             (identical(other.levelLocal, levelLocal) ||
                 const DeepCollectionEquality()
                     .equals(other.levelLocal, levelLocal)) &&
@@ -6197,6 +6269,8 @@ class ProviderProfileDto {
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(costPerAppointment) ^
       const DeepCollectionEquality().hash(rating) ^
+      const DeepCollectionEquality().hash(pin) ^
+      const DeepCollectionEquality().hash(carNo) ^
       const DeepCollectionEquality().hash(levelLocal) ^
       const DeepCollectionEquality().hash(academicStudies) ^
       const DeepCollectionEquality().hash(department) ^
@@ -6220,6 +6294,8 @@ extension $ProviderProfileDtoExtension on ProviderProfileDto {
       String? address,
       double? costPerAppointment,
       double? rating,
+      String? pin,
+      String? carNo,
       List<SelectDto>? levelLocal,
       List<AcademicStudiesDto>? academicStudies,
       List<SelectDto>? department,
@@ -6239,6 +6315,8 @@ extension $ProviderProfileDtoExtension on ProviderProfileDto {
         address: address ?? this.address,
         costPerAppointment: costPerAppointment ?? this.costPerAppointment,
         rating: rating ?? this.rating,
+        pin: pin ?? this.pin,
+        carNo: carNo ?? this.carNo,
         levelLocal: levelLocal ?? this.levelLocal,
         academicStudies: academicStudies ?? this.academicStudies,
         department: department ?? this.department,
@@ -6435,6 +6513,132 @@ extension $ProviderPutDtoExtension on ProviderPutDto {
         subDepartments: subDepartments ?? this.subDepartments,
         academicStudies: academicStudies ?? this.academicStudies,
         schedules: schedules ?? this.schedules);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ProviderQRInfo {
+  ProviderQRInfo({
+    this.userId,
+    this.email,
+    this.name,
+    this.firstName,
+    this.lastName,
+    this.titleAbbreviation,
+    this.pin,
+    this.carNo,
+    this.levelLocal,
+    this.department,
+    this.subDepartments,
+  });
+
+  factory ProviderQRInfo.fromJson(Map<String, dynamic> json) =>
+      _$ProviderQRInfoFromJson(json);
+
+  @JsonKey(name: 'userId')
+  final String? userId;
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'firstName')
+  final String? firstName;
+  @JsonKey(name: 'lastName')
+  final String? lastName;
+  @JsonKey(name: 'titleAbbreviation')
+  final String? titleAbbreviation;
+  @JsonKey(name: 'pin')
+  final String? pin;
+  @JsonKey(name: 'carNo')
+  final String? carNo;
+  @JsonKey(name: 'levelLocal', defaultValue: <SelectDto>[])
+  final List<SelectDto>? levelLocal;
+  @JsonKey(name: 'department', defaultValue: <SelectDto>[])
+  final List<SelectDto>? department;
+  @JsonKey(name: 'subDepartments', defaultValue: <SelectDto>[])
+  final List<SelectDto>? subDepartments;
+  static const fromJsonFactory = _$ProviderQRInfoFromJson;
+  static const toJsonFactory = _$ProviderQRInfoToJson;
+  Map<String, dynamic> toJson() => _$ProviderQRInfoToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ProviderQRInfo &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.titleAbbreviation, titleAbbreviation) ||
+                const DeepCollectionEquality()
+                    .equals(other.titleAbbreviation, titleAbbreviation)) &&
+            (identical(other.pin, pin) ||
+                const DeepCollectionEquality().equals(other.pin, pin)) &&
+            (identical(other.carNo, carNo) ||
+                const DeepCollectionEquality().equals(other.carNo, carNo)) &&
+            (identical(other.levelLocal, levelLocal) ||
+                const DeepCollectionEquality()
+                    .equals(other.levelLocal, levelLocal)) &&
+            (identical(other.department, department) ||
+                const DeepCollectionEquality()
+                    .equals(other.department, department)) &&
+            (identical(other.subDepartments, subDepartments) ||
+                const DeepCollectionEquality()
+                    .equals(other.subDepartments, subDepartments)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(firstName) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(titleAbbreviation) ^
+      const DeepCollectionEquality().hash(pin) ^
+      const DeepCollectionEquality().hash(carNo) ^
+      const DeepCollectionEquality().hash(levelLocal) ^
+      const DeepCollectionEquality().hash(department) ^
+      const DeepCollectionEquality().hash(subDepartments) ^
+      runtimeType.hashCode;
+}
+
+extension $ProviderQRInfoExtension on ProviderQRInfo {
+  ProviderQRInfo copyWith(
+      {String? userId,
+      String? email,
+      String? name,
+      String? firstName,
+      String? lastName,
+      String? titleAbbreviation,
+      String? pin,
+      String? carNo,
+      List<SelectDto>? levelLocal,
+      List<SelectDto>? department,
+      List<SelectDto>? subDepartments}) {
+    return ProviderQRInfo(
+        userId: userId ?? this.userId,
+        email: email ?? this.email,
+        name: name ?? this.name,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
+        pin: pin ?? this.pin,
+        carNo: carNo ?? this.carNo,
+        levelLocal: levelLocal ?? this.levelLocal,
+        department: department ?? this.department,
+        subDepartments: subDepartments ?? this.subDepartments);
   }
 }
 

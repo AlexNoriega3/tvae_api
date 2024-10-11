@@ -21,6 +21,7 @@
         "tags": [
           "AcademicStudies"
         ],
+        "summary": "Get all AcademicStudies",
         "responses": {
           "200": {
             "description": "Success",
@@ -853,7 +854,7 @@
         "tags": [
           "Account"
         ],
-        "summary": "Endpoint para realizar el login del usuario de los usuarios",
+        "summary": "Endpoint para realizar el login del usuario de los usuarios.",
         "description": "Sample request:\r\n            \r\n   GET api/Account/Login",
         "requestBody": {
           "content": {
@@ -2740,7 +2741,7 @@
           "Contact"
         ],
         "summary": "Obtiene la lista de contactos",
-        "description": "Sample request:\r\n            \r\n   GET api/contact",
+        "description": "Sample request:\r\n   GET api/contact",
         "responses": {
           "200": {
             "description": "Description here",
@@ -3743,6 +3744,9 @@
                   },
                   "Description": {
                     "type": "string"
+                  },
+                  "Active": {
+                    "type": "boolean"
                   }
                 }
               },
@@ -3766,6 +3770,9 @@
                   "style": "form"
                 },
                 "Description": {
+                  "style": "form"
+                },
+                "Active": {
                   "style": "form"
                 }
               }
@@ -4126,6 +4133,9 @@
                   },
                   "Description": {
                     "type": "string"
+                  },
+                  "Active": {
+                    "type": "boolean"
                   }
                 }
               },
@@ -4149,6 +4159,9 @@
                   "style": "form"
                 },
                 "Description": {
+                  "style": "form"
+                },
+                "Active": {
                   "style": "form"
                 }
               }
@@ -17893,6 +17906,110 @@
         }
       }
     },
+    "/api/User/ProviderQRInfo/{providerId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderQRInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/User/SearchUserByProvider": {
       "get": {
         "tags": [
@@ -18307,6 +18424,158 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AppUserDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/GetAssignedDoctors/{subordinateUserId}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "subordinateUserId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderProfileDto"
+                  }
                 }
               }
             }
@@ -21466,6 +21735,9 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -22146,7 +22418,7 @@
             "format": "email"
           },
           "password": {
-            "maxLength": 15,
+            "maxLength": 24,
             "minLength": 6,
             "type": "string"
           }
@@ -22500,6 +22772,14 @@
           "logoApp": {
             "type": "string",
             "nullable": true
+          },
+          "titleUserApp": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleProviderApp": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -22583,6 +22863,14 @@
           "rating": {
             "type": "number",
             "format": "double",
+            "nullable": true
+          },
+          "pin": {
+            "type": "string",
+            "nullable": true
+          },
+          "carNo": {
+            "type": "string",
             "nullable": true
           },
           "levelLocal": {
@@ -22740,6 +23028,65 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ScheduleDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProviderQRInfo": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleAbbreviation": {
+            "type": "string",
+            "nullable": true
+          },
+          "pin": {
+            "type": "string",
+            "nullable": true
+          },
+          "carNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "levelLocal": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDto"
+            },
+            "nullable": true
+          },
+          "department": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDto"
+            },
+            "nullable": true
+          },
+          "subDepartments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectDto"
             },
             "nullable": true
           }
@@ -23420,7 +23767,7 @@
             "format": "email"
           },
           "password": {
-            "maxLength": 15,
+            "maxLength": 24,
             "minLength": 6,
             "type": "string"
           },

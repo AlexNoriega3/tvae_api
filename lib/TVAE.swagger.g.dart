@@ -269,6 +269,7 @@ DepartmentDto _$DepartmentDtoFromJson(Map<String, dynamic> json) =>
       image: json['image'] as String?,
       code: json['code'] as String?,
       description: json['description'] as String?,
+      active: json['active'] as bool?,
     );
 
 Map<String, dynamic> _$DepartmentDtoToJson(DepartmentDto instance) =>
@@ -280,6 +281,7 @@ Map<String, dynamic> _$DepartmentDtoToJson(DepartmentDto instance) =>
       'image': instance.image,
       'code': instance.code,
       'description': instance.description,
+      'active': instance.active,
     };
 
 DepartmentDtoPagedResult _$DepartmentDtoPagedResultFromJson(
@@ -935,6 +937,8 @@ ProjectDto _$ProjectDtoFromJson(Map<String, dynamic> json) => ProjectDto(
       rfc: json['rfc'] as String?,
       logo: json['logo'] as String?,
       logoApp: json['logoApp'] as String?,
+      titleUserApp: json['titleUserApp'] as String?,
+      titleProviderApp: json['titleProviderApp'] as String?,
     );
 
 Map<String, dynamic> _$ProjectDtoToJson(ProjectDto instance) =>
@@ -950,6 +954,8 @@ Map<String, dynamic> _$ProjectDtoToJson(ProjectDto instance) =>
       'rfc': instance.rfc,
       'logo': instance.logo,
       'logoApp': instance.logoApp,
+      'titleUserApp': instance.titleUserApp,
+      'titleProviderApp': instance.titleProviderApp,
     };
 
 ProjectDtoPagedResult _$ProjectDtoPagedResultFromJson(
@@ -989,6 +995,8 @@ ProviderProfileDto _$ProviderProfileDtoFromJson(Map<String, dynamic> json) =>
       address: json['address'] as String?,
       costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
       rating: (json['rating'] as num?)?.toDouble(),
+      pin: json['pin'] as String?,
+      carNo: json['carNo'] as String?,
       levelLocal: (json['levelLocal'] as List<dynamic>?)
               ?.map((e) => SelectDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -1030,6 +1038,8 @@ Map<String, dynamic> _$ProviderProfileDtoToJson(ProviderProfileDto instance) =>
       'address': instance.address,
       'costPerAppointment': instance.costPerAppointment,
       'rating': instance.rating,
+      'pin': instance.pin,
+      'carNo': instance.carNo,
       'levelLocal': instance.levelLocal?.map((e) => e.toJson()).toList(),
       'academicStudies':
           instance.academicStudies?.map((e) => e.toJson()).toList(),
@@ -1095,6 +1105,46 @@ Map<String, dynamic> _$ProviderPutDtoToJson(ProviderPutDto instance) =>
       'academicStudies':
           instance.academicStudies?.map((e) => e.toJson()).toList(),
       'schedules': instance.schedules?.map((e) => e.toJson()).toList(),
+    };
+
+ProviderQRInfo _$ProviderQRInfoFromJson(Map<String, dynamic> json) =>
+    ProviderQRInfo(
+      userId: json['userId'] as String?,
+      email: json['email'] as String?,
+      name: json['name'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      titleAbbreviation: json['titleAbbreviation'] as String?,
+      pin: json['pin'] as String?,
+      carNo: json['carNo'] as String?,
+      levelLocal: (json['levelLocal'] as List<dynamic>?)
+              ?.map((e) => SelectDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      department: (json['department'] as List<dynamic>?)
+              ?.map((e) => SelectDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      subDepartments: (json['subDepartments'] as List<dynamic>?)
+              ?.map((e) => SelectDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ProviderQRInfoToJson(ProviderQRInfo instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+      'email': instance.email,
+      'name': instance.name,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'titleAbbreviation': instance.titleAbbreviation,
+      'pin': instance.pin,
+      'carNo': instance.carNo,
+      'levelLocal': instance.levelLocal?.map((e) => e.toJson()).toList(),
+      'department': instance.department?.map((e) => e.toJson()).toList(),
+      'subDepartments':
+          instance.subDepartments?.map((e) => e.toJson()).toList(),
     };
 
 PushNotificationDto _$PushNotificationDtoFromJson(Map<String, dynamic> json) =>
