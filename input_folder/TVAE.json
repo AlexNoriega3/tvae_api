@@ -21,7 +21,7 @@
         "tags": [
           "AcademicStudies"
         ],
-        "summary": "Get all AcademicStudies",
+        "summary": "Get all AcademicStudies..",
         "responses": {
           "200": {
             "description": "Success",
@@ -24022,6 +24022,14 @@
             "nullable": true
           },
           "visitStatusCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "pin": {
             "type": "string",
             "nullable": true
           }

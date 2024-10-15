@@ -1706,6 +1706,8 @@ VisitDetailsDto _$VisitDetailsDtoFromJson(Map<String, dynamic> json) =>
       visitStatusId: json['visitStatusId'] as String?,
       visitStatus: json['visitStatus'] as String?,
       visitStatusCode: json['visitStatusCode'] as String?,
+      cardNo: json['cardNo'] as String?,
+      pin: json['pin'] as String?,
     );
 
 Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
@@ -1743,6 +1745,8 @@ Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
       'visitStatusId': instance.visitStatusId,
       'visitStatus': instance.visitStatus,
       'visitStatusCode': instance.visitStatusCode,
+      'cardNo': instance.cardNo,
+      'pin': instance.pin,
     };
 
 VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(

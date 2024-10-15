@@ -38,7 +38,7 @@ abstract class TVAE extends ChopperService {
     return _$TVAE(newClient);
   }
 
-  ///Get all AcademicStudies
+  ///Get all AcademicStudies..
   Future<chopper.Response<List<AcademicStudiesDto>>> apiAcademicStudiesGet() {
     generatedMapping.putIfAbsent(
         AcademicStudiesDto, () => AcademicStudiesDto.fromJsonFactory);
@@ -46,7 +46,7 @@ abstract class TVAE extends ChopperService {
     return _apiAcademicStudiesGet();
   }
 
-  ///Get all AcademicStudies
+  ///Get all AcademicStudies..
   @Get(path: '/api/AcademicStudies')
   Future<chopper.Response<List<AcademicStudiesDto>>> _apiAcademicStudiesGet();
 
@@ -8682,6 +8682,8 @@ class VisitDetailsDto {
     this.visitStatusId,
     this.visitStatus,
     this.visitStatusCode,
+    this.cardNo,
+    this.pin,
   });
 
   factory VisitDetailsDto.fromJson(Map<String, dynamic> json) =>
@@ -8756,6 +8758,10 @@ class VisitDetailsDto {
   final String? visitStatus;
   @JsonKey(name: 'visitStatusCode')
   final String? visitStatusCode;
+  @JsonKey(name: 'cardNo')
+  final String? cardNo;
+  @JsonKey(name: 'pin')
+  final String? pin;
   static const fromJsonFactory = _$VisitDetailsDtoFromJson;
   static const toJsonFactory = _$VisitDetailsDtoToJson;
   Map<String, dynamic> toJson() => _$VisitDetailsDtoToJson(this);
@@ -8842,7 +8848,9 @@ class VisitDetailsDto {
             (identical(other.userCancel, userCancel) || const DeepCollectionEquality().equals(other.userCancel, userCancel)) &&
             (identical(other.visitStatusId, visitStatusId) || const DeepCollectionEquality().equals(other.visitStatusId, visitStatusId)) &&
             (identical(other.visitStatus, visitStatus) || const DeepCollectionEquality().equals(other.visitStatus, visitStatus)) &&
-            (identical(other.visitStatusCode, visitStatusCode) || const DeepCollectionEquality().equals(other.visitStatusCode, visitStatusCode)));
+            (identical(other.visitStatusCode, visitStatusCode) || const DeepCollectionEquality().equals(other.visitStatusCode, visitStatusCode)) &&
+            (identical(other.cardNo, cardNo) || const DeepCollectionEquality().equals(other.cardNo, cardNo)) &&
+            (identical(other.pin, pin) || const DeepCollectionEquality().equals(other.pin, pin)));
   }
 
   @override
@@ -8880,6 +8888,8 @@ class VisitDetailsDto {
       const DeepCollectionEquality().hash(visitStatusId) ^
       const DeepCollectionEquality().hash(visitStatus) ^
       const DeepCollectionEquality().hash(visitStatusCode) ^
+      const DeepCollectionEquality().hash(cardNo) ^
+      const DeepCollectionEquality().hash(pin) ^
       runtimeType.hashCode;
 }
 
@@ -8917,7 +8927,9 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
       bool? userCancel,
       String? visitStatusId,
       String? visitStatus,
-      String? visitStatusCode}) {
+      String? visitStatusCode,
+      String? cardNo,
+      String? pin}) {
     return VisitDetailsDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
@@ -8951,7 +8963,9 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
         userCancel: userCancel ?? this.userCancel,
         visitStatusId: visitStatusId ?? this.visitStatusId,
         visitStatus: visitStatus ?? this.visitStatus,
-        visitStatusCode: visitStatusCode ?? this.visitStatusCode);
+        visitStatusCode: visitStatusCode ?? this.visitStatusCode,
+        cardNo: cardNo ?? this.cardNo,
+        pin: pin ?? this.pin);
   }
 }
 
