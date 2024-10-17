@@ -1115,6 +1115,7 @@ ProviderQRInfo _$ProviderQRInfoFromJson(Map<String, dynamic> json) =>
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       titleAbbreviation: json['titleAbbreviation'] as String?,
+      url: json['url'] as String?,
       pin: json['pin'] as String?,
       carNo: json['carNo'] as String?,
       levelLocal: (json['levelLocal'] as List<dynamic>?)
@@ -1139,6 +1140,7 @@ Map<String, dynamic> _$ProviderQRInfoToJson(ProviderQRInfo instance) =>
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'titleAbbreviation': instance.titleAbbreviation,
+      'url': instance.url,
       'pin': instance.pin,
       'carNo': instance.carNo,
       'levelLocal': instance.levelLocal?.map((e) => e.toJson()).toList(),

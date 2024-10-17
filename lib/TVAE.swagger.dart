@@ -6525,6 +6525,7 @@ class ProviderQRInfo {
     this.firstName,
     this.lastName,
     this.titleAbbreviation,
+    this.url,
     this.pin,
     this.carNo,
     this.levelLocal,
@@ -6547,6 +6548,8 @@ class ProviderQRInfo {
   final String? lastName;
   @JsonKey(name: 'titleAbbreviation')
   final String? titleAbbreviation;
+  @JsonKey(name: 'url')
+  final String? url;
   @JsonKey(name: 'pin')
   final String? pin;
   @JsonKey(name: 'carNo')
@@ -6583,6 +6586,8 @@ class ProviderQRInfo {
             (identical(other.titleAbbreviation, titleAbbreviation) ||
                 const DeepCollectionEquality()
                     .equals(other.titleAbbreviation, titleAbbreviation)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)) &&
             (identical(other.pin, pin) ||
                 const DeepCollectionEquality().equals(other.pin, pin)) &&
             (identical(other.carNo, carNo) ||
@@ -6606,6 +6611,7 @@ class ProviderQRInfo {
       const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(lastName) ^
       const DeepCollectionEquality().hash(titleAbbreviation) ^
+      const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(pin) ^
       const DeepCollectionEquality().hash(carNo) ^
       const DeepCollectionEquality().hash(levelLocal) ^
@@ -6622,6 +6628,7 @@ extension $ProviderQRInfoExtension on ProviderQRInfo {
       String? firstName,
       String? lastName,
       String? titleAbbreviation,
+      String? url,
       String? pin,
       String? carNo,
       List<SelectDto>? levelLocal,
@@ -6634,6 +6641,7 @@ extension $ProviderQRInfoExtension on ProviderQRInfo {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         titleAbbreviation: titleAbbreviation ?? this.titleAbbreviation,
+        url: url ?? this.url,
         pin: pin ?? this.pin,
         carNo: carNo ?? this.carNo,
         levelLocal: levelLocal ?? this.levelLocal,

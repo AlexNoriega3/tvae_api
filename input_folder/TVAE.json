@@ -23061,6 +23061,10 @@
             "type": "string",
             "nullable": true
           },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
           "pin": {
             "type": "string",
             "nullable": true
