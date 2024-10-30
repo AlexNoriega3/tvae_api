@@ -1887,6 +1887,18 @@ abstract class TVAE extends ChopperService {
       {@Path('userId') required String? userId});
 
   ///
+  ///@param userId
+  Future<chopper.Response<bool>> apiUserDisableAccountPut({String? userId}) {
+    return _apiUserDisableAccountPut(userId: userId);
+  }
+
+  ///
+  ///@param userId
+  @Put(path: '/api/User/DisableAccount', optionalBody: true)
+  Future<chopper.Response<bool>> _apiUserDisableAccountPut(
+      {@Query('userId') String? userId});
+
+  ///
   ///@param providerId
   Future<chopper.Response<ProviderProfileDto>>
       apiUserProviderProfileProviderIdPost({required String? providerId}) {

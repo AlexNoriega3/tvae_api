@@ -1137,6 +1137,14 @@ class _$TVAE extends TVAE {
   }
 
   @override
+  Future<Response<bool>> _apiUserDisableAccountPut({String? userId}) {
+    final $url = '/api/User/DisableAccount';
+    final $params = <String, dynamic>{'userId': userId};
+    final $request = Request('PUT', $url, client.baseUrl, parameters: $params);
+    return client.send<bool, bool>($request);
+  }
+
+  @override
   Future<Response<ProviderProfileDto>> _apiUserProviderProfileProviderIdPost(
       {required String? providerId}) {
     final $url = '/api/User/ProviderProfile/${providerId}';
