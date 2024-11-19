@@ -39,6 +39,7 @@ abstract class TVAE extends ChopperService {
   }
 
   ///Get all AcademicStudies..
+  ///1
   Future<chopper.Response<List<AcademicStudiesDto>>> apiAcademicStudiesGet() {
     generatedMapping.putIfAbsent(
         AcademicStudiesDto, () => AcademicStudiesDto.fromJsonFactory);
@@ -47,6 +48,7 @@ abstract class TVAE extends ChopperService {
   }
 
   ///Get all AcademicStudies..
+  ///1
   @Get(path: '/api/AcademicStudies')
   Future<chopper.Response<List<AcademicStudiesDto>>> _apiAcademicStudiesGet();
 
@@ -1278,16 +1280,6 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response<List<RoleDto>>> _apiRoleGet();
 
   ///
-  Future<chopper.Response<String>> apiRolePost({required RoleDto? body}) {
-    return _apiRolePost(body: body);
-  }
-
-  ///
-  @Post(path: '/api/Role')
-  Future<chopper.Response<String>> _apiRolePost(
-      {@Body() required RoleDto? body});
-
-  ///
   ///@param Page
   ///@param Search
   ///@param PageSize
@@ -1321,31 +1313,6 @@ abstract class TVAE extends ChopperService {
   ///@param id
   @Get(path: '/api/Role/{id}')
   Future<chopper.Response<RoleDto>> _apiRoleIdGet(
-      {@Path('id') required String? id});
-
-  ///
-  ///@param id
-  Future<chopper.Response<bool>> apiRoleIdPut(
-      {required String? id, required RoleDto? body}) {
-    return _apiRoleIdPut(id: id, body: body);
-  }
-
-  ///
-  ///@param id
-  @Put(path: '/api/Role/{id}')
-  Future<chopper.Response<bool>> _apiRoleIdPut(
-      {@Path('id') required String? id, @Body() required RoleDto? body});
-
-  ///
-  ///@param id
-  Future<chopper.Response<bool>> apiRoleIdDelete({required String? id}) {
-    return _apiRoleIdDelete(id: id);
-  }
-
-  ///
-  ///@param id
-  @Delete(path: '/api/Role/{id}')
-  Future<chopper.Response<bool>> _apiRoleIdDelete(
       {@Path('id') required String? id});
 
   ///
@@ -2357,17 +2324,6 @@ abstract class TVAE extends ChopperService {
   Future<chopper.Response<List<VisitStatusDto>>> _apiVisitStatusGet();
 
   ///
-  Future<chopper.Response<String>> apiVisitStatusPost(
-      {required VisitStatusDto? body}) {
-    return _apiVisitStatusPost(body: body);
-  }
-
-  ///
-  @Post(path: '/api/VisitStatus')
-  Future<chopper.Response<String>> _apiVisitStatusPost(
-      {@Body() required VisitStatusDto? body});
-
-  ///
   ///@param Page
   ///@param Search
   ///@param PageSize
@@ -2405,19 +2361,6 @@ abstract class TVAE extends ChopperService {
   @Get(path: '/api/VisitStatus/{id}')
   Future<chopper.Response<VisitStatusDto>> _apiVisitStatusIdGet(
       {@Path('id') required String? id});
-
-  ///
-  ///@param id
-  Future<chopper.Response<bool>> apiVisitStatusIdPut(
-      {required String? id, required VisitStatusDto? body}) {
-    return _apiVisitStatusIdPut(id: id, body: body);
-  }
-
-  ///
-  ///@param id
-  @Put(path: '/api/VisitStatus/{id}')
-  Future<chopper.Response<bool>> _apiVisitStatusIdPut(
-      {@Path('id') required String? id, @Body() required VisitStatusDto? body});
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -8704,6 +8647,7 @@ class VisitDetailsDto {
     this.visitStatusCode,
     this.cardNo,
     this.pin,
+    this.costPerAppointment,
   });
 
   factory VisitDetailsDto.fromJson(Map<String, dynamic> json) =>
@@ -8782,6 +8726,8 @@ class VisitDetailsDto {
   final String? cardNo;
   @JsonKey(name: 'pin')
   final String? pin;
+  @JsonKey(name: 'costPerAppointment')
+  final double? costPerAppointment;
   static const fromJsonFactory = _$VisitDetailsDtoFromJson;
   static const toJsonFactory = _$VisitDetailsDtoToJson;
   Map<String, dynamic> toJson() => _$VisitDetailsDtoToJson(this);
@@ -8870,7 +8816,8 @@ class VisitDetailsDto {
             (identical(other.visitStatus, visitStatus) || const DeepCollectionEquality().equals(other.visitStatus, visitStatus)) &&
             (identical(other.visitStatusCode, visitStatusCode) || const DeepCollectionEquality().equals(other.visitStatusCode, visitStatusCode)) &&
             (identical(other.cardNo, cardNo) || const DeepCollectionEquality().equals(other.cardNo, cardNo)) &&
-            (identical(other.pin, pin) || const DeepCollectionEquality().equals(other.pin, pin)));
+            (identical(other.pin, pin) || const DeepCollectionEquality().equals(other.pin, pin)) &&
+            (identical(other.costPerAppointment, costPerAppointment) || const DeepCollectionEquality().equals(other.costPerAppointment, costPerAppointment)));
   }
 
   @override
@@ -8910,6 +8857,7 @@ class VisitDetailsDto {
       const DeepCollectionEquality().hash(visitStatusCode) ^
       const DeepCollectionEquality().hash(cardNo) ^
       const DeepCollectionEquality().hash(pin) ^
+      const DeepCollectionEquality().hash(costPerAppointment) ^
       runtimeType.hashCode;
 }
 
@@ -8949,7 +8897,8 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
       String? visitStatus,
       String? visitStatusCode,
       String? cardNo,
-      String? pin}) {
+      String? pin,
+      double? costPerAppointment}) {
     return VisitDetailsDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
@@ -8985,7 +8934,8 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
         visitStatus: visitStatus ?? this.visitStatus,
         visitStatusCode: visitStatusCode ?? this.visitStatusCode,
         cardNo: cardNo ?? this.cardNo,
-        pin: pin ?? this.pin);
+        pin: pin ?? this.pin,
+        costPerAppointment: costPerAppointment ?? this.costPerAppointment);
   }
 }
 
@@ -9375,6 +9325,7 @@ class VisitNextPendingResidentDto {
     this.visitDate,
     this.startHour,
     this.endHour,
+    this.costPerAppointment,
   });
 
   factory VisitNextPendingResidentDto.fromJson(Map<String, dynamic> json) =>
@@ -9418,6 +9369,8 @@ class VisitNextPendingResidentDto {
   final String? startHour;
   @JsonKey(name: 'endHour')
   final String? endHour;
+  @JsonKey(name: 'costPerAppointment')
+  final double? costPerAppointment;
   static const fromJsonFactory = _$VisitNextPendingResidentDtoFromJson;
   static const toJsonFactory = _$VisitNextPendingResidentDtoToJson;
   Map<String, dynamic> toJson() => _$VisitNextPendingResidentDtoToJson(this);
@@ -9480,7 +9433,11 @@ class VisitNextPendingResidentDto {
                 const DeepCollectionEquality()
                     .equals(other.startHour, startHour)) &&
             (identical(other.endHour, endHour) ||
-                const DeepCollectionEquality().equals(other.endHour, endHour)));
+                const DeepCollectionEquality()
+                    .equals(other.endHour, endHour)) &&
+            (identical(other.costPerAppointment, costPerAppointment) ||
+                const DeepCollectionEquality()
+                    .equals(other.costPerAppointment, costPerAppointment)));
   }
 
   @override
@@ -9504,6 +9461,7 @@ class VisitNextPendingResidentDto {
       const DeepCollectionEquality().hash(visitDate) ^
       const DeepCollectionEquality().hash(startHour) ^
       const DeepCollectionEquality().hash(endHour) ^
+      const DeepCollectionEquality().hash(costPerAppointment) ^
       runtimeType.hashCode;
 }
 
@@ -9527,7 +9485,8 @@ extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
       String? visitStatusCode,
       DateTime? visitDate,
       String? startHour,
-      String? endHour}) {
+      String? endHour,
+      double? costPerAppointment}) {
     return VisitNextPendingResidentDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
@@ -9547,7 +9506,8 @@ extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
         visitStatusCode: visitStatusCode ?? this.visitStatusCode,
         visitDate: visitDate ?? this.visitDate,
         startHour: startHour ?? this.startHour,
-        endHour: endHour ?? this.endHour);
+        endHour: endHour ?? this.endHour,
+        costPerAppointment: costPerAppointment ?? this.costPerAppointment);
   }
 }
 

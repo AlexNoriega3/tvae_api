@@ -770,14 +770,6 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<String>> _apiRolePost({required RoleDto? body}) {
-    final $url = '/api/Role';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<String, String>($request);
-  }
-
-  @override
   Future<Response<RoleDtoPagedResult>> _apiRoleSearchGet(
       {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/Role/Search';
@@ -795,22 +787,6 @@ class _$TVAE extends TVAE {
     final $url = '/api/Role/${id}';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<RoleDto, RoleDto>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiRoleIdPut(
-      {required String? id, required RoleDto? body}) {
-    final $url = '/api/Role/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
-    return client.send<bool, bool>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiRoleIdDelete({required String? id}) {
-    final $url = '/api/Role/${id}';
-    final $request = Request('DELETE', $url, client.baseUrl);
-    return client.send<bool, bool>($request);
   }
 
   @override
@@ -1389,15 +1365,6 @@ class _$TVAE extends TVAE {
   }
 
   @override
-  Future<Response<String>> _apiVisitStatusPost(
-      {required VisitStatusDto? body}) {
-    final $url = '/api/VisitStatus';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<String, String>($request);
-  }
-
-  @override
   Future<Response<VisitStatusDtoPagedResult>> _apiVisitStatusSearchGet(
       {required int? page, String? search, required int? pageSize}) {
     final $url = '/api/VisitStatus/Search';
@@ -1416,14 +1383,5 @@ class _$TVAE extends TVAE {
     final $url = '/api/VisitStatus/${id}';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<VisitStatusDto, VisitStatusDto>($request);
-  }
-
-  @override
-  Future<Response<bool>> _apiVisitStatusIdPut(
-      {required String? id, required VisitStatusDto? body}) {
-    final $url = '/api/VisitStatus/${id}';
-    final $body = body;
-    final $request = Request('PUT', $url, client.baseUrl, body: $body);
-    return client.send<bool, bool>($request);
   }
 }

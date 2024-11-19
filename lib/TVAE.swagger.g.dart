@@ -1710,6 +1710,7 @@ VisitDetailsDto _$VisitDetailsDtoFromJson(Map<String, dynamic> json) =>
       visitStatusCode: json['visitStatusCode'] as String?,
       cardNo: json['cardNo'] as String?,
       pin: json['pin'] as String?,
+      costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
@@ -1749,6 +1750,7 @@ Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
       'visitStatusCode': instance.visitStatusCode,
       'cardNo': instance.cardNo,
       'pin': instance.pin,
+      'costPerAppointment': instance.costPerAppointment,
     };
 
 VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(
@@ -1864,6 +1866,7 @@ VisitNextPendingResidentDto _$VisitNextPendingResidentDtoFromJson(
           : DateTime.parse(json['visitDate'] as String),
       startHour: json['startHour'] as String?,
       endHour: json['endHour'] as String?,
+      costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$VisitNextPendingResidentDtoToJson(
@@ -1888,6 +1891,7 @@ Map<String, dynamic> _$VisitNextPendingResidentDtoToJson(
       'visitDate': instance.visitDate?.toIso8601String(),
       'startHour': instance.startHour,
       'endHour': instance.endHour,
+      'costPerAppointment': instance.costPerAppointment,
     };
 
 VisitNextPendingResidentDtoPagedResult
