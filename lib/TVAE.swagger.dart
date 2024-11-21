@@ -5875,6 +5875,8 @@ class ProjectDto {
     this.logoApp,
     this.titleUserApp,
     this.titleProviderApp,
+    this.entryToleranceTime,
+    this.exitToleranceTime,
   });
 
   factory ProjectDto.fromJson(Map<String, dynamic> json) =>
@@ -5906,6 +5908,10 @@ class ProjectDto {
   final String? titleUserApp;
   @JsonKey(name: 'titleProviderApp')
   final String? titleProviderApp;
+  @JsonKey(name: 'entryToleranceTime')
+  final int? entryToleranceTime;
+  @JsonKey(name: 'exitToleranceTime')
+  final int? exitToleranceTime;
   static const fromJsonFactory = _$ProjectDtoFromJson;
   static const toJsonFactory = _$ProjectDtoToJson;
   Map<String, dynamic> toJson() => _$ProjectDtoToJson(this);
@@ -5948,7 +5954,13 @@ class ProjectDto {
                     .equals(other.titleUserApp, titleUserApp)) &&
             (identical(other.titleProviderApp, titleProviderApp) ||
                 const DeepCollectionEquality()
-                    .equals(other.titleProviderApp, titleProviderApp)));
+                    .equals(other.titleProviderApp, titleProviderApp)) &&
+            (identical(other.entryToleranceTime, entryToleranceTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.entryToleranceTime, entryToleranceTime)) &&
+            (identical(other.exitToleranceTime, exitToleranceTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.exitToleranceTime, exitToleranceTime)));
   }
 
   @override
@@ -5966,6 +5978,8 @@ class ProjectDto {
       const DeepCollectionEquality().hash(logoApp) ^
       const DeepCollectionEquality().hash(titleUserApp) ^
       const DeepCollectionEquality().hash(titleProviderApp) ^
+      const DeepCollectionEquality().hash(entryToleranceTime) ^
+      const DeepCollectionEquality().hash(exitToleranceTime) ^
       runtimeType.hashCode;
 }
 
@@ -5983,7 +5997,9 @@ extension $ProjectDtoExtension on ProjectDto {
       String? logo,
       String? logoApp,
       String? titleUserApp,
-      String? titleProviderApp}) {
+      String? titleProviderApp,
+      int? entryToleranceTime,
+      int? exitToleranceTime}) {
     return ProjectDto(
         projectId: projectId ?? this.projectId,
         name: name ?? this.name,
@@ -5997,7 +6013,9 @@ extension $ProjectDtoExtension on ProjectDto {
         logo: logo ?? this.logo,
         logoApp: logoApp ?? this.logoApp,
         titleUserApp: titleUserApp ?? this.titleUserApp,
-        titleProviderApp: titleProviderApp ?? this.titleProviderApp);
+        titleProviderApp: titleProviderApp ?? this.titleProviderApp,
+        entryToleranceTime: entryToleranceTime ?? this.entryToleranceTime,
+        exitToleranceTime: exitToleranceTime ?? this.exitToleranceTime);
   }
 }
 
@@ -8648,6 +8666,9 @@ class VisitDetailsDto {
     this.cardNo,
     this.pin,
     this.costPerAppointment,
+    this.entryToleranceTime,
+    this.exitToleranceTime,
+    this.urlMap,
   });
 
   factory VisitDetailsDto.fromJson(Map<String, dynamic> json) =>
@@ -8728,6 +8749,12 @@ class VisitDetailsDto {
   final String? pin;
   @JsonKey(name: 'costPerAppointment')
   final double? costPerAppointment;
+  @JsonKey(name: 'entryToleranceTime')
+  final int? entryToleranceTime;
+  @JsonKey(name: 'exitToleranceTime')
+  final int? exitToleranceTime;
+  @JsonKey(name: 'urlMap')
+  final String? urlMap;
   static const fromJsonFactory = _$VisitDetailsDtoFromJson;
   static const toJsonFactory = _$VisitDetailsDtoToJson;
   Map<String, dynamic> toJson() => _$VisitDetailsDtoToJson(this);
@@ -8817,7 +8844,10 @@ class VisitDetailsDto {
             (identical(other.visitStatusCode, visitStatusCode) || const DeepCollectionEquality().equals(other.visitStatusCode, visitStatusCode)) &&
             (identical(other.cardNo, cardNo) || const DeepCollectionEquality().equals(other.cardNo, cardNo)) &&
             (identical(other.pin, pin) || const DeepCollectionEquality().equals(other.pin, pin)) &&
-            (identical(other.costPerAppointment, costPerAppointment) || const DeepCollectionEquality().equals(other.costPerAppointment, costPerAppointment)));
+            (identical(other.costPerAppointment, costPerAppointment) || const DeepCollectionEquality().equals(other.costPerAppointment, costPerAppointment)) &&
+            (identical(other.entryToleranceTime, entryToleranceTime) || const DeepCollectionEquality().equals(other.entryToleranceTime, entryToleranceTime)) &&
+            (identical(other.exitToleranceTime, exitToleranceTime) || const DeepCollectionEquality().equals(other.exitToleranceTime, exitToleranceTime)) &&
+            (identical(other.urlMap, urlMap) || const DeepCollectionEquality().equals(other.urlMap, urlMap)));
   }
 
   @override
@@ -8858,6 +8888,9 @@ class VisitDetailsDto {
       const DeepCollectionEquality().hash(cardNo) ^
       const DeepCollectionEquality().hash(pin) ^
       const DeepCollectionEquality().hash(costPerAppointment) ^
+      const DeepCollectionEquality().hash(entryToleranceTime) ^
+      const DeepCollectionEquality().hash(exitToleranceTime) ^
+      const DeepCollectionEquality().hash(urlMap) ^
       runtimeType.hashCode;
 }
 
@@ -8898,7 +8931,10 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
       String? visitStatusCode,
       String? cardNo,
       String? pin,
-      double? costPerAppointment}) {
+      double? costPerAppointment,
+      int? entryToleranceTime,
+      int? exitToleranceTime,
+      String? urlMap}) {
     return VisitDetailsDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
@@ -8935,7 +8971,10 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
         visitStatusCode: visitStatusCode ?? this.visitStatusCode,
         cardNo: cardNo ?? this.cardNo,
         pin: pin ?? this.pin,
-        costPerAppointment: costPerAppointment ?? this.costPerAppointment);
+        costPerAppointment: costPerAppointment ?? this.costPerAppointment,
+        entryToleranceTime: entryToleranceTime ?? this.entryToleranceTime,
+        exitToleranceTime: exitToleranceTime ?? this.exitToleranceTime,
+        urlMap: urlMap ?? this.urlMap);
   }
 }
 
@@ -9326,6 +9365,9 @@ class VisitNextPendingResidentDto {
     this.startHour,
     this.endHour,
     this.costPerAppointment,
+    this.entryToleranceTime,
+    this.exitToleranceTime,
+    this.urlMap,
   });
 
   factory VisitNextPendingResidentDto.fromJson(Map<String, dynamic> json) =>
@@ -9371,6 +9413,12 @@ class VisitNextPendingResidentDto {
   final String? endHour;
   @JsonKey(name: 'costPerAppointment')
   final double? costPerAppointment;
+  @JsonKey(name: 'entryToleranceTime')
+  final int? entryToleranceTime;
+  @JsonKey(name: 'exitToleranceTime')
+  final int? exitToleranceTime;
+  @JsonKey(name: 'urlMap')
+  final String? urlMap;
   static const fromJsonFactory = _$VisitNextPendingResidentDtoFromJson;
   static const toJsonFactory = _$VisitNextPendingResidentDtoToJson;
   Map<String, dynamic> toJson() => _$VisitNextPendingResidentDtoToJson(this);
@@ -9437,7 +9485,15 @@ class VisitNextPendingResidentDto {
                     .equals(other.endHour, endHour)) &&
             (identical(other.costPerAppointment, costPerAppointment) ||
                 const DeepCollectionEquality()
-                    .equals(other.costPerAppointment, costPerAppointment)));
+                    .equals(other.costPerAppointment, costPerAppointment)) &&
+            (identical(other.entryToleranceTime, entryToleranceTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.entryToleranceTime, entryToleranceTime)) &&
+            (identical(other.exitToleranceTime, exitToleranceTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.exitToleranceTime, exitToleranceTime)) &&
+            (identical(other.urlMap, urlMap) ||
+                const DeepCollectionEquality().equals(other.urlMap, urlMap)));
   }
 
   @override
@@ -9462,6 +9518,9 @@ class VisitNextPendingResidentDto {
       const DeepCollectionEquality().hash(startHour) ^
       const DeepCollectionEquality().hash(endHour) ^
       const DeepCollectionEquality().hash(costPerAppointment) ^
+      const DeepCollectionEquality().hash(entryToleranceTime) ^
+      const DeepCollectionEquality().hash(exitToleranceTime) ^
+      const DeepCollectionEquality().hash(urlMap) ^
       runtimeType.hashCode;
 }
 
@@ -9486,7 +9545,10 @@ extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
       DateTime? visitDate,
       String? startHour,
       String? endHour,
-      double? costPerAppointment}) {
+      double? costPerAppointment,
+      int? entryToleranceTime,
+      int? exitToleranceTime,
+      String? urlMap}) {
     return VisitNextPendingResidentDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
@@ -9507,7 +9569,10 @@ extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
         visitDate: visitDate ?? this.visitDate,
         startHour: startHour ?? this.startHour,
         endHour: endHour ?? this.endHour,
-        costPerAppointment: costPerAppointment ?? this.costPerAppointment);
+        costPerAppointment: costPerAppointment ?? this.costPerAppointment,
+        entryToleranceTime: entryToleranceTime ?? this.entryToleranceTime,
+        exitToleranceTime: exitToleranceTime ?? this.exitToleranceTime,
+        urlMap: urlMap ?? this.urlMap);
   }
 }
 

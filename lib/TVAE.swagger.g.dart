@@ -939,6 +939,8 @@ ProjectDto _$ProjectDtoFromJson(Map<String, dynamic> json) => ProjectDto(
       logoApp: json['logoApp'] as String?,
       titleUserApp: json['titleUserApp'] as String?,
       titleProviderApp: json['titleProviderApp'] as String?,
+      entryToleranceTime: json['entryToleranceTime'] as int?,
+      exitToleranceTime: json['exitToleranceTime'] as int?,
     );
 
 Map<String, dynamic> _$ProjectDtoToJson(ProjectDto instance) =>
@@ -956,6 +958,8 @@ Map<String, dynamic> _$ProjectDtoToJson(ProjectDto instance) =>
       'logoApp': instance.logoApp,
       'titleUserApp': instance.titleUserApp,
       'titleProviderApp': instance.titleProviderApp,
+      'entryToleranceTime': instance.entryToleranceTime,
+      'exitToleranceTime': instance.exitToleranceTime,
     };
 
 ProjectDtoPagedResult _$ProjectDtoPagedResultFromJson(
@@ -1711,6 +1715,9 @@ VisitDetailsDto _$VisitDetailsDtoFromJson(Map<String, dynamic> json) =>
       cardNo: json['cardNo'] as String?,
       pin: json['pin'] as String?,
       costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
+      entryToleranceTime: json['entryToleranceTime'] as int?,
+      exitToleranceTime: json['exitToleranceTime'] as int?,
+      urlMap: json['urlMap'] as String?,
     );
 
 Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
@@ -1751,6 +1758,9 @@ Map<String, dynamic> _$VisitDetailsDtoToJson(VisitDetailsDto instance) =>
       'cardNo': instance.cardNo,
       'pin': instance.pin,
       'costPerAppointment': instance.costPerAppointment,
+      'entryToleranceTime': instance.entryToleranceTime,
+      'exitToleranceTime': instance.exitToleranceTime,
+      'urlMap': instance.urlMap,
     };
 
 VisitDto _$VisitDtoFromJson(Map<String, dynamic> json) => VisitDto(
@@ -1867,6 +1877,9 @@ VisitNextPendingResidentDto _$VisitNextPendingResidentDtoFromJson(
       startHour: json['startHour'] as String?,
       endHour: json['endHour'] as String?,
       costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
+      entryToleranceTime: json['entryToleranceTime'] as int?,
+      exitToleranceTime: json['exitToleranceTime'] as int?,
+      urlMap: json['urlMap'] as String?,
     );
 
 Map<String, dynamic> _$VisitNextPendingResidentDtoToJson(
@@ -1892,6 +1905,9 @@ Map<String, dynamic> _$VisitNextPendingResidentDtoToJson(
       'startHour': instance.startHour,
       'endHour': instance.endHour,
       'costPerAppointment': instance.costPerAppointment,
+      'entryToleranceTime': instance.entryToleranceTime,
+      'exitToleranceTime': instance.exitToleranceTime,
+      'urlMap': instance.urlMap,
     };
 
 VisitNextPendingResidentDtoPagedResult

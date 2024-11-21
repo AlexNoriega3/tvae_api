@@ -22055,6 +22055,14 @@
           "titleProviderApp": {
             "type": "string",
             "nullable": true
+          },
+          "entryToleranceTime": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exitToleranceTime": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -23316,6 +23324,18 @@
             "type": "number",
             "format": "double",
             "nullable": true
+          },
+          "entryToleranceTime": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exitToleranceTime": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "urlMap": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -23555,6 +23575,18 @@
           "costPerAppointment": {
             "type": "number",
             "format": "double",
+            "nullable": true
+          },
+          "entryToleranceTime": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exitToleranceTime": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "urlMap": {
+            "type": "string",
             "nullable": true
           }
         },
