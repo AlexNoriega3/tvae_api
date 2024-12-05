@@ -6112,6 +6112,7 @@ class ProviderProfileDto {
     this.rating,
     this.pin,
     this.carNo,
+    this.urlMap,
     this.levelLocal,
     this.academicStudies,
     this.department,
@@ -6152,6 +6153,8 @@ class ProviderProfileDto {
   final String? pin;
   @JsonKey(name: 'carNo')
   final String? carNo;
+  @JsonKey(name: 'urlMap')
+  final String? urlMap;
   @JsonKey(name: 'levelLocal', defaultValue: <SelectDto>[])
   final List<SelectDto>? levelLocal;
   @JsonKey(name: 'academicStudies', defaultValue: <AcademicStudiesDto>[])
@@ -6208,6 +6211,8 @@ class ProviderProfileDto {
                 const DeepCollectionEquality().equals(other.pin, pin)) &&
             (identical(other.carNo, carNo) ||
                 const DeepCollectionEquality().equals(other.carNo, carNo)) &&
+            (identical(other.urlMap, urlMap) ||
+                const DeepCollectionEquality().equals(other.urlMap, urlMap)) &&
             (identical(other.levelLocal, levelLocal) ||
                 const DeepCollectionEquality()
                     .equals(other.levelLocal, levelLocal)) &&
@@ -6244,6 +6249,7 @@ class ProviderProfileDto {
       const DeepCollectionEquality().hash(rating) ^
       const DeepCollectionEquality().hash(pin) ^
       const DeepCollectionEquality().hash(carNo) ^
+      const DeepCollectionEquality().hash(urlMap) ^
       const DeepCollectionEquality().hash(levelLocal) ^
       const DeepCollectionEquality().hash(academicStudies) ^
       const DeepCollectionEquality().hash(department) ^
@@ -6269,6 +6275,7 @@ extension $ProviderProfileDtoExtension on ProviderProfileDto {
       double? rating,
       String? pin,
       String? carNo,
+      String? urlMap,
       List<SelectDto>? levelLocal,
       List<AcademicStudiesDto>? academicStudies,
       List<SelectDto>? department,
@@ -6290,6 +6297,7 @@ extension $ProviderProfileDtoExtension on ProviderProfileDto {
         rating: rating ?? this.rating,
         pin: pin ?? this.pin,
         carNo: carNo ?? this.carNo,
+        urlMap: urlMap ?? this.urlMap,
         levelLocal: levelLocal ?? this.levelLocal,
         academicStudies: academicStudies ?? this.academicStudies,
         department: department ?? this.department,

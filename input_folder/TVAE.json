@@ -855,7 +855,7 @@
           "Account"
         ],
         "summary": "Endpoint para realizar el login del usuario de los usuarios.",
-        "description": "Sample request:\r\n            \r\n   GET api/Account/Login",
+        "description": " Sample request:\r\n\r\n    GET api/Account/Login\r\n. login",
         "requestBody": {
           "content": {
             "application/json;odata.metadata=minimal;odata.streaming=true": {
@@ -22153,6 +22153,10 @@
             "nullable": true
           },
           "carNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlMap": {
             "type": "string",
             "nullable": true
           },

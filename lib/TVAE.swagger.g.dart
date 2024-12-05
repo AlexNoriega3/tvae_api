@@ -1001,6 +1001,7 @@ ProviderProfileDto _$ProviderProfileDtoFromJson(Map<String, dynamic> json) =>
       rating: (json['rating'] as num?)?.toDouble(),
       pin: json['pin'] as String?,
       carNo: json['carNo'] as String?,
+      urlMap: json['urlMap'] as String?,
       levelLocal: (json['levelLocal'] as List<dynamic>?)
               ?.map((e) => SelectDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -1044,6 +1045,7 @@ Map<String, dynamic> _$ProviderProfileDtoToJson(ProviderProfileDto instance) =>
       'rating': instance.rating,
       'pin': instance.pin,
       'carNo': instance.carNo,
+      'urlMap': instance.urlMap,
       'levelLocal': instance.levelLocal?.map((e) => e.toJson()).toList(),
       'academicStudies':
           instance.academicStudies?.map((e) => e.toJson()).toList(),
