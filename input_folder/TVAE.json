@@ -21,7 +21,7 @@
         "tags": [
           "AcademicStudies"
         ],
-        "summary": "Get all AcademicStudies..\r\n1",
+        "summary": "Get all AcademicStudies..\r\n11",
         "responses": {
           "200": {
             "description": "Success",
@@ -855,7 +855,7 @@
           "Account"
         ],
         "summary": "Endpoint para realizar el login del usuario de los usuarios.",
-        "description": " Sample request:\r\n\r\n    GET api/Account/Login\r\n. login",
+        "description": " Sample request:\r\n 2\r\n    GET api/Account/Login\r\n. login",
         "requestBody": {
           "content": {
             "application/json;odata.metadata=minimal;odata.streaming=true": {
@@ -16490,21 +16490,18 @@
                     "format": "binary"
                   },
                   "name": {
-                    "maxLength": 300,
-                    "minLength": 1,
-                    "pattern": "^[a-zA-Z\\s]+$",
                     "type": "string"
                   },
                   "firstName": {
                     "maxLength": 100,
                     "minLength": 1,
-                    "pattern": "^[a-zA-Z\\s]+$",
+                    "pattern": "^[\\p{L}\\s.\\-_]+$",
                     "type": "string"
                   },
                   "lastName": {
                     "maxLength": 100,
                     "minLength": 1,
-                    "pattern": "^[a-zA-Z\\s]+$",
+                    "pattern": "^[\\p{L}\\s.\\-_]+$",
                     "type": "string"
                   },
                   "Url": {
@@ -16554,6 +16551,9 @@
                     "minimum": 0,
                     "type": "number",
                     "format": "double"
+                  },
+                  "AppointmentDuration": {
+                    "$ref": "#/components/schemas/TimeSpan"
                   }
                 }
               },
@@ -16598,6 +16598,9 @@
                   "style": "form"
                 },
                 "costPerAppointment": {
+                  "style": "form"
+                },
+                "AppointmentDuration": {
                   "style": "form"
                 }
               }
@@ -22148,6 +22151,9 @@
             "format": "double",
             "nullable": true
           },
+          "appointmentDuration": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
           "pin": {
             "type": "string",
             "nullable": true
@@ -22219,22 +22225,19 @@
             "nullable": true
           },
           "name": {
-            "maxLength": 300,
-            "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
             "type": "string",
             "nullable": true
           },
           "firstName": {
             "maxLength": 100,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
+            "pattern": "^[\\p{L}\\s.\\-_]+$",
             "type": "string"
           },
           "lastName": {
             "maxLength": 100,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
+            "pattern": "^[\\p{L}\\s.\\-_]+$",
             "type": "string"
           },
           "url": {
@@ -22292,6 +22295,9 @@
             "type": "number",
             "format": "double",
             "nullable": true
+          },
+          "appointmentDuration": {
+            "$ref": "#/components/schemas/TimeSpan"
           },
           "localId": {
             "type": "string",
@@ -23015,6 +23021,86 @@
         },
         "additionalProperties": false
       },
+      "TimeSpan": {
+        "type": "object",
+        "properties": {
+          "ticks": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "days": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "milliseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "microseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "nanoseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "minutes": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "seconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "totalDays": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalHours": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMilliseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMicroseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalNanoseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMinutes": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalSeconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UserAttributesDto": {
         "type": "object",
         "properties": {
@@ -23063,10 +23149,16 @@
             "type": "string"
           },
           "firstName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "pattern": "^[\\p{L}\\s.\\-_]+$",
             "type": "string",
             "nullable": true
           },
           "lastName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "pattern": "^[\\p{L}\\s.\\-_]+$",
             "type": "string",
             "nullable": true
           },
@@ -23091,22 +23183,19 @@
             "nullable": true
           },
           "name": {
-            "maxLength": 300,
-            "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
             "type": "string",
             "nullable": true
           },
           "firstName": {
             "maxLength": 100,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
+            "pattern": "^[\\p{L}\\s.\\-_]+$",
             "type": "string"
           },
           "lastName": {
             "maxLength": 100,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
+            "pattern": "^[\\p{L}\\s.\\-_]+$",
             "type": "string"
           },
           "url": {
@@ -23164,6 +23253,9 @@
             "type": "number",
             "format": "double",
             "nullable": true
+          },
+          "appointmentDuration": {
+            "$ref": "#/components/schemas/TimeSpan"
           }
         },
         "additionalProperties": false
@@ -23178,6 +23270,18 @@
           "qr": {
             "type": "string",
             "nullable": true
+          },
+          "notifiedPatientEmail": {
+            "type": "boolean"
+          },
+          "notifiedPatientWhatsapp": {
+            "type": "boolean"
+          },
+          "notifiedDoctorEmail": {
+            "type": "boolean"
+          },
+          "notifiedDoctorWhatsapp": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -23237,6 +23341,18 @@
           "endHour": {
             "type": "string",
             "nullable": true
+          },
+          "notifiedPatientEmail": {
+            "type": "boolean"
+          },
+          "notifiedPatientWhatsapp": {
+            "type": "boolean"
+          },
+          "notifiedDoctorEmail": {
+            "type": "boolean"
+          },
+          "notifiedDoctorWhatsapp": {
+            "type": "boolean"
           },
           "address": {
             "type": "string",
@@ -23492,6 +23608,18 @@
           "endHour": {
             "type": "string",
             "nullable": true
+          },
+          "notifiedPatientEmail": {
+            "type": "boolean"
+          },
+          "notifiedPatientWhatsapp": {
+            "type": "boolean"
+          },
+          "notifiedDoctorEmail": {
+            "type": "boolean"
+          },
+          "notifiedDoctorWhatsapp": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -23592,6 +23720,18 @@
           "urlMap": {
             "type": "string",
             "nullable": true
+          },
+          "notifiedPatientEmail": {
+            "type": "boolean"
+          },
+          "notifiedPatientWhatsapp": {
+            "type": "boolean"
+          },
+          "notifiedDoctorEmail": {
+            "type": "boolean"
+          },
+          "notifiedDoctorWhatsapp": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -23693,13 +23833,13 @@
           "firstName": {
             "maxLength": 100,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
+            "pattern": "^[\\p{L}\\s.\\-_]+$",
             "type": "string"
           },
           "lastName": {
             "maxLength": 100,
             "minLength": 1,
-            "pattern": "^[a-zA-Z\\s]+$",
+            "pattern": "^[\\p{L}\\s.\\-_]+$",
             "type": "string"
           },
           "email": {

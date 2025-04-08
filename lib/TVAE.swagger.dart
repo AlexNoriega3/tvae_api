@@ -39,7 +39,7 @@ abstract class TVAE extends ChopperService {
   }
 
   ///Get all AcademicStudies..
-  ///1
+  ///11
   Future<chopper.Response<List<AcademicStudiesDto>>> apiAcademicStudiesGet() {
     generatedMapping.putIfAbsent(
         AcademicStudiesDto, () => AcademicStudiesDto.fromJsonFactory);
@@ -48,7 +48,7 @@ abstract class TVAE extends ChopperService {
   }
 
   ///Get all AcademicStudies..
-  ///1
+  ///11
   @Get(path: '/api/AcademicStudies')
   Future<chopper.Response<List<AcademicStudiesDto>>> _apiAcademicStudiesGet();
 
@@ -6110,6 +6110,7 @@ class ProviderProfileDto {
     this.address,
     this.costPerAppointment,
     this.rating,
+    this.appointmentDuration,
     this.pin,
     this.carNo,
     this.urlMap,
@@ -6149,6 +6150,8 @@ class ProviderProfileDto {
   final double? costPerAppointment;
   @JsonKey(name: 'rating')
   final double? rating;
+  @JsonKey(name: 'appointmentDuration')
+  final TimeSpan? appointmentDuration;
   @JsonKey(name: 'pin')
   final String? pin;
   @JsonKey(name: 'carNo')
@@ -6207,6 +6210,9 @@ class ProviderProfileDto {
                     .equals(other.costPerAppointment, costPerAppointment)) &&
             (identical(other.rating, rating) ||
                 const DeepCollectionEquality().equals(other.rating, rating)) &&
+            (identical(other.appointmentDuration, appointmentDuration) ||
+                const DeepCollectionEquality()
+                    .equals(other.appointmentDuration, appointmentDuration)) &&
             (identical(other.pin, pin) ||
                 const DeepCollectionEquality().equals(other.pin, pin)) &&
             (identical(other.carNo, carNo) ||
@@ -6247,6 +6253,7 @@ class ProviderProfileDto {
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(costPerAppointment) ^
       const DeepCollectionEquality().hash(rating) ^
+      const DeepCollectionEquality().hash(appointmentDuration) ^
       const DeepCollectionEquality().hash(pin) ^
       const DeepCollectionEquality().hash(carNo) ^
       const DeepCollectionEquality().hash(urlMap) ^
@@ -6273,6 +6280,7 @@ extension $ProviderProfileDtoExtension on ProviderProfileDto {
       String? address,
       double? costPerAppointment,
       double? rating,
+      TimeSpan? appointmentDuration,
       String? pin,
       String? carNo,
       String? urlMap,
@@ -6295,6 +6303,7 @@ extension $ProviderProfileDtoExtension on ProviderProfileDto {
         address: address ?? this.address,
         costPerAppointment: costPerAppointment ?? this.costPerAppointment,
         rating: rating ?? this.rating,
+        appointmentDuration: appointmentDuration ?? this.appointmentDuration,
         pin: pin ?? this.pin,
         carNo: carNo ?? this.carNo,
         urlMap: urlMap ?? this.urlMap,
@@ -6324,6 +6333,7 @@ class ProviderPutDto {
     this.address,
     this.birthDate,
     this.costPerAppointment,
+    this.appointmentDuration,
     this.localId,
     this.subDepartments,
     this.academicStudies,
@@ -6362,6 +6372,8 @@ class ProviderPutDto {
   final DateTime? birthDate;
   @JsonKey(name: 'costPerAppointment')
   final double? costPerAppointment;
+  @JsonKey(name: 'appointmentDuration')
+  final TimeSpan? appointmentDuration;
   @JsonKey(name: 'localId')
   final String? localId;
   @JsonKey(name: 'subDepartments', defaultValue: <String>[])
@@ -6418,6 +6430,9 @@ class ProviderPutDto {
             (identical(other.costPerAppointment, costPerAppointment) ||
                 const DeepCollectionEquality()
                     .equals(other.costPerAppointment, costPerAppointment)) &&
+            (identical(other.appointmentDuration, appointmentDuration) ||
+                const DeepCollectionEquality()
+                    .equals(other.appointmentDuration, appointmentDuration)) &&
             (identical(other.localId, localId) ||
                 const DeepCollectionEquality()
                     .equals(other.localId, localId)) &&
@@ -6448,6 +6463,7 @@ class ProviderPutDto {
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(birthDate) ^
       const DeepCollectionEquality().hash(costPerAppointment) ^
+      const DeepCollectionEquality().hash(appointmentDuration) ^
       const DeepCollectionEquality().hash(localId) ^
       const DeepCollectionEquality().hash(subDepartments) ^
       const DeepCollectionEquality().hash(academicStudies) ^
@@ -6471,6 +6487,7 @@ extension $ProviderPutDtoExtension on ProviderPutDto {
       String? address,
       DateTime? birthDate,
       double? costPerAppointment,
+      TimeSpan? appointmentDuration,
       String? localId,
       List<String>? subDepartments,
       List<AcademicStudiesDto>? academicStudies,
@@ -6490,6 +6507,7 @@ extension $ProviderPutDtoExtension on ProviderPutDto {
         address: address ?? this.address,
         birthDate: birthDate ?? this.birthDate,
         costPerAppointment: costPerAppointment ?? this.costPerAppointment,
+        appointmentDuration: appointmentDuration ?? this.appointmentDuration,
         localId: localId ?? this.localId,
         subDepartments: subDepartments ?? this.subDepartments,
         academicStudies: academicStudies ?? this.academicStudies,
@@ -8278,6 +8296,170 @@ extension $SubdepartmentDtoPagedResultExtension on SubdepartmentDtoPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
+class TimeSpan {
+  TimeSpan({
+    this.ticks,
+    this.days,
+    this.hours,
+    this.milliseconds,
+    this.microseconds,
+    this.nanoseconds,
+    this.minutes,
+    this.seconds,
+    this.totalDays,
+    this.totalHours,
+    this.totalMilliseconds,
+    this.totalMicroseconds,
+    this.totalNanoseconds,
+    this.totalMinutes,
+    this.totalSeconds,
+  });
+
+  factory TimeSpan.fromJson(Map<String, dynamic> json) =>
+      _$TimeSpanFromJson(json);
+
+  @JsonKey(name: 'ticks')
+  final num? ticks;
+  @JsonKey(name: 'days')
+  final int? days;
+  @JsonKey(name: 'hours')
+  final int? hours;
+  @JsonKey(name: 'milliseconds')
+  final int? milliseconds;
+  @JsonKey(name: 'microseconds')
+  final int? microseconds;
+  @JsonKey(name: 'nanoseconds')
+  final int? nanoseconds;
+  @JsonKey(name: 'minutes')
+  final int? minutes;
+  @JsonKey(name: 'seconds')
+  final int? seconds;
+  @JsonKey(name: 'totalDays')
+  final double? totalDays;
+  @JsonKey(name: 'totalHours')
+  final double? totalHours;
+  @JsonKey(name: 'totalMilliseconds')
+  final double? totalMilliseconds;
+  @JsonKey(name: 'totalMicroseconds')
+  final double? totalMicroseconds;
+  @JsonKey(name: 'totalNanoseconds')
+  final double? totalNanoseconds;
+  @JsonKey(name: 'totalMinutes')
+  final double? totalMinutes;
+  @JsonKey(name: 'totalSeconds')
+  final double? totalSeconds;
+  static const fromJsonFactory = _$TimeSpanFromJson;
+  static const toJsonFactory = _$TimeSpanToJson;
+  Map<String, dynamic> toJson() => _$TimeSpanToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TimeSpan &&
+            (identical(other.ticks, ticks) ||
+                const DeepCollectionEquality().equals(other.ticks, ticks)) &&
+            (identical(other.days, days) ||
+                const DeepCollectionEquality().equals(other.days, days)) &&
+            (identical(other.hours, hours) ||
+                const DeepCollectionEquality().equals(other.hours, hours)) &&
+            (identical(other.milliseconds, milliseconds) ||
+                const DeepCollectionEquality()
+                    .equals(other.milliseconds, milliseconds)) &&
+            (identical(other.microseconds, microseconds) ||
+                const DeepCollectionEquality()
+                    .equals(other.microseconds, microseconds)) &&
+            (identical(other.nanoseconds, nanoseconds) ||
+                const DeepCollectionEquality()
+                    .equals(other.nanoseconds, nanoseconds)) &&
+            (identical(other.minutes, minutes) ||
+                const DeepCollectionEquality()
+                    .equals(other.minutes, minutes)) &&
+            (identical(other.seconds, seconds) ||
+                const DeepCollectionEquality()
+                    .equals(other.seconds, seconds)) &&
+            (identical(other.totalDays, totalDays) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalDays, totalDays)) &&
+            (identical(other.totalHours, totalHours) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalHours, totalHours)) &&
+            (identical(other.totalMilliseconds, totalMilliseconds) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalMilliseconds, totalMilliseconds)) &&
+            (identical(other.totalMicroseconds, totalMicroseconds) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalMicroseconds, totalMicroseconds)) &&
+            (identical(other.totalNanoseconds, totalNanoseconds) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalNanoseconds, totalNanoseconds)) &&
+            (identical(other.totalMinutes, totalMinutes) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalMinutes, totalMinutes)) &&
+            (identical(other.totalSeconds, totalSeconds) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalSeconds, totalSeconds)));
+  }
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(ticks) ^
+      const DeepCollectionEquality().hash(days) ^
+      const DeepCollectionEquality().hash(hours) ^
+      const DeepCollectionEquality().hash(milliseconds) ^
+      const DeepCollectionEquality().hash(microseconds) ^
+      const DeepCollectionEquality().hash(nanoseconds) ^
+      const DeepCollectionEquality().hash(minutes) ^
+      const DeepCollectionEquality().hash(seconds) ^
+      const DeepCollectionEquality().hash(totalDays) ^
+      const DeepCollectionEquality().hash(totalHours) ^
+      const DeepCollectionEquality().hash(totalMilliseconds) ^
+      const DeepCollectionEquality().hash(totalMicroseconds) ^
+      const DeepCollectionEquality().hash(totalNanoseconds) ^
+      const DeepCollectionEquality().hash(totalMinutes) ^
+      const DeepCollectionEquality().hash(totalSeconds) ^
+      runtimeType.hashCode;
+}
+
+extension $TimeSpanExtension on TimeSpan {
+  TimeSpan copyWith(
+      {num? ticks,
+      int? days,
+      int? hours,
+      int? milliseconds,
+      int? microseconds,
+      int? nanoseconds,
+      int? minutes,
+      int? seconds,
+      double? totalDays,
+      double? totalHours,
+      double? totalMilliseconds,
+      double? totalMicroseconds,
+      double? totalNanoseconds,
+      double? totalMinutes,
+      double? totalSeconds}) {
+    return TimeSpan(
+        ticks: ticks ?? this.ticks,
+        days: days ?? this.days,
+        hours: hours ?? this.hours,
+        milliseconds: milliseconds ?? this.milliseconds,
+        microseconds: microseconds ?? this.microseconds,
+        nanoseconds: nanoseconds ?? this.nanoseconds,
+        minutes: minutes ?? this.minutes,
+        seconds: seconds ?? this.seconds,
+        totalDays: totalDays ?? this.totalDays,
+        totalHours: totalHours ?? this.totalHours,
+        totalMilliseconds: totalMilliseconds ?? this.totalMilliseconds,
+        totalMicroseconds: totalMicroseconds ?? this.totalMicroseconds,
+        totalNanoseconds: totalNanoseconds ?? this.totalNanoseconds,
+        totalMinutes: totalMinutes ?? this.totalMinutes,
+        totalSeconds: totalSeconds ?? this.totalSeconds);
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class UserAttributesDto {
   UserAttributesDto({
     this.id,
@@ -8453,6 +8635,7 @@ class UserPutDto {
     this.address,
     this.birthDate,
     this.costPerAppointment,
+    this.appointmentDuration,
   });
 
   factory UserPutDto.fromJson(Map<String, dynamic> json) =>
@@ -8487,6 +8670,8 @@ class UserPutDto {
   final DateTime? birthDate;
   @JsonKey(name: 'costPerAppointment')
   final double? costPerAppointment;
+  @JsonKey(name: 'appointmentDuration')
+  final TimeSpan? appointmentDuration;
   static const fromJsonFactory = _$UserPutDtoFromJson;
   static const toJsonFactory = _$UserPutDtoToJson;
   Map<String, dynamic> toJson() => _$UserPutDtoToJson(this);
@@ -8534,7 +8719,10 @@ class UserPutDto {
                     .equals(other.birthDate, birthDate)) &&
             (identical(other.costPerAppointment, costPerAppointment) ||
                 const DeepCollectionEquality()
-                    .equals(other.costPerAppointment, costPerAppointment)));
+                    .equals(other.costPerAppointment, costPerAppointment)) &&
+            (identical(other.appointmentDuration, appointmentDuration) ||
+                const DeepCollectionEquality()
+                    .equals(other.appointmentDuration, appointmentDuration)));
   }
 
   @override
@@ -8553,6 +8741,7 @@ class UserPutDto {
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(birthDate) ^
       const DeepCollectionEquality().hash(costPerAppointment) ^
+      const DeepCollectionEquality().hash(appointmentDuration) ^
       runtimeType.hashCode;
 }
 
@@ -8571,7 +8760,8 @@ extension $UserPutDtoExtension on UserPutDto {
       String? city,
       String? address,
       DateTime? birthDate,
-      double? costPerAppointment}) {
+      double? costPerAppointment,
+      TimeSpan? appointmentDuration}) {
     return UserPutDto(
         imageFile: imageFile ?? this.imageFile,
         name: name ?? this.name,
@@ -8586,7 +8776,8 @@ extension $UserPutDtoExtension on UserPutDto {
         city: city ?? this.city,
         address: address ?? this.address,
         birthDate: birthDate ?? this.birthDate,
-        costPerAppointment: costPerAppointment ?? this.costPerAppointment);
+        costPerAppointment: costPerAppointment ?? this.costPerAppointment,
+        appointmentDuration: appointmentDuration ?? this.appointmentDuration);
   }
 }
 
@@ -8595,6 +8786,10 @@ class VisitCreateDto {
   VisitCreateDto({
     this.visitId,
     this.qr,
+    this.notifiedPatientEmail,
+    this.notifiedPatientWhatsapp,
+    this.notifiedDoctorEmail,
+    this.notifiedDoctorWhatsapp,
   });
 
   factory VisitCreateDto.fromJson(Map<String, dynamic> json) =>
@@ -8604,6 +8799,14 @@ class VisitCreateDto {
   final String? visitId;
   @JsonKey(name: 'qr')
   final String? qr;
+  @JsonKey(name: 'notifiedPatientEmail')
+  final bool? notifiedPatientEmail;
+  @JsonKey(name: 'notifiedPatientWhatsapp')
+  final bool? notifiedPatientWhatsapp;
+  @JsonKey(name: 'notifiedDoctorEmail')
+  final bool? notifiedDoctorEmail;
+  @JsonKey(name: 'notifiedDoctorWhatsapp')
+  final bool? notifiedDoctorWhatsapp;
   static const fromJsonFactory = _$VisitCreateDtoFromJson;
   static const toJsonFactory = _$VisitCreateDtoToJson;
   Map<String, dynamic> toJson() => _$VisitCreateDtoToJson(this);
@@ -8619,19 +8822,50 @@ class VisitCreateDto {
                 const DeepCollectionEquality()
                     .equals(other.visitId, visitId)) &&
             (identical(other.qr, qr) ||
-                const DeepCollectionEquality().equals(other.qr, qr)));
+                const DeepCollectionEquality().equals(other.qr, qr)) &&
+            (identical(other.notifiedPatientEmail, notifiedPatientEmail) ||
+                const DeepCollectionEquality().equals(
+                    other.notifiedPatientEmail, notifiedPatientEmail)) &&
+            (identical(
+                    other.notifiedPatientWhatsapp, notifiedPatientWhatsapp) ||
+                const DeepCollectionEquality().equals(
+                    other.notifiedPatientWhatsapp, notifiedPatientWhatsapp)) &&
+            (identical(other.notifiedDoctorEmail, notifiedDoctorEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.notifiedDoctorEmail, notifiedDoctorEmail)) &&
+            (identical(other.notifiedDoctorWhatsapp, notifiedDoctorWhatsapp) ||
+                const DeepCollectionEquality().equals(
+                    other.notifiedDoctorWhatsapp, notifiedDoctorWhatsapp)));
   }
 
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(visitId) ^
       const DeepCollectionEquality().hash(qr) ^
+      const DeepCollectionEquality().hash(notifiedPatientEmail) ^
+      const DeepCollectionEquality().hash(notifiedPatientWhatsapp) ^
+      const DeepCollectionEquality().hash(notifiedDoctorEmail) ^
+      const DeepCollectionEquality().hash(notifiedDoctorWhatsapp) ^
       runtimeType.hashCode;
 }
 
 extension $VisitCreateDtoExtension on VisitCreateDto {
-  VisitCreateDto copyWith({String? visitId, String? qr}) {
-    return VisitCreateDto(visitId: visitId ?? this.visitId, qr: qr ?? this.qr);
+  VisitCreateDto copyWith(
+      {String? visitId,
+      String? qr,
+      bool? notifiedPatientEmail,
+      bool? notifiedPatientWhatsapp,
+      bool? notifiedDoctorEmail,
+      bool? notifiedDoctorWhatsapp}) {
+    return VisitCreateDto(
+        visitId: visitId ?? this.visitId,
+        qr: qr ?? this.qr,
+        notifiedPatientEmail: notifiedPatientEmail ?? this.notifiedPatientEmail,
+        notifiedPatientWhatsapp:
+            notifiedPatientWhatsapp ?? this.notifiedPatientWhatsapp,
+        notifiedDoctorEmail: notifiedDoctorEmail ?? this.notifiedDoctorEmail,
+        notifiedDoctorWhatsapp:
+            notifiedDoctorWhatsapp ?? this.notifiedDoctorWhatsapp);
   }
 }
 
@@ -8651,6 +8885,10 @@ class VisitDetailsDto {
     this.visitDate,
     this.startHour,
     this.endHour,
+    this.notifiedPatientEmail,
+    this.notifiedPatientWhatsapp,
+    this.notifiedDoctorEmail,
+    this.notifiedDoctorWhatsapp,
     this.address,
     this.reason,
     this.comments,
@@ -8708,6 +8946,14 @@ class VisitDetailsDto {
   final String? startHour;
   @JsonKey(name: 'endHour')
   final String? endHour;
+  @JsonKey(name: 'notifiedPatientEmail')
+  final bool? notifiedPatientEmail;
+  @JsonKey(name: 'notifiedPatientWhatsapp')
+  final bool? notifiedPatientWhatsapp;
+  @JsonKey(name: 'notifiedDoctorEmail')
+  final bool? notifiedDoctorEmail;
+  @JsonKey(name: 'notifiedDoctorWhatsapp')
+  final bool? notifiedDoctorWhatsapp;
   @JsonKey(name: 'address')
   final String? address;
   @JsonKey(name: 'reason')
@@ -8812,6 +9058,18 @@ class VisitDetailsDto {
             (identical(other.endHour, endHour) ||
                 const DeepCollectionEquality()
                     .equals(other.endHour, endHour)) &&
+            (identical(other.notifiedPatientEmail, notifiedPatientEmail) ||
+                const DeepCollectionEquality().equals(
+                    other.notifiedPatientEmail, notifiedPatientEmail)) &&
+            (identical(other.notifiedPatientWhatsapp, notifiedPatientWhatsapp) ||
+                const DeepCollectionEquality().equals(
+                    other.notifiedPatientWhatsapp, notifiedPatientWhatsapp)) &&
+            (identical(other.notifiedDoctorEmail, notifiedDoctorEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.notifiedDoctorEmail, notifiedDoctorEmail)) &&
+            (identical(other.notifiedDoctorWhatsapp, notifiedDoctorWhatsapp) ||
+                const DeepCollectionEquality().equals(
+                    other.notifiedDoctorWhatsapp, notifiedDoctorWhatsapp)) &&
             (identical(other.address, address) ||
                 const DeepCollectionEquality()
                     .equals(other.address, address)) &&
@@ -8823,23 +9081,12 @@ class VisitDetailsDto {
             (identical(other.cancelled, cancelled) ||
                 const DeepCollectionEquality()
                     .equals(other.cancelled, cancelled)) &&
-            (identical(other.cancelOther, cancelOther) ||
-                const DeepCollectionEquality()
-                    .equals(other.cancelOther, cancelOther)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.userName, userName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
-            (identical(other.userAbbreviation, userAbbreviation) ||
-                const DeepCollectionEquality()
-                    .equals(other.userAbbreviation, userAbbreviation)) &&
-            (identical(other.userFirstName, userFirstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userFirstName, userFirstName)) &&
-            (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
+            (identical(other.cancelOther, cancelOther) || const DeepCollectionEquality().equals(other.cancelOther, cancelOther)) &&
+            (identical(other.userId, userId) || const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.userName, userName) || const DeepCollectionEquality().equals(other.userName, userName)) &&
+            (identical(other.userAbbreviation, userAbbreviation) || const DeepCollectionEquality().equals(other.userAbbreviation, userAbbreviation)) &&
+            (identical(other.userFirstName, userFirstName) || const DeepCollectionEquality().equals(other.userFirstName, userFirstName)) &&
+            (identical(other.userEmail, userEmail) || const DeepCollectionEquality().equals(other.userEmail, userEmail)) &&
             (identical(other.userLastName, userLastName) || const DeepCollectionEquality().equals(other.userLastName, userLastName)) &&
             (identical(other.userCel, userCel) || const DeepCollectionEquality().equals(other.userCel, userCel)) &&
             (identical(other.userImage, userImage) || const DeepCollectionEquality().equals(other.userImage, userImage)) &&
@@ -8873,6 +9120,10 @@ class VisitDetailsDto {
       const DeepCollectionEquality().hash(visitDate) ^
       const DeepCollectionEquality().hash(startHour) ^
       const DeepCollectionEquality().hash(endHour) ^
+      const DeepCollectionEquality().hash(notifiedPatientEmail) ^
+      const DeepCollectionEquality().hash(notifiedPatientWhatsapp) ^
+      const DeepCollectionEquality().hash(notifiedDoctorEmail) ^
+      const DeepCollectionEquality().hash(notifiedDoctorWhatsapp) ^
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(reason) ^
       const DeepCollectionEquality().hash(comments) ^
@@ -8917,6 +9168,10 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
       DateTime? visitDate,
       String? startHour,
       String? endHour,
+      bool? notifiedPatientEmail,
+      bool? notifiedPatientWhatsapp,
+      bool? notifiedDoctorEmail,
+      bool? notifiedDoctorWhatsapp,
       String? address,
       String? reason,
       String? comments,
@@ -8957,6 +9212,12 @@ extension $VisitDetailsDtoExtension on VisitDetailsDto {
         visitDate: visitDate ?? this.visitDate,
         startHour: startHour ?? this.startHour,
         endHour: endHour ?? this.endHour,
+        notifiedPatientEmail: notifiedPatientEmail ?? this.notifiedPatientEmail,
+        notifiedPatientWhatsapp:
+            notifiedPatientWhatsapp ?? this.notifiedPatientWhatsapp,
+        notifiedDoctorEmail: notifiedDoctorEmail ?? this.notifiedDoctorEmail,
+        notifiedDoctorWhatsapp:
+            notifiedDoctorWhatsapp ?? this.notifiedDoctorWhatsapp,
         address: address ?? this.address,
         reason: reason ?? this.reason,
         comments: comments ?? this.comments,
@@ -9219,6 +9480,10 @@ class VisitNextPendingDto {
     this.visitDate,
     this.startHour,
     this.endHour,
+    this.notifiedPatientEmail,
+    this.notifiedPatientWhatsapp,
+    this.notifiedDoctorEmail,
+    this.notifiedDoctorWhatsapp,
   });
 
   factory VisitNextPendingDto.fromJson(Map<String, dynamic> json) =>
@@ -9250,6 +9515,14 @@ class VisitNextPendingDto {
   final String? startHour;
   @JsonKey(name: 'endHour')
   final String? endHour;
+  @JsonKey(name: 'notifiedPatientEmail')
+  final bool? notifiedPatientEmail;
+  @JsonKey(name: 'notifiedPatientWhatsapp')
+  final bool? notifiedPatientWhatsapp;
+  @JsonKey(name: 'notifiedDoctorEmail')
+  final bool? notifiedDoctorEmail;
+  @JsonKey(name: 'notifiedDoctorWhatsapp')
+  final bool? notifiedDoctorWhatsapp;
   static const fromJsonFactory = _$VisitNextPendingDtoFromJson;
   static const toJsonFactory = _$VisitNextPendingDtoToJson;
   Map<String, dynamic> toJson() => _$VisitNextPendingDtoToJson(this);
@@ -9297,7 +9570,21 @@ class VisitNextPendingDto {
                 const DeepCollectionEquality()
                     .equals(other.startHour, startHour)) &&
             (identical(other.endHour, endHour) ||
-                const DeepCollectionEquality().equals(other.endHour, endHour)));
+                const DeepCollectionEquality()
+                    .equals(other.endHour, endHour)) &&
+            (identical(other.notifiedPatientEmail, notifiedPatientEmail) ||
+                const DeepCollectionEquality().equals(
+                    other.notifiedPatientEmail, notifiedPatientEmail)) &&
+            (identical(
+                    other.notifiedPatientWhatsapp, notifiedPatientWhatsapp) ||
+                const DeepCollectionEquality().equals(
+                    other.notifiedPatientWhatsapp, notifiedPatientWhatsapp)) &&
+            (identical(other.notifiedDoctorEmail, notifiedDoctorEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.notifiedDoctorEmail, notifiedDoctorEmail)) &&
+            (identical(other.notifiedDoctorWhatsapp, notifiedDoctorWhatsapp) ||
+                const DeepCollectionEquality().equals(
+                    other.notifiedDoctorWhatsapp, notifiedDoctorWhatsapp)));
   }
 
   @override
@@ -9315,6 +9602,10 @@ class VisitNextPendingDto {
       const DeepCollectionEquality().hash(visitDate) ^
       const DeepCollectionEquality().hash(startHour) ^
       const DeepCollectionEquality().hash(endHour) ^
+      const DeepCollectionEquality().hash(notifiedPatientEmail) ^
+      const DeepCollectionEquality().hash(notifiedPatientWhatsapp) ^
+      const DeepCollectionEquality().hash(notifiedDoctorEmail) ^
+      const DeepCollectionEquality().hash(notifiedDoctorWhatsapp) ^
       runtimeType.hashCode;
 }
 
@@ -9332,7 +9623,11 @@ extension $VisitNextPendingDtoExtension on VisitNextPendingDto {
       double? rating,
       DateTime? visitDate,
       String? startHour,
-      String? endHour}) {
+      String? endHour,
+      bool? notifiedPatientEmail,
+      bool? notifiedPatientWhatsapp,
+      bool? notifiedDoctorEmail,
+      bool? notifiedDoctorWhatsapp}) {
     return VisitNextPendingDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
@@ -9346,7 +9641,13 @@ extension $VisitNextPendingDtoExtension on VisitNextPendingDto {
         rating: rating ?? this.rating,
         visitDate: visitDate ?? this.visitDate,
         startHour: startHour ?? this.startHour,
-        endHour: endHour ?? this.endHour);
+        endHour: endHour ?? this.endHour,
+        notifiedPatientEmail: notifiedPatientEmail ?? this.notifiedPatientEmail,
+        notifiedPatientWhatsapp:
+            notifiedPatientWhatsapp ?? this.notifiedPatientWhatsapp,
+        notifiedDoctorEmail: notifiedDoctorEmail ?? this.notifiedDoctorEmail,
+        notifiedDoctorWhatsapp:
+            notifiedDoctorWhatsapp ?? this.notifiedDoctorWhatsapp);
   }
 }
 
@@ -9376,6 +9677,10 @@ class VisitNextPendingResidentDto {
     this.entryToleranceTime,
     this.exitToleranceTime,
     this.urlMap,
+    this.notifiedPatientEmail,
+    this.notifiedPatientWhatsapp,
+    this.notifiedDoctorEmail,
+    this.notifiedDoctorWhatsapp,
   });
 
   factory VisitNextPendingResidentDto.fromJson(Map<String, dynamic> json) =>
@@ -9427,6 +9732,14 @@ class VisitNextPendingResidentDto {
   final int? exitToleranceTime;
   @JsonKey(name: 'urlMap')
   final String? urlMap;
+  @JsonKey(name: 'notifiedPatientEmail')
+  final bool? notifiedPatientEmail;
+  @JsonKey(name: 'notifiedPatientWhatsapp')
+  final bool? notifiedPatientWhatsapp;
+  @JsonKey(name: 'notifiedDoctorEmail')
+  final bool? notifiedDoctorEmail;
+  @JsonKey(name: 'notifiedDoctorWhatsapp')
+  final bool? notifiedDoctorWhatsapp;
   static const fromJsonFactory = _$VisitNextPendingResidentDtoFromJson;
   static const toJsonFactory = _$VisitNextPendingResidentDtoToJson;
   Map<String, dynamic> toJson() => _$VisitNextPendingResidentDtoToJson(this);
@@ -9501,7 +9814,13 @@ class VisitNextPendingResidentDto {
                 const DeepCollectionEquality()
                     .equals(other.exitToleranceTime, exitToleranceTime)) &&
             (identical(other.urlMap, urlMap) ||
-                const DeepCollectionEquality().equals(other.urlMap, urlMap)));
+                const DeepCollectionEquality().equals(other.urlMap, urlMap)) &&
+            (identical(other.notifiedPatientEmail, notifiedPatientEmail) ||
+                const DeepCollectionEquality().equals(
+                    other.notifiedPatientEmail, notifiedPatientEmail)) &&
+            (identical(other.notifiedPatientWhatsapp, notifiedPatientWhatsapp) || const DeepCollectionEquality().equals(other.notifiedPatientWhatsapp, notifiedPatientWhatsapp)) &&
+            (identical(other.notifiedDoctorEmail, notifiedDoctorEmail) || const DeepCollectionEquality().equals(other.notifiedDoctorEmail, notifiedDoctorEmail)) &&
+            (identical(other.notifiedDoctorWhatsapp, notifiedDoctorWhatsapp) || const DeepCollectionEquality().equals(other.notifiedDoctorWhatsapp, notifiedDoctorWhatsapp)));
   }
 
   @override
@@ -9529,6 +9848,10 @@ class VisitNextPendingResidentDto {
       const DeepCollectionEquality().hash(entryToleranceTime) ^
       const DeepCollectionEquality().hash(exitToleranceTime) ^
       const DeepCollectionEquality().hash(urlMap) ^
+      const DeepCollectionEquality().hash(notifiedPatientEmail) ^
+      const DeepCollectionEquality().hash(notifiedPatientWhatsapp) ^
+      const DeepCollectionEquality().hash(notifiedDoctorEmail) ^
+      const DeepCollectionEquality().hash(notifiedDoctorWhatsapp) ^
       runtimeType.hashCode;
 }
 
@@ -9556,7 +9879,11 @@ extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
       double? costPerAppointment,
       int? entryToleranceTime,
       int? exitToleranceTime,
-      String? urlMap}) {
+      String? urlMap,
+      bool? notifiedPatientEmail,
+      bool? notifiedPatientWhatsapp,
+      bool? notifiedDoctorEmail,
+      bool? notifiedDoctorWhatsapp}) {
     return VisitNextPendingResidentDto(
         visitId: visitId ?? this.visitId,
         localId: localId ?? this.localId,
@@ -9580,7 +9907,13 @@ extension $VisitNextPendingResidentDtoExtension on VisitNextPendingResidentDto {
         costPerAppointment: costPerAppointment ?? this.costPerAppointment,
         entryToleranceTime: entryToleranceTime ?? this.entryToleranceTime,
         exitToleranceTime: exitToleranceTime ?? this.exitToleranceTime,
-        urlMap: urlMap ?? this.urlMap);
+        urlMap: urlMap ?? this.urlMap,
+        notifiedPatientEmail: notifiedPatientEmail ?? this.notifiedPatientEmail,
+        notifiedPatientWhatsapp:
+            notifiedPatientWhatsapp ?? this.notifiedPatientWhatsapp,
+        notifiedDoctorEmail: notifiedDoctorEmail ?? this.notifiedDoctorEmail,
+        notifiedDoctorWhatsapp:
+            notifiedDoctorWhatsapp ?? this.notifiedDoctorWhatsapp);
   }
 }
 
