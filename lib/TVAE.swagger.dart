@@ -39,7 +39,7 @@ abstract class TVAE extends ChopperService {
   }
 
   ///Get all AcademicStudies..
-  ///11
+  ///12
   Future<chopper.Response<List<AcademicStudiesDto>>> apiAcademicStudiesGet() {
     generatedMapping.putIfAbsent(
         AcademicStudiesDto, () => AcademicStudiesDto.fromJsonFactory);
@@ -48,7 +48,7 @@ abstract class TVAE extends ChopperService {
   }
 
   ///Get all AcademicStudies..
-  ///11
+  ///12
   @Get(path: '/api/AcademicStudies')
   Future<chopper.Response<List<AcademicStudiesDto>>> _apiAcademicStudiesGet();
 
@@ -6151,7 +6151,7 @@ class ProviderProfileDto {
   @JsonKey(name: 'rating')
   final double? rating;
   @JsonKey(name: 'appointmentDuration')
-  final TimeSpan? appointmentDuration;
+  final String? appointmentDuration;
   @JsonKey(name: 'pin')
   final String? pin;
   @JsonKey(name: 'carNo')
@@ -6280,7 +6280,7 @@ extension $ProviderProfileDtoExtension on ProviderProfileDto {
       String? address,
       double? costPerAppointment,
       double? rating,
-      TimeSpan? appointmentDuration,
+      String? appointmentDuration,
       String? pin,
       String? carNo,
       String? urlMap,
@@ -6373,7 +6373,7 @@ class ProviderPutDto {
   @JsonKey(name: 'costPerAppointment')
   final double? costPerAppointment;
   @JsonKey(name: 'appointmentDuration')
-  final TimeSpan? appointmentDuration;
+  final String? appointmentDuration;
   @JsonKey(name: 'localId')
   final String? localId;
   @JsonKey(name: 'subDepartments', defaultValue: <String>[])
@@ -6487,7 +6487,7 @@ extension $ProviderPutDtoExtension on ProviderPutDto {
       String? address,
       DateTime? birthDate,
       double? costPerAppointment,
-      TimeSpan? appointmentDuration,
+      String? appointmentDuration,
       String? localId,
       List<String>? subDepartments,
       List<AcademicStudiesDto>? academicStudies,
@@ -8296,170 +8296,6 @@ extension $SubdepartmentDtoPagedResultExtension on SubdepartmentDtoPagedResult {
 }
 
 @JsonSerializable(explicitToJson: true)
-class TimeSpan {
-  TimeSpan({
-    this.ticks,
-    this.days,
-    this.hours,
-    this.milliseconds,
-    this.microseconds,
-    this.nanoseconds,
-    this.minutes,
-    this.seconds,
-    this.totalDays,
-    this.totalHours,
-    this.totalMilliseconds,
-    this.totalMicroseconds,
-    this.totalNanoseconds,
-    this.totalMinutes,
-    this.totalSeconds,
-  });
-
-  factory TimeSpan.fromJson(Map<String, dynamic> json) =>
-      _$TimeSpanFromJson(json);
-
-  @JsonKey(name: 'ticks')
-  final num? ticks;
-  @JsonKey(name: 'days')
-  final int? days;
-  @JsonKey(name: 'hours')
-  final int? hours;
-  @JsonKey(name: 'milliseconds')
-  final int? milliseconds;
-  @JsonKey(name: 'microseconds')
-  final int? microseconds;
-  @JsonKey(name: 'nanoseconds')
-  final int? nanoseconds;
-  @JsonKey(name: 'minutes')
-  final int? minutes;
-  @JsonKey(name: 'seconds')
-  final int? seconds;
-  @JsonKey(name: 'totalDays')
-  final double? totalDays;
-  @JsonKey(name: 'totalHours')
-  final double? totalHours;
-  @JsonKey(name: 'totalMilliseconds')
-  final double? totalMilliseconds;
-  @JsonKey(name: 'totalMicroseconds')
-  final double? totalMicroseconds;
-  @JsonKey(name: 'totalNanoseconds')
-  final double? totalNanoseconds;
-  @JsonKey(name: 'totalMinutes')
-  final double? totalMinutes;
-  @JsonKey(name: 'totalSeconds')
-  final double? totalSeconds;
-  static const fromJsonFactory = _$TimeSpanFromJson;
-  static const toJsonFactory = _$TimeSpanToJson;
-  Map<String, dynamic> toJson() => _$TimeSpanToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is TimeSpan &&
-            (identical(other.ticks, ticks) ||
-                const DeepCollectionEquality().equals(other.ticks, ticks)) &&
-            (identical(other.days, days) ||
-                const DeepCollectionEquality().equals(other.days, days)) &&
-            (identical(other.hours, hours) ||
-                const DeepCollectionEquality().equals(other.hours, hours)) &&
-            (identical(other.milliseconds, milliseconds) ||
-                const DeepCollectionEquality()
-                    .equals(other.milliseconds, milliseconds)) &&
-            (identical(other.microseconds, microseconds) ||
-                const DeepCollectionEquality()
-                    .equals(other.microseconds, microseconds)) &&
-            (identical(other.nanoseconds, nanoseconds) ||
-                const DeepCollectionEquality()
-                    .equals(other.nanoseconds, nanoseconds)) &&
-            (identical(other.minutes, minutes) ||
-                const DeepCollectionEquality()
-                    .equals(other.minutes, minutes)) &&
-            (identical(other.seconds, seconds) ||
-                const DeepCollectionEquality()
-                    .equals(other.seconds, seconds)) &&
-            (identical(other.totalDays, totalDays) ||
-                const DeepCollectionEquality()
-                    .equals(other.totalDays, totalDays)) &&
-            (identical(other.totalHours, totalHours) ||
-                const DeepCollectionEquality()
-                    .equals(other.totalHours, totalHours)) &&
-            (identical(other.totalMilliseconds, totalMilliseconds) ||
-                const DeepCollectionEquality()
-                    .equals(other.totalMilliseconds, totalMilliseconds)) &&
-            (identical(other.totalMicroseconds, totalMicroseconds) ||
-                const DeepCollectionEquality()
-                    .equals(other.totalMicroseconds, totalMicroseconds)) &&
-            (identical(other.totalNanoseconds, totalNanoseconds) ||
-                const DeepCollectionEquality()
-                    .equals(other.totalNanoseconds, totalNanoseconds)) &&
-            (identical(other.totalMinutes, totalMinutes) ||
-                const DeepCollectionEquality()
-                    .equals(other.totalMinutes, totalMinutes)) &&
-            (identical(other.totalSeconds, totalSeconds) ||
-                const DeepCollectionEquality()
-                    .equals(other.totalSeconds, totalSeconds)));
-  }
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(ticks) ^
-      const DeepCollectionEquality().hash(days) ^
-      const DeepCollectionEquality().hash(hours) ^
-      const DeepCollectionEquality().hash(milliseconds) ^
-      const DeepCollectionEquality().hash(microseconds) ^
-      const DeepCollectionEquality().hash(nanoseconds) ^
-      const DeepCollectionEquality().hash(minutes) ^
-      const DeepCollectionEquality().hash(seconds) ^
-      const DeepCollectionEquality().hash(totalDays) ^
-      const DeepCollectionEquality().hash(totalHours) ^
-      const DeepCollectionEquality().hash(totalMilliseconds) ^
-      const DeepCollectionEquality().hash(totalMicroseconds) ^
-      const DeepCollectionEquality().hash(totalNanoseconds) ^
-      const DeepCollectionEquality().hash(totalMinutes) ^
-      const DeepCollectionEquality().hash(totalSeconds) ^
-      runtimeType.hashCode;
-}
-
-extension $TimeSpanExtension on TimeSpan {
-  TimeSpan copyWith(
-      {num? ticks,
-      int? days,
-      int? hours,
-      int? milliseconds,
-      int? microseconds,
-      int? nanoseconds,
-      int? minutes,
-      int? seconds,
-      double? totalDays,
-      double? totalHours,
-      double? totalMilliseconds,
-      double? totalMicroseconds,
-      double? totalNanoseconds,
-      double? totalMinutes,
-      double? totalSeconds}) {
-    return TimeSpan(
-        ticks: ticks ?? this.ticks,
-        days: days ?? this.days,
-        hours: hours ?? this.hours,
-        milliseconds: milliseconds ?? this.milliseconds,
-        microseconds: microseconds ?? this.microseconds,
-        nanoseconds: nanoseconds ?? this.nanoseconds,
-        minutes: minutes ?? this.minutes,
-        seconds: seconds ?? this.seconds,
-        totalDays: totalDays ?? this.totalDays,
-        totalHours: totalHours ?? this.totalHours,
-        totalMilliseconds: totalMilliseconds ?? this.totalMilliseconds,
-        totalMicroseconds: totalMicroseconds ?? this.totalMicroseconds,
-        totalNanoseconds: totalNanoseconds ?? this.totalNanoseconds,
-        totalMinutes: totalMinutes ?? this.totalMinutes,
-        totalSeconds: totalSeconds ?? this.totalSeconds);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class UserAttributesDto {
   UserAttributesDto({
     this.id,
@@ -8671,7 +8507,7 @@ class UserPutDto {
   @JsonKey(name: 'costPerAppointment')
   final double? costPerAppointment;
   @JsonKey(name: 'appointmentDuration')
-  final TimeSpan? appointmentDuration;
+  final String? appointmentDuration;
   static const fromJsonFactory = _$UserPutDtoFromJson;
   static const toJsonFactory = _$UserPutDtoToJson;
   Map<String, dynamic> toJson() => _$UserPutDtoToJson(this);
@@ -8761,7 +8597,7 @@ extension $UserPutDtoExtension on UserPutDto {
       String? address,
       DateTime? birthDate,
       double? costPerAppointment,
-      TimeSpan? appointmentDuration}) {
+      String? appointmentDuration}) {
     return UserPutDto(
         imageFile: imageFile ?? this.imageFile,
         name: name ?? this.name,

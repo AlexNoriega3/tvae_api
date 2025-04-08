@@ -21,7 +21,7 @@
         "tags": [
           "AcademicStudies"
         ],
-        "summary": "Get all AcademicStudies..\r\n11",
+        "summary": "Get all AcademicStudies..\r\n12",
         "responses": {
           "200": {
             "description": "Success",
@@ -16553,7 +16553,8 @@
                     "format": "double"
                   },
                   "AppointmentDuration": {
-                    "$ref": "#/components/schemas/TimeSpan"
+                    "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+                    "type": "string"
                   }
                 }
               },
@@ -22152,7 +22153,9 @@
             "nullable": true
           },
           "appointmentDuration": {
-            "$ref": "#/components/schemas/TimeSpan"
+            "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+            "type": "string",
+            "nullable": true
           },
           "pin": {
             "type": "string",
@@ -22297,7 +22300,9 @@
             "nullable": true
           },
           "appointmentDuration": {
-            "$ref": "#/components/schemas/TimeSpan"
+            "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+            "type": "string",
+            "nullable": true
           },
           "localId": {
             "type": "string",
@@ -23021,86 +23026,6 @@
         },
         "additionalProperties": false
       },
-      "TimeSpan": {
-        "type": "object",
-        "properties": {
-          "ticks": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "days": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "hours": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "milliseconds": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "microseconds": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "nanoseconds": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "minutes": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "seconds": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "totalDays": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
-          },
-          "totalHours": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
-          },
-          "totalMilliseconds": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
-          },
-          "totalMicroseconds": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
-          },
-          "totalNanoseconds": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
-          },
-          "totalMinutes": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
-          },
-          "totalSeconds": {
-            "type": "number",
-            "format": "double",
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
       "UserAttributesDto": {
         "type": "object",
         "properties": {
@@ -23255,7 +23180,9 @@
             "nullable": true
           },
           "appointmentDuration": {
-            "$ref": "#/components/schemas/TimeSpan"
+            "pattern": "^(?:[01][0-9]|2[0-3]):(?:[01][0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])$",
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

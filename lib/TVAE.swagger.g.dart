@@ -999,10 +999,7 @@ ProviderProfileDto _$ProviderProfileDtoFromJson(Map<String, dynamic> json) =>
       address: json['address'] as String?,
       costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
       rating: (json['rating'] as num?)?.toDouble(),
-      appointmentDuration: json['appointmentDuration'] == null
-          ? null
-          : TimeSpan.fromJson(
-              json['appointmentDuration'] as Map<String, dynamic>),
+      appointmentDuration: json['appointmentDuration'] as String?,
       pin: json['pin'] as String?,
       carNo: json['carNo'] as String?,
       urlMap: json['urlMap'] as String?,
@@ -1047,7 +1044,7 @@ Map<String, dynamic> _$ProviderProfileDtoToJson(ProviderProfileDto instance) =>
       'address': instance.address,
       'costPerAppointment': instance.costPerAppointment,
       'rating': instance.rating,
-      'appointmentDuration': instance.appointmentDuration?.toJson(),
+      'appointmentDuration': instance.appointmentDuration,
       'pin': instance.pin,
       'carNo': instance.carNo,
       'urlMap': instance.urlMap,
@@ -1079,10 +1076,7 @@ ProviderPutDto _$ProviderPutDtoFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['birthDate'] as String),
       costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
-      appointmentDuration: json['appointmentDuration'] == null
-          ? null
-          : TimeSpan.fromJson(
-              json['appointmentDuration'] as Map<String, dynamic>),
+      appointmentDuration: json['appointmentDuration'] as String?,
       localId: json['localId'] as String?,
       subDepartments: (json['subDepartments'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -1115,7 +1109,7 @@ Map<String, dynamic> _$ProviderPutDtoToJson(ProviderPutDto instance) =>
       'address': instance.address,
       'birthDate': instance.birthDate?.toIso8601String(),
       'costPerAppointment': instance.costPerAppointment,
-      'appointmentDuration': instance.appointmentDuration?.toJson(),
+      'appointmentDuration': instance.appointmentDuration,
       'localId': instance.localId,
       'subDepartments': instance.subDepartments,
       'academicStudies':
@@ -1599,42 +1593,6 @@ Map<String, dynamic> _$SubdepartmentDtoPagedResultToJson(
       'items': instance.items?.map((e) => e.toJson()).toList(),
     };
 
-TimeSpan _$TimeSpanFromJson(Map<String, dynamic> json) => TimeSpan(
-      ticks: json['ticks'] as num?,
-      days: json['days'] as int?,
-      hours: json['hours'] as int?,
-      milliseconds: json['milliseconds'] as int?,
-      microseconds: json['microseconds'] as int?,
-      nanoseconds: json['nanoseconds'] as int?,
-      minutes: json['minutes'] as int?,
-      seconds: json['seconds'] as int?,
-      totalDays: (json['totalDays'] as num?)?.toDouble(),
-      totalHours: (json['totalHours'] as num?)?.toDouble(),
-      totalMilliseconds: (json['totalMilliseconds'] as num?)?.toDouble(),
-      totalMicroseconds: (json['totalMicroseconds'] as num?)?.toDouble(),
-      totalNanoseconds: (json['totalNanoseconds'] as num?)?.toDouble(),
-      totalMinutes: (json['totalMinutes'] as num?)?.toDouble(),
-      totalSeconds: (json['totalSeconds'] as num?)?.toDouble(),
-    );
-
-Map<String, dynamic> _$TimeSpanToJson(TimeSpan instance) => <String, dynamic>{
-      'ticks': instance.ticks,
-      'days': instance.days,
-      'hours': instance.hours,
-      'milliseconds': instance.milliseconds,
-      'microseconds': instance.microseconds,
-      'nanoseconds': instance.nanoseconds,
-      'minutes': instance.minutes,
-      'seconds': instance.seconds,
-      'totalDays': instance.totalDays,
-      'totalHours': instance.totalHours,
-      'totalMilliseconds': instance.totalMilliseconds,
-      'totalMicroseconds': instance.totalMicroseconds,
-      'totalNanoseconds': instance.totalNanoseconds,
-      'totalMinutes': instance.totalMinutes,
-      'totalSeconds': instance.totalSeconds,
-    };
-
 UserAttributesDto _$UserAttributesDtoFromJson(Map<String, dynamic> json) =>
     UserAttributesDto(
       id: json['id'] as String?,
@@ -1689,10 +1647,7 @@ UserPutDto _$UserPutDtoFromJson(Map<String, dynamic> json) => UserPutDto(
           ? null
           : DateTime.parse(json['birthDate'] as String),
       costPerAppointment: (json['costPerAppointment'] as num?)?.toDouble(),
-      appointmentDuration: json['appointmentDuration'] == null
-          ? null
-          : TimeSpan.fromJson(
-              json['appointmentDuration'] as Map<String, dynamic>),
+      appointmentDuration: json['appointmentDuration'] as String?,
     );
 
 Map<String, dynamic> _$UserPutDtoToJson(UserPutDto instance) =>
@@ -1711,7 +1666,7 @@ Map<String, dynamic> _$UserPutDtoToJson(UserPutDto instance) =>
       'address': instance.address,
       'birthDate': instance.birthDate?.toIso8601String(),
       'costPerAppointment': instance.costPerAppointment,
-      'appointmentDuration': instance.appointmentDuration?.toJson(),
+      'appointmentDuration': instance.appointmentDuration,
     };
 
 VisitCreateDto _$VisitCreateDtoFromJson(Map<String, dynamic> json) =>
